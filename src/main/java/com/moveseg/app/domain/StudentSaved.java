@@ -2,7 +2,7 @@ package com.moveseg.app.domain;
 
 import java.time.Instant;
 
-import com.moveseg.app.infra.domain.DomainEvent;
+import com.moveseg.parent.infra.domain.DomainEvent;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

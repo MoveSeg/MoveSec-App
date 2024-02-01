@@ -1,12 +1,12 @@
 package com.moveseg.app.domain;
 
 import static lombok.AccessLevel.PRIVATE;
-import static com.moveseg.app.infra.domain.DomainObjectId.randomId;
+import static com.moveseg.parent.infra.domain.DomainObjectId.randomId;
 
 import org.hibernate.usertype.UserTypeLegacyBridge;
 import org.springdoc.core.converters.models.MonetaryAmount;
 
-import com.moveseg.app.infra.domain.AbstractAggregateRoot;
+import com.moveseg.parent.infra.domain.AbstractAggregateRoot;
 
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
