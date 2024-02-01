@@ -25,7 +25,6 @@ import org.hibernate.usertype.UserTypeLegacyBridge;
 @Entity
 public class StudentEntity extends AbstractAggregateRoot<StudentId> {
 
-    @Type(value = UserTypeLegacyBridge.class, parameters = @Parameter(name = UserTypeLegacyBridge.TYPE_NAME_PARAM_KEY, value = "StudentId"))
     private final String firstName;
 
     private StudentEntity(String firstName) {
