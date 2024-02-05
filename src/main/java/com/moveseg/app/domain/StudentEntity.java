@@ -1,22 +1,14 @@
 package com.moveseg.app.domain;
 
-import static lombok.AccessLevel.PRIVATE;
 import static com.moveseg.parent.infra.domain.DomainObjectId.randomId;
-
-import org.hibernate.usertype.UserTypeLegacyBridge;
-import org.springdoc.core.converters.models.MonetaryAmount;
+import static lombok.AccessLevel.PRIVATE;
 
 import com.moveseg.parent.infra.domain.AbstractAggregateRoot;
 
-import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.hibernate.annotations.CompositeType;
-import org.hibernate.annotations.Parameter;
-import org.hibernate.annotations.Type;
-import org.hibernate.usertype.UserTypeLegacyBridge;
 
 @Getter
 @ToString
