@@ -1,4 +1,4 @@
-package com.moveseg.app.infra.auth.domain;
+package com.moveseg.app.cadastro.veiculo.dominio;
 
 import com.moveseg.parent.infra.domain.ValueObject;
  
@@ -12,15 +12,10 @@ import lombok.Getter;
 @Embeddable
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-
 public final class Chassi implements ValueObject {
-    private final String montadora;
-    private final String pais;
-    private final Integer regiao_geografica;
-    private final Integer numero_de_serie;
-    private final Integer Local_da_fabrica;
-    private final Integer ano_ou_modelo;
+    private final String value;
 
-
-    
+    public static Chassi of(String value) {
+        return new Chassi(value);
+    }
 }

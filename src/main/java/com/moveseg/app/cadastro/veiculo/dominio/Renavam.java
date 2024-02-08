@@ -1,4 +1,4 @@
-package com.moveseg.app.infra.auth.domain;
+package com.moveseg.app.cadastro.veiculo.dominio;
 
 import com.moveseg.parent.infra.domain.ValueObject;
 
@@ -12,10 +12,11 @@ import lombok.Getter;
 @Embeddable
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+public final class Renavam implements ValueObject {
+    private final String value;
 
+    public static Renavam of(String renavam) {
+        return new Renavam(renavam);
+    }
 
-
-public final class Placa implements ValueObject {
-    private final String cidade;
-    private final String estado;
 }
