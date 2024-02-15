@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.cadastroInstituiocao.domain;
+package com.moveseg.app.cadastro.cadastroInstituicao.domain;
 
 import com.moveseg.parent.infra.domain.ValueObject;
 
@@ -18,6 +18,7 @@ public final class Endereco implements ValueObject{
     private final Integer numero;
 
     public static Endereco of(String logradouro, Integer numero){
+        
         return new Endereco(logradouro, numero);
     }
 }
