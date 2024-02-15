@@ -8,3 +8,4 @@ public class VeiculoId extends DomainObjectId {
         super(uuid);
     }
 }
+

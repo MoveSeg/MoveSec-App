@@ -2,15 +2,12 @@ package com.moveseg.app.cadastro.veiculo.dominio;
 
 import static com.moveseg.parent.infra.domain.DomainObjectId.randomId;
 
-import java.util.UUID;
 
 import com.moveseg.parent.infra.domain.AbstractEntity;
-import com.moveseg.app.cadastro.veiculo.dominio.VeiculoId;
 
-import jakarta.persistence.Column;
+
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -54,14 +51,37 @@ public final class Veiculo extends AbstractEntity<VeiculoId> {
     @Builder
     private Veiculo(Placa placa, Integer numeroDaFrota, Chassi chassi, Renavam renavam, Integer anoModelo,
             String marca,
-            String modelo, String corPredominate, Integer capacidadeDePassgeiros) throws Exception {
+            String modelo, String corPredominante, Integer capacidadeDePassageiros) throws Exception {
 
         super(randomId(VeiculoId.class));
 
         if (placa == null)
             throw new Exception("A placa não deve ser nula");
+
         if (numeroDaFrota == null || numeroDaFrota == 0)
-            throw new Exception("Numero da frota invalido");
+            throw new Exception("Número da frota inválido");
+
+        if (chassi == null)
+            throw new Exception("O chassi não deve ser nulo");
+
+        if (renavam == null)
+            throw new Exception("O renavam não deve ser nulo");
+
+        if (anoModelo == null || anoModelo == 0)
+            throw new Exception("O anoModelo não deve ser nulo");
+
+        if (marca.isEmpty())
+            throw new Exception(" A marca não deve ser nula");
+
+        if (modelo.isEmpty())
+            throw new Exception("O modelo não deve ser nulo");
+
+        if (corPredominante.isEmpty())
+            throw new Exception("A cor predominate não deve ser nula");
+
+        if (capacidadeDePassageiros == null || capacidadeDePassageiros == 0)
+            throw new Exception("A capacidade de passageiros não deve ser nula");
+
         this.placa = placa;
         this.numeroDaFrota = numeroDaFrota;
         this.chassi = chassi;
@@ -69,7 +89,7 @@ public final class Veiculo extends AbstractEntity<VeiculoId> {
         this.anoModelo = anoModelo;
         this.marca = marca;
         this.modelo = modelo;
-        this.corPredominante = corPredominate;
-        this.capacidadeDePassageiros = capacidadeDePassgeiros;
+        this.corPredominante = corPredominante;
+        this.capacidadeDePassageiros = capacidadeDePassageiros;
     }
 }

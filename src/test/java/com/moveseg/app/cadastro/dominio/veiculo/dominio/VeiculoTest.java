@@ -35,7 +35,7 @@ public class VeiculoTest {
     private String marca = "Marca";
     private String modelo = "Modelo";
     private String corPredominante = "Azul";
-    private Integer capacidadePassageiros = 0;
+    private Integer capacidadeDePassageiros = 8;
     private VeiculoBuilder builder;
 
     @BeforeEach
@@ -48,8 +48,8 @@ public class VeiculoTest {
                 .anoModelo(anoModelo)
                 .marca(marca)
                 .modelo(modelo)
-                .corPredominate(corPredominante)
-                .capacidadeDePassgeiros(capacidadePassageiros);
+                .corPredominante(corPredominante)
+                .capacidadeDePassageiros(capacidadeDePassageiros);
     }
 
     @Test
@@ -68,7 +68,7 @@ public class VeiculoTest {
         assertEquals("Marca", veiculo.marca());
         assertEquals("Modelo", veiculo.modelo());
         assertEquals("Azul", veiculo.corPredominante());
-        assertEquals(0, veiculo.capacidadeDePassageiros());
+        assertEquals(8, veiculo.capacidadeDePassageiros());
     }
 
     @Test
@@ -86,9 +86,218 @@ public class VeiculoTest {
     }
 
     @Test
-    void dadoUmVeiculoChassiNaoDeveCriar() {
+    void dadoUmVeiculoSemChassiNaoDeveCriar() {
         builder.chassi(null);
 
         assertThrows(Exception.class, () -> builder.build());
     }
+
+    @Test
+    void dadoUmVeiculoSemRenavamNaoDeveCriar() {
+        builder.renavam(null);
+
+        assertThrows(Exception.class, () -> builder.build());
+    }
+
+    @Test
+    void dadoUmVeiculoSemAnoModeloNaoDeveCriar() {
+        builder.anoModelo(null);
+
+        assertThrows(Exception.class, () -> builder.build());
+    }
+
+    @Test
+    void dadoUmVeiculoSemMarcaNaoDeveCriar() {
+        builder.marca(null);
+
+        assertThrows(Exception.class, () -> builder.build());
+    }
+
+    @Test
+    void dadoUmVeiculoSemModeloNaoDeveCriar() {
+        builder.modelo(null);
+
+        assertThrows(Exception.class, () -> builder.build());
+    }
+
+    @Test
+    void dadoUmVeiculoSemCorPredominanteNaoDeveCriar() {
+        builder.corPredominante(null);
+
+        assertThrows(Exception.class, () -> builder.build());
+    }
+
+    @Test
+    void dadoUmVeiculoSemCapacidadeDePassageirosNaoDeveCriar() {
+        builder.capacidadeDePassageiros(null);
+
+        assertThrows(Exception.class, () -> builder.build());
+    }
+
+    @Test
+    void dadoNovosDadosDaPlacaDeveAtulizarOVeiculoEManterNaoNulo() throws Exception{
+      Veiculo veiculo = this.builder.build();
+        Placa novaPlaca = Placa.of("GHGHGH");
+        this.builder.placa(novaPlaca);
+        Veiculo veiculoAtualizado = this.builder.build();
+        assertEquals(novaPlaca, veiculoAtualizado.placa());
+    }
+
+    @Test
+    void dadoNovosDadosDoNumeroDafrotaDeveAtulizarOVeiculoEManterNaoNulo() throws Exception{
+      Veiculo veiculo= this.builder.build();
+        Integer novoNumeroDaFrota = 445;
+        this.builder.numeroDaFrota(novoNumeroDaFrota);
+        Veiculo veiculoAtualizado = this.builder.build();
+        assertEquals(novoNumeroDaFrota, veiculoAtualizado.numeroDaFrota());
+    }
+
+    @Test
+    void dadoNovosDadosDoChassiDeveAtulizarOVeiculoEManterNaoNulo() throws Exception{
+      Veiculo veiculo = this.builder.build();
+        Chassi novoChassi = Chassi.of("ADAFAE");
+        this.builder.chassi(novoChassi);
+        Veiculo veiculoAtualizado = this.builder.build();
+        assertEquals(novoChassi, veiculoAtualizado.chassi());
+    }
+
+    @Test
+    void dadoNovosDadosDoRenavamDeveAtulizarOVeiculoEManterNaoNulo() throws Exception{
+      Veiculo veiculo = this.builder.build();
+        Renavam novoRenavam = Renavam.of("ighjty");
+        this.builder.renavam(novoRenavam);
+        Veiculo veiculoAtualizado = this.builder.build();
+        assertEquals(novoRenavam, veiculoAtualizado.renavam());
+    }
+
+    @Test
+    void dadoNovosDadosDoAnoModeloDeveAtulizarOVeiculoEManterNaoNulo() throws Exception{
+      Veiculo veiculo = this.builder.build();
+        Integer novoAnoModelo = 2024;
+        this.builder.anoModelo(novoAnoModelo);
+        Veiculo veiculoAtualizado = this.builder.build();
+        assertEquals(novoAnoModelo, veiculoAtualizado.anoModelo());
+    }
+
+    @Test
+    void dadoNovosDadosDaMarcaDeveAtulizaroVeiculoEManterNaoNulo() throws Exception{
+      Veiculo veiculo = this.builder.build();
+        String novaMarca= "Volkswagen";
+        this.builder.marca(novaMarca);
+        Veiculo veiculoAtualizado = this.builder.build();
+        assertEquals(novaMarca, veiculoAtualizado.marca());
+    }
+
+    @Test
+    void dadoNovosDadosDoModeloDeveAtulizaroVeiculoEManterNaoNulo() throws Exception{
+      Veiculo veiculo = this.builder.build();
+        String novoModelo = "Caterpillar";
+        this.builder.modelo(novoModelo);
+        Veiculo veiculoAtualizado = this.builder.build();
+        assertEquals(novoModelo, veiculoAtualizado.modelo());
+    }
+
+    @Test
+    void dadoNovosDadosDaCorPredominanteDeveAtulizaroVeiculoEManterNaoNulo() throws Exception{
+      Veiculo veiculo = this.builder.build();
+        String novacorPredominante = "Amarelo";
+        this.builder.corPredominante(novacorPredominante);
+        Veiculo veiculoAtualizado = this.builder.build();
+        assertEquals(novacorPredominante, veiculoAtualizado.corPredominante());
+    }
+
+    @Test
+    void dadoNovosDadosDaCapacidaDeDepassageirosAtulizaroVeiculoEManterNaoNulo() throws Exception{
+      Veiculo veiculo = this.builder.build();
+        Integer novaCapacidadeDePassageiros = 30;
+        this.builder.capacidadeDePassageiros(novaCapacidadeDePassageiros);
+        Veiculo veiculoAtualizado = this.builder.build();
+        assertEquals(novaCapacidadeDePassageiros, veiculoAtualizado.capacidadeDePassageiros());
+    }
+    
+    @Test
+    void dadoUmVeiculoSemPlacaNaoDeveAlterar() {
+        builder.placa(null);
+        assertThrows(Exception.class, () -> builder.build());
+    }
+
+    @Test
+    void dadoUmVeiculoSemNumeroDaFrotaNaoDeveAlterar() {
+        builder.numeroDaFrota(null);
+
+        assertThrows(Exception.class, () -> builder.build());
+    }
+
+    @Test
+    void dadoUmVeiculoSemChassiNaoDeveAlterar() {
+        builder.chassi(null);
+
+        assertThrows(Exception.class, () -> builder.build());
+    }
+
+    @Test
+    void dadoUmVeiculoSemRenavamNaoDeveAlterar() {
+        builder.renavam(null);
+
+        assertThrows(Exception.class, () -> builder.build());
+    }
+
+    @Test
+    void dadoUmVeiculoSemAnoModeloNaoDeveAlterar() {
+        builder.anoModelo(null);
+
+        assertThrows(Exception.class, () -> builder.build());
+    }
+
+    @Test
+    void dadoUmVeiculoSemmMarcaNaoDeveAlterar() {
+        builder.marca(null);
+
+        assertThrows(Exception.class, () -> builder.build());
+    }
+
+    @Test
+    void dadoUmVeiculoSemModeloNaoDeveAlterar() {
+        builder.modelo(null);
+
+        assertThrows(Exception.class, () -> builder.build());
+    }
+
+    @Test
+    void dadoUmVeiculoSemCorPredominateNaoDeveAlterar() {
+        builder.corPredominante(null);
+
+        assertThrows(Exception.class, () -> builder.build());
+    }
+
+    @Test
+    void  dadoUmVeiculoSemCapacidadeDePassageirosNaoDeveAlterar() {
+        builder.capacidadeDePassageiros(null);
+
+        assertThrows(Exception.class, () -> builder.build());
+    }
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
