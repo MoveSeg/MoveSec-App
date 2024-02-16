@@ -136,11 +136,22 @@ public class VeiculoTest {
 
     @Test
     void dadoNovosDadosDaPlacaDeveAtulizarOVeiculoEManterNaoNulo() throws Exception{
-      Veiculo veiculo = this.builder.build();
+      
         Placa novaPlaca = Placa.of("GHGHGH");
-        this.builder.placa(novaPlaca);
-        Veiculo veiculoAtualizado = this.builder.build();
-        assertEquals(novaPlaca, veiculoAtualizado.placa());
+
+        Veiculo veiculo = this.builder.build();
+        veiculo.atualizar().placa(novaPlaca).aplicar();
+
+        assertNotNull(veiculo.id());
+        assertEquals(novaPlaca, veiculo.placa());
+        assertEquals(128, veiculo.numeroDaFrota());
+        assertEquals(chassi, veiculo.chassi());
+        assertEquals(renavam, veiculo.renavam());
+        assertEquals(2012, veiculo.anoModelo());
+        assertEquals("Marca", veiculo.marca());
+        assertEquals("Modelo", veiculo.modelo());
+        assertEquals("Azul", veiculo.corPredominante());
+        assertEquals(8, veiculo.capacidadeDePassageiros());
     }
 
     @Test

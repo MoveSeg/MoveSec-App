@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moveseg.app.cadastro.veiculo.dominio.Veiculo;
+import com.moveseg.app.cadastro.veiculo.dominio.VeiculoId;
 import com.moveseg.app.cadastro.veiculo.dominio.service.VeiculoService;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -45,7 +46,7 @@ public class VeiculoController {
        }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Veiculo> buscarPorId(@PathVariable UUID id) {
+    public ResponseEntity<Veiculo> buscarPorId(@PathVariable VeiculoId id) {
        Optional<Veiculo> optVeiculo = service.buscarPorId(id);
 
        if(optVeiculo.isEmpty()){

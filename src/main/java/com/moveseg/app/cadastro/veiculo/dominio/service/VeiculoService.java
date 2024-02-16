@@ -2,11 +2,11 @@ package com.moveseg.app.cadastro.veiculo.dominio.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
 import com.moveseg.app.cadastro.veiculo.dominio.Veiculo;
+import com.moveseg.app.cadastro.veiculo.dominio.VeiculoId;
 import com.moveseg.app.cadastro.veiculo.dominio.repository.VeiculoRepository;
 
 import jakarta.transaction.Transactional;
@@ -27,7 +27,7 @@ public class VeiculoService {
         return repository.findAll();
     }
 
-    public Optional<Veiculo> buscarPorId(UUID id) {
+    public Optional<Veiculo> buscarPorId(VeiculoId id) {
         return repository.findById(id);
     }
 
