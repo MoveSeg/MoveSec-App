@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class VeiculoForm {
-
     private final Consumer<VeiculoForm> action;
 
     public Placa placa;
