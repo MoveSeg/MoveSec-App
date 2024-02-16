@@ -13,7 +13,7 @@ import com.moveseg.app.cadastro.veiculo.domain.Renavam;
 import com.moveseg.app.cadastro.veiculo.domain.Veiculo;
 import com.moveseg.app.cadastro.veiculo.domain.Veiculo.VeiculoBuilder;
 
-public class VeiculoTest {
+class VeiculoTest {
 
     private Placa placa = Placa.of("ASDASD");
     private Chassi chassi = Chassi.of("ASDASD");
@@ -123,38 +123,39 @@ public class VeiculoTest {
     }
 
     @Test
-    void dadoNovosDadosDaPlacaDeveAtualizarOVeiculoEManterNaoNulo() throws Exception{
-        Placa novaPlaca =  Placa.of("FGFGFG");  
-        Integer novoNumeroDaFrota =  666;  
-        Veiculo veiculo = this.builder.build();
-        Chassi novoChassi =  Chassi.of("HJHJHJ");  
-        Renavam novoRenavam =  Renavam.of("YTYTYT"); 
-        Integer novoAnoModelo =  2012;   
+    void dadoNovosDadosDaPlacaDeveAtualizarOVeiculoEManterNaoNulo() throws Exception {
+        Placa novaPlaca = Placa.of("FGFGFG");
+        Integer novoNumeroDaFrota = 666;
+        Chassi novoChassi = Chassi.of("HJHJHJ");
+        Renavam novoRenavam = Renavam.of("YTYTYT");
+        Integer novoAnoModelo = 2012;
         String novaMarca = "Nova marca";
         String novoModelo = "Novo modelo";
         String novaCorPredominante = "Nova cor predominante";
         Integer novaCapacidadeDePassageiros = 66;
 
-        veiculo.atualizar().placa(novaPlaca).aplicar();
-        veiculo.atualizar().numeroDaFrota(novoNumeroDaFrota).aplicar();
-        veiculo.atualizar().chassi(novoChassi).aplicar();
-        veiculo.atualizar().renavam(novoRenavam).aplicar();
-        veiculo.atualizar().anoModelo(novoAnoModelo).aplicar();
-        veiculo.atualizar().marca(novaMarca).aplicar();
-        veiculo.atualizar().modelo(novoModelo).aplicar();
-        veiculo.atualizar().corPredominante(novaCorPredominante).aplicar();
-        veiculo.atualizar().capacidadeDePassageiros(novaCapacidadeDePassageiros).aplicar();
+        Veiculo veiculo = this.builder.build();
+        veiculo.atualizar()
+                .placa(novaPlaca)
+                .numeroDaFrota(novoNumeroDaFrota)
+                .chassi(novoChassi)
+                .renavam(novoRenavam)
+                .anoModelo(novoAnoModelo)
+                .marca(novaMarca)
+                .modelo(novoModelo)
+                .corPredominante(novaCorPredominante)
+                .capacidadeDePassageiros(novaCapacidadeDePassageiros).aplicar();
 
         assertNotNull(veiculo.id());
         assertEquals(novaPlaca, veiculo.placa());
-        assertEquals(128, veiculo.numeroDaFrota());
-        assertEquals(chassi, veiculo.chassi());
-        assertEquals(renavam, veiculo.renavam());
-        assertEquals(2012, veiculo.anoModelo());
-        assertEquals("Marca", veiculo.marca());
-        assertEquals("Modelo", veiculo.modelo());
-        assertEquals("Azul", veiculo.corPredominante());
-        assertEquals(8, veiculo.capacidadeDePassageiros());
+        assertEquals(novoNumeroDaFrota, veiculo.numeroDaFrota());
+        assertEquals(novoChassi, veiculo.chassi());
+        assertEquals(novoRenavam, veiculo.renavam());
+        assertEquals(novoAnoModelo, veiculo.anoModelo());
+        assertEquals(novaMarca, veiculo.marca());
+        assertEquals(novoModelo, veiculo.modelo());
+        assertEquals(novaCorPredominante, veiculo.corPredominante());
+        assertEquals(novaCapacidadeDePassageiros, veiculo.capacidadeDePassageiros());
     }
 
 }
