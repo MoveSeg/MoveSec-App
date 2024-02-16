@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.veiculo.dominio;
+package com.moveseg.app.cadastro.veiculo.domain;
 
 import com.moveseg.parent.infra.domain.DomainObjectId;
 
@@ -8,4 +8,3 @@ public class VeiculoId extends DomainObjectId {
         super(uuid);
     }
 }
-

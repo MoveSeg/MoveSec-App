@@ -1,4 +1,5 @@
-package com.moveseg.app.cadastro.veiculo.dominio;
+package com.moveseg.app.cadastro.veiculo.domain;
+
 
 import com.moveseg.parent.infra.domain.ValueObject;
 
@@ -12,11 +13,11 @@ import lombok.Getter;
 @Embeddable
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public final class Renavam implements ValueObject {
+public final class Placa implements ValueObject {
     private final String value;
 
-    public static Renavam of(String renavam) {
-        return new Renavam(renavam);
-    }
-
+    public static Placa of(String placa) {
+        assert !placa.isEmpty(): "Placa não pode ser vazio";
+        throw new IllegalArgumentException ("Não deve ser nullo");
+}
 }

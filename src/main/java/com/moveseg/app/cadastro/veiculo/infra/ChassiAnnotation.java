@@ -9,13 +9,15 @@ import java.lang.annotation.Target;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
-@Documented 
+@Documented
 @Constraint(validatedBy = ChassiValidator.class)
-@Target ({ElementType.FIELD, ElementType.METHOD})
+@Target({ ElementType.FIELD, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
 
 public @interface ChassiAnnotation {
     String message() default "Chassi inválido";
-    Class<?> [] groups() default {};
-    Class<? extends Payload> [] payload() default {};
+
+    Class<?>[] groups() default {};
+
+    Class<? extends Payload>[] payload() default {};
 }

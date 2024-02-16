@@ -9,15 +9,17 @@ import java.lang.annotation.Target;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
-@Documented 
+@Documented
 @Constraint(validatedBy = PlacaValidator.class)
-@Target ({ElementType.FIELD, ElementType.METHOD})
+@Target({ ElementType.FIELD, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
 
 public @interface PlacaAnnotation {
 
     String message() default "Placa invalida";
-    Class<?> [] groups() default {};
-    Class<? extends Payload> [] payload() default {};
-    
+
+    Class<?>[] groups() default {};
+
+    Class<? extends Payload>[] payload() default {};
+
 }

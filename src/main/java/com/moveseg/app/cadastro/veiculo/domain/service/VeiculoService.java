@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.veiculo.dominio.service;
+package com.moveseg.app.cadastro.veiculo.domain.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,8 +6,8 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
-import com.moveseg.app.cadastro.veiculo.dominio.Veiculo;
-import com.moveseg.app.cadastro.veiculo.dominio.repository.VeiculoRepository;
+import com.moveseg.app.cadastro.veiculo.domain.Veiculo;
+import com.moveseg.app.cadastro.veiculo.domain.repository.VeiculoRepository;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -16,10 +16,12 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 @RequiredArgsConstructor
 public class VeiculoService {
-    
+
     private final VeiculoRepository repository;
 
-    public Veiculo salvar (Veiculo veiculo){
+    //Veiculo veiculo = Veiculo.builder().marca(veiculo.marca).build();
+
+    public Veiculo salvar(Veiculo veiculo) {
         return repository.save(veiculo);
     }
 
@@ -31,5 +33,7 @@ public class VeiculoService {
         return repository.findById(id);
     }
 
-    public void deletar (String id) {}
+    public void deletar(UUID id) {
+        repository.deleteById(id);
+    }
 }

@@ -1,8 +1,6 @@
 package com.moveseg.app.infra.veiculo.infra;
 
-
 import org.junit.jupiter.api.Test;
-
 
 import com.moveseg.app.cadastro.veiculo.infra.ChassiValidator;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -11,35 +9,22 @@ import static org.mockito.Mockito.mock;
 
 import jakarta.validation.ConstraintValidatorContext;
 
-
 public class ChassiValidatorTest {
 
+   private ChassiValidator validator = new ChassiValidator();
+   private ConstraintValidatorContext constraintValidatorContext = mock(ConstraintValidatorContext.class);
 
-    private ChassiValidator validator = new ChassiValidator();
-    private ConstraintValidatorContext  constraintValidatorContext = mock(ConstraintValidatorContext.class);
-     
-     
-     
-    @Test 
-     void testChassiValido() {
-        String chassiValido = "ABCD1234567899AAA";
-        assertTrue(validator.isValid(chassiValido, constraintValidatorContext));
-    
-     }
-    
-    
-    
-    @Test 
-     void testChassiInvalido() {
-        String chassiInvalido = "000000007";
-        assertFalse(validator.isValid(chassiInvalido ,constraintValidatorContext));
-     }
-    
-    
-    }
-    
+   @Test
+   void ChassiValido() {
+      String chassiValido = "ABCD1234567899AAA";
+      assertTrue(validator.isValid(chassiValido, constraintValidatorContext));
 
+   }
 
+   @Test
+   void ChassiInvalido() {
+      String chassiInvalido = "000000007";
+      assertFalse(validator.isValid(chassiInvalido, constraintValidatorContext));
+   }
 
-    
-
+}

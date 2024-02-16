@@ -1,14 +1,11 @@
-package com.moveseg.app.cadastro.veiculo.dominio;
+package com.moveseg.app.cadastro.veiculo.domain;
 
 import static com.moveseg.parent.infra.domain.DomainObjectId.randomId;
 
-
 import com.moveseg.parent.infra.domain.AbstractEntity;
-
 
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,34 +16,25 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 public final class Veiculo extends AbstractEntity<VeiculoId> {
 
-    @NotBlank
     @Embedded
-    private final Placa placa;
+    private Placa placa;
 
-    @NotBlank
-    private final Integer numeroDaFrota;
+    private Integer numeroDaFrota;
 
-    @NotBlank
     @Embedded
-    private final Chassi chassi;
+    private Chassi chassi;
 
-    @NotBlank
-    private final Renavam renavam;
+    private Renavam renavam;
 
-    @NotBlank
-    private final Integer anoModelo;
+    private Integer anoModelo;
 
-    @NotBlank
-    private final String marca;
+    private String marca;
 
-    @NotBlank
-    private final String modelo;
+    private String modelo;
 
-    @NotBlank
-    private final String corPredominante;
+    private String corPredominante;
 
-    @NotBlank
-    private final Integer capacidadeDePassageiros;
+    private Integer capacidadeDePassageiros;
 
     @Builder
     private Veiculo(Placa placa, Integer numeroDaFrota, Chassi chassi, Renavam renavam, Integer anoModelo,
@@ -91,5 +79,19 @@ public final class Veiculo extends AbstractEntity<VeiculoId> {
         this.modelo = modelo;
         this.corPredominante = corPredominante;
         this.capacidadeDePassageiros = capacidadeDePassageiros;
+    }
+
+    public VeiculoForm atualizar() {
+        return new VeiculoForm(form -> {
+            this.placa = form.placa;
+            this.numeroDaFrota = form.numeroDaFrota;
+            this.chassi = form.chassi;
+            this.renavam = form.renavam;
+            this.anoModelo = form.anoModelo;
+            this.marca = form.marca;
+            this.modelo = form.modelo;
+            this.corPredominante = form.corPredominante;
+            this.capacidadeDePassageiros = form.capacidadeDePassageiros;
+        });
     }
 }

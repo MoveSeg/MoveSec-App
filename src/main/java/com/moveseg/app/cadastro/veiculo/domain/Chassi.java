@@ -1,7 +1,7 @@
-package com.moveseg.app.cadastro.veiculo.dominio;
+package com.moveseg.app.cadastro.veiculo.domain;
 
 import com.moveseg.parent.infra.domain.ValueObject;
- 
+
 import jakarta.persistence.Embeddable;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
