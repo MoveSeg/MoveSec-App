@@ -1,63 +1,52 @@
-package com.moveseg.app.cadastro.cadastroInstituicao.domain;
-
-import java.util.UUID;
+package com.moveseg.app.cadastro.Instituto.domain;
 
 import com.moveseg.parent.infra.domain.AbstractEntity;
 import static com.moveseg.parent.infra.domain.DomainObjectId.randomId;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.persistence.ManyToMany;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
-public final class Instituto extends AbstractEntity<InstitutoId>{
+public final class Instituto extends AbstractEntity<InstitutoId> {
+    private String nome;
 
-    @NotBlank
-    private final String nome;
+    @Embedded
+    private Endereco endereco;
 
-    @NotBlank
-    @Embedded
-    private final Endereco endereco;
+    @ManyToMany
+    private Responsavel responsavel;
 
-    @NotBlank
-    @OneToOne
-    private final Responsavel responsavel;
-    
-    @NotBlank
     @Embedded
-    private final Telefone telefone;
-        
-    @NotBlank
+    private Telefone telefone;
+
     @Embedded
-    private final Email email;
+    private Email email;
 
     @Builder
-    private Instituto(String nome, Endereco endereco, Responsavel responsavel, Telefone telefone, Email email) throws Exception{
+    private Instituto(String nome, Endereco endereco, Responsavel responsavel, Telefone telefone, Email email)
+            throws Exception {
         super(randomId(InstitutoId.class));
-       
-        if (nome.isEmpty()){
+
+        if (nome.isEmpty()) {
             throw new Exception("Nome não pode ser nulo");
         }
-        if (endereco == null){
+        if (endereco == null) {
             throw new Exception("Endereço não pode ser nulo");
         }
-        if (responsavel == null){
+        if (responsavel == null) {
             throw new Exception("Responsavel não pode ser nulo");
         }
-        if (telefone == null){
+        if (telefone == null) {
             throw new Exception("Telefone não pode ser nulo");
         }
-        if (email == null){
+        if (email == null) {
             throw new Exception("Email não pode ser nulo");
         }
 
@@ -67,4 +56,14 @@ public final class Instituto extends AbstractEntity<InstitutoId>{
         this.telefone = telefone;
         this.email = email;
     }
+
+    public InstitutoForm atualizar() {
+        return new InstitutoForm(form -> {
+            this.nome = form.nome;
+            this.endereco = form.endereco;
+            this.responsavel = form.responsavel;
+            this.telefone =form.telefone;
+        });
+    }
+
 }

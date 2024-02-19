@@ -1,14 +1,14 @@
-package com.moveseg.app.cadastro.cadastroInstituicao.infra;
+package com.moveseg.app.cadastro.Instituto.infra;
 
-import com.moveseg.app.cadastro.cadastroInstituicao.domain.Telefone;
-import com.moveseg.parent.infra.domain.ValueObject;
+import com.moveseg.app.cadastro.Instituto.domain.Telefone;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
-public class TelefoneValidator implements ConstraintValidator<Phone, Telefone> { 
-    @Override 
-    public void initialize(Phone constraintAnnotation) { }
+public class TelefoneValidator implements ConstraintValidator<Phone, Telefone> {
+    @Override
+    public void initialize(Phone constraintAnnotation) {
+    }
 
     public boolean isValid(Telefone telefone, ConstraintValidatorContext context) {
         String telefoneString = telefone.numero().toString();
@@ -18,5 +18,3 @@ public class TelefoneValidator implements ConstraintValidator<Phone, Telefone> {
         return false;
     }
 }
-
-
