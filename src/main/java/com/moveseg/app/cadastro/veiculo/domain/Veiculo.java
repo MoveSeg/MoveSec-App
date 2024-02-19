@@ -44,7 +44,7 @@ public final class Veiculo extends AbstractEntity<VeiculoId> {
         super(randomId(VeiculoId.class));
 
         if (placa == null)
-            throw new Exception("A placa não deve ser nula");
+            throw new Exception("A placa não deve ser inválida");
 
         if (numeroDaFrota == null || numeroDaFrota == 0)
             throw new Exception("Número da frota inválido");
@@ -58,13 +58,13 @@ public final class Veiculo extends AbstractEntity<VeiculoId> {
         if (anoModelo == null || anoModelo == 0)
             throw new Exception("O anoModelo não deve ser nulo");
 
-        if (marca.isEmpty())
+        if (marca == null || marca.isEmpty())
             throw new Exception(" A marca não deve ser nula");
 
-        if (modelo.isEmpty())
+        if (modelo == null || modelo.isEmpty())
             throw new Exception("O modelo não deve ser nulo");
 
-        if (corPredominante.isEmpty())
+        if (corPredominante == null || corPredominante.isEmpty())
             throw new Exception("A cor predominate não deve ser nula");
 
         if (capacidadeDePassageiros == null || capacidadeDePassageiros == 0)
@@ -81,7 +81,7 @@ public final class Veiculo extends AbstractEntity<VeiculoId> {
         this.capacidadeDePassageiros = capacidadeDePassageiros;
     }
 
-    public VeiculoForm atualizar() {
+    public VeiculoForm update() {
         return new VeiculoForm(form -> {
             this.placa = form.placa;
             this.numeroDaFrota = form.numeroDaFrota;

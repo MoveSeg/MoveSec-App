@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.dominio.veiculo.dominio;
+package com.moveseg.app.cadastro.Veiculo.domain;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -135,7 +135,7 @@ class VeiculoTest {
         Integer novaCapacidadeDePassageiros = 66;
 
         Veiculo veiculo = this.builder.build();
-        veiculo.atualizar()
+        veiculo.update()
                 .placa(novaPlaca)
                 .numeroDaFrota(novoNumeroDaFrota)
                 .chassi(novoChassi)
@@ -144,7 +144,7 @@ class VeiculoTest {
                 .marca(novaMarca)
                 .modelo(novoModelo)
                 .corPredominante(novaCorPredominante)
-                .capacidadeDePassageiros(novaCapacidadeDePassageiros).aplicar();
+                .capacidadeDePassageiros(novaCapacidadeDePassageiros).apply();
 
         assertNotNull(veiculo.id());
         assertEquals(novaPlaca, veiculo.placa());
@@ -157,5 +157,7 @@ class VeiculoTest {
         assertEquals(novaCorPredominante, veiculo.corPredominante());
         assertEquals(novaCapacidadeDePassageiros, veiculo.capacidadeDePassageiros());
     }
+
+    
 
 }

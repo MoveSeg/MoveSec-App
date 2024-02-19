@@ -16,6 +16,9 @@ public final class Renavam implements ValueObject {
     private final String value;
 
     public static Renavam of(String renavam) {
+        if (renavam == null || renavam.isEmpty()) {
+            throw new IllegalArgumentException("Não deve ser nulo");
+        }
         return new Renavam(renavam);
     }
 

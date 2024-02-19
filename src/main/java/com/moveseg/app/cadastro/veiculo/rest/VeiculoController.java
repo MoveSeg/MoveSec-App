@@ -2,7 +2,6 @@ package com.moveseg.app.cadastro.veiculo.rest;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.moveseg.app.cadastro.veiculo.domain.Veiculo;
 import com.moveseg.app.cadastro.veiculo.domain.VeiculoId;
-import com.moveseg.app.cadastro.veiculo.domain.service.VeiculoService;
+import com.moveseg.app.cmd.AtualizarVeiculo;
+import com.moveseg.app.cmd.CriarVeiculo;
+import com.moveseg.app.service.VeiculoService;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import jakarta.validation.Valid;
@@ -29,10 +30,10 @@ import lombok.RequiredArgsConstructor;
 public class VeiculoController {
 
    private final VeiculoService service;
-   
+
    @Valid
    @PostMapping
-   public ResponseEntity<Veiculo> salvar(@RequestBody Veiculo veiculo) {
+   public ResponseEntity<Veiculo> salvar(@RequestBody CriarVeiculo veiculo) throws Exception {
       Veiculo veiculoSalvo = service.salvar(veiculo);
       return ResponseEntity.status(HttpStatus.CREATED).body(veiculoSalvo);
    }
@@ -53,11 +54,10 @@ public class VeiculoController {
       return ResponseEntity.status(HttpStatus.OK).body(optVeiculo.get());
    }
 
-
    @Valid
    @PutMapping
-   public ResponseEntity<Veiculo> alterar(@RequestBody Veiculo veiculo) {
-      Veiculo veiculoSalvo = service.salvar(veiculo);
+   public ResponseEntity<Veiculo> atualizar(@PathVariable VeiculoId id,@RequestBody AtualizarVeiculo veiculo) {
+      Veiculo veiculoSalvo = service.atualizarVeiculo(id, veiculo);
       return ResponseEntity.status(HttpStatus.OK).body(veiculoSalvo);
    }
 

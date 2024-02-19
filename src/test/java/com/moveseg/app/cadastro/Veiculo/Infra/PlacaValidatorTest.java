@@ -1,4 +1,4 @@
-package com.moveseg.app.infra.veiculo;
+package com.moveseg.app.cadastro.Veiculo.Infra;
 
 import org.junit.jupiter.api.Test;
 

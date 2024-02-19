@@ -19,6 +19,7 @@ public final class Placa implements ValueObject {
         if (placa == null || placa.isEmpty()) {
             throw new IllegalArgumentException("Não deve ser nulo");
         }
+
         return new Placa(placa);
     }
 }

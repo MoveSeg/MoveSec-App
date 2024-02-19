@@ -62,8 +62,8 @@ public class VeiculoForm {
         this.capacidadeDePassageiros = capacidadeDePassageiros;
         return this;
     }
-
-    public void aplicar() {
+    
+    public void apply() {
         action.accept(this);
     }
 }

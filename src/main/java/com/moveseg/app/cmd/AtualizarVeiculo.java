@@ -4,11 +4,7 @@ import com.moveseg.app.cadastro.veiculo.domain.Chassi;
 import com.moveseg.app.cadastro.veiculo.domain.Placa;
 import com.moveseg.app.cadastro.veiculo.domain.Renavam;
 
-import lombok.Builder;
-
-@Builder
-public class CriarVeiculo {
-
+public class AtualizarVeiculo {
     public Placa placa;
     public Integer numeroDaFrota;
     public Chassi chassi;
@@ -18,5 +14,4 @@ public class CriarVeiculo {
     public String modelo;
     public String corPredominante;
     public Integer capacidadeDePassageiros;
-
 }

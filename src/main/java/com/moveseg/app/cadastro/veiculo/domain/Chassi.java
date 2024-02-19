@@ -15,7 +15,12 @@ import lombok.Getter;
 public final class Chassi implements ValueObject {
     private final String value;
 
-    public static Chassi of(String value) {
-        return new Chassi(value);
+    public static Chassi of(String chassi) {
+
+        if (chassi == null || chassi.isEmpty()) {
+            throw new IllegalArgumentException("Não pode ser nulo");
+        }
+
+        return new Chassi(chassi);
     }
 }
