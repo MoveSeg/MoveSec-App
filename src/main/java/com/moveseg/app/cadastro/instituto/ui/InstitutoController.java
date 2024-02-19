@@ -1,11 +1,13 @@
-package com.moveseg.app.cadastro.Instituto.ui;
+package com.moveseg.app.cadastro.instituto.ui;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.moveseg.app.cadastro.Instituto.app.service.InstitutoService;
-import com.moveseg.app.cadastro.Instituto.domain.Instituto;
-import com.moveseg.app.cadastro.Instituto.domain.InstitutoId;
+import com.moveseg.app.cadastro.instituto.app.InstitutoService;
+import com.moveseg.app.cadastro.instituto.domain.Instituto;
+import com.moveseg.app.cadastro.instituto.domain.InstitutoId;
+import com.moveseg.app.cadastro.instituto.domain.cmd.AlterarInstituto;
+import com.moveseg.app.cadastro.instituto.domain.cmd.CriarInstituto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,40 +24,42 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/CadastrarInstituto")
-public class controllerCadastro {
+@RequestMapping("/instituto")
+public class InstitutoController {
 
     InstitutoService service;
 
     @PostMapping
-    public ResponseEntity<Instituto> postMethodName(@RequestBody Instituto instituto) {
+    public ResponseEntity<Instituto> salvar(@RequestBody CriarInstituto cmd) throws Exception {
 
-        Instituto salvar = service.salvar(instituto);
+        Instituto salvar = service.handle(cmd);
         return ResponseEntity.status(HttpStatus.CREATED).body(salvar);
     }
 
-    @GetMapping("/id")
-    public ResponseEntity<Instituto> buscarPorid(@PathVariable InstitutoId id) {
-        Optional<Instituto> optionalInstituto = service.buscarPorIdInstituto(id);
+    @GetMapping("/{id}")
+    public ResponseEntity<Instituto> buscarPorId(@PathVariable InstitutoId id) {
+        Optional<Instituto> instituto = service.buscarPorId(id);
 
-        if (optionalInstituto.isEmpty()) {
+        if (instituto.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
 
-        return ResponseEntity.status(HttpStatus.OK).body(optionalInstituto.get());
+        return ResponseEntity.status(HttpStatus.OK).body(instituto.get());
     }
 
-    @PutMapping("id")
-    public ResponseEntity alterar(@RequestBody Instituto instituto) {
-
-        Instituto salvar = service.salvar(instituto);
+    @PutMapping("/{id}")
+    public ResponseEntity<Instituto> alterar(@PathVariable InstitutoId id, @RequestBody AlterarInstituto cmd) throws Exception {
+        
+        cmd.id(id);
+        
+        Instituto salvar = service.handle(cmd);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(salvar);
     }
 
     @DeleteMapping
     public ResponseEntity<Void> deletar(@PathVariable InstitutoId id) {
-        service.deletarInstituto(id);
+        service.deletar(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 

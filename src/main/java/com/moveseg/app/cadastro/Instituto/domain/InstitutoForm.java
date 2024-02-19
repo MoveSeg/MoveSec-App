@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.Instituto.domain;
+package com.moveseg.app.cadastro.instituto.domain;
 
 import java.util.function.Consumer;
 

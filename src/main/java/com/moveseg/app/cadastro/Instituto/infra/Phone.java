@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.Instituto.infra;
+package com.moveseg.app.cadastro.instituto.infra;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

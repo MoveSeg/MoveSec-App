@@ -1,9 +1,10 @@
-package com.moveseg.app.cadastro.Instituto.infra;
+package com.moveseg.app.cadastro.instituto.infra;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
-import com.moveseg.app.cadastro.Instituto.domain.Telefone;
+import com.moveseg.app.cadastro.instituto.domain.Telefone;
+import com.moveseg.app.cadastro.instituto.infra.TelefoneValidator;
 
 import jakarta.validation.ConstraintValidatorContext;
 

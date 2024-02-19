@@ -1,4 +1,4 @@
-package com.moveseg.app.controllers;
+package com.moveseg.app.infra.auth.controllers;
 
 import java.security.Principal;
 
