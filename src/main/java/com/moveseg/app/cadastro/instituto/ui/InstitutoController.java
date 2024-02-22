@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.veiculo.rest;
+package com.moveseg.app.cadastro.instituto.ui;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
@@ -17,25 +17,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.moveseg.app.cadastro.veiculo.app.VeiculoService;
-import com.moveseg.app.cadastro.veiculo.app.cmd.AtualizarVeiculo;
-import com.moveseg.app.cadastro.veiculo.app.cmd.CriarVeiculo;
-import com.moveseg.app.cadastro.veiculo.domain.Veiculo;
-import com.moveseg.app.cadastro.veiculo.domain.VeiculoId;
+import com.moveseg.app.cadastro.instituto.app.InstitutoService;
+import com.moveseg.app.cadastro.instituto.domain.Instituto;
+import com.moveseg.app.cadastro.instituto.domain.InstitutoId;
+import com.moveseg.app.cadastro.instituto.domain.cmd.AlterarInstituto;
+import com.moveseg.app.cadastro.instituto.domain.cmd.CriarInstituto;
 
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping(path = "/api/veiculo", produces = APPLICATION_JSON_VALUE)
-public class VeiculoController {
+@RequestMapping(path = "/api/instituto", produces = APPLICATION_JSON_VALUE)
+public class InstitutoController {
 
-    private final VeiculoService service;
+    InstitutoService service;
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> salvar(@RequestBody CriarVeiculo veiculo) throws Exception {
-        VeiculoId id = service.handle(veiculo);
+    public ResponseEntity<Instituto> salvar(@RequestBody CriarInstituto cmd) {
+        InstitutoId id = service.handle(cmd);
 
         return ResponseEntity.created(fromCurrentRequest()
                 .path("/").path(id.toUUID()).build().toUri())
@@ -43,25 +42,26 @@ public class VeiculoController {
     }
 
     @GetMapping
-    public List<Veiculo> listarTodos() {
+    public List<Instituto> listarTodos() {
         return service.listarTodos();
     }
 
     @GetMapping("/{id}")
-    public Veiculo buscarPorId(@PathVariable @NonNull VeiculoId id) {
+    public Instituto buscarPorId(@PathVariable @NonNull InstitutoId id) {
         return service.buscarPorId(id);
     }
 
-    @Valid
-    @PutMapping
-    public ResponseEntity<Veiculo> atualizar(@PathVariable @NonNull VeiculoId id,
-            @RequestBody AtualizarVeiculo veiculo) throws Exception {
-        Veiculo veiculoSalvo = service.atualizarVeiculo(id, veiculo);
-        return ResponseEntity.status(HttpStatus.OK).body(veiculoSalvo);
+    @PutMapping("/{id}")
+    public ResponseEntity<Instituto> alterar(@PathVariable @NonNull InstitutoId id, @RequestBody AlterarInstituto cmd) {
+
+        cmd.id(id);
+
+        Instituto salvar = service.handle(cmd);
+        return ResponseEntity.status(HttpStatus.CREATED).body(salvar);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable VeiculoId id) {
+    @DeleteMapping
+    public ResponseEntity<Void> deletar(@PathVariable @NonNull InstitutoId id) {
         service.deletar(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
