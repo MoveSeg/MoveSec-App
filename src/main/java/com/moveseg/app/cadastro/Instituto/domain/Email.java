@@ -7,15 +7,17 @@ import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.AccessLevel;
 
 @Getter
 @Embeddable
 @EqualsAndHashCode
+@NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Email{
 
-    private final String email;
+    private String email;
 
     private static final Pattern EMAIL_PATTERN = Pattern.compile(
             "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" +

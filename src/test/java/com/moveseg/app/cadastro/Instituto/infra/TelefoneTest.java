@@ -20,14 +20,14 @@ public class TelefoneTest {
 
     @Test
     public void testTelefoneValido() throws Exception {
-        Integer numero = 333333333;
+        String  numero ="333333333";
         Telefone telefone = Telefone.of(numero);
         assertTrue(validator.isValid(telefone, constraintValidatorContext));
     }
 
     @Test
     public void testTelefoneInvalido() throws Exception {
-        Telefone telefone = Telefone.of(123);
+        Telefone telefone = Telefone.of("123");
         assertFalse(validator.isValid(telefone, constraintValidatorContext));
     }
 }

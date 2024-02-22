@@ -1,155 +1,196 @@
 package com.moveseg.app.cadastro.instituto.domain;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.moveseg.app.cadastro.instituto.domain.Email;
-import com.moveseg.app.cadastro.instituto.domain.Endereco;
-import com.moveseg.app.cadastro.instituto.domain.Instituto;
-import com.moveseg.app.cadastro.instituto.domain.Responsavel;
-import com.moveseg.app.cadastro.instituto.domain.Telefone;
 import com.moveseg.app.cadastro.instituto.domain.Instituto.InstitutoBuilder;
+import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
 
-public class IntitutoTest {
+class IntitutoTest {
 
-   private String nome = "Nome";
-   private Endereco endereco;
-   private Responsavel responsavel;
-   private Telefone telefone;
-   private Email email;
-   private InstitutoBuilder builder;
+    private String nome = "Nome";
+    private Endereco endereco;
+    private Responsavel responsavel;
+    private Telefone telefone;
+    private Email email;
+    private InstitutoBuilder builder;
+    private List<Responsavel> responsaveis;
 
-   @BeforeEach
-   void initializeBuilder() throws Exception {
-      endereco = Endereco.of("logradouro", 555);
-      responsavel = Responsavel.of("Nome Responsavel");
-      telefone = Telefone.of(1123456 - 7890);
-      email = Email.of("Exemplo@gmail.com");
-      this.builder = Instituto.builder()
-            .nome(this.nome)
-            .endereco(this.endereco)
-            .responsavel(this.responsavel)
-            .telefone(this.telefone)
-            .email(this.email);
-   }
+    private String novoNome;
+    private Endereco novoEndereco;
+    private Responsavel novoResponsavel;
+    private Telefone novoTelefone;
+    private Email novoEmail;
 
-   @Test
-   void dadoInstitutoCompletoDeveCriar() throws Exception {
-      Instituto instituto = this.builder.build();
-      assertNotNull(instituto);
-      assertNotNull(instituto.id());
-      assertEquals(this.nome, instituto.nome());
-      assertEquals(this.endereco, instituto.endereco());
-      assertEquals(this.responsavel, instituto.responsavel());
-      assertEquals(this.telefone, instituto.telefone());
-      assertEquals(this.email, instituto.email());
-   }
+    private List<Responsavel> novosResponsaveis;
 
-   @Test
-   void dadoUmInstitutoSemNomeNaoDeveCriar() {
-      this.builder.nome((String) null);
-      assertThrows(Exception.class, () -> {
-         this.builder.build();
-      });
-   }
+    @BeforeEach
+    void initializeBuilder() throws Exception {
+        endereco = Endereco.of("logradouro", 555);
+        responsavel = Responsavel.of("Nome Responsavel");
+        telefone = Telefone.of("1123456 - 7890");
+        email = Email.of("Exemplo@gmail.com");
 
-   @Test
-   void dadoUmInstitutoSemEnderecoNaoDeveCriar() {
-      this.builder.endereco((Endereco) null);
-      assertThrows(Exception.class, () -> {
-         this.builder.build();
-      });
-   }
+        novoNome = "Novo nome";
+        novoEndereco = Endereco.of("Novo endereco", 9999);
+        novoResponsavel = Responsavel.of("Responsavel novo");
+        novoTelefone = Telefone.of(("415555555"));
+        novoEmail = Email.of("Exemplo2@gmail.com");
 
-   @Test
-   void dadoUmInstitutoSemResponsavelNaoDeveCriar() {
-      this.builder.responsavel((Responsavel) null);
-      assertThrows(Exception.class, () -> {
-         this.builder.build();
-      });
-   }
+        responsaveis = new ArrayList<Responsavel>();
+        responsaveis.add(responsavel);
 
-   @Test
-   void dadoInstitutoUmSemTelefoneNaoDeveCriar() {
-      this.builder.telefone((Telefone) null);
-      assertThrows(Exception.class, () -> {
-         this.builder.build();
-      });
-   }
+        novosResponsaveis = new ArrayList<Responsavel>();
+        novosResponsaveis.add(novoResponsavel);
 
-   @Test
-   void dadoInstitutoUmSemEmailNaoDeveCriar() {
-      this.builder.email((Email) null);
-      assertThrows(Exception.class, () -> {
-         this.builder.build();
-      });
-   }
+        this.builder = Instituto.builder()
+                .nome(this.nome)
+                .endereco(this.endereco)
+                .telefone(this.telefone)
+                .email(this.email);
+    }
 
-   @Test
-   void novasInformaçõesCompletasDeveAtulizarEManterNaoNulo() throws Exception {
-      String novonome = "Novo nome";
-      Endereco novoEndereco = Endereco.of("Novo endereco", 9999);
-      Responsavel novoResponsavel = Responsavel.of("Responsavel novo");
-      Telefone novoTelefone = Telefone.of((415555555));
-      Email novoEmail = Email.of("Exemplo2@gmail.com");
+    @Test
+    void dadoInstitutoCompletoDeveCriar() throws Exception {
+        Instituto instituto = this.builder.responsavel(this.responsavel).build();
+        assertNotNull(instituto);
+        assertNotNull(instituto.id());
+        assertEquals(this.nome, instituto.nome());
+        assertEquals(this.endereco, instituto.endereco());
+        assertEquals(this.responsaveis, instituto.responsaveis());
+        assertEquals(this.telefone, instituto.telefone());
+        assertEquals(this.email, instituto.email());
+    }
 
-      Instituto instituto = this.builder.build();
-      instituto.atualizar()
-            .nome(novonome)
-            .endereco(novoEndereco)
-            .responsavel(novoResponsavel)
-            .telefone(novoTelefone)
-            .email(novoEmail).aplicar();
+    @Test
+    void dadoUmInstitutoSemResponsavelDeveCriarVazio() {
+        Instituto instituto = this.builder.build();
+        assertEquals(new ArrayList<Responsavel>(), instituto.responsaveis());
+    }
 
-      assertNotNull(instituto.id());
-      assertEquals(novonome, instituto.nome());
-      assertEquals(novoEndereco, instituto.endereco());
-      assertEquals(novoResponsavel, instituto.responsavel());
-      assertEquals(novoTelefone, instituto.telefone());
-      assertEquals(novoEmail, instituto.email());
+    @Test
+    void dadoUmInstitutoSemNomeNaoDeveCriar() {
+        this.builder.nome(null);
+        assertThrows(Exception.class, () -> {
+            this.builder.build();
+        });
+    }
 
-   }
+    @Test
+    void dadoUmInstitutoSemEnderecoNaoDeveCriar() {
+        this.builder.endereco(null);
+        assertThrows(Exception.class, () -> {
+            this.builder.build();
+        });
+    }
 
-   @Test
-   void dadoNomeNuloNaoDeveAtualizar() throws Exception {
-      this.builder.nome((String) null);
-      assertThrows(Exception.class, () -> {
-         this.builder.build();
-      });
-   }
+    @Test
+    void dadoInstitutoUmSemTelefoneNaoDeveCriar() {
+        this.builder.telefone(null);
+        assertThrows(Exception.class, () -> {
+            this.builder.build();
+        });
+    }
 
-   @Test
-   void dadoEnderecoNuloNaoDeveAtualizar() {
-      this.builder.endereco((Endereco) null);
-      assertThrows(Exception.class, () -> {
-         this.builder.build();
-      });
-   }
+    @Test
+    void dadoInstitutoUmSemEmailNaoDeveCriar() {
+        this.builder.email(null);
+        assertThrows(Exception.class, () -> {
+            this.builder.build();
+        });
+    }
 
-   @Test
-   void dadoResponsavelNuloNaoDeveAtualizar() {
-      this.builder.responsavel((Responsavel) null);
-      assertThrows(Exception.class, () -> {
-         this.builder.build();
-      });
-   }
+    @Test
+    void novasInformaçõesCompletasDeveAtulizarEManterNaoNulo() throws Exception {
 
-   @Test
-   void dadoTelefonelNuloNaoDeveAtualizar() {
-      this.builder.telefone((Telefone) null);
-      assertThrows(Exception.class, () -> {
-         this.builder.build();
-      });
-   }
+        Instituto instituto = this.builder.build();
+        instituto.atualizar()
+                .nome(novoNome)
+                .endereco(novoEndereco)
+                .responsavel(novoResponsavel)
+                .telefone(novoTelefone)
+                .email(novoEmail).aplicar();
 
-   @Test
-   void dadoEmailNuloNaoDeveAtualizar() {
-      this.builder.email((Email) null);
-      assertThrows(Exception.class, () -> {
-         this.builder.build();
-      });
-   }
+        assertNotNull(instituto.id());
+        assertEquals(novoNome, instituto.nome());
+        assertEquals(novoEndereco, instituto.endereco());
+        assertEquals(novosResponsaveis, instituto.responsaveis());
+        assertEquals(novoTelefone, instituto.telefone());
+        assertEquals(novoEmail, instituto.email());
+
+    }
+
+    @Test
+    void dadoNomeNuloNaoDeveAtualizar() throws Exception {
+
+        Instituto instituto = this.builder.build();
+        assertThrows(Exception.class, () -> {
+            instituto.atualizar()
+                    .endereco(novoEndereco)
+                    .responsavel(novoResponsavel)
+                    .telefone(novoTelefone)
+                    .email(novoEmail).aplicar();
+        });
+    }
+
+    @Test
+    void dadoEnderecoNuloNaoDeveAtualizar() {
+        Instituto instituto = this.builder.build();
+        assertThrows(Exception.class, () -> {
+            instituto.atualizar()
+                    .nome(novoNome)
+                    .responsavel(novoResponsavel)
+                    .telefone(novoTelefone)
+                    .email(novoEmail).aplicar();
+        });
+    }
+
+    @Test
+    void dadoResponsavelNuloDeveCriarVazio() {
+        Instituto instituto = this.builder.build();
+        instituto.atualizar()
+                .nome(novoNome)
+                .endereco(novoEndereco)
+                .telefone(novoTelefone)
+                .email(novoEmail).aplicar();
+        
+        assertNotNull(instituto.id());
+        assertEquals(novoNome, instituto.nome());
+        assertEquals(novoEndereco, instituto.endereco());
+        assertEquals(new ArrayList<Responsavel>(), instituto.responsaveis());
+        assertEquals(novoTelefone, instituto.telefone());
+        assertEquals(novoEmail, instituto.email());
+    }
+
+    @Test
+    void dadoTelefonelNuloNaoDeveAtualizar() {
+        Instituto instituto = this.builder.build();
+        assertThrows(Exception.class, () -> {
+            instituto.atualizar()
+                    .nome(novoNome)
+                    .endereco(novoEndereco)
+                    .responsavel(novoResponsavel)
+                    .email(novoEmail).aplicar();
+        });
+    }
+
+    @Test
+    void dadoEmailNuloNaoDeveAtualizar() {
+        Instituto instituto = this.builder.build();
+        assertThrows(Exception.class, () -> {
+            instituto.atualizar()
+                    .nome(novoNome)
+                    .endereco(novoEndereco)
+                    .responsavel(novoResponsavel)
+                    .telefone(novoTelefone)
+                    .aplicar();
+        });
+    }
 }

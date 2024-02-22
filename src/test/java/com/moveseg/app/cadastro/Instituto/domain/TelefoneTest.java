@@ -12,9 +12,9 @@ public class TelefoneTest {
     
     @Test
     void dadoUmNumeroValidoDeveCriar() throws Exception{
-        Telefone telefone = Telefone.of((415555555));
+        Telefone telefone = Telefone.of(("415555555"));
         assertNotNull(telefone);
-        assertEquals((415555555), telefone.numero());
+        assertEquals(("415555555"), telefone.numero());
     }
 
     @Test 
@@ -23,7 +23,7 @@ public class TelefoneTest {
     }
     @Test 
     void dadoUmEnderecoVazioNaoDeveCriar(){
-        assertThrows(Exception.class, () -> Telefone.of((0)));
+        assertThrows(Exception.class, () -> Telefone.of(("0")));
     }
 
 }

@@ -5,14 +5,16 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @Embeddable
 @EqualsAndHashCode
+@NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Endereco {
-    private final String logradouro;
-    private final Integer numero;
+    private String logradouro;
+    private Integer numero;
 
     public static Endereco of(String logradouro, Integer numero) throws Exception {
         // assert logradouro.isEmpty() : "Logradouro não pode ser nulo";

@@ -1,8 +1,17 @@
 package com.moveseg.app.cadastro.instituto.domain;
 
-import com.moveseg.parent.infra.domain.AbstractEntity;
 import static com.moveseg.parent.infra.domain.DomainObjectId.randomId;
+import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
+import com.moveseg.parent.infra.domain.AbstractEntity;
+
+import jakarta.persistence.AttributeOverride;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
@@ -13,6 +22,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
+@Builder
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 public final class Instituto extends AbstractEntity<InstitutoId> {
     private String nome;
@@ -20,50 +30,49 @@ public final class Instituto extends AbstractEntity<InstitutoId> {
     @Embedded
     private Endereco endereco;
 
-    @ManyToMany
-    private Responsavel responsavel;
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    private List<Responsavel> responsaveis;
 
     @Embedded
+    @AttributeOverride(column = @Column(name = "telefone"), name = "numero")
     private Telefone telefone;
 
     @Embedded
     private Email email;
 
-    @Builder
-    private Instituto(String nome, Endereco endereco, Responsavel responsavel, Telefone telefone, Email email)
-            throws Exception {
-        super(randomId(InstitutoId.class));
+    private Instituto(InstitutoBuilder builder) {
+        super(builder.id);
 
-        if (nome.isEmpty()) {
-            throw new Exception("Nome não pode ser nulo");
-        }
-        if (endereco == null) {
-            throw new Exception("Endereço não pode ser nulo");
-        }
-        if (responsavel == null) {
-            throw new Exception("Responsavel não pode ser nulo");
-        }
-        if (telefone == null) {
-            throw new Exception("Telefone não pode ser nulo");
-        }
-        if (email == null) {
-            throw new Exception("Email não pode ser nulo");
-        }
-
-        this.nome = nome;
-        this.endereco = endereco;
-        this.responsavel = responsavel;
-        this.telefone = telefone;
-        this.email = email;
+        this.nome = requireNonNull(builder.nome, "Nome não pode ser nulo");
+        this.endereco = requireNonNull(builder.endereco, "Endereço não pode ser nulo");
+        this.responsaveis = requireNonNull(builder.responsaveis, "Responsavel não pode ser nulo");
+        this.telefone = requireNonNull(builder.telefone, "Telefone não pode ser nulo");
+        this.email = requireNonNull(builder.email, "Email não pode ser nulo");
     }
 
     public InstitutoForm atualizar() {
         return new InstitutoForm(form -> {
-            this.nome = form.nome;
-            this.endereco = form.endereco;
-            this.responsavel = form.responsavel;
-            this.telefone =form.telefone;
+            this.nome = requireNonNull(form.nome(), "Nome não pode ser nulo");
+            this.endereco = requireNonNull(form.endereco(), "Endereço não pode ser nulo");
+            this.responsaveis = requireNonNull(form.responsaveis(), "Responsavel não pode ser nulo");
+            this.telefone = requireNonNull(form.telefone(), "Telefone não pode ser nulo");
+            this.email = requireNonNull(form.email(), "Email não pode ser nulo");
         });
     }
 
+    public static class InstitutoBuilder {
+        private InstitutoId id;
+        private List<Responsavel> responsaveis = new ArrayList<Responsavel>();
+
+        public InstitutoBuilder responsavel(Responsavel responsavel) {
+            responsaveis.add(responsavel);
+            return this;
+        }
+
+        public Instituto build() {
+            id = randomId(InstitutoId.class);
+
+            return new Instituto(this);
+        }
+    }
 }
