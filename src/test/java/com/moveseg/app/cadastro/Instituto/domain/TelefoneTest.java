@@ -23,7 +23,7 @@ public class TelefoneTest {
     }
     @Test 
     void dadoUmEnderecoVazioNaoDeveCriar(){
-        assertThrows(Exception.class, () -> Telefone.of(("0")));
+        assertThrows(Exception.class, () -> Telefone.of(""));
     }
 
 }

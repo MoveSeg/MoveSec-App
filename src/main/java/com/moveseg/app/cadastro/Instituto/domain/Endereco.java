@@ -17,7 +17,6 @@ public final class Endereco {
     private Integer numero;
 
     public static Endereco of(String logradouro, Integer numero) throws Exception {
-        // assert logradouro.isEmpty() : "Logradouro não pode ser nulo";
         if (logradouro == null || logradouro.isEmpty()) {
             throw new Exception("Logradouro não pode ser nulo e nem vazio");
         }

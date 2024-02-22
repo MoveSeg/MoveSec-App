@@ -22,6 +22,9 @@ public final class Responsavel extends AbstractEntity<ResponsavelId> {
     }
 
     public static Responsavel of(String nome)  {
+        if (nome.isEmpty()) {
+            throw new NullPointerException("Responsavel não pode ser nulo");
+        }
         return new Responsavel(randomId(ResponsavelId.class), nome);
     }
 }
