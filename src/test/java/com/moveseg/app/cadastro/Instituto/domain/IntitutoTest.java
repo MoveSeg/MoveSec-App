@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.instituto.domain;
+package com.moveseg.app.cadastro.Instituto.domain;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -10,10 +10,10 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.moveseg.app.cadastro.instituto.domain.Instituto.InstitutoBuilder;
+import com.moveseg.app.cadastro.Instituto.domain.Instituto.InstitutoBuilder;
 import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
 
-class IntitutoTest {
+class InstitutoTest {
 
     private String nome = "Nome";
     private Endereco endereco;
@@ -34,7 +34,16 @@ class IntitutoTest {
     @BeforeEach
     void initializeBuilder() throws Exception {
         endereco = Endereco.of("logradouro", 555);
-        responsavel = Responsavel.of("Nome Responsavel");
+        Responsavel responsavel = Responsavel.builder()
+        .nome(nome)
+        .documento(222333334)
+        .nascimento(02042005)
+        .email(email)
+        .telefone(telefone)
+        .endereco(endereco)
+        .genero(genero)
+        .cpf(cpf);
+
         telefone = Telefone.of("1123456 - 7890");
         email = Email.of("Exemplo@gmail.com");
 
@@ -70,7 +79,7 @@ class IntitutoTest {
     }
 
     @Test
-    void dadoUmInstitutoSemResponsavelDeveCriarVazio() {
+    void dadoUmInstitutoSemResponsavelNaoDeveCriarVazio() {
         Instituto instituto = this.builder.build();
         assertEquals(new ArrayList<Responsavel>(), instituto.responsaveis());
     }

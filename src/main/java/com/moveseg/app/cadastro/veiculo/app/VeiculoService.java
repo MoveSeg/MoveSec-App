@@ -12,10 +12,10 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.moveseg.app.cadastro.veiculo.app.cmd.AtualizarVeiculo;
-import com.moveseg.app.cadastro.veiculo.app.cmd.CriarVeiculo;
 import com.moveseg.app.cadastro.veiculo.domain.Veiculo;
 import com.moveseg.app.cadastro.veiculo.domain.VeiculoId;
+import com.moveseg.app.cadastro.veiculo.domain.cmd.AtualizarVeiculo;
+import com.moveseg.app.cadastro.veiculo.domain.cmd.CriarVeiculo;
 import com.moveseg.app.cadastro.veiculo.repository.VeiculoRepository;
 
 import jakarta.persistence.EntityNotFoundException;

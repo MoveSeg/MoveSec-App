@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moveseg.app.cadastro.veiculo.app.VeiculoService;
-import com.moveseg.app.cadastro.veiculo.app.cmd.AtualizarVeiculo;
-import com.moveseg.app.cadastro.veiculo.app.cmd.CriarVeiculo;
 import com.moveseg.app.cadastro.veiculo.domain.Veiculo;
 import com.moveseg.app.cadastro.veiculo.domain.VeiculoId;
+import com.moveseg.app.cadastro.veiculo.domain.cmd.AtualizarVeiculo;
+import com.moveseg.app.cadastro.veiculo.domain.cmd.CriarVeiculo;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
