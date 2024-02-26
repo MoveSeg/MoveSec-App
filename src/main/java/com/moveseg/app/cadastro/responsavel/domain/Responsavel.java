@@ -31,11 +31,11 @@ public final class Responsavel extends AbstractEntity<ResponsavelId> {
     private Email email;
 
     @Embedded
-    @AttributeOverride(column = @Column(name = "endereço"), name = "value")
+    @AttributeOverride(column = @Column(name = "endereco"), name = "numero")
     private Endereco endereco;
 
     @Embedded
-    @AttributeOverride(column = @Column(name = "telefone"), name = "value")
+    @AttributeOverride(column = @Column(name = "telefone"), name = "numero")
     private Telefone telefone;
 
     @Embedded

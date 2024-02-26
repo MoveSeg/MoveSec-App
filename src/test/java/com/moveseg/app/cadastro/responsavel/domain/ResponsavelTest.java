@@ -62,10 +62,10 @@ class ResponsavelTest {
         assertNotNull(responsavel);
         assertNotNull(responsavel.id());
         assertEquals(email, responsavel.email());
-        assertEquals(12223424, responsavel.documento());
+        assertEquals(1222342440, responsavel.documento());
         assertEquals(telefone, responsavel.telefone());
         assertEquals(endereco, responsavel.endereco());
-        assertEquals(23, responsavel.nascimento());
+        assertEquals(2006-02-04, responsavel.nascimento());
         assertEquals("Nome", responsavel.nome());
         assertEquals(genero, responsavel.genero());
         assertEquals(cpf, responsavel.cpf());
@@ -121,14 +121,22 @@ class ResponsavelTest {
     }
 
     @Test
+    void dadoUmResponsavelSemDocumentoNaoDeveCriar() {
+        builder.documento(null);
+
+        assertThrows(Exception.class, () -> builder.build());
+    }
+
+    @Test
     void dadoNovosDadosDoNomeDeveAtualizarOResponsavelEManterNaoNulo() throws Exception {
         Email novoEmail = Email.of("Luna@aaaa");
-        Genero novoGenero = Genero.of("Luna@aaaa");
+        Genero novoGenero = Genero.of("Elisa@aaaa");
         Cpf novoCpf = Cpf.of("Luna@aaaa");
         Telefone novoTelefone = Telefone.of("41987844666");
         Endereco novoEndereco = Endereco.of("Rua AAAA ", 44);
         String novoNome = "Novo nome";
-        LocalDate novoNascimento = LocalDate.of(2006, 02, 04);
+        LocalDate novoNascimento = LocalDate.of(2008, 04, 06);
+        Integer novoDocumento = 676767676;
 
         Responsavel responsavel = this.builder.build();
         responsavel.update()
@@ -137,6 +145,7 @@ class ResponsavelTest {
                 .genero(novoGenero)
                 .nascimento(novoNascimento)
                 .email(novoEmail)
+                .documento(novoDocumento)
                 .telefone(novoTelefone)
                 .endereco(novoEndereco).apply();
 
@@ -148,6 +157,7 @@ class ResponsavelTest {
         assertEquals(novoEmail, responsavel.email());
         assertEquals(novoTelefone, responsavel.telefone());
         assertEquals(novoEndereco, responsavel.endereco());
+        assertEquals(novoDocumento, responsavel.documento());
     }
 
     @Test
@@ -156,16 +166,142 @@ class ResponsavelTest {
         assertThrows(Exception.class, () -> {
             responsavel.update()
 
-            .cpf(novoCpf)
-            .genero(novoGenero)
-            .nascimento(novoNascimento)
-            .email(novoEmail)
-            .telefone(novoTelefone)
-            .endereco(novoEndereco)
-            .apply();
+                    .cpf(novoCpf)
+                    .genero(novoGenero)
+                    .nascimento(novoNascimento)
+                    .email(novoEmail)
+                    .telefone(novoTelefone)
+                    .endereco(novoEndereco)
+                    .documento(novoDocumento)
+                    .apply();
 
-    
-
-            });
-        }
+        });
     }
+
+    @Test
+    void dadoUmCpfNuloNaoDeveCriar() {
+        Responsavel responsavel = this.builder.build();
+        assertThrows(Exception.class, () -> {
+            responsavel.update()
+
+                    .nome(novoNome)
+                    .genero(novoGenero)
+                    .nascimento(novoNascimento)
+                    .email(novoEmail)
+                    .telefone(novoTelefone)
+                    .endereco(novoEndereco)
+                    .documento(novoDocumento)
+                    .apply();
+
+        });
+    }
+
+    @Test
+    void dadoUmGeneroNuloNaoDeveCriar() {
+        Responsavel responsavel = this.builder.build();
+        assertThrows(Exception.class, () -> {
+            responsavel.update()
+
+                    .nome(novoNome)
+                    .cpf(novoCpf)
+                    .nascimento(novoNascimento)
+                    .email(novoEmail)
+                    .telefone(novoTelefone)
+                    .endereco(novoEndereco)
+                    .documento(novoDocumento)
+                    .apply();
+
+        });
+    }
+
+    @Test
+    void dadoUmNascimentoNuloNaoDeveCriar() {
+        Responsavel responsavel = this.builder.build();
+        assertThrows(Exception.class, () -> {
+            responsavel.update()
+
+                    .nome(novoNome)
+                    .cpf(novoCpf)
+                    .genero(novoGenero)
+                    .email(novoEmail)
+                    .telefone(novoTelefone)
+                    .endereco(novoEndereco)
+                    .documento(novoDocumento)
+                    .apply();
+
+        });
+    }
+
+    @Test
+    void dadoUmEmailNuloNaoDeveCriar() {
+        Responsavel responsavel = this.builder.build();
+        assertThrows(Exception.class, () -> {
+            responsavel.update()
+
+                    .nome(novoNome)
+                    .cpf(novoCpf)
+                    .genero(novoGenero)
+                    .nascimento(novoNascimento)
+                    .telefone(novoTelefone)
+                    .endereco(novoEndereco)
+                    .documento(novoDocumento)
+                    .apply();
+
+        });
+    }
+
+    @Test
+    void dadoUmTelefoneNuloNaoDeveCriar() {
+        Responsavel responsavel = this.builder.build();
+        assertThrows(Exception.class, () -> {
+            responsavel.update()
+
+                    .nome(novoNome)
+                    .cpf(novoCpf)
+                    .genero(novoGenero)
+                    .nascimento(novoNascimento)
+                    .email(novoEmail)
+                    .endereco(novoEndereco)
+                    .documento(novoDocumento)
+                    .apply();
+
+        });
+    }
+
+    @Test
+    void dadoUmEnderecoNuloNaoDeveCriar() {
+        Responsavel responsavel = this.builder.build();
+        assertThrows(Exception.class, () -> {
+            responsavel.update()
+
+                    .nome(novoNome)
+                    .cpf(novoCpf)
+                    .genero(novoGenero)
+                    .nascimento(novoNascimento)
+                    .email(novoEmail)
+                    .telefone(novoTelefone)
+                    .documento(novoDocumento)
+                    .apply();
+
+        });
+    }
+
+    @Test
+    void dadoUmDocumentoNuloNaoDeveCriar() {
+        Responsavel responsavel = this.builder.build();
+        assertThrows(Exception.class, () -> {
+            responsavel.update()
+
+                    .nome(novoNome)
+                    .cpf(novoCpf)
+                    .genero(novoGenero)
+                    .nascimento(novoNascimento)
+                    .email(novoEmail)
+                    .telefone(novoTelefone)
+                    .endereco(novoEndereco)
+                    .apply();
+
+        });
+    }
+
+}
