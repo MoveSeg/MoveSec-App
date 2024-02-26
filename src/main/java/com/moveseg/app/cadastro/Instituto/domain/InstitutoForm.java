@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.instituto.domain;
+package com.moveseg.app.cadastro.Instituto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,7 @@ public class InstitutoForm {
     }
 
     public InstitutoForm responsavel(Responsavel responsavel) {
-        this.responsaveis.add(responsavel) ;
+        this.responsaveis.add(responsavel);
         return this;
     }
 
@@ -46,7 +46,7 @@ public class InstitutoForm {
         return this;
     }
 
-    public void aplicar(){
+    public void aplicar() {
         action.accept(this);
     }
 }

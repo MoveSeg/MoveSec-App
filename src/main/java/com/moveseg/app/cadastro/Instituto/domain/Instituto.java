@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.instituto.domain;
+package com.moveseg.app.cadastro.Instituto.domain;
 
 import static com.moveseg.parent.infra.domain.DomainObjectId.randomId;
 import static java.util.Objects.requireNonNull;
@@ -39,7 +39,7 @@ public final class Instituto extends AbstractEntity<InstitutoId> {
 
     @Embedded
     private Email email;
-
+    
     private Instituto(InstitutoBuilder builder) {
         super(builder.id);
 

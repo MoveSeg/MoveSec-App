@@ -1,6 +1,6 @@
-package com.moveseg.app.cadastro.instituto.domain;
+package com.moveseg.app.cadastro.Instituto.domain;
 
-import com.moveseg.app.cadastro.instituto.infra.Phone;
+import com.moveseg.app.cadastro.Instituto.infra.Phone;
 import com.moveseg.parent.infra.domain.ValueObject;
 
 import jakarta.persistence.Embeddable;
