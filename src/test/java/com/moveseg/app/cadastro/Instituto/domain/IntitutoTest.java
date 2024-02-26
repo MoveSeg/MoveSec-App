@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.moveseg.app.cadastro.Instituto.domain.Instituto.InstitutoBuilder;
+import com.moveseg.app.cadastro.responsavel.domain.Cpf;
+import com.moveseg.app.cadastro.responsavel.domain.Genero;
 import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
 
 class InstitutoTest {
@@ -35,21 +38,33 @@ class InstitutoTest {
     void initializeBuilder() throws Exception {
         endereco = Endereco.of("logradouro", 555);
         Responsavel responsavel = Responsavel.builder()
-        .nome(nome)
-        .documento(222333334)
-        .nascimento(02042005)
-        .email(email)
-        .telefone(telefone)
-        .endereco(endereco)
-        .genero(genero)
-        .cpf(cpf);
+                .nome(nome)
+                .documento(222333334)
+                .nascimento(LocalDate.of(2006, 02,
+                        04))
+                .email(email)
+                .telefone(telefone)
+                .endereco(endereco)
+                .genero(Genero.of("feminino"))
+                .cpf(Cpf.of("23456789002"))
+                .build();
 
         telefone = Telefone.of("1123456 - 7890");
         email = Email.of("Exemplo@gmail.com");
 
         novoNome = "Novo nome";
         novoEndereco = Endereco.of("Novo endereco", 9999);
-        novoResponsavel = Responsavel.of("Responsavel novo");
+        novoResponsavel = Responsavel.builder()
+                .nome("Jorge")
+                .documento(222333335)
+                .nascimento(LocalDate.of(2006, 02,
+                        04))
+                .email(email)
+                .telefone(telefone)
+                .endereco(endereco)
+                .genero(Genero.of("Masculino"))
+                .cpf(Cpf.of("23456789042"))
+                .build();
         novoTelefone = Telefone.of(("415555555"));
         novoEmail = Email.of("Exemplo2@gmail.com");
 
@@ -169,7 +184,7 @@ class InstitutoTest {
                 .endereco(novoEndereco)
                 .telefone(novoTelefone)
                 .email(novoEmail).aplicar();
-        
+
         assertNotNull(instituto.id());
         assertEquals(novoNome, instituto.nome());
         assertEquals(novoEndereco, instituto.endereco());
