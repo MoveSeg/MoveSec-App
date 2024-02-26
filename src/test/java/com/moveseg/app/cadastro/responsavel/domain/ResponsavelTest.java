@@ -38,7 +38,7 @@ class ResponsavelTest {
     @BeforeEach
     void initializeBuilder() throws Exception {
         genero = Genero.of("feminino");
-        email = Email.of("alana@aaaa");
+        email = Email.of("alana@aaaa.com");
         telefone = Telefone.of("41987876666");
         endereco = Endereco.of("Rua", 44);
         cpf = Cpf.of("23456789002");
@@ -62,11 +62,11 @@ class ResponsavelTest {
         assertNotNull(responsavel);
         assertNotNull(responsavel.id());
         assertEquals(email, responsavel.email());
-        assertEquals(12223424, responsavel.documento());
+        assertEquals(documento, responsavel.documento());
         assertEquals(telefone, responsavel.telefone());
         assertEquals(endereco, responsavel.endereco());
-        assertEquals(23, responsavel.nascimento());
-        assertEquals("Nome", responsavel.nome());
+        assertEquals(nascimento, responsavel.nascimento());
+        assertEquals(nome, responsavel.nome());
         assertEquals(genero, responsavel.genero());
         assertEquals(cpf, responsavel.cpf());
     }
@@ -122,7 +122,7 @@ class ResponsavelTest {
 
     @Test
     void dadoNovosDadosDoNomeDeveAtualizarOResponsavelEManterNaoNulo() throws Exception {
-        Email novoEmail = Email.of("Luna@aaaa");
+        Email novoEmail = Email.of("Luna@aaaa.com");
         Genero novoGenero = Genero.of("Luna@aaaa");
         Cpf novoCpf = Cpf.of("Luna@aaaa");
         Telefone novoTelefone = Telefone.of("41987844666");

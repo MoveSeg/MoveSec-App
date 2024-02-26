@@ -31,11 +31,8 @@ public final class Email{
     public static Email of(String email) throws Exception {
         if (isValidEmail(email)) {
             return new Email(email);
-        }else if (email.isEmpty()){
+        } else {
             throw new Exception("Email não pode estar vazio;");
-        }
-         else{
-            return null;
         }
     }
 }
