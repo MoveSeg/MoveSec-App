@@ -37,6 +37,8 @@ class InstitutoTest {
     @BeforeEach
     void initializeBuilder() throws Exception {
         endereco = Endereco.of("logradouro", 555);
+        telefone = Telefone.of("1123456 - 7890");
+        email = Email.of("Exemplo@gmail.com");
         Responsavel responsavel = Responsavel.builder()
                 .nome(nome)
                 .documento(222333334)
@@ -78,7 +80,8 @@ class InstitutoTest {
                 .nome(this.nome)
                 .endereco(this.endereco)
                 .telefone(this.telefone)
-                .email(this.email);
+                .email(this.email)
+                .responsavel(this.responsavel);
     }
 
     @Test
