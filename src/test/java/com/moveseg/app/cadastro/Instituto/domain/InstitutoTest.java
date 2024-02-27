@@ -16,7 +16,7 @@ import com.moveseg.app.cadastro.responsavel.domain.Cpf;
 import com.moveseg.app.cadastro.responsavel.domain.Genero;
 import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
 
-class InstitutoTest {
+public class InstitutoTest {
 
     private String nome = "Nome";
     private Endereco endereco;
@@ -80,13 +80,12 @@ class InstitutoTest {
                 .nome(this.nome)
                 .endereco(this.endereco)
                 .telefone(this.telefone)
-                .email(this.email)
-                .responsavel(this.responsavel);
+                .email(this.email);
     }
 
     @Test
     void dadoInstitutoCompletoDeveCriar() throws Exception {
-        Instituto instituto = this.builder.responsavel(this.responsavel).build();
+        Instituto instituto = this.builder.responsavel(responsaveis.get(0)).build();
         assertNotNull(instituto);
         assertNotNull(instituto.id());
         assertEquals(this.nome, instituto.nome());
