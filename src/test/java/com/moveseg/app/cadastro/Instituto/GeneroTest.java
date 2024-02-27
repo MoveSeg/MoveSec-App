@@ -1,10 +1,12 @@
-package com.moveseg.app.cadastro.Aluno.domain;
+package com.moveseg.app.cadastro.Instituto;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
+import com.moveseg.app.cadastro.Aluno.domain.Genero;
 
 public class GeneroTest {
      @Test

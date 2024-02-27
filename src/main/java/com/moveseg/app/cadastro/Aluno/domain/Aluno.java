@@ -32,7 +32,7 @@ public class Aluno extends AbstractEntity<AlunoId> {
     private String nome;
 
     @ManyToMany(cascade = CascadeType.PERSIST)
-    private List<Responsavel> responsavel;
+    private List<Responsavel> responsaveis;
 
     @Embedded
     @AttributeOverride(column = @Column(name = "carteirinha"), name = "numero")
@@ -60,7 +60,7 @@ public class Aluno extends AbstractEntity<AlunoId> {
     private Aluno(AlunoBuilder builder) {
         super(builder.id);
         this.nome = requireNonNull(builder.nome, "O nome não deve ser nulo");
-        this.responsavel = requireNonNull(builder.responsavel, "O nome do reaponsável não deve ser nulo");
+        this.responsaveis = requireNonNull(builder.responsaveis, "O nome do reaponsável não deve ser nulo");
         this.carteirinha = requireNonNull(builder.carteirinha, "A carteirinha não deve ser inválida");
         this.telefone = requireNonNull(builder.telefone, "O telefone não pode ser invalido");
         this.email = requireNonNull(builder.email, "O Email não pode ser inválido");
@@ -74,7 +74,7 @@ public class Aluno extends AbstractEntity<AlunoId> {
     public AlunoForm atualizar() {
         return new AlunoForm(form -> {
             this.nome = requireNonNull(form.nome(), "Nome não pode ser nulo");
-            this.responsavel = requireNonNull(form.responsavel(), "Responsavel não pode ser nulo");
+            this.responsaveis = requireNonNull(form.responsavel(), "Responsavel não pode ser nulo");
             this.carteirinha = requireNonNull(form.carteirinha(), "Carteirinha não Pode ser nula e nem 0");
             this.telefone = requireNonNull(form.telefone(), "Telefone não pode ser nulo");
             this.email = requireNonNull(form.email(), "Email não pode ser nulo");
@@ -87,10 +87,10 @@ public class Aluno extends AbstractEntity<AlunoId> {
 
     public static class AlunoBuilder {
         private AlunoId id;
-         private List<Responsavel> responsavel = new ArrayList<Responsavel>();
+        private List<Responsavel> responsaveis = new ArrayList<Responsavel>();
 
         public AlunoBuilder responsavel(Responsavel responsavel) {
-            this.responsavel.add(responsavel);
+            responsaveis.add(responsavel);
             return this;
         }
 

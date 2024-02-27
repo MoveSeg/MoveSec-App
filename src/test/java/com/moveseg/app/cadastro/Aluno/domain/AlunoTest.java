@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -13,12 +14,13 @@ import org.junit.jupiter.api.Test;
 import com.moveseg.app.cadastro.Aluno.domain.Aluno.AlunoBuilder;
 import com.moveseg.app.cadastro.Instituto.domain.Email;
 import com.moveseg.app.cadastro.Instituto.domain.Endereco;
+import com.moveseg.app.cadastro.Instituto.domain.Instituto;
 import com.moveseg.app.cadastro.Instituto.domain.Telefone;
 import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
 
 public class AlunoTest {
     private String nome = "Nome";
-    private Responsavel responsavel = Responsavel.of("Nome Responsavel");
+    private Responsavel responsavel;
     private Carteirinha carteirinha;
     private Telefone telefone;
     private Email email;
@@ -27,6 +29,7 @@ public class AlunoTest {
     private Cpf cpf;
     private LocalDate dataDeNascimento;
     private AlunoBuilder builder;
+    private List<Responsavel> responsaveis;
 
     private String novoNome = "Novo nome";
     private Responsavel novoResponsavel;
@@ -37,9 +40,11 @@ public class AlunoTest {
     private Genero novoGenero;
     private Cpf novoCpf;
     private LocalDate novaDataDeNascimento;
+    private List<Responsavel> novosResponsaveis;
 
     @BeforeEach
     void initializeBuilder() throws Exception {
+        responsavel = Responsavel.of("Nome Responsavel");
         carteirinha = Carteirinha.of(22222);
         telefone = Telefone.of("415555555");
         email = Email.of("Exemplo@email.com");
@@ -47,6 +52,8 @@ public class AlunoTest {
         genero = Genero.of("Genero");
         cpf = Cpf.of(55555);
         dataDeNascimento = LocalDate.of(1990, 3, 15);
+        responsaveis = new ArrayList<Responsavel>();
+        responsaveis.add(responsavel);
 
         novoResponsavel = Responsavel.of("Novo nome Responsavel");
         novaCarteirinha = Carteirinha.of(55555);
@@ -56,9 +63,11 @@ public class AlunoTest {
         novoEndereco = Endereco.of("Novo Logradouro", 222);
         novoCpf = Cpf.of(666666);
         novaDataDeNascimento = LocalDate.of(2000, 1, 20);
+        novosResponsaveis = new ArrayList<Responsavel>();
+        novosResponsaveis.add(novoResponsavel);
         this.builder = Aluno.builder()
                 .nome(this.nome)
-                .responsavel(this.responsavel)
+                .responsavel(responsavel)
                 .carteirinha(this.carteirinha)
                 .telefone(this.telefone)
                 .email(this.email)
@@ -73,7 +82,7 @@ public class AlunoTest {
         Aluno aluno = this.builder.build();
         assertNotNull(aluno);
         assertEquals(nome, aluno.nome());
-        assertEquals(responsavel, aluno.responsavel());
+        assertEquals(responsaveis, aluno.responsaveis());
         assertEquals(carteirinha, aluno.carteirinha());
         assertEquals(telefone, aluno.telefone());
         assertEquals(email, aluno.email());
@@ -93,7 +102,7 @@ public class AlunoTest {
     @Test
     void dadoUmAlunoSemResponavelNaoDeveCriar() {
 
-        builder.responsavel(null);
+        builder.responsaveis(null);
         assertThrows(Exception.class, () -> builder.build());
     }
 
@@ -162,7 +171,7 @@ public class AlunoTest {
                 .dataDeNascimento(novaDataDeNascimento).aplicar();
         assertNotNull(aluno);
         assertEquals(novoNome, aluno.nome());
-        assertEquals(novoResponsavel, aluno.responsavel());
+        assertEquals(novosResponsaveis, aluno.responsaveis());
         assertEquals(novaCarteirinha, aluno.carteirinha());
         assertEquals(novoTelefone, aluno.telefone());
         assertEquals(novoEmail, aluno.email());
@@ -191,21 +200,29 @@ public class AlunoTest {
     }
 
     @Test
-    void dadoResponsavelNuloNaoDeveAtualizar() {
+    void dadoResponsavelNuloDeveCriarVazio() {
         Aluno aluno = this.builder.build();
-        assertThrows(Exception.class, () -> {
-            aluno.atualizar()
-                    .nome(novoNome)
-                    .carteirinha(novaCarteirinha)
-                    .telefone(novoTelefone)
-                    .email(novoEmail)
-                    .endereco(novoEndereco)
-                    .genero(novoGenero)
-                    .cpf(novoCpf)
-                    .dataDeNascimento(novaDataDeNascimento)
-                    .aplicar();
 
-        });
+        aluno.atualizar()
+                .nome(novoNome)
+                .carteirinha(novaCarteirinha)
+                .telefone(novoTelefone)
+                .email(novoEmail)
+                .endereco(novoEndereco)
+                .genero(novoGenero)
+                .cpf(novoCpf)
+                .dataDeNascimento(novaDataDeNascimento)
+                .aplicar();
+
+        assertEquals(novoNome, aluno.nome());
+        assertEquals(new ArrayList<Responsavel>(), aluno.responsaveis());
+        assertEquals(novaCarteirinha, aluno.carteirinha());
+        assertEquals(novoTelefone, aluno.telefone());
+        assertEquals(novoEmail, aluno.email());
+        assertEquals(novoEndereco, aluno.endereco());
+        assertEquals(novoGenero, aluno.genero());
+        assertEquals(novoCpf, aluno.cpf());
+        assertEquals(novaDataDeNascimento, aluno.dataDeNascimento());
     }
 
     @Test
