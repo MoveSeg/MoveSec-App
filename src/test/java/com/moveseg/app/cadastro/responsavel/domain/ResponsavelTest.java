@@ -38,7 +38,7 @@ class ResponsavelTest {
     @BeforeEach
     void initializeBuilder() throws Exception {
         genero = Genero.of("feminino");
-        email = Email.of("alana@aaaa");
+        email = Email.of("alana@aaaa.com");
         telefone = Telefone.of("41987876666");
         endereco = Endereco.of("Rua", 44);
         cpf = Cpf.of("23456789002");
@@ -62,11 +62,11 @@ class ResponsavelTest {
         assertNotNull(responsavel);
         assertNotNull(responsavel.id());
         assertEquals(email, responsavel.email());
-        assertEquals(1222342440, responsavel.documento());
+        assertEquals(documento, responsavel.documento());
         assertEquals(telefone, responsavel.telefone());
         assertEquals(endereco, responsavel.endereco());
-        assertEquals(2006-02-04, responsavel.nascimento());
-        assertEquals("Nome", responsavel.nome());
+        assertEquals(nascimento, responsavel.nascimento());
+        assertEquals(nome, responsavel.nome());
         assertEquals(genero, responsavel.genero());
         assertEquals(cpf, responsavel.cpf());
     }
@@ -129,8 +129,8 @@ class ResponsavelTest {
 
     @Test
     void dadoNovosDadosDoNomeDeveAtualizarOResponsavelEManterNaoNulo() throws Exception {
-        Email novoEmail = Email.of("Luna@aaaa");
-        Genero novoGenero = Genero.of("Elisa@aaaa");
+        Email novoEmail = Email.of("Luna@aaaa.com");
+        Genero novoGenero = Genero.of("Luna@aaaa");
         Cpf novoCpf = Cpf.of("Luna@aaaa");
         Telefone novoTelefone = Telefone.of("41987844666");
         Endereco novoEndereco = Endereco.of("Rua AAAA ", 44);
@@ -161,7 +161,7 @@ class ResponsavelTest {
     }
 
     @Test
-    void dadoUmNomeNuloNaoDeveCriar() {
+    void dadoUmNomeNuloNaoDeveAtualizar() {
         Responsavel responsavel = this.builder.build();
         assertThrows(Exception.class, () -> {
             responsavel.update()
@@ -179,7 +179,7 @@ class ResponsavelTest {
     }
 
     @Test
-    void dadoUmCpfNuloNaoDeveCriar() {
+    void dadoUmCpfNuloNaoDeveAtualizar() {
         Responsavel responsavel = this.builder.build();
         assertThrows(Exception.class, () -> {
             responsavel.update()
@@ -197,7 +197,7 @@ class ResponsavelTest {
     }
 
     @Test
-    void dadoUmGeneroNuloNaoDeveCriar() {
+    void dadoUmGeneroNuloNaoDeveAtualizar() {
         Responsavel responsavel = this.builder.build();
         assertThrows(Exception.class, () -> {
             responsavel.update()
@@ -215,7 +215,7 @@ class ResponsavelTest {
     }
 
     @Test
-    void dadoUmNascimentoNuloNaoDeveCriar() {
+    void dadoUmNascimentoNuloNaoDeveAtualizar() {
         Responsavel responsavel = this.builder.build();
         assertThrows(Exception.class, () -> {
             responsavel.update()
@@ -233,7 +233,7 @@ class ResponsavelTest {
     }
 
     @Test
-    void dadoUmEmailNuloNaoDeveCriar() {
+    void dadoUmEmailNuloNaoDeveAtualizar() {
         Responsavel responsavel = this.builder.build();
         assertThrows(Exception.class, () -> {
             responsavel.update()
@@ -251,7 +251,7 @@ class ResponsavelTest {
     }
 
     @Test
-    void dadoUmTelefoneNuloNaoDeveCriar() {
+    void dadoUmTelefoneNuloNaoDeveAtualizar() {
         Responsavel responsavel = this.builder.build();
         assertThrows(Exception.class, () -> {
             responsavel.update()
@@ -269,7 +269,7 @@ class ResponsavelTest {
     }
 
     @Test
-    void dadoUmEnderecoNuloNaoDeveCriar() {
+    void dadoUmEnderecoNuloNaoDeveAtualizar() {
         Responsavel responsavel = this.builder.build();
         assertThrows(Exception.class, () -> {
             responsavel.update()
@@ -287,7 +287,7 @@ class ResponsavelTest {
     }
 
     @Test
-    void dadoUmDocumentoNuloNaoDeveCriar() {
+    void dadoUmDocumentoNuloNaoDeveAtualizar() {
         Responsavel responsavel = this.builder.build();
         assertThrows(Exception.class, () -> {
             responsavel.update()
