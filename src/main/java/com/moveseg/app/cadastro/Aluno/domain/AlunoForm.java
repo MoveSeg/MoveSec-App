@@ -1,6 +1,8 @@
 package com.moveseg.app.cadastro.Aluno.domain;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
 import com.moveseg.app.cadastro.Instituto.domain.Email;
@@ -17,7 +19,7 @@ public class AlunoForm {
     private final Consumer<AlunoForm> action;
 
     private String nome;
-    private Responsavel responsavel;
+    private List<Responsavel> responsavel = new ArrayList<Responsavel>();;
     private Carteirinha carteirinha;
     private Telefone telefone;
     private Email email;
@@ -32,7 +34,7 @@ public class AlunoForm {
     }
 
     public AlunoForm responsavel(Responsavel responsavel) {
-        this.responsavel = responsavel;
+        this.responsavel.add(responsavel);
         return this;
     }
     public AlunoForm carteirinha(Carteirinha carteirinha) {

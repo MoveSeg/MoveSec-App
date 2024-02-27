@@ -4,6 +4,7 @@ import static com.moveseg.parent.infra.domain.DomainObjectId.randomId;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.moveseg.app.cadastro.Instituto.domain.Email;
@@ -12,7 +13,9 @@ import com.moveseg.app.cadastro.Instituto.domain.Telefone;
 import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
 import com.moveseg.parent.infra.domain.AbstractEntity;
 
+import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
@@ -29,12 +32,14 @@ public class Aluno extends AbstractEntity<AlunoId> {
     private String nome;
 
     @ManyToMany(cascade = CascadeType.PERSIST)
-    private Responsavel responsavel;
+    private List<Responsavel> responsavel;
 
     @Embedded
+    @AttributeOverride(column = @Column(name = "carteirinha"), name = "numero")
     private Carteirinha carteirinha;
 
     @Embedded
+    @AttributeOverride(column = @Column(name = "telefone"), name = "numero")
     private Telefone telefone;
 
     @Embedded
@@ -47,6 +52,7 @@ public class Aluno extends AbstractEntity<AlunoId> {
     private Genero genero;
 
     @Embedded
+    @AttributeOverride(column = @Column(name = "cpf"), name = "numero")
     private Cpf cpf;
 
     private LocalDate dataDeNascimento;
@@ -81,6 +87,12 @@ public class Aluno extends AbstractEntity<AlunoId> {
 
     public static class AlunoBuilder {
         private AlunoId id;
+         private List<Responsavel> responsavel = new ArrayList<Responsavel>();
+
+        public AlunoBuilder responsavel(Responsavel responsavel) {
+            this.responsavel.add(responsavel);
+            return this;
+        }
 
         public Aluno build() {
             id = randomId(AlunoId.class);
