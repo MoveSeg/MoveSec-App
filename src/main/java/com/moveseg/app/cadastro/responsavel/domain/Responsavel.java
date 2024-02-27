@@ -66,14 +66,14 @@ public final class Responsavel extends AbstractEntity<ResponsavelId> {
 
     public ResponsavelForm update() {
         return new ResponsavelForm(form -> {
-            this.nome = form.nome;
-            this.documento = form.documento;
-            this.nascimento = form.nascimento;
-            this.email = form.email;
-            this.endereco = form.endereco;
-            this.telefone = form.telefone;
-            this.genero = form.genero;
-            this.cpf = form.cpf;
+            this.nome = requireNonNull(form.nome(), "O nome não deve ser nulo");
+            this.documento = requireNonNull(form.documento(), "O documento não deve ser nulo");
+            this.nascimento = requireNonNull(form.nascimento(), "O nascimento não deve ser nulo");
+            this.email = requireNonNull(form.email(), "O email não deve ser nulo");
+            this.endereco = requireNonNull(form.endereco(), "Endereço não pode ser nulo");
+            this.telefone = requireNonNull(form.telefone(), "O telefone não deve ser nulo");
+            this.genero = requireNonNull(form.genero(), "O genero não deve ser nulo");
+            this.cpf = requireNonNull(form.cpf(), "O cpf não deve ser nulo");
         });
     }
 
@@ -84,8 +84,7 @@ public final class Responsavel extends AbstractEntity<ResponsavelId> {
             id = randomId(ResponsavelId.class);
 
             return new Responsavel(this);
+
         }
     }
-
-    
-    }
+}

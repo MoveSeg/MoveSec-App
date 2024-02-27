@@ -159,7 +159,6 @@ class ResponsavelTest {
         assertEquals(novoEndereco, responsavel.endereco());
         assertEquals(novoDocumento, responsavel.documento());
     }
-
     @Test
     void dadoUmNomeNuloNaoDeveAtualizar() {
         Responsavel responsavel = this.builder.build();
@@ -181,7 +180,7 @@ class ResponsavelTest {
     @Test
     void dadoUmCpfNuloNaoDeveAtualizar() {
         Responsavel responsavel = this.builder.build();
-        assertThrows(Exception.class, () -> {
+        assertThrows(Exception.class, () -> {    
             responsavel.update()
 
                     .nome(novoNome)
@@ -303,5 +302,6 @@ class ResponsavelTest {
 
         });
     }
+    
 
-}
+} 

@@ -11,6 +11,16 @@ import com.moveseg.app.cadastro.veiculo.domain.Veiculo.VeiculoBuilder;
 
 class VeiculoTest {
 
+    public Placa novaPlaca;
+    public Integer novoNumeroDaFrota;
+    public Chassi novoChassi;
+    public Renavam novoRenavam;
+    public Integer novoAnoModelo;
+    public String novaMarca;
+    public String novoModelo;
+    public String novaCorPredominante;
+    public Integer novaCapacidadeDePassageiros;
+
     private Placa placa = Placa.of("ASDASD");
     private Chassi chassi = Chassi.of("ASDASD");
     private Renavam renavam = Renavam.of("asdasd");
@@ -154,6 +164,157 @@ class VeiculoTest {
         assertEquals(novaCapacidadeDePassageiros, veiculo.capacidadeDePassageiros());
     }
 
-    
+    @Test
+    void dadoUmaPlacaNulaNaoDeveAtualizar() {
+        Veiculo veiculo = this.builder.build();
+        assertThrows(Exception.class, () -> {
+            veiculo.update()
+
+                    .numeroDaFrota(novoNumeroDaFrota)
+                    .chassi(novoChassi)
+                    .renavam(novoRenavam)
+                    .anoModelo(novoAnoModelo)
+                    .marca(novaMarca)
+                    .modelo(novoModelo)
+                    .corPredominante(novaCorPredominante)
+                    .capacidadeDePassageiros(novaCapacidadeDePassageiros).apply();
+        });
+    }
+
+    @Test
+    void dadoUmNumeroDaFrotaNulaNaoDeveAtualizar() {
+        Veiculo veiculo = this.builder.build();
+        assertThrows(Exception.class, () -> {
+            veiculo.update()
+
+                    .placa(novaPlaca)
+                    .chassi(novoChassi)
+                    .renavam(novoRenavam)
+                    .anoModelo(novoAnoModelo)
+                    .marca(novaMarca)
+                    .modelo(novoModelo)
+                    .corPredominante(novaCorPredominante)
+                    .capacidadeDePassageiros(novaCapacidadeDePassageiros).apply();
+        });
+    }
+
+    @Test
+    void dadoUmChassiNulaNaoDeveAtualizar() {
+        Veiculo veiculo = this.builder.build();
+        assertThrows(Exception.class, () -> {
+            veiculo.update()
+
+                    .placa(novaPlaca)
+                    .numeroDaFrota(novoNumeroDaFrota)
+                    .renavam(novoRenavam)
+                    .anoModelo(novoAnoModelo)
+                    .marca(novaMarca)
+                    .modelo(novoModelo)
+                    .corPredominante(novaCorPredominante)
+                    .capacidadeDePassageiros(novaCapacidadeDePassageiros).apply();
+        });
+    }
+
+    @Test
+    void dadoUmRenavamNulaNaoDeveAtualizar() {
+        Veiculo veiculo = this.builder.build();
+        assertThrows(Exception.class, () -> {
+            veiculo.update()
+
+                    .placa(novaPlaca)
+                    .chassi(novoChassi)
+                    .numeroDaFrota(novoNumeroDaFrota)
+                    .anoModelo(novoAnoModelo)
+                    .marca(novaMarca)
+                    .modelo(novoModelo)
+                    .corPredominante(novaCorPredominante)
+                    .capacidadeDePassageiros(novaCapacidadeDePassageiros).apply();
+        });
+    }
+
+    @Test
+    void dadoUmAnoModeloNuloNaoDeveAtualizar() {
+        Veiculo veiculo = this.builder.build();
+        assertThrows(Exception.class, () -> {
+            veiculo.update()
+
+                    .placa(novaPlaca)
+                    .chassi(novoChassi)
+                    .renavam(novoRenavam)
+                    .numeroDaFrota(novoNumeroDaFrota)
+                    .marca(novaMarca)
+                    .modelo(novoModelo)
+                    .corPredominante(novaCorPredominante)
+                    .capacidadeDePassageiros(novaCapacidadeDePassageiros).apply();
+        });
+    }
+
+    @Test
+    void dadoUmaMarcaNulaNaoDeveAtualizar() {
+        Veiculo veiculo = this.builder.build();
+        assertThrows(Exception.class, () -> {
+            veiculo.update()
+
+                    .placa(novaPlaca)
+                    .chassi(novoChassi)
+                    .renavam(novoRenavam)
+                    .numeroDaFrota(novoNumeroDaFrota)
+                    .anoModelo(novoAnoModelo)
+                    .modelo(novoModelo)
+                    .corPredominante(novaCorPredominante)
+                    .capacidadeDePassageiros(novaCapacidadeDePassageiros).apply();
+        });
+    }
+
+    @Test
+    void dadoUmModeloNuloNaoDeveAtualizar() {
+        Veiculo veiculo = this.builder.build();
+        assertThrows(Exception.class, () -> {
+            veiculo.update()
+
+                    .placa(novaPlaca)
+                    .chassi(novoChassi)
+                    .renavam(novoRenavam)
+                    .numeroDaFrota(novoNumeroDaFrota)
+                    .marca(novaMarca)
+                    .anoModelo(novoAnoModelo)
+                    .corPredominante(novaCorPredominante)
+                    .capacidadeDePassageiros(novaCapacidadeDePassageiros).apply();
+        });
+    }
+
+    @Test
+    void dadoUmaCorPredominanteNulaNaoDeveAtualizar() {
+        Veiculo veiculo = this.builder.build();
+        assertThrows(Exception.class, () -> {
+            veiculo.update()
+
+                    .placa(novaPlaca)
+                    .chassi(novoChassi)
+                    .renavam(novoRenavam)
+                    .numeroDaFrota(novoNumeroDaFrota)
+                    .marca(novaMarca)
+                    .anoModelo(novoAnoModelo)
+                    .modelo(novoModelo)
+                    .capacidadeDePassageiros(novaCapacidadeDePassageiros).apply();
+        });
+    }
+
+    @Test
+    void dadoUmaCapacidadeDePassageirosNuloNaoDeveAtualizar() {
+        Veiculo veiculo = this.builder.build();
+        assertThrows(Exception.class, () -> {
+            veiculo.update()
+
+                    .placa(novaPlaca)
+                    .chassi(novoChassi)
+                    .renavam(novoRenavam)
+                    .numeroDaFrota(novoNumeroDaFrota)
+                    .marca(novaMarca)
+                    .anoModelo(novoAnoModelo)
+                    .corPredominante(novaCorPredominante)
+                    .modelo(novoModelo).apply();
+        });
+    }
 
 }

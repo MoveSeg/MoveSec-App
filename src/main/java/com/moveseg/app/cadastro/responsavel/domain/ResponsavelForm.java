@@ -3,12 +3,14 @@ package com.moveseg.app.cadastro.responsavel.domain;
 import java.time.LocalDate;
 import java.util.function.Consumer;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import com.moveseg.app.cadastro.Instituto.domain.Email;
 import com.moveseg.app.cadastro.Instituto.domain.Endereco;
 import com.moveseg.app.cadastro.Instituto.domain.Telefone;
 
+@Getter
 @RequiredArgsConstructor
 public class ResponsavelForm {
     private final Consumer<ResponsavelForm> action;
