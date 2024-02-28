@@ -7,11 +7,11 @@ public class EmailValidator implements ConstraintValidator<EmailAnnotation, Stri
 
     @Override
     public boolean isValid(String email, ConstraintValidatorContext context) {
-        email = email.trim();
 
-        if (email.matches(".*[a-zA-Z0-9]+.*@.*[a-zA-Z0-9]+.*")) {
-            return email.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$");
-        }
-        return false;
+        String emailAlfanumerico = email.replaceAll(".*[a-zA-Z0-9]+.*@.*[a-zA-Z0-9]+.*", "");
+
+        return emailAlfanumerico
+                .matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$");
+
     }
 }
