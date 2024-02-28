@@ -26,59 +26,62 @@ import lombok.NonNull;
 @Transactional(propagation = REQUIRES_NEW)
 @AllArgsConstructor
 public class AlunoService {
-    private AlunoRepository repository;
+        private AlunoRepository repository;
 
-    @NonNull
-    @Lock(PESSIMISTIC_READ)
-    public AlunoId handle(@NonNull @Valid CriarAluno cmd) {
+        @NonNull
+        @Lock(PESSIMISTIC_READ)
+        public AlunoId handle(@NonNull @Valid CriarAluno cmd) {
 
-        Aluno aluno = Aluno.builder()
-                .nome(cmd.nome())
-                .endereco(cmd.endereco())
-                .responsavel(cmd.responsavel())
-                .telefone(cmd.telefone())
-                .email(cmd.email())
-                .build();
+                Aluno aluno = Aluno.builder()
+                                .nome(cmd.nome())
+                                .endereco(cmd.endereco())
+                                .responsavel(cmd.responsavel())
+                                .telefone(cmd.telefone())
+                                .email(cmd.email())
+                                .build();
 
-        repository.save(aluno);
+                repository.save(aluno);
 
-        return aluno.id();
-    }
+                return aluno.id();
+        }
 
-    public Aluno handle(@NonNull @Valid AlterarAluno cmd) {
-        Aluno aluno = repository.findById(requireNonNull(cmd.id()))
-                .orElseThrow(
-                        () -> new EntityNotFoundException(
-                                format("Not found any Business with code %s.", cmd.id().toUUID())));
-        aluno.atualizar()
-                .nome(cmd.nome())
-                .responsavel(cmd.responsavel())
-                .carteirinha(cmd.carteirinha())
-                .telefone(cmd.telefone())
-                .email(cmd.email())
-                .endereco(cmd.endereco())
-                .genero(cmd.genero())
-                .cpf(cmd.cpf())
-                .aplicar();
-        return repository.save(aluno);
-    }
-    @NonNull
-     
-     @Transactional(readOnly = true)
-     public List<Aluno> listarTodos() {
-     return repository.findAll();
-     }
-     
-     @Transactional(readOnly = true)
-     public Aluno buscarPorId(@NonNull AlunoId id) {
-     return repository.findById(requireNonNull(id))
-     .orElseThrow(
-     () -> new EntityNotFoundException(
-     format("Not found any Business with code %s.", id.toUUID())));
-     }
-     
-     public void deletar(@NonNull AlunoId id) {
-     repository.deleteById(id);
-     }
+        public Aluno handle(@NonNull @Valid AlterarAluno cmd) {
+                Aluno aluno = repository.findById(requireNonNull(cmd.id()))
+                                .orElseThrow(
+                                                () -> new EntityNotFoundException(
+                                                                format("Not found any Business with code %s.",
+                                                                                cmd.id().toUUID())));
+                aluno.atualizar()
+                                .nome(cmd.nome())
+                                .responsavel(cmd.responsavel())
+                                .carteirinha(cmd.carteirinha())
+                                .telefone(cmd.telefone())
+                                .email(cmd.email())
+                                .endereco(cmd.endereco())
+                                .genero(cmd.genero())
+                                .cpf(cmd.cpf())
+                                .aplicar();
+                return repository.save(aluno);
+        }
+
+        @NonNull
+
+        @Transactional(readOnly = true)
+        public List<Aluno> listarTodos() {
+                return repository.findAll();
+        }
+
+        @Transactional(readOnly = true)
+        public Aluno buscarPorId(@NonNull AlunoId id) {
+                return repository.findById(requireNonNull(id))
+                                .orElseThrow(
+                                                () -> new EntityNotFoundException(
+                                                                format("Not found any Business with code %s.",
+                                                                                id.toUUID())));
+        }
+
+        public void deletar(@NonNull AlunoId id) {
+                repository.deleteById(id);
+        }
 
 }

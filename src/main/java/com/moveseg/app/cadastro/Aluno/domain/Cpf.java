@@ -1,5 +1,7 @@
 package com.moveseg.app.cadastro.Aluno.domain;
 
+import com.moveseg.parent.infra.domain.ValueObject;
+
 import jakarta.persistence.Embeddable;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -10,7 +12,7 @@ import lombok.Getter;
 @Embeddable
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class Cpf {
+public class Cpf implements ValueObject {
     private final Integer cpf;
 
     public static Cpf of(Integer cpf) throws Exception{

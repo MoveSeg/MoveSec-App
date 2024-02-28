@@ -47,8 +47,7 @@ public class Aluno extends AbstractEntity<AlunoId> {
 
     @Embedded
     private Endereco endereco;
-
-    @Embedded
+    
     private Genero genero;
 
     @Embedded
@@ -99,6 +98,11 @@ public class Aluno extends AbstractEntity<AlunoId> {
 
             return new Aluno(this);
         }
+    }
+
+    public enum Genero {
+        MASCULINO,
+        FEMININO;
     }
 
 }
