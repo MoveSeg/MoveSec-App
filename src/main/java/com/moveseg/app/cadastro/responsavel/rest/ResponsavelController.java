@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.veiculo.rest;
+package com.moveseg.app.cadastro.responsavel.rest;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
@@ -17,25 +17,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.moveseg.app.cadastro.veiculo.app.VeiculoService;
-import com.moveseg.app.cadastro.veiculo.domain.Veiculo;
-import com.moveseg.app.cadastro.veiculo.domain.VeiculoId;
-import com.moveseg.app.cadastro.veiculo.domain.cmd.AtualizarVeiculo;
-import com.moveseg.app.cadastro.veiculo.domain.cmd.CriarVeiculo;
+import com.moveseg.app.cadastro.responsavel.app.ResponsavelService;
+import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
+import com.moveseg.app.cadastro.responsavel.domain.ResponsavelId;
+import com.moveseg.app.cadastro.responsavel.domain.cmd.AtualizarResponsavel;
+import com.moveseg.app.cadastro.responsavel.domain.cmd.CriarResponsavel;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping(path = "/api/veiculo", produces = APPLICATION_JSON_VALUE)
-public class VeiculoController {
+@RequestMapping(path = "/api/responsavel", produces = APPLICATION_JSON_VALUE)
+public class ResponsavelController {
 
-    private final VeiculoService service;
+    private final ResponsavelService service;
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> salvar(@RequestBody CriarVeiculo veiculo) throws Exception {
-        VeiculoId id = service.handle(veiculo);
+    public ResponseEntity<Void> salvar(@RequestBody CriarResponsavel responsavel) throws Exception {
+        ResponsavelId id = service.handle(responsavel);
 
         return ResponseEntity.created(fromCurrentRequest()
                 .path("/").path(id.toUUID()).build().toUri())
@@ -43,25 +43,25 @@ public class VeiculoController {
     }
 
     @GetMapping
-    public List<Veiculo> listarTodos() {
+    public List<Responsavel> listarTodos() {
         return service.listarTodos();
     }
 
     @GetMapping("/{id}")
-    public Veiculo buscarPorId(@PathVariable @NonNull VeiculoId id) {
+    public Responsavel buscarPorId(@PathVariable @NonNull ResponsavelId id) {
         return service.buscarPorId(id);
     }
 
     @Valid
     @PutMapping
-    public ResponseEntity<Veiculo> atualizar(@PathVariable @NonNull VeiculoId id,
-            @RequestBody AtualizarVeiculo veiculo) throws Exception {
-        Veiculo veiculoSalvo = service.atualizarVeiculo(id, veiculo);
-        return ResponseEntity.status(HttpStatus.OK).body(veiculoSalvo);
+    public ResponseEntity<Responsavel> atualizar(@PathVariable @NonNull ResponsavelId id,
+            @RequestBody AtualizarResponsavel responsavel) throws Exception {
+        Responsavel responsavelSalvo = service.atualizarResponsavel(id, responsavel);
+        return ResponseEntity.status(HttpStatus.OK).body(responsavelSalvo);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable VeiculoId id) {
+    public ResponseEntity<Void> deletar(@PathVariable ResponsavelId id) {
         service.deletar(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

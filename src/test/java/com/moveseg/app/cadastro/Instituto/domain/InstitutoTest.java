@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,9 +12,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.moveseg.app.cadastro.Instituto.domain.Instituto.InstitutoBuilder;
+import com.moveseg.app.cadastro.responsavel.domain.Cpf;
+import com.moveseg.app.cadastro.responsavel.domain.Genero;
 import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
 
-class IntitutoTest {
+public class InstitutoTest {
 
     private String nome = "Nome";
     private Endereco endereco;
@@ -34,13 +37,36 @@ class IntitutoTest {
     @BeforeEach
     void initializeBuilder() throws Exception {
         endereco = Endereco.of("logradouro", 555);
-        responsavel = Responsavel.of("Nome Responsavel");
+        telefone = Telefone.of("1123456 - 7890");
+        email = Email.of("Exemplo@gmail.com");
+        Responsavel responsavel = Responsavel.builder()
+                .nome(nome)
+                .documento(222333334)
+                .nascimento(LocalDate.of(2006, 02,
+                        04))
+                .email(email)
+                .telefone(telefone)
+                .endereco(endereco)
+                .genero(Genero.of("feminino"))
+                .cpf(Cpf.of("23456789002"))
+                .build();
+
         telefone = Telefone.of("1123456 - 7890");
         email = Email.of("Exemplo@gmail.com");
 
         novoNome = "Novo nome";
         novoEndereco = Endereco.of("Novo endereco", 9999);
-        novoResponsavel = Responsavel.of("Responsavel novo");
+        novoResponsavel = Responsavel.builder()
+                .nome("Jorge")
+                .documento(222333335)
+                .nascimento(LocalDate.of(2006, 02,
+                        04))
+                .email(email)
+                .telefone(telefone)
+                .endereco(endereco)
+                .genero(Genero.of("Masculino"))
+                .cpf(Cpf.of("23456789042"))
+                .build();
         novoTelefone = Telefone.of(("415555555"));
         novoEmail = Email.of("Exemplo2@gmail.com");
 
@@ -59,7 +85,7 @@ class IntitutoTest {
 
     @Test
     void dadoInstitutoCompletoDeveCriar() throws Exception {
-        Instituto instituto = this.builder.responsavel(this.responsavel).build();
+        Instituto instituto = this.builder.responsavel(responsaveis.get(0)).build();
         assertNotNull(instituto);
         assertNotNull(instituto.id());
         assertEquals(this.nome, instituto.nome());
@@ -70,7 +96,7 @@ class IntitutoTest {
     }
 
     @Test
-    void dadoUmInstitutoSemResponsavelDeveCriarVazio() {
+    void dadoUmInstitutoSemResponsavelNaoDeveCriarVazio() {
         Instituto instituto = this.builder.build();
         assertEquals(new ArrayList<Responsavel>(), instituto.responsaveis());
     }

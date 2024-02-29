@@ -6,23 +6,22 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-
-
 public class EmailTest {
     @Test
-    void dadoUmEnderecoValidoDeveCriar() throws Exception{
+    void dadoUmEnderecoValidoDeveCriar() throws Exception {
         Email email = Email.of("ExemploEmail@gmail.com");
         assertNotNull(email);
         assertEquals("ExemploEmail@gmail.com", email.email());
     }
 
-    @Test 
-    void dadoUmEnderecoInvalidoNaoDeveCriar(){
+    @Test
+    void dadoUmEnderecoInvalidoNaoDeveCriar() {
         assertThrows(Exception.class, () -> Email.of(null));
     }
-    @Test 
-    void dadoUmEnderecoVazioNaoDeveCriar(){
+
+    @Test
+    void dadoUmEnderecoVazioNaoDeveCriar() {
         assertThrows(Exception.class, () -> Email.of(""));
     }
-    
+
 }

@@ -5,6 +5,7 @@ import jakarta.validation.ConstraintValidatorContext;
 
 public class ChassiValidator implements ConstraintValidator<ChassiAnnotation, String> {
 
+    @Override
     public boolean isValid(String chassi, ConstraintValidatorContext context) {
         String chassiAlfanumerica = chassi.replaceAll("[^a-zA-Z0-9]", "");
 

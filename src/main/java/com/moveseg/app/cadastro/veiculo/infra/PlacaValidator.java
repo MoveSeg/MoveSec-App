@@ -5,6 +5,7 @@ import jakarta.validation.ConstraintValidatorContext;
 
 public class PlacaValidator implements ConstraintValidator<PlacaAnnotation, String> {
 
+    @Override
     public boolean isValid(String placa, ConstraintValidatorContext context) {
         String placaAlfanumerica = placa.replaceAll("[^a-zA-Z0-9]", "");
 

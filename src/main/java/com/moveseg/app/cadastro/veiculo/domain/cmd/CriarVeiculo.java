@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.veiculo.app.cmd;
+package com.moveseg.app.cadastro.veiculo.domain.cmd;
 
 import com.moveseg.app.cadastro.veiculo.domain.Chassi;
 import com.moveseg.app.cadastro.veiculo.domain.Placa;

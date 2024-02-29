@@ -1,10 +1,11 @@
-package com.moveseg.app.cadastro.veiculo.app.cmd;
+package com.moveseg.app.cadastro.veiculo.domain.cmd;
 
 import com.moveseg.app.cadastro.veiculo.domain.Chassi;
 import com.moveseg.app.cadastro.veiculo.domain.Placa;
 import com.moveseg.app.cadastro.veiculo.domain.Renavam;
 
 public class AtualizarVeiculo {
+
     public Placa placa;
     public Integer numeroDaFrota;
     public Chassi chassi;
