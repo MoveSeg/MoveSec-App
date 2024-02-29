@@ -19,7 +19,7 @@ public class TelefoneTest {
 
     @Test
     public void testTelefoneValido() throws Exception {
-        String  numero ="333333333";
+        String numero = "333333333";
         Telefone telefone = Telefone.of(numero);
         assertTrue(validator.isValid(telefone, constraintValidatorContext));
     }

@@ -62,7 +62,6 @@ public class InstitutoService {
         return repository.save(instituto);
     }
 
-
     @NonNull
     @Transactional(readOnly = true)
     public List<Instituto> listarTodos() {

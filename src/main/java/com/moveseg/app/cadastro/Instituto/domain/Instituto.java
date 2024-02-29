@@ -39,7 +39,7 @@ public final class Instituto extends AbstractEntity<InstitutoId> {
 
     @Embedded
     private Email email;
-
+    
     private Instituto(InstitutoBuilder builder) {
         super(builder.id);
 
