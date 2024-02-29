@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.instituto.domain;
+package com.moveseg.app.cadastro.Instituto.domain;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -10,7 +10,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.moveseg.app.cadastro.instituto.domain.Instituto.InstitutoBuilder;
+import com.moveseg.app.cadastro.Instituto.domain.Instituto.InstitutoBuilder;
 import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
 
 class IntitutoTest {
@@ -160,7 +160,7 @@ class IntitutoTest {
                 .endereco(novoEndereco)
                 .telefone(novoTelefone)
                 .email(novoEmail).aplicar();
-        
+
         assertNotNull(instituto.id());
         assertEquals(novoNome, instituto.nome());
         assertEquals(novoEndereco, instituto.endereco());

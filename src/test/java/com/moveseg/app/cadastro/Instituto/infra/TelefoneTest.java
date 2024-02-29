@@ -1,10 +1,9 @@
-package com.moveseg.app.cadastro.instituto.infra;
+package com.moveseg.app.cadastro.Instituto.infra;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
-import com.moveseg.app.cadastro.instituto.domain.Telefone;
-import com.moveseg.app.cadastro.instituto.infra.TelefoneValidator;
+import com.moveseg.app.cadastro.Instituto.domain.Telefone;
 
 import jakarta.validation.ConstraintValidatorContext;
 
@@ -20,7 +19,7 @@ public class TelefoneTest {
 
     @Test
     public void testTelefoneValido() throws Exception {
-        String  numero ="333333333";
+        String numero = "333333333";
         Telefone telefone = Telefone.of(numero);
         assertTrue(validator.isValid(telefone, constraintValidatorContext));
     }

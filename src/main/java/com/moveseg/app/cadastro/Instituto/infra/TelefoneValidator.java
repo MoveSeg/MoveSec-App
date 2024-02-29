@@ -1,6 +1,6 @@
-package com.moveseg.app.cadastro.instituto.infra;
+package com.moveseg.app.cadastro.Instituto.infra;
 
-import com.moveseg.app.cadastro.instituto.domain.Telefone;
+import com.moveseg.app.cadastro.Instituto.domain.Telefone;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.instituto.domain;
+package com.moveseg.app.cadastro.Instituto.domain;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

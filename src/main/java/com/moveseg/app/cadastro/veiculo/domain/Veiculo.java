@@ -14,7 +14,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-
 @Getter
 @Builder
 @NoArgsConstructor(access = PRIVATE, force = true)
@@ -56,7 +55,7 @@ public class Veiculo extends AbstractEntity<VeiculoId> {
         this.marca = requireNonNull(builder.marca, "A marca não deve ser nula");
         this.modelo = requireNonNull(builder.modelo, "O modelo não deve ser nulo");
         this.corPredominante = requireNonNull(builder.corPredominante, "A cor predominate não deve ser nula");
-        this.capacidadeDePassageiros = requireNonNull(builder.capacidadeDePassageiros, 
+        this.capacidadeDePassageiros = requireNonNull(builder.capacidadeDePassageiros,
                 "A capacidade de passageiros não deve ser nula");
     }
 
