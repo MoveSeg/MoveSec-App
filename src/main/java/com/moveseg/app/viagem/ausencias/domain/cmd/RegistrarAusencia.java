@@ -1,9 +1,7 @@
 package com.moveseg.app.viagem.ausencias.domain.cmd;
 
-import java.time.LocalDate;
-
 import com.moveseg.app.cadastro.Aluno.domain.AlunoId;
-import com.moveseg.app.cadastro.responsavel.domain.ResponsavelId;
+import com.moveseg.app.viagem.ausencias.domain.ViagemId;
 
 import lombok.Builder;
 import lombok.Data;
