@@ -4,39 +4,25 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.moveseg.app.cadastro.Instituto.domain.Instituto;
-import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
 import com.moveseg.app.viagem.ausencias.domain.Ausencia;
 
-public final class AusenciaTest {
-
-    private String motivo;
-
-    private LocalDate data;
-    private Ausencia builder;
+final class AusenciaTest {
 
     @Test
     void ausenciaCompletoDeveSalvar() {
-        motivo = ("Estou doente");
-        data = LocalDate.now();
-        Ausencia ausencia;
+        Ausencia ausencia = Ausencia.of("Estou malzão! Malz ae");
         assertNotNull(ausencia);
         assertNotNull(ausencia.id());
-        assertEquals(this.motivo, ausencia.motivo());
-        assertEquals(this.data, ausencia.data());
+        assertNotNull(ausencia.data());
+        assertEquals("Estou malzão! Malz ae", ausencia.motivo());
     }
 
      @Test
     void dadoUmaAusenciaSemMotivoNaoDeveCriar() {
-        this.builder.motivo(null);
         assertThrows(Exception.class, () -> {
-            this.builder.build();
+            Ausencia.of(null);
         });
     }
 }
