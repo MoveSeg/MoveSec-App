@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.moveseg.app.viagem.ausencias.app.AusenciaService;
 import com.moveseg.app.viagem.ausencias.domain.Ausencia;
 import com.moveseg.app.viagem.ausencias.domain.AusenciaId;
-import com.moveseg.app.viagem.ausencias.domain.cmd.CriarAusencia;
+import com.moveseg.app.viagem.ausencias.domain.cmd.RegistrarAusencia;
 
 import lombok.AllArgsConstructor;
 
@@ -24,7 +24,7 @@ public class AusenciaController {
     AusenciaService service;
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<Ausencia> salvar(@RequestBody CriarAusencia cmd) throws Exception {
+    public ResponseEntity<Ausencia> salvar(@RequestBody RegistrarAusencia cmd) throws Exception {
         AusenciaId id = service.handle(cmd);
 
         return ResponseEntity.created(fromCurrentRequest()

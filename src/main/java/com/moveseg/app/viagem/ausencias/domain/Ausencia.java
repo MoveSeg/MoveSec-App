@@ -5,36 +5,35 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 
-import com.moveseg.parent.infra.domain.AbstractEntity;
+import com.moveseg.app.viagem.ausencias.domain.eventos.AusenciaRegistrada;
+import com.moveseg.parent.infra.domain.AbstractAggregateRoot;
+
 import jakarta.persistence.Entity;
 import lombok.AccessLevel;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
-@Builder
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
-public final class Ausencia extends AbstractEntity<AusenciaId> {
+public final class Ausencia extends AbstractAggregateRoot<AusenciaId> {
 
     private String motivo;
     private LocalDate data;
+    //TODO: Adicionar a Viagem
 
-    private Ausencia(AusenciaBuilder builder) {
-        super(builder.id);
-        this.motivo = requireNonNull(builder.motivo, "O nome não deve ser nulo");
-        this.data = requireNonNull(builder.data, "A data não pode ser nula");
+    private Ausencia(AusenciaId id, String motivo) {
+        super(id);
+        this.motivo = requireNonNull(motivo, "O nome não deve ser nulo");
+        this.data = LocalDate.now();
     }
 
-    public static class AusenciaBuilder {
-        private AusenciaId id;
+    public static Ausencia of(String motivo) {
+        AusenciaId id = randomId(AusenciaId.class);
+        
+        Ausencia ausencia = new Ausencia(id, motivo);
+        ausencia.registerEvent(AusenciaRegistrada.of(id));
 
-        public Ausencia build() {
-
-            id = randomId(AusenciaId.class);
-
-            return new Ausencia(this);
-        }
+        return ausencia;
     }
 }

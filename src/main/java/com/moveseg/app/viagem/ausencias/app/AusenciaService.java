@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.moveseg.app.viagem.ausencias.domain.Ausencia;
 import com.moveseg.app.viagem.ausencias.domain.AusenciaId;
-import com.moveseg.app.viagem.ausencias.domain.cmd.CriarAusencia;
+import com.moveseg.app.viagem.ausencias.domain.cmd.RegistrarAusencia;
 import com.moveseg.app.viagem.ausencias.repository.AusenciaRepository;
 
 import jakarta.validation.Valid;
@@ -24,11 +24,8 @@ public class AusenciaService {
     private AusenciaRepository repository;
 
     @Lock(PESSIMISTIC_READ)
-    public AusenciaId handle(@NonNull @Valid CriarAusencia cmd) throws Exception {
-
-        Ausencia ausencia = Ausencia.builder()
-                .motivo(cmd.motivo())
-                .build();
+    public AusenciaId handle(@NonNull @Valid RegistrarAusencia cmd) throws Exception {
+        Ausencia ausencia = Ausencia.of(cmd.motivo());
 
         repository.save(ausencia);
         return ausencia.id();
