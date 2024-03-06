@@ -4,7 +4,7 @@ import com.moveseg.parent.infra.domain.DomainObjectId;
 
 public class AusenciaId extends DomainObjectId{
 
-    protected AusenciaId(String uuid) {
+    public AusenciaId(String uuid) {
         super(uuid);
     }
 

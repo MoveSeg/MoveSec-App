@@ -4,7 +4,7 @@ import com.moveseg.parent.infra.domain.DomainObjectId;
 
 public class ViagemId extends DomainObjectId{
 
-    protected ViagemId(String uuid) {
+    public ViagemId(String uuid) {
         super(uuid);
     }
 }
