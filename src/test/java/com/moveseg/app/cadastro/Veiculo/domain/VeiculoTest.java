@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.Veiculo.domain;
+package com.moveseg.app.cadastro.veiculo.domain;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -7,11 +7,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.moveseg.app.cadastro.veiculo.domain.Chassi;
-import com.moveseg.app.cadastro.veiculo.domain.Placa;
-import com.moveseg.app.cadastro.veiculo.domain.Renavam;
-import com.moveseg.app.cadastro.veiculo.domain.Veiculo;
-import com.moveseg.app.cadastro.veiculo.domain.Veiculo.VeiculoBuilder;
+import com.moveseg.app.cadastro.Veiculo.domain.Chassi;
+import com.moveseg.app.cadastro.Veiculo.domain.Placa;
+import com.moveseg.app.cadastro.Veiculo.domain.Renavam;
+import com.moveseg.app.cadastro.Veiculo.domain.Veiculo;
+import com.moveseg.app.cadastro.Veiculo.domain.Veiculo.VeiculoBuilder;
 
 class VeiculoTest {
 

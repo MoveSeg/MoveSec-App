@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.veiculo.rest;
+package com.moveseg.app.cadastro.Veiculo.rest;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.moveseg.app.cadastro.veiculo.app.VeiculoService;
-import com.moveseg.app.cadastro.veiculo.domain.Veiculo;
-import com.moveseg.app.cadastro.veiculo.domain.VeiculoId;
-import com.moveseg.app.cadastro.veiculo.domain.cmd.AtualizarVeiculo;
-import com.moveseg.app.cadastro.veiculo.domain.cmd.CriarVeiculo;
+import com.moveseg.app.cadastro.Veiculo.app.VeiculoService;
+import com.moveseg.app.cadastro.Veiculo.domain.Veiculo;
+import com.moveseg.app.cadastro.Veiculo.domain.VeiculoId;
+import com.moveseg.app.cadastro.Veiculo.domain.cmd.AtualizarVeiculo;
+import com.moveseg.app.cadastro.Veiculo.domain.cmd.CriarVeiculo;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.veiculo.domain;
+package com.moveseg.app.cadastro.Veiculo.domain;
 
 import com.moveseg.parent.infra.domain.ValueObject;
 

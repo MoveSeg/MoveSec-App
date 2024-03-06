@@ -6,6 +6,8 @@ import static lombok.AccessLevel.PRIVATE;
 
 import java.time.LocalDate;
 
+import com.moveseg.app.cadastro.Aluno.domain.Aluno.AlunoBuilder;
+import com.moveseg.app.cadastro.Aluno.domain.Carteirinha;
 import com.moveseg.app.cadastro.Instituto.domain.Email;
 import com.moveseg.app.cadastro.Instituto.domain.Endereco;
 import com.moveseg.app.cadastro.Instituto.domain.Telefone;
@@ -43,12 +45,17 @@ public final class Responsavel extends AbstractEntity<ResponsavelId> {
     private Genero genero;
 
     @Embedded
+    @AttributeOverride(column = @Column(name = "carteirinha"), name = "numero")
+    private Carteirinha carteirinha;
+
+    @Embedded
     @AttributeOverride(column = @Column(name = "cpf"), name = "value")
     private Cpf cpf;
 
     private Integer documento;
 
     private String nome;
+
 
     private LocalDate nascimento;
 
@@ -60,6 +67,7 @@ public final class Responsavel extends AbstractEntity<ResponsavelId> {
         this.email = requireNonNull(builder.email, "O email não deve ser nulo");
         this.endereco = requireNonNull(builder.endereco, "O endereço não deve ser nulo");
         this.telefone = requireNonNull(builder.telefone, "O telefone não deve ser nulo");
+        this.carteirinha = requireNonNull(builder.carteirinha, "A carteirinha não deve ser inválida");
         this.genero = requireNonNull(builder.genero, "O gênero não deve ser nulo");
         this.cpf = requireNonNull(builder.cpf, "O cpf não deve ser nulo");
     }

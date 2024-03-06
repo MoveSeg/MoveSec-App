@@ -41,28 +41,15 @@ public class AlunoTest {
 
     @BeforeEach
     void initializeBuilder() throws Exception {
-        responsavel = Responsavel.of("Nome Responsavel");
         carteirinha = Carteirinha.of(22222);
         telefone = Telefone.of("415555555");
         email = Email.of("Exemplo@email.com");
         endereco = Endereco.of("Logradouro", 555);
         cpf = Cpf.of(55555);
         dataDeNascimento = LocalDate.of(1990, 3, 15);
-        responsaveis = new ArrayList<Responsavel>();
-        responsaveis.add(responsavel);
 
-        novoResponsavel = Responsavel.of("Novo nome Responsavel");
-        novaCarteirinha = Carteirinha.of(55555);
-        novoTelefone = Telefone.of("4144444444");
-        novoEmail = Email.of("SegundoExemplo@email.com");
-        novoEndereco = Endereco.of("Novo Logradouro", 222);
-        novoCpf = Cpf.of(666666);
-        novaDataDeNascimento = LocalDate.of(2000, 1, 20);
-        novosResponsaveis = new ArrayList<Responsavel>();
-        novosResponsaveis.add(novoResponsavel);
-        this.builder = Aluno.builder()
+        Responsavel responsavel = Responsavel.builder()
                 .nome(this.nome)
-                .responsavel(responsavel)
                 .carteirinha(this.carteirinha)
                 .telefone(this.telefone)
                 .email(this.email)
@@ -70,8 +57,38 @@ public class AlunoTest {
                 .genero(Aluno.Genero.FEMININO)
                 .cpf(this.cpf)
                 .dataDeNascimento(this.dataDeNascimento);
-    }
+                .build();
+        
+        novoResponsavel = Responsavel.builder()
+                .nome(this.nome)
+                .carteirinha(this.carteirinha)
+                .telefone(this.telefone)
+                .email(this.email)
+                .endereco(this.endereco)
+                .genero(Aluno.Genero.FEMININO)
+                .cpf(this.cpf)
+                .dataDeNascimento(this.dataDeNascimento);
+                .build();
+        novaCarteirinha = Carteirinha.of(55555);
+        novoTelefone = Telefone.of("4144444444");
+        novoEmail = Email.of("SegundoExemplo@email.com");
+        novoEndereco = Endereco.of("Novo Logradouro", 222);
+        novoCpf = Cpf.of(666666);
+        novaDataDeNascimento = LocalDate.of(2000, 1, 20);
 
+        responsaveis = new ArrayList<Responsavel>();
+        responsaveis.add(responsavel);
+
+        novosResponsaveis = new ArrayList<Responsavel>();
+        novosResponsaveis.add(novoResponsavel);
+
+        this.builder = Aluno.builder()
+                .carteirinha(this.carteirinha)
+                .endereco(this.endereco)
+                .telefone(this.telefone)
+                .email(this.email);
+
+    }
     @Test
     void dadoUmAlunoCompletoDeveCriar() {
         Aluno aluno = this.builder.build();
