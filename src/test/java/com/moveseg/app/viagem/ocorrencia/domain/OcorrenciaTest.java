@@ -9,8 +9,10 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
+import com.moveseg.app.cadastro.Aluno.domain.AlunoId;
 import com.moveseg.app.viagem.Ocorrencia.domain.Ocorrencia;
 import com.moveseg.app.viagem.Ocorrencia.domain.ViagemId;
+import com.moveseg.parent.infra.domain.DomainObjectId;
 
 public class OcorrenciaTest {
 
@@ -18,34 +20,46 @@ public class OcorrenciaTest {
 
     @Test
     void dadoUmaOcorrenciaCompletaDeveCriar() throws Exception {
-        ViagemId id = randomId(ViagemId.class);
-        Ocorrencia ocorrencia = Ocorrencia.of(motivo, id);
-        
+        ViagemId id = DomainObjectId.randomId(ViagemId.class);
+        AlunoId aluno = DomainObjectId.randomId(AlunoId.class);
+        Ocorrencia ocorrencia = Ocorrencia.of(motivo, id, aluno);
+
         assertNotNull(ocorrencia);
         assertNotNull(ocorrencia.id());
+        assertNotNull(ocorrencia.viagem());
+        assertNotNull(ocorrencia.aluno());
         assertEquals(motivo, ocorrencia.motivo());
-        assertEquals(id, ocorrencia.viagem());
     }
 
     @Test
     void dadoUmaOcorrenciaSemViagemNaoDeveCriar() {
         assertThrows(Exception.class, () -> {
-            Ocorrencia.of("Dormi demais", null);
+            AlunoId aluno = DomainObjectId.randomId(AlunoId.class);
+            Ocorrencia.of("Dormi demais", null, aluno);
         });
     }
 
     @Test
     void dadoUmaOcorrenciaSemMotivoNaoDeveCriar() {
+        ViagemId id = DomainObjectId.randomId(ViagemId.class);
+        AlunoId aluno = DomainObjectId.randomId(AlunoId.class);
         assertThrows(Exception.class, () -> {
-            Ocorrencia.of(null, randomId(ViagemId.class));
+            Ocorrencia.of(null, id, aluno);
         });
     }
 
+    @Test
+    void dadoUmaOcorrenciaSemAlunoNaoDeveCriar() {
+        ViagemId id = DomainObjectId.randomId(ViagemId.class);
+        assertThrows(Exception.class, () -> {
+            Ocorrencia.of("Dormi demais", id, null );
+        });
+    }
 
     @Test
     void dadoUmaOcorrenciaInvalidaNaoDeveCriar() {
         assertThrows(Exception.class, () -> {
-            Ocorrencia.of(null, null);
+            Ocorrencia.of(null, null, null);
         });
     }
 }

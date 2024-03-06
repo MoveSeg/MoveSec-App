@@ -6,7 +6,7 @@ import static org.mockito.Mockito.mock;
 
 import org.junit.jupiter.api.Test;
 
-import com.moveseg.app.cadastro.Veiculo.infra.ChassiValidator;
+import com.moveseg.app.cadastro.veiculo.infra.ChassiValidator;
 
 import jakarta.validation.ConstraintValidatorContext;
 

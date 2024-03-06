@@ -12,9 +12,9 @@ public class CpfTest {
     
     @Test
     void dadoUmCpfValidoDeveCriar() throws Exception{
-        Cpf cpf = Cpf.of(1111111111);
+        Cpf cpf = Cpf.of(("1111111111"));
         assertNotNull(cpf);
-        assertEquals(1111111111 , cpf.cpf());
+        assertEquals(("1111111111"), cpf.numero());
     }
 
     @Test 
@@ -23,7 +23,7 @@ public class CpfTest {
     }
     @Test 
     void dadoUmCpfVazioNaoDeveCriar(){
-        assertThrows(Exception.class, () -> Cpf.of(0));
+        assertThrows(Exception.class, () -> Cpf.of("0"));
     }
     
 }

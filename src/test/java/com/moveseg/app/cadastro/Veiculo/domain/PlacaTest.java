@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import com.moveseg.app.cadastro.Veiculo.domain.Placa;
+import com.moveseg.app.cadastro.veiculo.domain.Placa;
 
 class PlacaTest {
 

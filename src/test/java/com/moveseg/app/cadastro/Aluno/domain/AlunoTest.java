@@ -47,7 +47,7 @@ public class AlunoTest {
         telefone = Telefone.of("415555555");
         email = Email.of("Exemplo@email.com");
         endereco = Endereco.of("Logradouro", 555);
-        cpf = Cpf.of(55555);
+        cpf = Cpf.of("55555");
         dataDeNascimento = LocalDate.of(1990, 3, 15);
 
         Responsavel responsavel = Responsavel.builder()
@@ -76,7 +76,7 @@ public class AlunoTest {
         novoTelefone = Telefone.of("4144444444");
         novoEmail = Email.of("SegundoExemplo@email.com");
         novoEndereco = Endereco.of("Novo Logradouro", 222);
-        novoCpf = Cpf.of(666666);
+        novoCpf = Cpf.of("666666");
         novaDataDeNascimento = LocalDate.of(2000, 1, 20);
 
         responsaveis = new ArrayList<Responsavel>();
@@ -89,6 +89,7 @@ public class AlunoTest {
                 .carteirinha(this.carteirinha)
                 .endereco(this.endereco)
                 .telefone(this.telefone)
+                .cpf(this.cpf)
                 .email(this.email);
 
     }

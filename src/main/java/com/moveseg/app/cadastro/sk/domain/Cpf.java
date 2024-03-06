@@ -13,12 +13,13 @@ import lombok.Getter;
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Cpf implements ValueObject {
-    private final String cpf;
+    private final String numero;
 
-    public static Cpf of(String cpf) throws Exception{
-        if(cpf == null || cpf.isEmpty()){
+    public static Cpf of(String numero) throws Exception{
+        if (numero == null || numero.isEmpty()) {
             throw new Exception("O seu CPF não pode ser nulo e nem 0");
         }
-        return new Cpf(cpf);
+        return new Cpf(numero);
     }
+
 }

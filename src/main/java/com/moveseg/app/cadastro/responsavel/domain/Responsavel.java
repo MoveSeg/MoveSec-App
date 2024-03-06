@@ -50,7 +50,7 @@ public final class Responsavel extends AbstractEntity<ResponsavelId> {
     private Carteirinha carteirinha;
 
     @Embedded
-    @AttributeOverride(column = @Column(name = "cpf"), name = "value")
+    @AttributeOverride(column = @Column(name = "cpf"), name = "numero")
     private Cpf cpf;
 
     private Integer documento;
