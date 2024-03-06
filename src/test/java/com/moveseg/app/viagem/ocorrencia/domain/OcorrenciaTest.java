@@ -1,12 +1,12 @@
-package com.moveseg.app.viagem.Ocorrencia.domain;
+package com.moveseg.app.viagem.ocorrencia.domain;
 
+import static com.moveseg.parent.infra.domain.DomainObjectId.randomId;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDate;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.moveseg.app.viagem.Ocorrencia.domain.Ocorrencia;
@@ -15,27 +15,37 @@ import com.moveseg.app.viagem.Ocorrencia.domain.ViagemId;
 public class OcorrenciaTest {
 
     private String motivo = "Dormiu demais";
-    private LocalDate data = LocalDate.of(2024, 02, 02);
 
     @Test
     void dadoUmaOcorrenciaCompletaDeveCriar() throws Exception {
-        Ocorrencia ocorrencia = Ocorrencia.of("Dormi demais");
+        ViagemId id = randomId(ViagemId.class);
+        Ocorrencia ocorrencia = Ocorrencia.of(motivo, id);
+        
         assertNotNull(ocorrencia);
         assertNotNull(ocorrencia.id());
         assertEquals(motivo, ocorrencia.motivo());
-        assertEquals(data, ocorrencia.data());
+        assertEquals(id, ocorrencia.viagem());
     }
 
     @Test
-    void dadoUmaOcorrenciaSemDataNaoDeveCriar() {
-        Ocorrencia ocorrencia = Data.of(null);
-        assertThrows(Exception.class, () -> ());
+    void dadoUmaOcorrenciaSemViagemNaoDeveCriar() {
+        assertThrows(Exception.class, () -> {
+            Ocorrencia.of("Dormi demais", null);
+        });
     }
 
     @Test
     void dadoUmaOcorrenciaSemMotivoNaoDeveCriar() {
-        Ocorrencia ocorrencia = Motivo.of(null);
-        assertThrows(Exception.class, () -> ());
+        assertThrows(Exception.class, () -> {
+            Ocorrencia.of(null, randomId(ViagemId.class));
+        });
     }
 
+
+    @Test
+    void dadoUmaOcorrenciaInvalidaNaoDeveCriar() {
+        assertThrows(Exception.class, () -> {
+            Ocorrencia.of(null, null);
+        });
+    }
 }

@@ -26,7 +26,7 @@ public class Ocorrencia extends AbstractAggregateRoot<OcorrenciaId> {
     private ViagemId viagem;
 
 
-    private Ocorrencia of(OcorrenciaId id, String motivo, ViagemId viagem) {
+    private Ocorrencia(OcorrenciaId id, String motivo, ViagemId viagem) {
         super(id);
         this.motivo = requireNonNull(motivo, "O motivo não deve ser nulo");
         this.data = LocalDate.now();

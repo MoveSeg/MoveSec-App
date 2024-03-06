@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.Veiculo.domain;
+package com.moveseg.app.cadastro.veiculo.domain;
 
 import java.util.function.Consumer;
 

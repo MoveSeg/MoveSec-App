@@ -6,11 +6,12 @@ import static lombok.AccessLevel.PRIVATE;
 
 import java.time.LocalDate;
 
-import com.moveseg.app.cadastro.Aluno.domain.Aluno.AlunoBuilder;
 import com.moveseg.app.cadastro.Aluno.domain.Carteirinha;
 import com.moveseg.app.cadastro.Instituto.domain.Email;
 import com.moveseg.app.cadastro.Instituto.domain.Endereco;
 import com.moveseg.app.cadastro.Instituto.domain.Telefone;
+import com.moveseg.app.cadastro.sk.domain.Cpf;
+import com.moveseg.app.cadastro.sk.domain.Genero;
 import com.moveseg.parent.infra.domain.AbstractEntity;
 
 import jakarta.persistence.AttributeOverride;

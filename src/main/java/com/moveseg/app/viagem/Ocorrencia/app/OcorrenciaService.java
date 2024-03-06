@@ -26,8 +26,8 @@ public class OcorrenciaService {
     private OcorrenciaRepository repository;
 
     @Lock(PESSIMISTIC_READ)
-    public OcorrenciaId handle(@NonNull @Valid OcorrenciaRealizada cmd) throws Exception {
-        Ocorrencia ocorrencia = Ocorrencia.of(cmd.motivo());
+    public OcorrenciaId handle(@NonNull @Valid CriarOcorrencia cmd) throws Exception {
+        Ocorrencia ocorrencia = Ocorrencia.of(cmd.motivo(), cmd.viagem());
 
         repository.save(ocorrencia);
         return ocorrencia.id();

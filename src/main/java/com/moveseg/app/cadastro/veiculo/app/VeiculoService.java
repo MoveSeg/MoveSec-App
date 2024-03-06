@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.Veiculo.app;
+package com.moveseg.app.cadastro.veiculo.app;
 
 import static jakarta.persistence.LockModeType.PESSIMISTIC_READ;
 import static java.lang.String.format;
@@ -12,11 +12,11 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.moveseg.app.cadastro.Veiculo.domain.Veiculo;
-import com.moveseg.app.cadastro.Veiculo.domain.VeiculoId;
-import com.moveseg.app.cadastro.Veiculo.domain.cmd.AtualizarVeiculo;
-import com.moveseg.app.cadastro.Veiculo.domain.cmd.CriarVeiculo;
-import com.moveseg.app.cadastro.Veiculo.repository.VeiculoRepository;
+import com.moveseg.app.cadastro.veiculo.domain.Veiculo;
+import com.moveseg.app.cadastro.veiculo.domain.VeiculoId;
+import com.moveseg.app.cadastro.veiculo.domain.cmd.AtualizarVeiculo;
+import com.moveseg.app.cadastro.veiculo.domain.cmd.CriarVeiculo;
+import com.moveseg.app.cadastro.veiculo.repository.VeiculoRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;

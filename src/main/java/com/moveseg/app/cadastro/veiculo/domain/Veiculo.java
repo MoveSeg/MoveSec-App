@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.Veiculo.domain;
+package com.moveseg.app.cadastro.veiculo.domain;
 
 import static com.moveseg.parent.infra.domain.DomainObjectId.randomId;
 import static java.util.Objects.requireNonNull;

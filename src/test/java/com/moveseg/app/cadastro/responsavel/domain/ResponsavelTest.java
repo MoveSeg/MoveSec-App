@@ -12,10 +12,9 @@ import org.junit.jupiter.api.Test;
 import com.moveseg.app.cadastro.Instituto.domain.Email;
 import com.moveseg.app.cadastro.Instituto.domain.Endereco;
 import com.moveseg.app.cadastro.Instituto.domain.Telefone;
-import com.moveseg.app.cadastro.responsavel.domain.Cpf;
-import com.moveseg.app.cadastro.responsavel.domain.Genero;
-import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
 import com.moveseg.app.cadastro.responsavel.domain.Responsavel.ResponsavelBuilder;
+import com.moveseg.app.cadastro.sk.domain.Cpf;
+import com.moveseg.app.cadastro.sk.domain.Genero;
 
 class ResponsavelTest {
 
@@ -40,7 +39,7 @@ class ResponsavelTest {
 
     @BeforeEach
     void initializeBuilder() throws Exception {
-        genero = Genero.of("feminino");
+        genero = Genero.FEMININO;
         email = Email.of("alana@aaaa.com");
         telefone = Telefone.of("41987876666");
         endereco = Endereco.of("Rua", 44);
@@ -133,7 +132,7 @@ class ResponsavelTest {
     @Test
     void dadoNovosDadosDoNomeDeveAtualizarOResponsavelEManterNaoNulo() throws Exception {
         Email novoEmail = Email.of("Luna@aaaa.com");
-        Genero novoGenero = Genero.of("Luna@aaaa");
+        Genero novoGenero = Genero.FEMININO;
         Cpf novoCpf = Cpf.of("Luna@aaaa");
         Telefone novoTelefone = Telefone.of("41987844666");
         Endereco novoEndereco = Endereco.of("Rua AAAA ", 44);

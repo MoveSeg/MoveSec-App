@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.Veiculo.infra;
+package com.moveseg.app.cadastro.veiculo.infra;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

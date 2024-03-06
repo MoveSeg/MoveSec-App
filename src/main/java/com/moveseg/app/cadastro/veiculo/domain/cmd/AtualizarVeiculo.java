@@ -1,8 +1,8 @@
-package com.moveseg.app.cadastro.Veiculo.domain.cmd;
+package com.moveseg.app.cadastro.veiculo.domain.cmd;
 
-import com.moveseg.app.cadastro.Veiculo.domain.Chassi;
-import com.moveseg.app.cadastro.Veiculo.domain.Placa;
-import com.moveseg.app.cadastro.Veiculo.domain.Renavam;
+import com.moveseg.app.cadastro.veiculo.domain.Chassi;
+import com.moveseg.app.cadastro.veiculo.domain.Placa;
+import com.moveseg.app.cadastro.veiculo.domain.Renavam;
 
 public class AtualizarVeiculo {
 
