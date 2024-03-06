@@ -23,18 +23,17 @@ public final class Ausencia extends AbstractAggregateRoot<AusenciaId> {
 
     private ViagemId viagem;
 
-    private Ausencia(AusenciaId id,ViagemId Viagem, String motivo) {
+    private Ausencia(AusenciaId id,ViagemId viagem, String motivo) {
         super(id);
         this.motivo = requireNonNull(motivo, "O nome não deve ser nulo");
         this.data = LocalDate.now();
         this.viagem = requireNonNull(viagem, "O Id da viagem não pode ser nula");
     }
 
-    public static Ausencia of(String motivo) {
+    public static Ausencia from(ViagemId viagem, String motivo) {
         AusenciaId id = randomId(AusenciaId.class);
-        ViagemId viagemId = randomId(ViagemId.class);
 
-        Ausencia ausencia = new Ausencia(id, viagemId, motivo);
+        Ausencia ausencia = new Ausencia(id, viagem, motivo);
         ausencia.registerEvent(AusenciaRegistrada.of(id));
 
         return ausencia;

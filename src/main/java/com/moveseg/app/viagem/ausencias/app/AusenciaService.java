@@ -25,7 +25,7 @@ public class AusenciaService {
 
     @Lock(PESSIMISTIC_READ)
     public AusenciaId handle(@NonNull @Valid RegistrarAusencia cmd) throws Exception {
-        Ausencia ausencia = Ausencia.of(cmd.motivo(), cmd.viagem());
+        Ausencia ausencia = Ausencia.from(cmd.viagem(), cmd.motivo());
 
         repository.save(ausencia);
         return ausencia.id();

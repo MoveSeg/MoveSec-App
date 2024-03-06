@@ -9,27 +9,40 @@ import org.junit.jupiter.api.Test;
 
 import com.moveseg.app.viagem.ausencias.domain.Ausencia;
 import com.moveseg.app.viagem.ausencias.domain.ViagemId;
+import com.moveseg.parent.infra.domain.DomainObjectId;
 
 public final class AusenciaTest {
-
-    ViagemId viagem;
     
     @Test
     void ausenciaCompletoDeveSalvar() {
-        Ausencia ausencia = Ausencia.of("Estou malzão! Malz ae");
+        ViagemId viagem = DomainObjectId.randomId(ViagemId.class);
+        Ausencia ausencia = Ausencia.from(viagem, "Doente");
         assertNotNull(ausencia);
         assertNotNull(ausencia.id());
         assertNotNull(ausencia.data());
         assertNotNull(ausencia.viagem());
-        assertEquals("Estou malzão! Malz ae", ausencia.motivo());
+        assertEquals("Doente", ausencia.motivo());
     }
 
     @Test
     void dadoUmaAusenciaSemMotivoNaoDeveCriar() {
+        ViagemId viagem = DomainObjectId.randomId(ViagemId.class);
         assertThrows(Exception.class, () -> {
-            Ausencia.of(null);
+            Ausencia.from(viagem, null);
         });
     }
 
+    @Test
+    void dadoUmaAusenciaSemViagemNaoDeveCriar() {
+        assertThrows(Exception.class, () -> {
+            Ausencia.from(null, "Motivo");
+        });
+    }
 
+    @Test
+    void dadoUmaAusenciaIncorretoNaoDeveCriar() {
+        assertThrows(Exception.class, () -> {
+            Ausencia.from(null, null);
+        });
+    }
 }
