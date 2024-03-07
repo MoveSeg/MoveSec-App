@@ -23,6 +23,7 @@ public class AlunoTest {
     private String nome = "Nome";
     private Responsavel responsavel;
     private Carteirinha carteirinha;
+    private Integer documento;
     private Telefone telefone;
     private Email email;
     private Endereco endereco;
@@ -38,6 +39,7 @@ public class AlunoTest {
     private Email novoEmail;
     private Endereco novoEndereco;
     private Cpf novoCpf;
+    private Integer novoDocumento;
     private LocalDate novaDataDeNascimento;
     private List<Responsavel> novosResponsaveis;
 
@@ -49,25 +51,26 @@ public class AlunoTest {
         endereco = Endereco.of("Logradouro", 555);
         cpf = Cpf.of("55555");
         dataDeNascimento = LocalDate.of(1990, 3, 15);
+        documento = 111111111;
 
         Responsavel responsavel = Responsavel.builder()
                 .nome(this.nome)
-                .carteirinha(this.carteirinha)
                 .telefone(this.telefone)
                 .email(this.email)
                 .endereco(this.endereco)
                 .genero(Genero.FEMININO)
                 .cpf(this.cpf)
                 .nascimento(this.dataDeNascimento)
+                .documento(this.documento)
                 .build();
 
         novoResponsavel = Responsavel.builder()
                 .nome(this.nome)
-                .carteirinha(this.carteirinha)
                 .telefone(this.telefone)
                 .email(this.email)
                 .endereco(this.endereco)
                 .genero(Genero.FEMININO)
+                .documento(this.documento)
                 .cpf(this.cpf)
                 .nascimento(this.dataDeNascimento)
                 .build();
@@ -76,6 +79,7 @@ public class AlunoTest {
         novoTelefone = Telefone.of("4144444444");
         novoEmail = Email.of("SegundoExemplo@email.com");
         novoEndereco = Endereco.of("Novo Logradouro", 222);
+        novoDocumento = 22222222;
         novoCpf = Cpf.of("666666");
         novaDataDeNascimento = LocalDate.of(2000, 1, 20);
 
@@ -90,14 +94,16 @@ public class AlunoTest {
                 .endereco(this.endereco)
                 .telefone(this.telefone)
                 .cpf(this.cpf)
+                .nome(this.nome)
                 .email(this.email);
 
     }
 
     @Test
-    void dadoUmAlunoCompletoDeveCriar() {
+    void dadoUmAlunoCompletoDeveCriar()  throws Exception {
         Aluno aluno = this.builder.build();
         assertNotNull(aluno);
+        assertNotNull(aluno.id());
         assertEquals(nome, aluno.nome());
         assertEquals(responsaveis, aluno.responsaveis());
         assertEquals(carteirinha, aluno.carteirinha());

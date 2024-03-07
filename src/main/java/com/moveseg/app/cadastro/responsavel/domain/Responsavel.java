@@ -46,10 +46,6 @@ public final class Responsavel extends AbstractEntity<ResponsavelId> {
     private Genero genero;
 
     @Embedded
-    @AttributeOverride(column = @Column(name = "carteirinha"), name = "numero")
-    private Carteirinha carteirinha;
-
-    @Embedded
     @AttributeOverride(column = @Column(name = "cpf"), name = "numero")
     private Cpf cpf;
 
@@ -68,7 +64,6 @@ public final class Responsavel extends AbstractEntity<ResponsavelId> {
         this.email = requireNonNull(builder.email, "O email não deve ser nulo");
         this.endereco = requireNonNull(builder.endereco, "O endereço não deve ser nulo");
         this.telefone = requireNonNull(builder.telefone, "O telefone não deve ser nulo");
-        this.carteirinha = requireNonNull(builder.carteirinha, "A carteirinha não deve ser inválida");
         this.genero = requireNonNull(builder.genero, "O gênero não deve ser nulo");
         this.cpf = requireNonNull(builder.cpf, "O cpf não deve ser nulo");
     }

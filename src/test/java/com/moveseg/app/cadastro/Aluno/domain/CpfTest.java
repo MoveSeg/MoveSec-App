@@ -23,7 +23,7 @@ public class CpfTest {
     }
     @Test 
     void dadoUmCpfVazioNaoDeveCriar(){
-        assertThrows(Exception.class, () -> Cpf.of("0"));
+        assertThrows(Exception.class, () -> Cpf.of(""));
     }
     
 }
