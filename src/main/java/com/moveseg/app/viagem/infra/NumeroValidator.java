@@ -1,9 +1,9 @@
-package com.moveseg.app.cadastro.veiculo.infra;
+package com.moveseg.app.viagem.infra;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
-public class PlacaValidator implements ConstraintValidator<PlacaAnnotation, String> {
+public class NumeroValidator implements ConstraintValidator<NumeroAnnotation, String> {
 
     @Override
     public boolean isValid(String numero, ConstraintValidatorContext context) {
