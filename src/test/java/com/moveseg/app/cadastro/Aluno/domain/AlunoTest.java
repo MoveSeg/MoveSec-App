@@ -41,7 +41,6 @@ public class AlunoTest {
 
     @BeforeEach
     void initializeBuilder() throws Exception {
-        responsavel = Responsavel.of("Nome Responsavel");
         carteirinha = Carteirinha.of(22222);
         telefone = Telefone.of("415555555");
         email = Email.of("Exemplo@email.com");
@@ -50,8 +49,7 @@ public class AlunoTest {
         dataDeNascimento = LocalDate.of(1990, 3, 15);
         responsaveis = new ArrayList<Responsavel>();
         responsaveis.add(responsavel);
-
-        novoResponsavel = Responsavel.of("Novo nome Responsavel");
+        
         novaCarteirinha = Carteirinha.of(55555);
         novoTelefone = Telefone.of("4144444444");
         novoEmail = Email.of("SegundoExemplo@email.com");

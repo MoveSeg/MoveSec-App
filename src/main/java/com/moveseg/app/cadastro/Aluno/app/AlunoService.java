@@ -16,6 +16,7 @@ import com.moveseg.app.cadastro.Aluno.domain.AlunoId;
 import com.moveseg.app.cadastro.Aluno.domain.cmd.AlterarAluno;
 import com.moveseg.app.cadastro.Aluno.domain.cmd.CriarAluno;
 import com.moveseg.app.cadastro.Aluno.repository.AlunoRepository;
+import com.moveseg.app.viagem.cmd.CriarViagem;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
