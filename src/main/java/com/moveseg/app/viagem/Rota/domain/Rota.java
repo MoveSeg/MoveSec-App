@@ -3,13 +3,9 @@ package com.moveseg.app.viagem.Rota.domain;
 import static com.moveseg.parent.infra.domain.DomainObjectId.randomId;
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.moveseg.app.cadastro.Aluno.domain.Aluno;
 import com.moveseg.app.cadastro.Instituto.domain.Endereco;
-import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
-import com.moveseg.app.cadastro.veiculo.domain.Veiculo;
 import com.moveseg.app.cadastro.veiculo.domain.VeiculoId;
 import com.moveseg.parent.infra.domain.AbstractEntity;
 
@@ -20,7 +16,6 @@ import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
 import lombok.AccessLevel;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
