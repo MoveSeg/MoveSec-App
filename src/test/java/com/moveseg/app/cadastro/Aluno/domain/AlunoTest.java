@@ -39,7 +39,6 @@ public class AlunoTest {
     private Email novoEmail;
     private Endereco novoEndereco;
     private Cpf novoCpf;
-    private Integer novoDocumento;
     private LocalDate novaDataDeNascimento;
     private List<Responsavel> novosResponsaveis;
 
@@ -79,7 +78,6 @@ public class AlunoTest {
         novoTelefone = Telefone.of("4144444444");
         novoEmail = Email.of("SegundoExemplo@email.com");
         novoEndereco = Endereco.of("Novo Logradouro", 222);
-        novoDocumento = 22222222;
         novoCpf = Cpf.of("666666");
         novaDataDeNascimento = LocalDate.of(2000, 1, 20);
 
@@ -91,16 +89,19 @@ public class AlunoTest {
 
         this.builder = Aluno.builder()
                 .carteirinha(this.carteirinha)
+                .responsaveis(responsaveis)
                 .endereco(this.endereco)
+                .genero(Genero.FEMININO)
                 .telefone(this.telefone)
                 .cpf(this.cpf)
                 .nome(this.nome)
-                .email(this.email);
+                .email(this.email)
+                .dataDeNascimento(this.dataDeNascimento);
 
     }
 
     @Test
-    void dadoUmAlunoCompletoDeveCriar()  throws Exception {
+    void dadoUmAlunoCompletoDeveCriar() throws Exception {
         Aluno aluno = this.builder.build();
         assertNotNull(aluno);
         assertNotNull(aluno.id());
