@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.Veiculo.Infra;
+package com.moveseg.app.cadastro.veiculo.Infra;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -24,7 +24,7 @@ public class PlacaValidatorTest {
 
    @Test
    void PlacaInvalida() {
-      String placaInvalida = "123244";
+      String placaInvalida = "####";
       assertFalse(validator.isValid(placaInvalida, constraintValidatorContext));
    }
 
