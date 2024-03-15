@@ -52,7 +52,7 @@ public class RotaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Rota> alterar(@PathVariable @NonNull RotaId id, @RequestBody AtualizarRota cmd) {
+    public ResponseEntity<Rota> atualizar(@PathVariable @NonNull RotaId id, @RequestBody AtualizarRota cmd) {
 
         cmd.id(id);
 

@@ -46,9 +46,9 @@ public class RotaService {
                         () -> new EntityNotFoundException(
                                 format("Not found any Business with code %s.",
                                         cmd.id().toUUID())));
-        rota.update()
+        rota.atualizar()
                 .numero(cmd.numero())
-                .apply();
+                .aplicar();
         return repository.save(rota);
     }
 

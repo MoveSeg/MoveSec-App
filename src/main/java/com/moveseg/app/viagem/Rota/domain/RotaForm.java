@@ -1,8 +1,8 @@
 package com.moveseg.app.viagem.Rota.domain;
 
-import java.util.function.Consumer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import com.moveseg.app.cadastro.Instituto.domain.Endereco;
 import com.moveseg.app.cadastro.veiculo.domain.VeiculoId;
@@ -35,7 +35,7 @@ public class RotaForm {
         return this;
     }
 
-    public void apply() {
+    public void aplicar() {
         action.accept(this);
     }
 }

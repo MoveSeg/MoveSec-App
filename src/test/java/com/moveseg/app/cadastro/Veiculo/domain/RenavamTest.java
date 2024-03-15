@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import com.moveseg.app.cadastro.veiculo.domain.Renavam;
-
 public class RenavamTest {
     @Test
     void dadoUmRenavamValidoDeveCriar() {
