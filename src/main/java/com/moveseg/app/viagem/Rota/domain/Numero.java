@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.responsavel.domain;
+package com.moveseg.app.viagem.Rota.domain;
 
 import com.moveseg.parent.infra.domain.ValueObject;
 
@@ -12,16 +12,15 @@ import lombok.NoArgsConstructor;
 @Getter
 @Embeddable
 @EqualsAndHashCode
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public final class Genero implements ValueObject {
+public final class Numero implements ValueObject {
     private String value;
 
-    public static Genero of(String genero) {
-        if (genero == null || genero.isEmpty()) {
-            throw new IllegalArgumentException("Não deve ser nulo");
+    public static Numero of(String numero) throws Exception {
+        if (numero == null || numero.isEmpty()) {
+            throw new Exception("Numero não pode ser nulo e nem 0");
         }
-        return new Genero(genero);
+        return new Numero(numero);
     }
-
 }

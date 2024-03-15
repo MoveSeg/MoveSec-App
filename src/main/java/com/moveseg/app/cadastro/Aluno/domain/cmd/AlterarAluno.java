@@ -2,12 +2,12 @@ package com.moveseg.app.cadastro.Aluno.domain.cmd;
 
 import com.moveseg.app.cadastro.Aluno.domain.AlunoId;
 import com.moveseg.app.cadastro.Aluno.domain.Carteirinha;
-import com.moveseg.app.cadastro.Aluno.domain.Cpf;
-import com.moveseg.app.cadastro.Aluno.domain.Aluno.Genero;
 import com.moveseg.app.cadastro.Instituto.domain.Email;
 import com.moveseg.app.cadastro.Instituto.domain.Endereco;
 import com.moveseg.app.cadastro.Instituto.domain.Telefone;
 import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
+import com.moveseg.app.cadastro.sk.domain.Cpf;
+import com.moveseg.app.cadastro.sk.domain.Genero;
 
 import lombok.Builder;
 import lombok.Data;
