@@ -12,9 +12,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.moveseg.app.cadastro.Instituto.domain.Instituto.InstitutoBuilder;
-import com.moveseg.app.cadastro.responsavel.domain.Cpf;
-import com.moveseg.app.cadastro.responsavel.domain.Genero;
 import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
+import com.moveseg.app.cadastro.sk.domain.Cpf;
+import com.moveseg.app.cadastro.sk.domain.Genero;
 
 public class InstitutoTest {
 
@@ -47,7 +47,7 @@ public class InstitutoTest {
                 .email(email)
                 .telefone(telefone)
                 .endereco(endereco)
-                .genero(Genero.of("feminino"))
+                .genero(Genero.FEMININO)
                 .cpf(Cpf.of("23456789002"))
                 .build();
 
@@ -64,7 +64,7 @@ public class InstitutoTest {
                 .email(email)
                 .telefone(telefone)
                 .endereco(endereco)
-                .genero(Genero.of("Masculino"))
+                .genero(Genero.MASCULINO)
                 .cpf(Cpf.of("23456789042"))
                 .build();
         novoTelefone = Telefone.of(("415555555"));

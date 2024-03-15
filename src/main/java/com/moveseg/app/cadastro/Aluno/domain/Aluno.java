@@ -11,6 +11,8 @@ import com.moveseg.app.cadastro.Instituto.domain.Email;
 import com.moveseg.app.cadastro.Instituto.domain.Endereco;
 import com.moveseg.app.cadastro.Instituto.domain.Telefone;
 import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
+import com.moveseg.app.cadastro.sk.domain.Cpf;
+import com.moveseg.app.cadastro.sk.domain.Genero;
 import com.moveseg.parent.infra.domain.AbstractEntity;
 
 import jakarta.persistence.AttributeOverride;
@@ -67,7 +69,6 @@ public class Aluno extends AbstractEntity<AlunoId> {
         this.genero = requireNonNull(builder.genero, "O Genero não deve ser nulo");
         this.cpf = requireNonNull(builder.cpf, "O CPF não deve ser nula");
         this.dataDeNascimento = requireNonNull(builder.dataDeNascimento, "A sua data de nascimanto não deve ser nula");
-
     }
 
     public AlunoForm atualizar() {
@@ -100,9 +101,6 @@ public class Aluno extends AbstractEntity<AlunoId> {
         }
     }
 
-    public enum Genero {
-        MASCULINO,
-        FEMININO;
-    }
+
 
 }

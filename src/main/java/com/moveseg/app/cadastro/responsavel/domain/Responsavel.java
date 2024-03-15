@@ -6,9 +6,12 @@ import static lombok.AccessLevel.PRIVATE;
 
 import java.time.LocalDate;
 
+import com.moveseg.app.cadastro.Aluno.domain.Carteirinha;
 import com.moveseg.app.cadastro.Instituto.domain.Email;
 import com.moveseg.app.cadastro.Instituto.domain.Endereco;
 import com.moveseg.app.cadastro.Instituto.domain.Telefone;
+import com.moveseg.app.cadastro.sk.domain.Cpf;
+import com.moveseg.app.cadastro.sk.domain.Genero;
 import com.moveseg.parent.infra.domain.AbstractEntity;
 
 import jakarta.persistence.AttributeOverride;
@@ -43,12 +46,13 @@ public final class Responsavel extends AbstractEntity<ResponsavelId> {
     private Genero genero;
 
     @Embedded
-    @AttributeOverride(column = @Column(name = "cpf"), name = "value")
+    @AttributeOverride(column = @Column(name = "cpf"), name = "numero")
     private Cpf cpf;
 
     private Integer documento;
 
     private String nome;
+
 
     private LocalDate nascimento;
 

@@ -24,7 +24,7 @@ public class PlacaValidatorTest {
 
    @Test
    void PlacaInvalida() {
-      String placaInvalida = "123244";
+      String placaInvalida = "####";
       assertFalse(validator.isValid(placaInvalida, constraintValidatorContext));
    }
 
