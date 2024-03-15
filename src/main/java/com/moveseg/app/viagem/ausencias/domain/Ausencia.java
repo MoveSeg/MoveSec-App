@@ -23,7 +23,7 @@ public final class Ausencia extends AbstractAggregateRoot<AusenciaId> {
 
     private ViagemId viagem;
 
-    private Ausencia(AusenciaId id,ViagemId viagem, String motivo) {
+    private Ausencia(AusenciaId id, ViagemId viagem, String motivo) {
         super(id);
         this.motivo = requireNonNull(motivo, "O nome não deve ser nulo");
         this.data = LocalDate.now();
