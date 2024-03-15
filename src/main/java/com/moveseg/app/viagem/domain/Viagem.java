@@ -49,11 +49,8 @@ private Viagem(ViagemBuilder builder) {
     }
 
     public static class ViagemBuilder {
-        @Id
         private ViagemId id;
-
         private List<Aluno> alunos = new ArrayList<Aluno>();
-
         public ViagemBuilder aluno(Aluno aluno) {
             alunos.add(aluno);
             return this;
