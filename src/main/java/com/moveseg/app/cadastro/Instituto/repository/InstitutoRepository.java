@@ -7,4 +7,4 @@ import com.moveseg.app.cadastro.Instituto.domain.InstitutoId;
 
 public interface InstitutoRepository extends JpaRepository<Instituto, InstitutoId> {
 }
-}
+
