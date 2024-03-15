@@ -16,11 +16,14 @@ import com.moveseg.app.cadastro.Instituto.domain.Email;
 import com.moveseg.app.cadastro.Instituto.domain.Endereco;
 import com.moveseg.app.cadastro.Instituto.domain.Telefone;
 import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
+import com.moveseg.app.cadastro.sk.domain.Cpf;
+import com.moveseg.app.cadastro.sk.domain.Genero;
 
 public class AlunoTest {
     private String nome = "Nome";
     private Responsavel responsavel;
     private Carteirinha carteirinha;
+    private Integer documento;
     private Telefone telefone;
     private Email email;
     private Endereco endereco;
@@ -41,48 +44,74 @@ public class AlunoTest {
 
     @BeforeEach
     void initializeBuilder() throws Exception {
-        responsavel = Responsavel.of("Nome Responsavel");
         carteirinha = Carteirinha.of(22222);
         telefone = Telefone.of("415555555");
         email = Email.of("Exemplo@email.com");
         endereco = Endereco.of("Logradouro", 555);
-        cpf = Cpf.of(55555);
+        cpf = Cpf.of("55555");
         dataDeNascimento = LocalDate.of(1990, 3, 15);
-        responsaveis = new ArrayList<Responsavel>();
-        responsaveis.add(responsavel);
+        documento = 111111111;
 
-        novoResponsavel = Responsavel.of("Novo nome Responsavel");
+        Responsavel responsavel = Responsavel.builder()
+                .nome(this.nome)
+                .telefone(this.telefone)
+                .email(this.email)
+                .endereco(this.endereco)
+                .genero(Genero.FEMININO)
+                .cpf(this.cpf)
+                .nascimento(this.dataDeNascimento)
+                .documento(this.documento)
+                .build();
+
+        novoResponsavel = Responsavel.builder()
+                .nome(this.nome)
+                .telefone(this.telefone)
+                .email(this.email)
+                .endereco(this.endereco)
+                .genero(Genero.FEMININO)
+                .documento(this.documento)
+                .cpf(this.cpf)
+                .nascimento(this.dataDeNascimento)
+                .build();
+
         novaCarteirinha = Carteirinha.of(55555);
         novoTelefone = Telefone.of("4144444444");
         novoEmail = Email.of("SegundoExemplo@email.com");
         novoEndereco = Endereco.of("Novo Logradouro", 222);
-        novoCpf = Cpf.of(666666);
+        novoCpf = Cpf.of("666666");
         novaDataDeNascimento = LocalDate.of(2000, 1, 20);
+
+        responsaveis = new ArrayList<Responsavel>();
+        responsaveis.add(responsavel);
+
         novosResponsaveis = new ArrayList<Responsavel>();
         novosResponsaveis.add(novoResponsavel);
+
         this.builder = Aluno.builder()
-                .nome(this.nome)
-                .responsavel(responsavel)
                 .carteirinha(this.carteirinha)
-                .telefone(this.telefone)
-                .email(this.email)
+                .responsaveis(responsaveis)
                 .endereco(this.endereco)
-                .genero(Aluno.Genero.FEMININO)
+                .genero(Genero.FEMININO)
+                .telefone(this.telefone)
                 .cpf(this.cpf)
+                .nome(this.nome)
+                .email(this.email)
                 .dataDeNascimento(this.dataDeNascimento);
+
     }
 
     @Test
-    void dadoUmAlunoCompletoDeveCriar() {
+    void dadoUmAlunoCompletoDeveCriar() throws Exception {
         Aluno aluno = this.builder.build();
         assertNotNull(aluno);
+        assertNotNull(aluno.id());
         assertEquals(nome, aluno.nome());
         assertEquals(responsaveis, aluno.responsaveis());
         assertEquals(carteirinha, aluno.carteirinha());
         assertEquals(telefone, aluno.telefone());
         assertEquals(email, aluno.email());
         assertEquals(endereco, aluno.endereco());
-        assertEquals(Aluno.Genero.FEMININO, aluno.genero());
+        assertEquals(Genero.FEMININO, aluno.genero());
         assertEquals(cpf, aluno.cpf());
         assertEquals(dataDeNascimento, aluno.dataDeNascimento());
     }
@@ -161,7 +190,7 @@ public class AlunoTest {
                 .telefone(novoTelefone)
                 .email(novoEmail)
                 .endereco(novoEndereco)
-                .genero(Aluno.Genero.MASCULINO)
+                .genero(Genero.MASCULINO)
                 .cpf(novoCpf)
                 .dataDeNascimento(novaDataDeNascimento).aplicar();
         assertNotNull(aluno);
@@ -171,7 +200,7 @@ public class AlunoTest {
         assertEquals(novoTelefone, aluno.telefone());
         assertEquals(novoEmail, aluno.email());
         assertEquals(novoEndereco, aluno.endereco());
-        assertEquals(Aluno.Genero.MASCULINO, aluno.genero());
+        assertEquals(Genero.MASCULINO, aluno.genero());
         assertEquals(novoCpf, aluno.cpf());
         assertEquals(novaDataDeNascimento, aluno.dataDeNascimento());
     }
@@ -186,7 +215,7 @@ public class AlunoTest {
                     .telefone(novoTelefone)
                     .email(novoEmail)
                     .endereco(novoEndereco)
-                    .genero(Aluno.Genero.MASCULINO)
+                    .genero(Genero.MASCULINO)
                     .cpf(novoCpf)
                     .dataDeNascimento(novaDataDeNascimento)
                     .aplicar();
@@ -204,7 +233,7 @@ public class AlunoTest {
                 .telefone(novoTelefone)
                 .email(novoEmail)
                 .endereco(novoEndereco)
-                .genero(Aluno.Genero.MASCULINO)
+                .genero(Genero.MASCULINO)
                 .cpf(novoCpf)
                 .dataDeNascimento(novaDataDeNascimento)
                 .aplicar();
@@ -215,7 +244,7 @@ public class AlunoTest {
         assertEquals(novoTelefone, aluno.telefone());
         assertEquals(novoEmail, aluno.email());
         assertEquals(novoEndereco, aluno.endereco());
-        assertEquals(Aluno.Genero.MASCULINO, aluno.genero());
+        assertEquals(Genero.MASCULINO, aluno.genero());
         assertEquals(novoCpf, aluno.cpf());
         assertEquals(novaDataDeNascimento, aluno.dataDeNascimento());
     }
@@ -230,7 +259,7 @@ public class AlunoTest {
                     .telefone(novoTelefone)
                     .email(novoEmail)
                     .endereco(novoEndereco)
-                    .genero(Aluno.Genero.MASCULINO)
+                    .genero(Genero.MASCULINO)
                     .cpf(novoCpf)
                     .dataDeNascimento(novaDataDeNascimento)
                     .aplicar();
@@ -247,7 +276,7 @@ public class AlunoTest {
                     .responsavel(novoResponsavel)
                     .email(novoEmail)
                     .endereco(novoEndereco)
-                    .genero(Aluno.Genero.MASCULINO)
+                    .genero(Genero.MASCULINO)
                     .cpf(novoCpf)
                     .dataDeNascimento(novaDataDeNascimento)
                     .aplicar();
@@ -265,7 +294,7 @@ public class AlunoTest {
                     .carteirinha(novaCarteirinha)
                     .telefone(novoTelefone)
                     .endereco(novoEndereco)
-                    .genero(Aluno.Genero.MASCULINO)
+                    .genero(Genero.MASCULINO)
                     .cpf(novoCpf)
                     .dataDeNascimento(novaDataDeNascimento)
                     .aplicar();
@@ -283,7 +312,7 @@ public class AlunoTest {
                     .carteirinha(novaCarteirinha)
                     .telefone(novoTelefone)
                     .email(novoEmail)
-                    .genero(Aluno.Genero.MASCULINO)
+                    .genero(Genero.MASCULINO)
                     .cpf(novoCpf)
                     .dataDeNascimento(novaDataDeNascimento)
                     .aplicar();
@@ -320,7 +349,7 @@ public class AlunoTest {
                     .telefone(novoTelefone)
                     .email(novoEmail)
                     .endereco(novoEndereco)
-                    .genero(Aluno.Genero.MASCULINO)
+                    .genero(Genero.MASCULINO)
                     .dataDeNascimento(novaDataDeNascimento)
                     .aplicar();
 
@@ -338,7 +367,7 @@ public class AlunoTest {
                     .telefone(novoTelefone)
                     .email(novoEmail)
                     .endereco(novoEndereco)
-                    .genero(Aluno.Genero.MASCULINO)
+                    .genero(Genero.MASCULINO)
                     .cpf(novoCpf)
                     .aplicar();
 

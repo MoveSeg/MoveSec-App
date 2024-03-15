@@ -9,9 +9,9 @@ import org.junit.jupiter.api.Test;
 public class CarteirinhaTest {
      @Test
     void dadoUmaCarteirinhaValidaDeveCriar() throws Exception{
-        Carteirinha carteirinha = Carteirinha.of(1111111111);
+        Carteirinha carteirinha = Carteirinha.of((1111111111));
         assertNotNull(carteirinha);
-        assertEquals(1111111111, carteirinha.numero());
+        assertEquals((1111111111), carteirinha.numero());
     }
 
     @Test 
