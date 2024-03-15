@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import com.moveseg.app.cadastro.Aluno.domain.Aluno;
 import com.moveseg.app.viagem.domain.MotoristaId;
 import com.moveseg.app.viagem.domain.RotaId;
-import com.moveseg.app.viagem.domain.Viagem;
 import com.moveseg.app.viagem.domain.ViagemId;
 
 import lombok.Builder;
@@ -19,8 +18,4 @@ public class AlterarViagem {
     private RotaId rota;
     private MotoristaId motorista;
     private LocalDate data;
-    public Viagem build() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'build'");
-    }
 }
