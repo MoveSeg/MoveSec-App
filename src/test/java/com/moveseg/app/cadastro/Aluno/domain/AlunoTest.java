@@ -50,6 +50,8 @@ public class AlunoTest {
         endereco = Endereco.of("Logradouro", 555);
         cpf = Cpf.of("55555");
         dataDeNascimento = LocalDate.of(1990, 3, 15);
+        responsaveis = new ArrayList<Responsavel>();
+        responsaveis.add(responsavel);
         documento = 111111111;
 
         Responsavel responsavel = Responsavel.builder()
