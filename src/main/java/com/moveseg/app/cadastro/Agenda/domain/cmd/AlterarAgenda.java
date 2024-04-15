@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 @Builder
 public class AlterarAgenda {
-    public AgendaId agenda;
+    public AgendaId id;
     private LocalDate data;
     private ViagemId viagem;
 }
