@@ -11,12 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.moveseg.app.viagem.Ocorrencia.domain.Ocorrencia;
 import com.moveseg.app.viagem.Ocorrencia.domain.OcorrenciaId;
 import com.moveseg.app.viagem.Ocorrencia.domain.cmd.CriarOcorrencia;
-import com.moveseg.app.viagem.Ocorrencia.events.OcorrenciaRealizada;
 import com.moveseg.app.viagem.Ocorrencia.repository.OcorrenciaRepository;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 @Service
 @Transactional(propagation = REQUIRES_NEW)

@@ -1,4 +1,4 @@
-package com.moveseg.app.viagem.Ocorrencia.events;
+package com.moveseg.app.viagem.Ocorrencia.domain.events;
 
 import java.time.Instant;
 
