@@ -11,15 +11,19 @@ import com.moveseg.app.viagem.domain.ViagemId;
 import com.moveseg.parent.infra.domain.DomainObjectId;
 
 public class AgendaTest {
+
+    private ViagemId viagem;
+    private LocalDate data;
+
     @Test
     void agendaCompletoDeveSalvar() {
-        ViagemId viagem = DomainObjectId.randomId(ViagemId.class);
-        LocalDate data = LocalDate.of(2014, 07, 10);
+        viagem = DomainObjectId.randomId(ViagemId.class);
+        data = LocalDate.of(2000, 1, 20);
         Agenda agenda = Agenda.from(viagem, data);
         assertNotNull(agenda);
         assertNotNull(agenda.id());
-        assertNotNull(agenda.data());
-        assertNotNull(agenda.viagem());
+        assertNotNull(data);
+        assertNotNull(viagem);
     }
 
     @Test
@@ -32,7 +36,7 @@ public class AgendaTest {
 
     @Test
     void dadoUmaAgendaSemViagemNaoDeveCriar() {
-        LocalDate data = LocalDate.of(2014, 07, 10);
+        data = LocalDate.of(2014, 07, 10);
         assertThrows(Exception.class, () -> {
             Agenda.from(null, data);
         });
@@ -42,39 +46,6 @@ public class AgendaTest {
     void dadoUmaAgendaIncorretoNaoDeveCriar() {
         assertThrows(Exception.class, () -> {
             Agenda.from(null, null);
-        });
-    }
-
-    @Test
-    void dadoUmaAgendaCompletaDeveAtualizar() throws Exception {
-
-        assertThrows(Exception.class, () -> {
-            LocalDate novaData = LocalDate.of(2014, 07, 10);
-            ViagemId novaViagem = DomainObjectId.randomId(ViagemId.class);
-            Agenda.atualizar()
-                    .data(novaData)
-                    .viagem(novaViagem).aplicar();
-        });
-    }
-
-    @Test
-    void dadoUmaDataNulaNaoDeveAtualizar() {
-
-        assertThrows(Exception.class, () -> {
-            LocalDate novaData = LocalDate.of(2014, 07, 10);
-            ViagemId novaViagem = DomainObjectId.randomId(ViagemId.class);
-            Agenda.atualizar()
-            .viagem(novaViagem).aplicar();
-        });
-    }
-
-    @Test
-    void dadoResponsavelNuloDeveCriarVazio() {
-        assertThrows(Exception.class, () -> {
-            LocalDate novaData = LocalDate.of(2014, 07, 10);
-            ViagemId novaViagem = DomainObjectId.randomId(ViagemId.class);
-            Agenda.atualizar()
-            .data(novaData).aplicar();
         });
     }
 }

@@ -13,9 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.moveseg.app.cadastro.Agenda.domain.Agenda;
-import com.moveseg.app.cadastro.Agenda.domain.AgendaForm;
 import com.moveseg.app.cadastro.Agenda.domain.AgendaId;
-import com.moveseg.app.cadastro.Agenda.domain.cmd.AlterarAgenda;
 import com.moveseg.app.cadastro.Agenda.domain.cmd.CriarAgenda;
 import com.moveseg.app.cadastro.Agenda.repository.AgendaRepository;
 
@@ -39,19 +37,6 @@ public class AgendaService {
         repository.save(agenda);
 
         return agenda.id();
-    }
-
-    public Agenda handle(@NonNull @Valid AlterarAgenda cmd) {
-        Agenda agenda = repository.findById(requireNonNull(cmd.id()))
-                .orElseThrow(
-                        () -> new EntityNotFoundException(
-                                format("Not found any Business with code %s.", cmd.id().toUUID())));
-        Agenda.atualizar()
-                .data(cmd.data())
-                .viagem(cmd.viagem())
-                .aplicar();
-
-        return repository.save(agenda);
     }
 
     @NonNull

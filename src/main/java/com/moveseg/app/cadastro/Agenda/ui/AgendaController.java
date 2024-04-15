@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.moveseg.app.cadastro.Agenda.app.AgendaService;
 import com.moveseg.app.cadastro.Agenda.domain.Agenda;
 import com.moveseg.app.cadastro.Agenda.domain.AgendaId;
-import com.moveseg.app.cadastro.Agenda.domain.cmd.AlterarAgenda;
 import com.moveseg.app.cadastro.Agenda.domain.cmd.CriarAgenda;
 
 import lombok.AllArgsConstructor;
@@ -49,15 +48,6 @@ public class AgendaController {
     @GetMapping("/{id}")
     public Agenda buscarPorId(@PathVariable @NonNull AgendaId id) {
         return service.buscarPorId(id);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Agenda> alterar(@PathVariable @NonNull AgendaId id, @RequestBody AlterarAgenda cmd) {
-
-        cmd.id(id);
-
-        Agenda salvar = service.handle(cmd);
-        return ResponseEntity.status(HttpStatus.CREATED).body(salvar);
     }
 
     @DeleteMapping
