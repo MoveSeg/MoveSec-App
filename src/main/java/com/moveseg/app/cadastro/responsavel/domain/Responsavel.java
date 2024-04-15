@@ -6,7 +6,6 @@ import static lombok.AccessLevel.PRIVATE;
 
 import java.time.LocalDate;
 
-import com.moveseg.app.cadastro.Aluno.domain.Carteirinha;
 import com.moveseg.app.cadastro.Instituto.domain.Email;
 import com.moveseg.app.cadastro.Instituto.domain.Endereco;
 import com.moveseg.app.cadastro.Instituto.domain.Telefone;
@@ -49,17 +48,13 @@ public final class Responsavel extends AbstractEntity<ResponsavelId> {
     @AttributeOverride(column = @Column(name = "cpf"), name = "numero")
     private Cpf cpf;
 
-    private Integer documento;
-
     private String nome;
-
 
     private LocalDate nascimento;
 
     private Responsavel(ResponsavelBuilder builder) {
         super(builder.id);
         this.nome = requireNonNull(builder.nome, "O nome não deve ser inválido");
-        this.documento = requireNonNull(builder.documento, "O documento não deve ser inválido");
         this.nascimento = requireNonNull(builder.nascimento, "O nascimento não deve ser nulo");
         this.email = requireNonNull(builder.email, "O email não deve ser nulo");
         this.endereco = requireNonNull(builder.endereco, "O endereço não deve ser nulo");
@@ -71,7 +66,6 @@ public final class Responsavel extends AbstractEntity<ResponsavelId> {
     public ResponsavelForm update() {
         return new ResponsavelForm(form -> {
             this.nome = requireNonNull(form.nome(), "O nome não deve ser nulo");
-            this.documento = requireNonNull(form.documento(), "O documento não deve ser nulo");
             this.nascimento = requireNonNull(form.nascimento(), "O nascimento não deve ser nulo");
             this.email = requireNonNull(form.email(), "O email não deve ser nulo");
             this.endereco = requireNonNull(form.endereco(), "Endereço não pode ser nulo");
