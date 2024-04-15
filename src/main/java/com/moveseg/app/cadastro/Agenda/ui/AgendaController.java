@@ -26,7 +26,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping(path = "/api/instituto", produces = APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/api/agenda", produces = APPLICATION_JSON_VALUE)
 public class AgendaController {
 
     AgendaService service;
