@@ -26,7 +26,7 @@ public class Agenda extends AbstractAggregateRoot<AgendaId> {
         this.viagem = requireNonNull(viagem, "O Id da viagem não pode ser nula");
     }
 
-    public AgendaForm atualizar( ViagemId viagemId) {
+    public AgendaForm atualizar() {
         return new AgendaForm(form -> {
         this.data = requireNonNull(form.data(), "A data da viagem não pode ser nula");
         this.viagem = requireNonNull(form.viagem(), "O Id da viagem não pode ser nula");
@@ -42,8 +42,4 @@ public class Agenda extends AbstractAggregateRoot<AgendaId> {
         return agenda;
     }
 
-    public static AgendaForm atualizar(LocalDate data2, ViagemId viagem2) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'atualizar'");
-    }
 }

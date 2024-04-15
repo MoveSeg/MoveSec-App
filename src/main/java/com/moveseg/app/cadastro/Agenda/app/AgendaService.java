@@ -46,7 +46,7 @@ public class AgendaService {
                 .orElseThrow(
                         () -> new EntityNotFoundException(
                                 format("Not found any Business with code %s.", cmd.id().toUUID())));
-        Agenda.atualizar(cmd.data(), cmd.viagem())
+        Agenda.atualizar()
                 .data(cmd.data())
                 .viagem(cmd.viagem())
                 .aplicar();

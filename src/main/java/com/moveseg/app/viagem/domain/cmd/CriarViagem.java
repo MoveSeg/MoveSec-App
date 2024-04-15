@@ -1,4 +1,4 @@
-package com.moveseg.app.viagem.cmd;
+package com.moveseg.app.viagem.domain.cmd;
 
 import java.time.LocalDate;
 
