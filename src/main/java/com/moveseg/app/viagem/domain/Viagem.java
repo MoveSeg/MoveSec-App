@@ -12,7 +12,6 @@ import com.moveseg.parent.infra.domain.AbstractEntity;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import lombok.AccessLevel;
 import lombok.Builder;
