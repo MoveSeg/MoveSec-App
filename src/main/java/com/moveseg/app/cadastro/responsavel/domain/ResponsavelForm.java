@@ -3,9 +3,9 @@ package com.moveseg.app.cadastro.responsavel.domain;
 import java.time.LocalDate;
 import java.util.function.Consumer;
 
-import com.moveseg.app.cadastro.Instituto.domain.Email;
-import com.moveseg.app.cadastro.Instituto.domain.Endereco;
-import com.moveseg.app.cadastro.Instituto.domain.Telefone;
+import com.moveseg.app.cadastro.instituto.domain.Email;
+import com.moveseg.app.cadastro.instituto.domain.Endereco;
+import com.moveseg.app.cadastro.instituto.domain.Telefone;
 import com.moveseg.app.cadastro.sk.domain.Cpf;
 import com.moveseg.app.cadastro.sk.domain.Genero;
 

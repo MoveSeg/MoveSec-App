@@ -10,9 +10,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.moveseg.app.cadastro.Instituto.domain.Endereco;
+import com.moveseg.app.cadastro.instituto.domain.Endereco;
 import com.moveseg.app.cadastro.veiculo.domain.VeiculoId;
-import com.moveseg.app.viagem.Rota.domain.EnderecoId;
 import com.moveseg.app.viagem.Rota.domain.Numero;
 import com.moveseg.app.viagem.Rota.domain.Rota;
 import com.moveseg.parent.infra.domain.DomainObjectId;

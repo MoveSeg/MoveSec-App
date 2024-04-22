@@ -5,19 +5,17 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import com.moveseg.app.cadastro.Instituto.domain.Endereco;
+import com.moveseg.app.cadastro.instituto.domain.Endereco;
 import com.moveseg.app.cadastro.veiculo.domain.VeiculoId;
 import com.moveseg.parent.infra.domain.AbstractEntity;
 
 import jakarta.persistence.AttributeOverride;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

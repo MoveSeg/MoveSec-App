@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.Instituto.app;
+package com.moveseg.app.cadastro.instituto.app;
 
 import static jakarta.persistence.LockModeType.PESSIMISTIC_READ;
 import static java.lang.String.format;
@@ -12,11 +12,11 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.moveseg.app.cadastro.Instituto.domain.Instituto;
-import com.moveseg.app.cadastro.Instituto.domain.InstitutoId;
-import com.moveseg.app.cadastro.Instituto.domain.cmd.AlterarInstituto;
-import com.moveseg.app.cadastro.Instituto.domain.cmd.CriarInstituto;
-import com.moveseg.app.cadastro.Instituto.repository.InstitutoRepository;
+import com.moveseg.app.cadastro.instituto.domain.Instituto;
+import com.moveseg.app.cadastro.instituto.domain.InstitutoId;
+import com.moveseg.app.cadastro.instituto.domain.cmd.AlterarInstituto;
+import com.moveseg.app.cadastro.instituto.domain.cmd.CriarInstituto;
+import com.moveseg.app.cadastro.instituto.repository.InstitutoRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
