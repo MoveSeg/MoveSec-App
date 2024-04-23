@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moveseg.app.cadastro.Aluno.app.AlunoService;
+import com.moveseg.app.cadastro.Aluno.app.view.AlunoFormView;
+import com.moveseg.app.cadastro.Aluno.app.view.AlunoListView;
 import com.moveseg.app.cadastro.Aluno.domain.Aluno;
 import com.moveseg.app.cadastro.Aluno.domain.AlunoId;
 import com.moveseg.app.cadastro.Aluno.domain.cmd.AlterarAluno;
@@ -27,6 +30,7 @@ import lombok.NonNull;
 
 @AllArgsConstructor
 @RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping(path = "/api/aluno", produces = APPLICATION_JSON_VALUE)
 public class AlunoController {
     AlunoService service;
@@ -41,12 +45,12 @@ public class AlunoController {
     }
 
     @GetMapping
-    public List<Aluno> listarTodos() {
+    public List<AlunoListView> listarTodos() {
         return service.listarTodos();
     }
 
     @GetMapping("/{id}")
-    public Aluno buscarPorId(@PathVariable @NonNull AlunoId id) {
+    public AlunoFormView buscarPorId(@PathVariable @NonNull AlunoId id) {
         return service.buscarPorId(id);
     }
 
@@ -59,7 +63,7 @@ public class AlunoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(salvar);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable @NonNull AlunoId id) {
         service.deletar(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
