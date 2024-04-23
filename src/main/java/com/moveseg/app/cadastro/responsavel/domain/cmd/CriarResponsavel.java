@@ -13,7 +13,6 @@ import lombok.Builder;
 @Builder
 public class CriarResponsavel {
     public String nome;
-    public Integer documento;
     public LocalDate nascimento;
     public Email email;
     public Telefone telefone;
