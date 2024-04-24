@@ -19,6 +19,7 @@ import com.moveseg.app.cadastro.Aluno.domain.cmd.AlterarAluno;
 import com.moveseg.app.cadastro.Aluno.domain.cmd.CriarAluno;
 import com.moveseg.app.cadastro.Aluno.repository.AlunoRepository;
 import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
+import com.moveseg.app.cadastro.responsavel.repository.ResponsavelRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
@@ -31,11 +32,12 @@ import lombok.NonNull;
 public class AlunoService {
         private AlunoRepository repository;
         private ResponsavelRepository responsavelRepository;
+
         @NonNull
         @Lock(PESSIMISTIC_READ)
         public AlunoId handle(@NonNull @Valid CriarAluno cmd) {
-                Responsavel responsavel = Responsavel.findById(cmd.responsavel()).get();
-                
+                Responsavel responsavel = responsavelRepository.findById(cmd.responsavel()).get();
+
                 Aluno aluno = Aluno.builder()
                                 .nome(cmd.nome())
                                 .endereco(cmd.endereco())
@@ -81,7 +83,7 @@ public class AlunoService {
 
         @Transactional(readOnly = true)
         public AlunoFormView buscarPorId(@NonNull AlunoId id) {
-                return  AlunoFormView.of(repository.findById(requireNonNull(id))
+                return AlunoFormView.of(repository.findById(requireNonNull(id))
                                 .orElseThrow(
                                                 () -> new EntityNotFoundException(
                                                                 format("Not found any Business with code %s.",
