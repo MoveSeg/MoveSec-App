@@ -7,12 +7,13 @@ import static java.util.Objects.requireNonNull;
 import static org.springframework.transaction.annotation.Propagation.REQUIRES_NEW;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Lock;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.moveseg.app.cadastro.Instituto.domain.Endereco;
+import com.moveseg.app.viagem.Rota.app.view.RotaListView;
 import com.moveseg.app.viagem.Rota.domain.Rota;
 import com.moveseg.app.viagem.Rota.domain.RotaId;
 import com.moveseg.app.viagem.Rota.domain.cmd.AtualizarRota;
@@ -52,20 +53,22 @@ public class RotaService {
         return repository.save(rota);
     }
 
-    @NonNull
 
+    @NonNull
     @Transactional(readOnly = true)
-    public List<Rota> listarTodos() {
-        return repository.findAll();
+    public List<RotaListView> listarTodos() {
+        return repository.findAll().stream().map(RotaListView::of).toList();
     }
 
     @Transactional(readOnly = true)
-    public Rota buscarPorId(@NonNull RotaId id) {
-        return repository.findById(requireNonNull(id))
-                .orElseThrow(
-                        () -> new EntityNotFoundException(
-                                format("Not found any Business with code %s.",
-                                        id.toUUID())));
+    public RotaListView buscarPorId(@NonNull RotaId id) {
+        Rota rota = repository.findById(requireNonNull(id))
+         .orElseThrow(
+            () -> new EntityNotFoundException(
+                    format("Not found any Business with code %s.",
+                            id.toUUID())));
+        return RotaListView.of(rota);
+               
     }
 
     public void deletar(@NonNull RotaId id) {

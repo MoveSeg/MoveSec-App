@@ -62,7 +62,6 @@ public class AlunoTest {
                 .genero(Genero.FEMININO)
                 .cpf(this.cpf)
                 .nascimento(this.dataDeNascimento)
-                .documento(this.documento)
                 .build();
 
         novoResponsavel = Responsavel.builder()
@@ -71,7 +70,6 @@ public class AlunoTest {
                 .email(this.email)
                 .endereco(this.endereco)
                 .genero(Genero.FEMININO)
-                .documento(this.documento)
                 .cpf(this.cpf)
                 .nascimento(this.dataDeNascimento)
                 .build();

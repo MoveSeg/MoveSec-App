@@ -46,7 +46,6 @@ class ResponsavelTest {
         cpf = Cpf.of("23456789002");
         this.builder = Responsavel.builder()
                 .nome(nome)
-                .documento(documento)
                 .nascimento(nascimento)
                 .email(email)
                 .telefone(telefone)
@@ -64,7 +63,6 @@ class ResponsavelTest {
         assertNotNull(responsavel);
         assertNotNull(responsavel.id());
         assertEquals(email, responsavel.email());
-        assertEquals(documento, responsavel.documento());
         assertEquals(telefone, responsavel.telefone());
         assertEquals(endereco, responsavel.endereco());
         assertEquals(nascimento, responsavel.nascimento());
@@ -122,12 +120,6 @@ class ResponsavelTest {
         assertThrows(Exception.class, () -> builder.build());
     }
 
-    @Test
-    void dadoUmResponsavelSemDocumentoNaoDeveCriar() {
-        builder.documento(null);
-
-        assertThrows(Exception.class, () -> builder.build());
-    }
 
     @Test
     void dadoNovosDadosDoNomeDeveAtualizarOResponsavelEManterNaoNulo() throws Exception {
@@ -159,7 +151,6 @@ class ResponsavelTest {
         assertEquals(novoEmail, responsavel.email());
         assertEquals(novoTelefone, responsavel.telefone());
         assertEquals(novoEndereco, responsavel.endereco());
-        assertEquals(novoDocumento, responsavel.documento());
     }
     @Test
     void dadoUmNomeNuloNaoDeveAtualizar() {
