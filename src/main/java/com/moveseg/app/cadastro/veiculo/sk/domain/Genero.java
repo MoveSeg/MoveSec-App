@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.sk.domain;
+package com.moveseg.app.cadastro.veiculo.sk.domain;
 
 public enum Genero {
     MASCULINO,

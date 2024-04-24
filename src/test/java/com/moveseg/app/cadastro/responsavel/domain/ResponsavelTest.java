@@ -13,8 +13,8 @@ import com.moveseg.app.cadastro.instituto.domain.Email;
 import com.moveseg.app.cadastro.instituto.domain.Endereco;
 import com.moveseg.app.cadastro.instituto.domain.Telefone;
 import com.moveseg.app.cadastro.responsavel.domain.Responsavel.ResponsavelBuilder;
-import com.moveseg.app.cadastro.sk.domain.Cpf;
-import com.moveseg.app.cadastro.sk.domain.Genero;
+import com.moveseg.app.cadastro.veiculo.sk.domain.Cpf;
+import com.moveseg.app.cadastro.veiculo.sk.domain.Genero;
 
 class ResponsavelTest {
 
@@ -46,7 +46,6 @@ class ResponsavelTest {
         cpf = Cpf.of("23456789002");
         this.builder = Responsavel.builder()
                 .nome(nome)
-                .documento(documento)
                 .nascimento(nascimento)
                 .email(email)
                 .telefone(telefone)
@@ -64,7 +63,6 @@ class ResponsavelTest {
         assertNotNull(responsavel);
         assertNotNull(responsavel.id());
         assertEquals(email, responsavel.email());
-        assertEquals(documento, responsavel.documento());
         assertEquals(telefone, responsavel.telefone());
         assertEquals(endereco, responsavel.endereco());
         assertEquals(nascimento, responsavel.nascimento());
@@ -123,13 +121,6 @@ class ResponsavelTest {
     }
 
     @Test
-    void dadoUmResponsavelSemDocumentoNaoDeveCriar() {
-        builder.documento(null);
-
-        assertThrows(Exception.class, () -> builder.build());
-    }
-
-    @Test
     void dadoNovosDadosDoNomeDeveAtualizarOResponsavelEManterNaoNulo() throws Exception {
         Email novoEmail = Email.of("Luna@aaaa.com");
         Genero novoGenero = Genero.FEMININO;
@@ -159,7 +150,6 @@ class ResponsavelTest {
         assertEquals(novoEmail, responsavel.email());
         assertEquals(novoTelefone, responsavel.telefone());
         assertEquals(novoEndereco, responsavel.endereco());
-        assertEquals(novoDocumento, responsavel.documento());
     }
     @Test
     void dadoUmNomeNuloNaoDeveAtualizar() {

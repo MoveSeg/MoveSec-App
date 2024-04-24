@@ -9,8 +9,8 @@ import java.time.LocalDate;
 import com.moveseg.app.cadastro.instituto.domain.Email;
 import com.moveseg.app.cadastro.instituto.domain.Endereco;
 import com.moveseg.app.cadastro.instituto.domain.Telefone;
-import com.moveseg.app.cadastro.sk.domain.Cpf;
-import com.moveseg.app.cadastro.sk.domain.Genero;
+import com.moveseg.app.cadastro.veiculo.sk.domain.Cpf;
+import com.moveseg.app.cadastro.veiculo.sk.domain.Genero;
 import com.moveseg.parent.infra.domain.AbstractEntity;
 
 import jakarta.persistence.AttributeOverride;

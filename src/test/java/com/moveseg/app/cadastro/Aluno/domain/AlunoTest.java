@@ -16,8 +16,8 @@ import com.moveseg.app.cadastro.instituto.domain.Email;
 import com.moveseg.app.cadastro.instituto.domain.Endereco;
 import com.moveseg.app.cadastro.instituto.domain.Telefone;
 import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
-import com.moveseg.app.cadastro.sk.domain.Cpf;
-import com.moveseg.app.cadastro.sk.domain.Genero;
+import com.moveseg.app.cadastro.veiculo.sk.domain.Cpf;
+import com.moveseg.app.cadastro.veiculo.sk.domain.Genero;
 
 public class AlunoTest {
     private String nome = "Nome";
@@ -62,7 +62,6 @@ public class AlunoTest {
                 .genero(Genero.FEMININO)
                 .cpf(this.cpf)
                 .nascimento(this.dataDeNascimento)
-                .documento(this.documento)
                 .build();
 
         novoResponsavel = Responsavel.builder()
@@ -71,7 +70,6 @@ public class AlunoTest {
                 .email(this.email)
                 .endereco(this.endereco)
                 .genero(Genero.FEMININO)
-                .documento(this.documento)
                 .cpf(this.cpf)
                 .nascimento(this.dataDeNascimento)
                 .build();

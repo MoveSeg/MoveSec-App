@@ -17,8 +17,8 @@ import com.moveseg.app.cadastro.instituto.domain.Instituto;
 import com.moveseg.app.cadastro.instituto.domain.Instituto.InstitutoBuilder;
 import com.moveseg.app.cadastro.instituto.domain.Telefone;
 import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
-import com.moveseg.app.cadastro.sk.domain.Cpf;
-import com.moveseg.app.cadastro.sk.domain.Genero;
+import com.moveseg.app.cadastro.veiculo.sk.domain.Cpf;
+import com.moveseg.app.cadastro.veiculo.sk.domain.Genero;
 
 public class InstitutoTest {
 
@@ -45,7 +45,6 @@ public class InstitutoTest {
         email = Email.of("Exemplo@gmail.com");
         Responsavel responsavel = Responsavel.builder()
                 .nome(nome)
-                .documento(222333334)
                 .nascimento(LocalDate.of(2006, 02,
                         04))
                 .email(email)
@@ -62,7 +61,6 @@ public class InstitutoTest {
         novoEndereco = Endereco.of("Novo endereco", 9999);
         novoResponsavel = Responsavel.builder()
                 .nome("Jorge")
-                .documento(222333335)
                 .nascimento(LocalDate.of(2006, 02,
                         04))
                 .email(email)
