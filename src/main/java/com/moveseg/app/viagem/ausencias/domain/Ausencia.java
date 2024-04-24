@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 import com.moveseg.app.cadastro.Aluno.domain.AlunoId;
 import com.moveseg.app.viagem.ausencias.domain.eventos.AusenciaRegistrada;
+import com.moveseg.app.viagem.domain.ViagemId;
 import com.moveseg.parent.infra.domain.AbstractAggregateRoot;
 
 import jakarta.persistence.Entity;
@@ -25,7 +26,7 @@ public final class Ausencia extends AbstractAggregateRoot<AusenciaId> {
     private ViagemId viagem;
     private Ausencia(AusenciaId id,ViagemId viagem, AlunoId aluno,  String motivo) {
         super(id);
-        this.motivo = requireNonNull(motivo, "O nome não deve ser nulo");
+        this.motivo = requireNonNull(motivo, "O Motivo não deve ser nulo");
         this.data = LocalDate.now();
         this.viagem = requireNonNull(viagem, "O Id da viagem não pode ser nula");
         this.aluno = requireNonNull(aluno, "O Id da viagem não pode ser nula");

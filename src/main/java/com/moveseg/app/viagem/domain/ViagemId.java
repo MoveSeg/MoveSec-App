@@ -8,4 +8,8 @@ public class ViagemId extends DomainObjectId {
         super(uuid);
     }
 
+    public String getValue(){
+        return toUUID();
+    }
+
 }

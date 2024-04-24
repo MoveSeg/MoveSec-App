@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.Lock;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.moveseg.app.viagem.ausencias.app.view.AusenciaListView;
 import com.moveseg.app.viagem.ausencias.domain.Ausencia;
 import com.moveseg.app.viagem.ausencias.domain.AusenciaId;
 import com.moveseg.app.viagem.ausencias.domain.cmd.RegistrarAusencia;
@@ -38,16 +39,18 @@ public class AusenciaService {
 
     @NonNull
     @Transactional(readOnly = true)
-    public List<Ausencia> listarTodos() {
-        return repository.findAll();
+    public List<AusenciaListView> listarTodos() {
+        return repository.findAll().stream().map(AusenciaListView::of).toList();
     }
 
     @Transactional(readOnly = true)
-    public Ausencia buscarPorId(@NonNull AusenciaId id) {
-        return repository.findById(requireNonNull(id))
+    public AusenciaListView buscarPorId(@NonNull AusenciaId id) {
+        Ausencia ausencia =  repository.findById(requireNonNull(id))
                 .orElseThrow(
                         () -> new EntityNotFoundException(
                                 format("Not found any Business with code %s.",
                                         id.toUUID())));
+
+                                        return AusenciaListView.of(ausencia);
     }
 }
