@@ -1,4 +1,4 @@
-package com.moveseg.app.viagem.ausencias.ui;
+package com.moveseg.app.viagem.ausencia.ui;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.moveseg.app.viagem.ausencias.app.AusenciaService;
-import com.moveseg.app.viagem.ausencias.app.view.AusenciaListView;
-import com.moveseg.app.viagem.ausencias.domain.Ausencia;
-import com.moveseg.app.viagem.ausencias.domain.AusenciaId;
-import com.moveseg.app.viagem.ausencias.domain.cmd.RegistrarAusencia;
+import com.moveseg.app.viagem.ausencia.app.AusenciaService;
+import com.moveseg.app.viagem.ausencia.app.view.AusenciaListView;
+import com.moveseg.app.viagem.ausencia.domain.Ausencia;
+import com.moveseg.app.viagem.ausencia.domain.AusenciaId;
+import com.moveseg.app.viagem.ausencia.domain.cmd.RegistrarAusencia;
 
 import lombok.AllArgsConstructor;
 import lombok.NonNull;

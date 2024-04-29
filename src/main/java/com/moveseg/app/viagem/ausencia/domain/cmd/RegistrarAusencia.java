@@ -1,4 +1,4 @@
-package com.moveseg.app.viagem.ausencias.domain.cmd;
+package com.moveseg.app.viagem.ausencia.domain.cmd;
 
 import com.moveseg.app.cadastro.Aluno.domain.AlunoId;
 import com.moveseg.app.viagem.domain.ViagemId;

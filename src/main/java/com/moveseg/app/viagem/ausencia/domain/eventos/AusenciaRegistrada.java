@@ -1,8 +1,8 @@
-package com.moveseg.app.viagem.ausencias.domain.eventos;
+package com.moveseg.app.viagem.ausencia.domain.eventos;
 
 import java.time.Instant;
 
-import com.moveseg.app.viagem.ausencias.domain.AusenciaId;
+import com.moveseg.app.viagem.ausencia.domain.AusenciaId;
 import com.moveseg.parent.infra.domain.DomainEvent;
 
 import lombok.Getter;

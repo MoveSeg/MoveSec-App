@@ -1,4 +1,4 @@
-package com.moveseg.app.viagem.ausencias.domain;
+package com.moveseg.app.viagem.ausencia.domain;
 
 import static com.moveseg.parent.infra.domain.DomainObjectId.randomId;
 import static java.util.Objects.requireNonNull;
@@ -6,7 +6,7 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 
 import com.moveseg.app.cadastro.Aluno.domain.AlunoId;
-import com.moveseg.app.viagem.ausencias.domain.eventos.AusenciaRegistrada;
+import com.moveseg.app.viagem.ausencia.domain.eventos.AusenciaRegistrada;
 import com.moveseg.app.viagem.domain.ViagemId;
 import com.moveseg.parent.infra.domain.AbstractAggregateRoot;
 

@@ -1,4 +1,4 @@
-package com.moveseg.app.viagem.ausencias.app;
+package com.moveseg.app.viagem.ausencia.app;
 
 import static jakarta.persistence.LockModeType.PESSIMISTIC_READ;
 import static java.lang.String.format;
@@ -11,11 +11,11 @@ import org.springframework.data.jpa.repository.Lock;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.moveseg.app.viagem.ausencias.app.view.AusenciaListView;
-import com.moveseg.app.viagem.ausencias.domain.Ausencia;
-import com.moveseg.app.viagem.ausencias.domain.AusenciaId;
-import com.moveseg.app.viagem.ausencias.domain.cmd.RegistrarAusencia;
-import com.moveseg.app.viagem.ausencias.repository.AusenciaRepository;
+import com.moveseg.app.viagem.ausencia.app.view.AusenciaListView;
+import com.moveseg.app.viagem.ausencia.domain.Ausencia;
+import com.moveseg.app.viagem.ausencia.domain.AusenciaId;
+import com.moveseg.app.viagem.ausencia.domain.cmd.RegistrarAusencia;
+import com.moveseg.app.viagem.ausencia.repository.AusenciaRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
