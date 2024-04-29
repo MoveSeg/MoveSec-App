@@ -2,8 +2,9 @@ package com.moveseg.app.cadastro.veiculo.domain;
 
 import java.util.function.Consumer;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-
+@Getter
 @RequiredArgsConstructor
 public class VeiculoForm {
     private final Consumer<VeiculoForm> action;
