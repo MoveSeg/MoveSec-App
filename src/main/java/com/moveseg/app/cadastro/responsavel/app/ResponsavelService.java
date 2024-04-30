@@ -12,7 +12,6 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.moveseg.app.cadastro.Aluno.app.view.AlunoListView;
 import com.moveseg.app.cadastro.responsavel.app.view.ResponsavelFormView;
 import com.moveseg.app.cadastro.responsavel.app.view.ResponsavelListView;
 import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
@@ -24,7 +23,6 @@ import com.moveseg.app.cadastro.responsavel.repository.ResponsavelRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 @Service
 @Transactional(propagation = REQUIRES_NEW)

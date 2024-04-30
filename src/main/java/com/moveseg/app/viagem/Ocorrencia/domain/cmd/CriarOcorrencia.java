@@ -9,9 +9,9 @@ import lombok.Data;
 @Data
 @Builder
 public class CriarOcorrencia {
-    public String motivo;
-    public ViagemId viagem;
-    public AlunoId aluno;
+    private String motivo;
+    private ViagemId viagem;
+    private AlunoId aluno;
 
 
 }
