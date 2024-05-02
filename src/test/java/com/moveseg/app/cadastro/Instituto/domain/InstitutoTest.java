@@ -41,7 +41,6 @@ public class InstitutoTest {
         email = Email.of("Exemplo@gmail.com");
         Responsavel responsavel = Responsavel.builder()
                 .nome(nome)
-                .documento(222333334)
                 .nascimento(LocalDate.of(2006, 02,
                         04))
                 .email(email)
@@ -58,7 +57,6 @@ public class InstitutoTest {
         novoEndereco = Endereco.of("Novo endereco", 9999);
         novoResponsavel = Responsavel.builder()
                 .nome("Jorge")
-                .documento(222333335)
                 .nascimento(LocalDate.of(2006, 02,
                         04))
                 .email(email)
