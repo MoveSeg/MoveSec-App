@@ -3,7 +3,7 @@ package com.moveseg.app.viagem.cmd;
 import java.time.LocalDate;
 
 import com.moveseg.app.cadastro.Aluno.domain.Aluno;
-import com.moveseg.app.viagem.domain.MotoristaId;
+import com.moveseg.app.cadastro.Motorista.domain.MotoristaId;
 import com.moveseg.app.viagem.domain.RotaId;
 
 import lombok.Builder;
