@@ -1,4 +1,4 @@
-package com.moveseg.app.viajem.ausencia.domain;
+package com.moveseg.app.viagem.ausencia.domain;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import com.moveseg.app.cadastro.Aluno.domain.AlunoId;
 import com.moveseg.app.viagem.ausencias.domain.Ausencia;
-import com.moveseg.app.viagem.ausencias.domain.ViagemId;
+import com.moveseg.app.viagem.domain.ViagemId;
 import com.moveseg.parent.infra.domain.DomainObjectId;
 
 public final class AusenciaTest {
