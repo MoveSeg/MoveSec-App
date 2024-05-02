@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.responsavel.app;
+package com.moveseg.app.cadastro.Monitor.app;
 
 import static jakarta.persistence.LockModeType.PESSIMISTIC_READ;
 import static java.lang.String.format;
@@ -12,11 +12,11 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
-import com.moveseg.app.cadastro.responsavel.domain.ResponsavelId;
-import com.moveseg.app.cadastro.responsavel.domain.cmd.AtualizarResponsavel;
-import com.moveseg.app.cadastro.responsavel.domain.cmd.CriarResponsavel;
-import com.moveseg.app.cadastro.responsavel.repository.ResponsavelRepository;
+import com.moveseg.app.cadastro.Monitor.domain.Monitor;
+import com.moveseg.app.cadastro.Monitor.domain.MonitorId;
+import com.moveseg.app.cadastro.Monitor.domain.cmd.AtualizarMonitor;
+import com.moveseg.app.cadastro.Monitor.domain.cmd.CriarMonitor;
+import com.moveseg.app.cadastro.Monitor.repository.MonitorRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
@@ -25,56 +25,56 @@ import lombok.RequiredArgsConstructor;
 @Service
 @Transactional(propagation = REQUIRES_NEW)
 @RequiredArgsConstructor
-public class ResponsavelService {
+public class MonitorService {
 
-    private final ResponsavelRepository repository;
+    private MonitorRepository repository;
 
     @NonNull
     @Lock(PESSIMISTIC_READ)
-    public ResponsavelId handle(@NonNull @Valid CriarResponsavel cmd) throws Exception {
-        Responsavel responsavel = Responsavel.builder()
+    public MonitorId handle(@NonNull @Valid CriarMonitor cmd) throws Exception {
+        Monitor monitor = Monitor.builder()
                 .nome(cmd.nome)
-                .nascimento(cmd.nascimento)
+                .dataDeNascimento(cmd.dataDeNascimento)
                 .email(cmd.email)
                 .telefone(cmd.telefone)
                 .endereco(cmd.endereco)
-                .genero (cmd.genero)
+                .genero(cmd.genero)
                 .cpf(cmd.cpf)
                 .build();
 
-        repository.save(responsavel);
-        return responsavel.id();
+        repository.save(monitor);
+        return monitor.id();
     }
 
-    public Responsavel atualizarResponsavel(@NonNull ResponsavelId id, AtualizarResponsavel cmd) throws Exception {
-        Responsavel responsavel = repository.findById(id).orElseThrow(() -> new Exception("Não encontrado"));
+    public Monitor atualizarMonitor(@NonNull MonitorId id, AtualizarMonitor cmd) throws Exception {
+        Monitor monitor = repository.findById(id).orElseThrow(() -> new Exception("Não encontrado"));
 
-        responsavel.update()
+        monitor.update()
                 .nome(cmd.nome)
-                .nascimento(cmd.nascimento)
+                .dataDeNascimento(cmd.dataDeNascimento)
                 .email(cmd.email)
                 .telefone(cmd.telefone)
                 .endereco(cmd.endereco)
                 .apply();
-        return repository.save(responsavel);
+        return repository.save(monitor);
     }
 
     @NonNull
     @Transactional(readOnly = true)
-    public List<Responsavel> listarTodos() {
+    public List<Monitor> listarTodos() {
         return repository.findAll();
     }
 
     @SuppressWarnings("null")
     @NonNull
     @Transactional(readOnly = true)
-    public Responsavel buscarPorId(@NonNull ResponsavelId id) {
+    public Monitor buscarPorId(@NonNull MonitorId id) {
         return repository.findById(requireNonNull(id))
                 .orElseThrow(
                         () -> new EntityNotFoundException(format("Not found any Business with code %s.", id.toUUID())));
     }
 
-    public void deletar(@NonNull ResponsavelId id) {
+    public void deletar(@NonNull MonitorId id) {
         repository.deleteById(id);
     }
 

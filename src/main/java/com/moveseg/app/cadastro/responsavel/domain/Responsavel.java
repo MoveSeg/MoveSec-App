@@ -6,7 +6,6 @@ import static lombok.AccessLevel.PRIVATE;
 
 import java.time.LocalDate;
 
-import com.moveseg.app.cadastro.Aluno.domain.Carteirinha;
 import com.moveseg.app.cadastro.Instituto.domain.Email;
 import com.moveseg.app.cadastro.Instituto.domain.Endereco;
 import com.moveseg.app.cadastro.Instituto.domain.Telefone;
@@ -50,7 +49,6 @@ public final class Responsavel extends AbstractEntity<ResponsavelId> {
     private Cpf cpf;
 
     private String nome;
-
 
     private LocalDate nascimento;
 
