@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.responsavel.domain;
+package com.moveseg.app.cadastro.Monitor.domain;
 
 import java.time.LocalDate;
 import java.util.function.Consumer;
@@ -14,49 +14,49 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public class ResponsavelForm {
-    private final Consumer<ResponsavelForm> action;
+public class MonitorForm {
+    private final Consumer<MonitorForm> action;
 
-    public String nome;
-    public LocalDate nascimento;
-    public Email email;
-    public Telefone telefone;
-    public Endereco endereco;
-    public Genero genero;
-    public Cpf cpf;
+    private String nome;
+    private Telefone telefone;
+    private Email email;
+    private Endereco endereco;
+    private Genero genero;
+    private Cpf cpf;
+    private LocalDate dataDeNascimento;
 
-    public ResponsavelForm nome(String nome) {
+    public MonitorForm nome(String nome) {
         this.nome = nome;
         return this;
     }
 
-    public ResponsavelForm nascimento(LocalDate nascimento) {
-        this.nascimento = nascimento;
-        return this;
-    }
-
-    public ResponsavelForm email(Email email) {
-        this.email = email;
-        return this;
-    }
-
-    public ResponsavelForm telefone(Telefone telefone) {
+    public MonitorForm telefone(Telefone telefone) {
         this.telefone = telefone;
         return this;
     }
 
-    public ResponsavelForm endereco(Endereco endereco) {
+    public MonitorForm email(Email email) {
+        this.email = email;
+        return this;
+    }
+
+    public MonitorForm endereco(Endereco endereco) {
         this.endereco = endereco;
         return this;
     }
 
-    public ResponsavelForm genero(Genero genero) {
+    public MonitorForm genero(Genero genero) {
         this.genero = genero;
         return this;
     }
 
-    public ResponsavelForm cpf(Cpf cpf) {
+    public MonitorForm cpf(Cpf cpf) {
         this.cpf = cpf;
+        return this;
+    }
+
+    public MonitorForm dataDeNascimento(LocalDate dataDeNascimento) {
+        this.dataDeNascimento = dataDeNascimento;
         return this;
     }
 

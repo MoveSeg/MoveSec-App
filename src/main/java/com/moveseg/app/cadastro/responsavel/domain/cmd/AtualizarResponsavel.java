@@ -11,7 +11,6 @@ import com.moveseg.app.cadastro.sk.domain.Genero;
 public class AtualizarResponsavel {
 
     public String nome;
-    public Integer documento;
     public LocalDate nascimento;
     public Email email;
     public Telefone telefone;

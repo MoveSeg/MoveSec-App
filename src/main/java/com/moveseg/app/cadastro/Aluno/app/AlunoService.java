@@ -11,12 +11,15 @@ import org.springframework.data.jpa.repository.Lock;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.moveseg.app.cadastro.Aluno.app.view.AlunoFormView;
+import com.moveseg.app.cadastro.Aluno.app.view.AlunoListView;
 import com.moveseg.app.cadastro.Aluno.domain.Aluno;
 import com.moveseg.app.cadastro.Aluno.domain.AlunoId;
 import com.moveseg.app.cadastro.Aluno.domain.cmd.AlterarAluno;
 import com.moveseg.app.cadastro.Aluno.domain.cmd.CriarAluno;
 import com.moveseg.app.cadastro.Aluno.repository.AlunoRepository;
-import com.moveseg.app.viagem.domain.cmd.CriarViagem;
+import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
+import com.moveseg.app.cadastro.responsavel.repository.ResponsavelRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
@@ -28,17 +31,22 @@ import lombok.NonNull;
 @AllArgsConstructor
 public class AlunoService {
         private AlunoRepository repository;
-
+        private ResponsavelRepository responsavelRepository;
         @NonNull
         @Lock(PESSIMISTIC_READ)
         public AlunoId handle(@NonNull @Valid CriarAluno cmd) {
-
+                Responsavel responsavel = responsavelRepository.findById(cmd.responsavel()).get();
+                
                 Aluno aluno = Aluno.builder()
                                 .nome(cmd.nome())
                                 .endereco(cmd.endereco())
-                                .responsavel(cmd.responsavel())
+                                .responsavel(responsavel)
                                 .telefone(cmd.telefone())
                                 .email(cmd.email())
+                                .carteirinha(cmd.carteirinha())
+                                .genero(cmd.genero())
+                                .cpf(cmd.cpf())
+                                .dataDeNascimento(cmd.nascimento())
                                 .build();
 
                 repository.save(aluno);
@@ -66,19 +74,18 @@ public class AlunoService {
         }
 
         @NonNull
-
         @Transactional(readOnly = true)
-        public List<Aluno> listarTodos() {
-                return repository.findAll();
+        public List<AlunoListView> listarTodos() {
+                return repository.findAll().stream().map(AlunoListView::of).toList();
         }
 
         @Transactional(readOnly = true)
-        public Aluno buscarPorId(@NonNull AlunoId id) {
-                return repository.findById(requireNonNull(id))
+        public AlunoFormView buscarPorId(@NonNull AlunoId id) {
+                return  AlunoFormView.of(repository.findById(requireNonNull(id))
                                 .orElseThrow(
                                                 () -> new EntityNotFoundException(
                                                                 format("Not found any Business with code %s.",
-                                                                                id.toUUID())));
+                                                                                id.toUUID()))));
         }
 
         public void deletar(@NonNull AlunoId id) {

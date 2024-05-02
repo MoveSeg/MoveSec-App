@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.responsavel.domain.cmd;
+package com.moveseg.app.cadastro.Motorista.domain.cmd;
 
 import java.time.LocalDate;
 
@@ -9,14 +9,16 @@ import com.moveseg.app.cadastro.sk.domain.Cpf;
 import com.moveseg.app.cadastro.sk.domain.Genero;
 
 import lombok.Builder;
+import lombok.Data;
 
+@Data
 @Builder
-public class CriarResponsavel {
-    public String nome;
-    public LocalDate nascimento;
+public class CriarMotorista {
     public Email email;
-    public Telefone telefone;
     public Endereco endereco;
+    public Telefone telefone;
     public Genero genero;
     public Cpf cpf;
+    public String nome;
+    public LocalDate nascimento;
 }
