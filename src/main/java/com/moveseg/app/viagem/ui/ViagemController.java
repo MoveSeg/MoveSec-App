@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.moveseg.app.cadastro.Aluno.domain.Aluno;
-import com.moveseg.app.cadastro.Aluno.domain.AlunoId;
 import com.moveseg.app.viagem.app.ViagemService;
+import com.moveseg.app.viagem.app.view.ViagemFormView;
+import com.moveseg.app.viagem.app.view.ViagemListView;
 import com.moveseg.app.viagem.cmd.AlterarViagem;
 import com.moveseg.app.viagem.cmd.CriarViagem;
 import com.moveseg.app.viagem.domain.Viagem;
@@ -43,12 +43,12 @@ public class ViagemController {
     }
 
     @GetMapping
-    public List<Viagem> listarTodos() {
+    public List<ViagemListView> listarTodos() {
         return service.listarTodos();
     }
 
     @GetMapping("/{id}")
-    public Viagem buscarPorId(@PathVariable @NonNull ViagemId id) {
+    public ViagemFormView buscarPorId(@PathVariable @NonNull ViagemId id) {
         return service.buscarPorId(id);
     }
 
@@ -61,7 +61,7 @@ public class ViagemController {
         return ResponseEntity.status(HttpStatus.CREATED).body(salvar);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable @NonNull ViagemId id) {
         service.deletar(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

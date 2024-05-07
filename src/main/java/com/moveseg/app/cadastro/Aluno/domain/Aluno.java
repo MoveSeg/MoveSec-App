@@ -20,6 +20,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -49,7 +50,7 @@ public class Aluno extends AbstractEntity<AlunoId> {
 
     @Embedded
     private Endereco endereco;
-    
+
     private Genero genero;
 
     @Embedded
@@ -100,7 +101,5 @@ public class Aluno extends AbstractEntity<AlunoId> {
             return new Aluno(this);
         }
     }
-
-
 
 }

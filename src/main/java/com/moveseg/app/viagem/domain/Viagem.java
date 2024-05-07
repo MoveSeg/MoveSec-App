@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 public class Viagem  extends AbstractEntity<ViagemId>{
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = CascadeType.DETACH)
     private List<Aluno> alunos;
     private RotaId rota;
     private MotoristaId motorista;
