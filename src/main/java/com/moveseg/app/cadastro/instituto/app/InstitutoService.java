@@ -12,11 +12,17 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.moveseg.app.cadastro.Aluno.app.view.AlunoListView;
+import com.moveseg.app.cadastro.Instituto.app.view.InstitutoFormView;
+import com.moveseg.app.cadastro.Instituto.app.view.InstitutoListView;
 import com.moveseg.app.cadastro.Instituto.domain.Instituto;
 import com.moveseg.app.cadastro.Instituto.domain.InstitutoId;
 import com.moveseg.app.cadastro.Instituto.domain.cmd.AlterarInstituto;
 import com.moveseg.app.cadastro.Instituto.domain.cmd.CriarInstituto;
 import com.moveseg.app.cadastro.Instituto.repository.InstitutoRepository;
+import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
+import com.moveseg.app.cadastro.responsavel.repository.ResponsavelRepository;
+import com.moveseg.app.viagem.Rota.domain.Rota;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
@@ -28,15 +34,16 @@ import lombok.AllArgsConstructor;
 public class InstitutoService {
 
     private InstitutoRepository repository;
+    private ResponsavelRepository responsavelRepository;
 
     @NonNull
     @Lock(PESSIMISTIC_READ)
     public InstitutoId handle(@NonNull @Valid CriarInstituto cmd) {
-
+        Responsavel responsavel = responsavelRepository.findById(cmd.responsavel()).get();
         Instituto instituto = Instituto.builder()
                 .nome(cmd.nome())
                 .endereco(cmd.endereco())
-                .responsavel(cmd.responsavel())
+                .responsavel(responsavel)
                 .telefone(cmd.telefone())
                 .email(cmd.email())
                 .build();
@@ -64,16 +71,18 @@ public class InstitutoService {
 
     @NonNull
     @Transactional(readOnly = true)
-    public List<Instituto> listarTodos() {
-        return repository.findAll();
-    }
-
-    @Transactional(readOnly = true)
-    public Instituto buscarPorId(@NonNull InstitutoId id) {
-        return repository.findById(requireNonNull(id))
-                .orElseThrow(
-                        () -> new EntityNotFoundException(
-                                format("Not found any Business with code %s.", id.toUUID())));
+    public List<InstitutoListView> listarTodos() {
+        return repository.findAll().stream().map(InstitutoListView::of).toList();
+        }
+    @Transactional(readOnly= true)
+    public InstitutoFormView buscarPorId(@NonNull InstitutoId id) {
+        Instituto instituto = repository.findById(requireNonNull(id))
+         .orElseThrow(
+            () -> new EntityNotFoundException(
+                    format("Not found any Business with code %s.",
+                            id.toUUID())));
+        return InstitutoFormView.of(instituto);
+               
     }
 
     public void deletar(@NonNull InstitutoId id) {

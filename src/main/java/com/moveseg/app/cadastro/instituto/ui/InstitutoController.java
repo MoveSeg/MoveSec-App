@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moveseg.app.cadastro.Instituto.app.InstitutoService;
+import com.moveseg.app.cadastro.Instituto.app.view.InstitutoFormView;
+import com.moveseg.app.cadastro.Instituto.app.view.InstitutoListView;
 import com.moveseg.app.cadastro.Instituto.domain.Instituto;
 import com.moveseg.app.cadastro.Instituto.domain.InstitutoId;
 import com.moveseg.app.cadastro.Instituto.domain.cmd.AlterarInstituto;
@@ -42,12 +44,12 @@ public class InstitutoController {
     }
 
     @GetMapping
-    public List<Instituto> listarTodos() {
+    public List<InstitutoListView> listarTodos() {
         return service.listarTodos();
     }
 
     @GetMapping("/{id}")
-    public Instituto buscarPorId(@PathVariable @NonNull InstitutoId id) {
+    public InstitutoFormView buscarPorId(@PathVariable @NonNull InstitutoId id) {
         return service.buscarPorId(id);
     }
 
