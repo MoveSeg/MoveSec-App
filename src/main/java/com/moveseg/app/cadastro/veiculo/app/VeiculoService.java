@@ -33,7 +33,7 @@ public class VeiculoService {
 
     @NonNull
     @Lock(PESSIMISTIC_READ)
-    public VeiculoId handle(@NonNull @Valid CriarVeiculo cmd)  {
+    public VeiculoId handle(@NonNull @Valid CriarVeiculo cmd) throws Exception {
         Veiculo veiculo = Veiculo.builder()
                 .placa(cmd.placa())
                 .numeroDaFrota(cmd.numeroDaFrota())

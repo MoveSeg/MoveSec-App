@@ -4,7 +4,6 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +26,6 @@ import com.moveseg.app.cadastro.veiculo.domain.VeiculoId;
 import com.moveseg.app.cadastro.veiculo.domain.cmd.AtualizarVeiculo;
 import com.moveseg.app.cadastro.veiculo.domain.cmd.CriarVeiculo;
 
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -39,7 +37,7 @@ public class VeiculoController {
     VeiculoService service;
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> salvar(@RequestBody CriarVeiculo cmd) throws Exception {
+    public ResponseEntity<Veiculo> salvar(@RequestBody CriarVeiculo cmd) throws Exception {
         VeiculoId id = service.handle(cmd);
 
         return ResponseEntity.created(fromCurrentRequest()
@@ -57,7 +55,6 @@ public class VeiculoController {
         return service.buscarPorId(id);
     }
 
-    @Valid
     @PutMapping("/{id}")
     public ResponseEntity<Veiculo> atualizar(@PathVariable @NonNull VeiculoId id,
             @RequestBody AtualizarVeiculo cmd) throws Exception {
@@ -68,9 +65,8 @@ public class VeiculoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable @NonNull VeiculoId id) {
+    public ResponseEntity<Void> deletar(@PathVariable VeiculoId id) {
         service.deletar(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
-
 }
