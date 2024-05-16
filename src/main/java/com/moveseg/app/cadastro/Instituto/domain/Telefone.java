@@ -14,10 +14,13 @@ import lombok.NoArgsConstructor;
 @Embeddable
 @EqualsAndHashCode
 @NoArgsConstructor
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Telefone implements ValueObject {
-    @Phone(message = "Numero de telefone invalido")
+    //@Phone(message = "Numero de telefone invalido")
     private String numero;
+
+    public Telefone(String numero) {
+        this.numero = numero;
+    }
 
     public static Telefone of(String numero) throws Exception {
         if (numero == null || numero.isEmpty()) {

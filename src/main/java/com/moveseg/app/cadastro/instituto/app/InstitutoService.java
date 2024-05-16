@@ -12,7 +12,6 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.moveseg.app.cadastro.Aluno.app.view.AlunoListView;
 import com.moveseg.app.cadastro.Instituto.app.view.InstitutoFormView;
 import com.moveseg.app.cadastro.Instituto.app.view.InstitutoListView;
 import com.moveseg.app.cadastro.Instituto.domain.Instituto;
@@ -22,7 +21,6 @@ import com.moveseg.app.cadastro.Instituto.domain.cmd.CriarInstituto;
 import com.moveseg.app.cadastro.Instituto.repository.InstitutoRepository;
 import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
 import com.moveseg.app.cadastro.responsavel.repository.ResponsavelRepository;
-import com.moveseg.app.viagem.Rota.domain.Rota;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
