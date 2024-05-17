@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.responsavel.domain;
+package com.moveseg.app.cadastro.Motorista.domain;
 
 import java.time.LocalDate;
 import java.util.function.Consumer;
@@ -14,10 +14,12 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public class ResponsavelForm {
-    private final Consumer<ResponsavelForm> action;
+public class MotoristaForm {
+
+    private final Consumer<MotoristaForm> action;
 
     public String nome;
+    public Integer documento;
     public LocalDate nascimento;
     public Email email;
     public Telefone telefone;
@@ -25,42 +27,47 @@ public class ResponsavelForm {
     public Genero genero;
     public Cpf cpf;
 
-    public ResponsavelForm nome(String nome) {
+    public MotoristaForm nome(String nome) {
         this.nome = nome;
         return this;
     }
 
-    public ResponsavelForm nascimento(LocalDate nascimento) {
+    public MotoristaForm documento(Integer documento) {
+        this.documento = documento;
+        return this;
+    }
+
+    public MotoristaForm nascimento(LocalDate nascimento) {
         this.nascimento = nascimento;
         return this;
     }
 
-    public ResponsavelForm email(Email email) {
+    public MotoristaForm email(Email email) {
         this.email = email;
         return this;
     }
 
-    public ResponsavelForm telefone(Telefone telefone) {
+    public MotoristaForm telefone(Telefone telefone) {
         this.telefone = telefone;
         return this;
     }
 
-    public ResponsavelForm endereco(Endereco endereco) {
+    public MotoristaForm endereco(Endereco endereco) {
         this.endereco = endereco;
         return this;
     }
 
-    public ResponsavelForm genero(Genero genero) {
+    public MotoristaForm genero(Genero genero) {
         this.genero = genero;
         return this;
     }
 
-    public ResponsavelForm cpf(Cpf cpf) {
+    public MotoristaForm cpf(Cpf cpf) {
         this.cpf = cpf;
         return this;
     }
 
-    public void apply() {
+    public void aplicar() {
         action.accept(this);
     }
 }

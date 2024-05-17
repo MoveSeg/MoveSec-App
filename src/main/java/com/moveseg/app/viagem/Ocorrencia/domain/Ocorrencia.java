@@ -1,7 +1,7 @@
 package com.moveseg.app.viagem.Ocorrencia.domain;
 
-import static java.util.Objects.requireNonNull;
 import static com.moveseg.parent.infra.domain.DomainObjectId.randomId;
+import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 
@@ -10,11 +10,8 @@ import com.moveseg.app.viagem.Ocorrencia.events.OcorrenciaRealizada;
 import com.moveseg.app.viagem.domain.ViagemId;
 import com.moveseg.parent.infra.domain.AbstractAggregateRoot;
 
-
 import jakarta.persistence.Entity;
-
 import lombok.AccessLevel;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
