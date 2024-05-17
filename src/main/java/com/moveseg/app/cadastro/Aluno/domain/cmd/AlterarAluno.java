@@ -1,5 +1,7 @@
 package com.moveseg.app.cadastro.Aluno.domain.cmd;
 
+import java.time.LocalDate;
+
 import com.moveseg.app.cadastro.Aluno.domain.AlunoId;
 import com.moveseg.app.cadastro.Aluno.domain.Carteirinha;
 import com.moveseg.app.cadastro.Instituto.domain.Email;
@@ -24,4 +26,5 @@ public class AlterarAluno {
     private Endereco endereco;
     private Genero genero;
     private Cpf cpf;
+    private LocalDate nascimento;
 }
