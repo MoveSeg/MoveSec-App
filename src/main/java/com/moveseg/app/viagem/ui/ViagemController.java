@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moveseg.app.viagem.app.ViagemService;
-import com.moveseg.app.viagem.cmd.AlterarViagem;
-import com.moveseg.app.viagem.cmd.CriarViagem;
 import com.moveseg.app.viagem.domain.Viagem;
 import com.moveseg.app.viagem.domain.ViagemId;
+import com.moveseg.app.viagem.domain.cmd.AlterarViagem;
+import com.moveseg.app.viagem.domain.cmd.CriarViagem;
 
 import lombok.AllArgsConstructor;
 import lombok.NonNull;

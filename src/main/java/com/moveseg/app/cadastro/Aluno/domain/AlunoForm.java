@@ -35,35 +35,41 @@ public class AlunoForm {
         this.nome = nome;
         return this;
     }
-
-    public AlunoForm responsavel(Responsavel responsavel)  {
+    public AlunoForm responsavel(Responsavel responsavel) {
         this.responsavel.add(responsavel);
         return this;
     }
+
     public AlunoForm carteirinha(Carteirinha carteirinha) {
         this.carteirinha = carteirinha;
         return this;
     }
+
     public AlunoForm telefone(Telefone telefone) {
         this.telefone = telefone;
         return this;
     }
+
     public AlunoForm email(Email email) {
         this.email = email;
         return this;
     }
+
     public AlunoForm endereco(Endereco endereco) {
         this.endereco = endereco;
         return this;
     }
+
     public AlunoForm genero(Genero genero) {
         this.genero = genero;
         return this;
     }
-    public AlunoForm cpf (Cpf cpf) {
+
+    public AlunoForm cpf(Cpf cpf) {
         this.cpf = cpf;
         return this;
     }
+
     public AlunoForm dataDeNascimento(LocalDate dataDeNascimento) {
         this.dataDeNascimento = dataDeNascimento;
         return this;

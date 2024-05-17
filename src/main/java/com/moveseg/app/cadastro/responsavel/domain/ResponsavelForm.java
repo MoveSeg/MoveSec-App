@@ -18,7 +18,6 @@ public class ResponsavelForm {
     private final Consumer<ResponsavelForm> action;
 
     public String nome;
-    public Integer documento;
     public LocalDate nascimento;
     public Email email;
     public Telefone telefone;
@@ -28,11 +27,6 @@ public class ResponsavelForm {
 
     public ResponsavelForm nome(String nome) {
         this.nome = nome;
-        return this;
-    }
-
-    public ResponsavelForm documento(Integer documento) {
-        this.documento = documento;
         return this;
     }
 

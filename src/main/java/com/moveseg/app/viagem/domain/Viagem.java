@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.moveseg.app.cadastro.Aluno.domain.Aluno;
+import com.moveseg.app.cadastro.Motorista.domain.MotoristaId;
 import com.moveseg.parent.infra.domain.AbstractEntity;
 
 import jakarta.persistence.CascadeType;

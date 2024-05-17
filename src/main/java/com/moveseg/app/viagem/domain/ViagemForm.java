@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import com.moveseg.app.cadastro.Aluno.domain.Aluno;
+import com.moveseg.app.cadastro.Motorista.domain.MotoristaId;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

@@ -47,7 +47,6 @@ public final class Responsavel extends AbstractEntity<ResponsavelId> {
 
     private String nome;
 
-
     private LocalDate nascimento;
 
     private Responsavel(ResponsavelBuilder builder) {

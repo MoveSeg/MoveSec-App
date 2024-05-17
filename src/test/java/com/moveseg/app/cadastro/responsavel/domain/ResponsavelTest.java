@@ -127,7 +127,6 @@ class ResponsavelTest {
         Endereco novoEndereco = Endereco.of("Rua AAAA ", 44);
         String novoNome = "Novo nome";
         LocalDate novoNascimento = LocalDate.of(2008, 04, 06);
-        Integer novoDocumento = 676767676;
 
         Responsavel responsavel = this.builder.build();
         responsavel.update()
@@ -136,7 +135,6 @@ class ResponsavelTest {
                 .genero(novoGenero)
                 .nascimento(novoNascimento)
                 .email(novoEmail)
-                .documento(novoDocumento)
                 .telefone(novoTelefone)
                 .endereco(novoEndereco).apply();
 
