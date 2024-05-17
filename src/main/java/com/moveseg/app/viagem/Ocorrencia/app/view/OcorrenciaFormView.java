@@ -4,7 +4,7 @@ package com.moveseg.app.viagem.Ocorrencia.app.view;
 import com.moveseg.app.cadastro.Aluno.domain.AlunoId;
 import com.moveseg.app.viagem.Ocorrencia.domain.Ocorrencia;
 import com.moveseg.app.viagem.Ocorrencia.domain.OcorrenciaId;
-import com.moveseg.app.viagem.Ocorrencia.domain.ViagemId;
+import com.moveseg.app.viagem.domain.ViagemId;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
