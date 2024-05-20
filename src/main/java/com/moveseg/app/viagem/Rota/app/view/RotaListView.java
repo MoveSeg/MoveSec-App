@@ -15,17 +15,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RotaListView {
     private RotaId id;
-    private String logradouros;
-    private Number numeros;
-    private String numeroRota;
+    private String logradouro;
+    private Integer numero;
+    private Integer numeroRota;
     private VeiculoId veiculo;
 
     public static RotaListView of(Rota rota) {
         return RotaListView.builder()
                 .id(rota.id())
-                .logradouros(rota.enderecos().get(0).logradouro())
-                .numeros(rota.enderecos().get(0).numero())
-                .numeroRota(rota.numero().toString())
+                .logradouro(rota.enderecos().logradouro())
+                .numero(rota.enderecos().numero())
+                .numeroRota(rota.numeroRota())
                 .veiculo(rota.veiculo())
                 .build();
     }

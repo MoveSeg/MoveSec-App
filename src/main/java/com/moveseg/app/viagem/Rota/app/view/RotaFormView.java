@@ -13,16 +13,16 @@ import lombok.Data;
 @AllArgsConstructor
 public class RotaFormView {
     private RotaId id;
-    private String logradouros;
-    private Number numeros;
+    private String logradouro;
+    private Integer numero;
     private String numeroRota;
     private VeiculoId veiculo;
 
     public static RotaFormView of(Rota rota) {
         return RotaFormView.builder()
                 .id(rota.id())
-                .logradouros(rota.enderecos().get(0).logradouro())
-                .numeros(rota.enderecos().get(0).numero())
+                .logradouro(rota.endereco().logradouro())
+                .numero(rota.endereco().numero())
                 .numeroRota(rota.numero().toString())
                 .veiculo(rota.veiculo())
                 .build();

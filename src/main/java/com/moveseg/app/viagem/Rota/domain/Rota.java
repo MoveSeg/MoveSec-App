@@ -30,22 +30,20 @@ public class Rota extends AbstractEntity<RotaId> {
     @CollectionTable(name = "enderecos", joinColumns = @JoinColumn(name = "rota_id"))
     private List<Endereco> enderecos;
 
-    @Embedded
-    @AttributeOverride(column = @Column(name = "numero"), name = "value")
-    private Numero numero;
+    private Integer numeroRota;
 
     private VeiculoId veiculo;
 
     private Rota(RotaId id, Numero numero, VeiculoId veiculo, List<Endereco> enderecos) {
         super(id);
-        this.numero = requireNonNull(numero, "O numero não deve ser nulo");
+        this.numeroRota = requireNonNull(numeroRota, "O numero não deve ser nulo");
         this.veiculo = requireNonNull(veiculo, "O veiculo não deve ser nulo");
         this.enderecos = requireNonNull(enderecos, "Endereco não pode ser nulo");
     }
 
     public RotaForm atualizar() {
         return new RotaForm(form -> {
-            this.numero = requireNonNull(form.numero(), "Numero não pode ser nulo");
+            this.numeroRota = requireNonNull(form.numeroRota(), "Numero não pode ser nulo");
             this.veiculo = requireNonNull(form.veiculo(), "Veiculo não pode ser nulo");
             if (form.endereco().isEmpty()) {
                 throw new IllegalArgumentException("Não pode ser nulo");
