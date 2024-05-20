@@ -1,11 +1,12 @@
-package com.moveseg.app.cadastro.Veiculo.Infra;
+package com.moveseg.app.cadastro.veiculo.Infra;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
 
 import org.junit.jupiter.api.Test;
 
 import com.moveseg.app.cadastro.veiculo.infra.PlacaValidator;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.mockito.Mockito.mock;
 
 import jakarta.validation.ConstraintValidatorContext;
 
@@ -23,7 +24,7 @@ public class PlacaValidatorTest {
 
    @Test
    void PlacaInvalida() {
-      String placaInvalida = "123244";
+      String placaInvalida = "####";
       assertFalse(validator.isValid(placaInvalida, constraintValidatorContext));
    }
 

@@ -3,7 +3,6 @@ package com.moveseg.app.cadastro.veiculo.domain.cmd;
 import com.moveseg.app.cadastro.veiculo.domain.Chassi;
 import com.moveseg.app.cadastro.veiculo.domain.Placa;
 import com.moveseg.app.cadastro.veiculo.domain.Renavam;
-
 import lombok.Builder;
 import lombok.Data;
 @Data

@@ -4,6 +4,7 @@ import java.util.function.Consumer;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+
 @Getter
 @RequiredArgsConstructor
 public class VeiculoForm {
@@ -63,7 +64,7 @@ public class VeiculoForm {
         this.capacidadeDePassageiros = capacidadeDePassageiros;
         return this;
     }
-    
+
     public void apply() {
         action.accept(this);
     }

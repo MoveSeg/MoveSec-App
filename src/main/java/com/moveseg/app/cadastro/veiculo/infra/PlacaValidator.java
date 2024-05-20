@@ -5,9 +5,10 @@ import jakarta.validation.ConstraintValidatorContext;
 
 public class PlacaValidator implements ConstraintValidator<PlacaAnnotation, String> {
 
-    public boolean isValid(String placa, ConstraintValidatorContext context) {
-        String placaAlfanumerica = placa.replaceAll("[^a-zA-Z0-9]", "");
+    @Override
+    public boolean isValid(String numero, ConstraintValidatorContext context) {
+        String numeroAlfanumerico = numero.replaceAll("[^a-zA-Z0-9]", "");
 
-        return placaAlfanumerica.matches("[A-Za-z]{3}[0-9]{1}[A-Za-z]{1}[0-9]{2}");
+        return !numeroAlfanumerico.isEmpty();
     }
 }

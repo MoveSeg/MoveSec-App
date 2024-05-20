@@ -14,7 +14,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-
 @Getter
 @Builder
 @NoArgsConstructor(access = PRIVATE, force = true)
@@ -56,21 +55,21 @@ public class Veiculo extends AbstractEntity<VeiculoId> {
         this.marca = requireNonNull(builder.marca, "A marca não deve ser nula");
         this.modelo = requireNonNull(builder.modelo, "O modelo não deve ser nulo");
         this.corPredominante = requireNonNull(builder.corPredominante, "A cor predominate não deve ser nula");
-        this.capacidadeDePassageiros = requireNonNull(builder.capacidadeDePassageiros, 
+        this.capacidadeDePassageiros = requireNonNull(builder.capacidadeDePassageiros,
                 "A capacidade de passageiros não deve ser nula");
     }
 
     public VeiculoForm update() {
         return new VeiculoForm(form -> {
-            this.placa = form.placa;
-            this.numeroDaFrota = form.numeroDaFrota;
-            this.chassi = form.chassi;
-            this.renavam = form.renavam;
-            this.anoModelo = form.anoModelo;
-            this.marca = form.marca;
-            this.modelo = form.modelo;
-            this.corPredominante = form.corPredominante;
-            this.capacidadeDePassageiros = form.capacidadeDePassageiros;
+            this.placa = requireNonNull(form.placa(), "O nome não deve ser inválido");
+            this.numeroDaFrota = requireNonNull(form.numeroDaFrota(), "O nome não deve ser nulo");
+            this.chassi = requireNonNull(form.chassi(), "O nome não deve ser nulo");
+            this.renavam = requireNonNull(form.renavam(), "O nome não deve ser nulo");
+            this.anoModelo = requireNonNull(form.anoModelo(), "O nome não deve ser nulo");
+            this.marca = requireNonNull(form.marca(), "O nome não deve ser nulo");
+            this.modelo = requireNonNull(form.modelo(), "O nome não deve ser nulo");
+            this.corPredominante = requireNonNull(form.corPredominante(), "O nome não deve ser nulo");
+            this.capacidadeDePassageiros = requireNonNull(form.capacidadeDePassageiros(), "O nome não deve ser nulo");
         });
     }
 
