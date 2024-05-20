@@ -6,7 +6,7 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 
 import com.moveseg.app.cadastro.Aluno.domain.AlunoId;
-import com.moveseg.app.viagem.Ocorrencia.events.OcorrenciaRealizada;
+import com.moveseg.app.viagem.Ocorrencia.domain.events.OcorrenciaRealizada;
 import com.moveseg.app.viagem.domain.ViagemId;
 import com.moveseg.parent.infra.domain.AbstractAggregateRoot;
 

@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.responsavel.domain;
+package com.moveseg.app.cadastro.Motorista.domain;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -12,20 +12,11 @@ import org.junit.jupiter.api.Test;
 import com.moveseg.app.cadastro.Instituto.domain.Email;
 import com.moveseg.app.cadastro.Instituto.domain.Endereco;
 import com.moveseg.app.cadastro.Instituto.domain.Telefone;
-import com.moveseg.app.cadastro.responsavel.domain.Responsavel.ResponsavelBuilder;
-import com.moveseg.app.cadastro.veiculo.sk.domain.Cpf;
-import com.moveseg.app.cadastro.veiculo.sk.domain.Genero;
+import com.moveseg.app.cadastro.Motorista.domain.Motorista.MotoristaBuilder;
+import com.moveseg.app.cadastro.sk.domain.Cpf;
+import com.moveseg.app.cadastro.sk.domain.Genero;
 
-class ResponsavelTest {
-
-    public String novoNome;
-    public LocalDate novoNascimento;
-    public Email novoEmail;
-    public Telefone novoTelefone;
-    public Endereco novoEndereco;
-    public Genero novoGenero;
-    public Cpf novoCpf;
-
+public class MotoristaTest {
     private Email email;
     private Telefone telefone;
     private Endereco endereco;
@@ -33,16 +24,25 @@ class ResponsavelTest {
     private Cpf cpf;
     private String nome = "Luna";
     private LocalDate nascimento = LocalDate.of(2006, 02, 04);
-    private ResponsavelBuilder builder;
+
+    public String novoNome;
+    public Integer novoDocumento;
+    public LocalDate novoNascimento;
+    public Email novoEmail;
+    public Telefone novoTelefone;
+    public Endereco novoEndereco;
+    public Genero novoGenero;
+    public Cpf novoCpf;
+    private MotoristaBuilder builder;
 
     @BeforeEach
     void initializeBuilder() throws Exception {
         genero = Genero.FEMININO;
-        email = Email.of("alana@aaaa.com");
-        telefone = Telefone.of("41987876666");
+        email = Email.of("Exemplo@exemplo.com");
+        telefone = Telefone.of("41999999999");
         endereco = Endereco.of("Rua", 44);
         cpf = Cpf.of("23456789002");
-        this.builder = Responsavel.builder()
+        this.builder = Motorista.builder()
                 .nome(nome)
                 .nascimento(nascimento)
                 .email(email)
@@ -53,122 +53,121 @@ class ResponsavelTest {
     }
 
     @Test
-    void dadoUmResponsavelCompletoDeveCriar() throws Exception {
+    void dadoUmMotoristaCompletoDeveCriar() throws Exception {
 
-        Responsavel responsavel = builder
+        Motorista motorista = builder
                 .build();
 
-        assertNotNull(responsavel);
-        assertNotNull(responsavel.id());
-        assertEquals(email, responsavel.email());
-        assertEquals(telefone, responsavel.telefone());
-        assertEquals(endereco, responsavel.endereco());
-        assertEquals(nascimento, responsavel.nascimento());
-        assertEquals(nome, responsavel.nome());
-        assertEquals(genero, responsavel.genero());
-        assertEquals(cpf, responsavel.cpf());
+        assertNotNull(motorista);
+        assertNotNull(motorista.id());
+        assertEquals(email, motorista.email());
+        assertEquals(telefone, motorista.telefone());
+        assertEquals(endereco, motorista.endereco());
+        assertEquals(nascimento, motorista.nascimento());
+        assertEquals(nome, motorista.nome());
+        assertEquals(genero, motorista.genero());
+        assertEquals(cpf, motorista.cpf());
     }
 
     @Test
-    void dadoUmResponsavelSemNomeNaoDeveCriar() {
+    void dadoUmMotoristaSemNomeNaoDeveCriar() {
 
         builder.nome(null);
         assertThrows(Exception.class, () -> builder.build());
     }
 
     @Test
-    void dadoUmResponsavelSemNascimentoNaoDeveCriar() {
+    void dadoUmMotoristaSemNascimentoNaoDeveCriar() {
         builder.nascimento(null);
 
         assertThrows(Exception.class, () -> builder.build());
     }
 
     @Test
-    void dadoUmResponsavelSemEmailNaoDeveCriar() {
+    void dadoUmMotoristaSemEmailNaoDeveCriar() {
         builder.email(null);
 
         assertThrows(Exception.class, () -> builder.build());
     }
 
     @Test
-    void dadoUmResponsavelSemTelefoneNaoDeveCriar() {
+    void dadoUmMotoristaSemTelefoneNaoDeveCriar() {
         builder.telefone(null);
 
         assertThrows(Exception.class, () -> builder.build());
     }
 
     @Test
-    void dadoUmResponsavelSemEnderecoNaoDeveCriar() {
+    void dadoUmMotoristaSemEnderecoNaoDeveCriar() {
         builder.endereco(null);
 
         assertThrows(Exception.class, () -> builder.build());
     }
 
     @Test
-    void dadoUmResponsavelSemGeneroNaoDeveCriar() {
+    void dadoUmMotoristaSemGeneroNaoDeveCriar() {
         builder.genero(null);
 
         assertThrows(Exception.class, () -> builder.build());
     }
 
     @Test
-    void dadoUmResponsavelSemCpfNaoDeveCriar() {
+    void dadoUmMotoristaSemCpfNaoDeveCriar() {
         builder.cpf(null);
 
         assertThrows(Exception.class, () -> builder.build());
     }
 
     @Test
-    void dadoNovosDadosDoNomeDeveAtualizarOResponsavelEManterNaoNulo() throws Exception {
+    void dadoNovosDadosDeveAtualizarOMotoristaEManterNaoNulo() throws Exception {
         Email novoEmail = Email.of("Luna@aaaa.com");
         Genero novoGenero = Genero.FEMININO;
-        Cpf novoCpf = Cpf.of("Luna@aaaa");
-        Telefone novoTelefone = Telefone.of("41987844666");
+        Cpf novoCpf = Cpf.of("23456789332");
+        Telefone novoTelefone = Telefone.of("41999989999");
         Endereco novoEndereco = Endereco.of("Rua AAAA ", 44);
         String novoNome = "Novo nome";
         LocalDate novoNascimento = LocalDate.of(2008, 04, 06);
-
-        Responsavel responsavel = this.builder.build();
-        responsavel.update()
+        Motorista motorista = this.builder.build();
+        motorista.atualizar()
                 .nome(novoNome)
                 .cpf(novoCpf)
                 .genero(novoGenero)
                 .nascimento(novoNascimento)
                 .email(novoEmail)
                 .telefone(novoTelefone)
-                .endereco(novoEndereco).apply();
+                .endereco(novoEndereco).aplicar();
 
-        assertNotNull(responsavel.id());
-        assertEquals(novoNome, responsavel.nome());
-        assertEquals(novoCpf, responsavel.cpf());
-        assertEquals(novoGenero, responsavel.genero());
-        assertEquals(novoNascimento, responsavel.nascimento());
-        assertEquals(novoEmail, responsavel.email());
-        assertEquals(novoTelefone, responsavel.telefone());
-        assertEquals(novoEndereco, responsavel.endereco());
+        assertNotNull(motorista.id());
+        assertEquals(novoNome, motorista.nome());
+        assertEquals(novoCpf, motorista.cpf());
+        assertEquals(novoGenero, motorista.genero());
+        assertEquals(novoNascimento, motorista.nascimento());
+        assertEquals(novoEmail, motorista.email());
+        assertEquals(novoTelefone, motorista.telefone());
+        assertEquals(novoEndereco, motorista.endereco());
     }
+
     @Test
     void dadoUmNomeNuloNaoDeveAtualizar() {
-        Responsavel responsavel = this.builder.build();
+        Motorista motorista = this.builder.build();
         assertThrows(Exception.class, () -> {
-            responsavel.update()
-
+            motorista.atualizar()
                     .cpf(novoCpf)
                     .genero(novoGenero)
                     .nascimento(novoNascimento)
                     .email(novoEmail)
                     .telefone(novoTelefone)
                     .endereco(novoEndereco)
-                    .apply();
+                    .documento(novoDocumento)
+                    .aplicar();
 
         });
     }
-
     @Test
     void dadoUmCpfNuloNaoDeveAtualizar() {
-        Responsavel responsavel = this.builder.build();
+        Motorista motorista = this.builder.build();
         assertThrows(Exception.class, () -> {    
-            responsavel.update()
+            motorista.atualizar()
 
                     .nome(novoNome)
                     .genero(novoGenero)
@@ -176,16 +175,17 @@ class ResponsavelTest {
                     .email(novoEmail)
                     .telefone(novoTelefone)
                     .endereco(novoEndereco)
-                    .apply();
+                    .documento(novoDocumento)
+                    .aplicar();
 
         });
     }
 
     @Test
     void dadoUmGeneroNuloNaoDeveAtualizar() {
-        Responsavel responsavel = this.builder.build();
+        Motorista motorista = this.builder.build();
         assertThrows(Exception.class, () -> {
-            responsavel.update()
+            motorista.atualizar()
 
                     .nome(novoNome)
                     .cpf(novoCpf)
@@ -193,16 +193,17 @@ class ResponsavelTest {
                     .email(novoEmail)
                     .telefone(novoTelefone)
                     .endereco(novoEndereco)
-                    .apply();
+                    .documento(novoDocumento)
+                    .aplicar();
 
         });
     }
 
     @Test
     void dadoUmNascimentoNuloNaoDeveAtualizar() {
-        Responsavel responsavel = this.builder.build();
+        Motorista motorista = this.builder.build();
         assertThrows(Exception.class, () -> {
-            responsavel.update()
+            motorista.atualizar()
 
                     .nome(novoNome)
                     .cpf(novoCpf)
@@ -210,16 +211,17 @@ class ResponsavelTest {
                     .email(novoEmail)
                     .telefone(novoTelefone)
                     .endereco(novoEndereco)
-                    .apply();
+                    .documento(novoDocumento)
+                    .aplicar();
 
         });
     }
 
     @Test
     void dadoUmEmailNuloNaoDeveAtualizar() {
-        Responsavel responsavel = this.builder.build();
+        Motorista motorista = this.builder.build();
         assertThrows(Exception.class, () -> {
-            responsavel.update()
+            motorista.atualizar()
 
                     .nome(novoNome)
                     .cpf(novoCpf)
@@ -227,16 +229,17 @@ class ResponsavelTest {
                     .nascimento(novoNascimento)
                     .telefone(novoTelefone)
                     .endereco(novoEndereco)
-                    .apply();
+                    .documento(novoDocumento)
+                    .aplicar();
 
         });
     }
 
     @Test
     void dadoUmTelefoneNuloNaoDeveAtualizar() {
-        Responsavel responsavel = this.builder.build();
+        Motorista motorista = this.builder.build();
         assertThrows(Exception.class, () -> {
-            responsavel.update()
+            motorista.atualizar()
 
                     .nome(novoNome)
                     .cpf(novoCpf)
@@ -244,16 +247,17 @@ class ResponsavelTest {
                     .nascimento(novoNascimento)
                     .email(novoEmail)
                     .endereco(novoEndereco)
-                    .apply();
+                    .documento(novoDocumento)
+                    .aplicar();
 
         });
     }
 
     @Test
     void dadoUmEnderecoNuloNaoDeveAtualizar() {
-        Responsavel responsavel = this.builder.build();
+        Motorista motorista = this.builder.build();
         assertThrows(Exception.class, () -> {
-            responsavel.update()
+            motorista.atualizar()
 
                     .nome(novoNome)
                     .cpf(novoCpf)
@@ -261,10 +265,9 @@ class ResponsavelTest {
                     .nascimento(novoNascimento)
                     .email(novoEmail)
                     .telefone(novoTelefone)
-                    .apply();
+                    .documento(novoDocumento)
+                    .aplicar();
 
         });
     }
-
-    }
-    
+}

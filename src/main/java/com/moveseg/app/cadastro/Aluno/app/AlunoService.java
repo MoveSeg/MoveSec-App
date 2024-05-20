@@ -74,7 +74,6 @@ public class AlunoService {
         }
 
         @NonNull
-
         @Transactional(readOnly = true)
         public List<AlunoListView> listarTodos() {
                 return repository.findAll().stream().map(AlunoListView::of).toList();

@@ -1,32 +1,31 @@
-package com.moveseg.app.cadastro.responsavel.domain;
+package com.moveseg.app.cadastro.Motorista.domain;
 
 import static com.moveseg.parent.infra.domain.DomainObjectId.randomId;
 import static java.util.Objects.requireNonNull;
-import static lombok.AccessLevel.PRIVATE;
 
 import java.time.LocalDate;
 
 import com.moveseg.app.cadastro.Instituto.domain.Email;
 import com.moveseg.app.cadastro.Instituto.domain.Endereco;
 import com.moveseg.app.cadastro.Instituto.domain.Telefone;
-import com.moveseg.app.cadastro.veiculo.sk.domain.Cpf;
-import com.moveseg.app.cadastro.veiculo.sk.domain.Genero;
+import com.moveseg.app.cadastro.sk.domain.Cpf;
+import com.moveseg.app.cadastro.sk.domain.Genero;
 import com.moveseg.parent.infra.domain.AbstractEntity;
 
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+@Entity
 @Getter
 @Builder
-@NoArgsConstructor(access = PRIVATE, force = true)
-
-@Entity
-public final class Responsavel extends AbstractEntity<ResponsavelId> {
+@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
+public class Motorista extends AbstractEntity<MotoristaId> {
 
     @Embedded
     @AttributeOverride(column = @Column(name = "email"), name = "value")
@@ -52,7 +51,7 @@ public final class Responsavel extends AbstractEntity<ResponsavelId> {
 
     private LocalDate nascimento;
 
-    private Responsavel(ResponsavelBuilder builder) {
+    private Motorista(MotoristaBuilder builder) {
         super(builder.id);
         this.nome = requireNonNull(builder.nome, "O nome não deve ser inválido");
         this.nascimento = requireNonNull(builder.nascimento, "O nascimento não deve ser nulo");
@@ -62,9 +61,8 @@ public final class Responsavel extends AbstractEntity<ResponsavelId> {
         this.genero = requireNonNull(builder.genero, "O gênero não deve ser nulo");
         this.cpf = requireNonNull(builder.cpf, "O cpf não deve ser nulo");
     }
-
-    public ResponsavelForm update() {
-        return new ResponsavelForm(form -> {
+    public MotoristaForm atualizar() {
+        return new MotoristaForm(form -> {
             this.nome = requireNonNull(form.nome(), "O nome não deve ser nulo");
             this.nascimento = requireNonNull(form.nascimento(), "O nascimento não deve ser nulo");
             this.email = requireNonNull(form.email(), "O email não deve ser nulo");
@@ -75,14 +73,14 @@ public final class Responsavel extends AbstractEntity<ResponsavelId> {
         });
     }
 
-    public static class ResponsavelBuilder {
-        private ResponsavelId id;
+    public static class MotoristaBuilder {
+        private MotoristaId id;
 
-        public Responsavel build() {
-            id = randomId(ResponsavelId.class);
+        public Motorista build() {
+            id = randomId(MotoristaId.class);
 
-            return new Responsavel(this);
-
+            return new Motorista(this);
         }
     }
+
 }
