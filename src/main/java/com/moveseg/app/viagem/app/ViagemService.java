@@ -20,6 +20,8 @@ import com.moveseg.app.viagem.cmd.AlterarViagem;
 import com.moveseg.app.viagem.cmd.CriarViagem;
 import com.moveseg.app.viagem.domain.Viagem;
 import com.moveseg.app.viagem.domain.ViagemId;
+import com.moveseg.app.viagem.domain.cmd.AlterarViagem;
+import com.moveseg.app.viagem.domain.cmd.CriarViagem;
 import com.moveseg.app.viagem.repository.ViagemRepository;
 
 import jakarta.persistence.EntityNotFoundException;

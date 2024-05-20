@@ -71,7 +71,7 @@ public class Aluno extends AbstractEntity<AlunoId> {
         this.cpf = requireNonNull(builder.cpf, "O CPF não deve ser nula");
         this.dataDeNascimento = requireNonNull(builder.dataDeNascimento, "A sua data de nascimanto não deve ser nula");
     }
-
+    
     public AlunoForm atualizar() {
         return new AlunoForm(form -> {
             this.nome = requireNonNull(form.nome(), "Nome não pode ser nulo");

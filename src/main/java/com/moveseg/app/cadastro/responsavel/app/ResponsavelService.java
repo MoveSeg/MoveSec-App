@@ -34,7 +34,6 @@ public class ResponsavelService {
     public ResponsavelId handle(@NonNull @Valid CriarResponsavel cmd) throws Exception {
         Responsavel responsavel = Responsavel.builder()
                 .nome(cmd.nome)
-                .documento(cmd.documento)
                 .nascimento(cmd.nascimento)
                 .email(cmd.email)
                 .telefone(cmd.telefone)
@@ -52,7 +51,6 @@ public class ResponsavelService {
 
         responsavel.update()
                 .nome(cmd.nome)
-                .documento(cmd.documento)
                 .nascimento(cmd.nascimento)
                 .email(cmd.email)
                 .telefone(cmd.telefone)
