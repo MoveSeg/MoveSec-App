@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 import com.moveseg.app.cadastro.Aluno.domain.AlunoId;
 import com.moveseg.app.viagem.ausencias.domain.eventos.AusenciaRegistrada;
+import com.moveseg.app.viagem.domain.ViagemId;
 import com.moveseg.parent.infra.domain.AbstractAggregateRoot;
 
 import jakarta.persistence.Entity;

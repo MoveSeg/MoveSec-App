@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import com.moveseg.app.cadastro.Aluno.domain.AlunoId;
 import com.moveseg.app.viagem.Ocorrencia.domain.Ocorrencia;
-import com.moveseg.app.viagem.Ocorrencia.domain.ViagemId;
+import com.moveseg.app.viagem.domain.ViagemId;
 import com.moveseg.parent.infra.domain.DomainObjectId;
 
 public class OcorrenciaTest {
