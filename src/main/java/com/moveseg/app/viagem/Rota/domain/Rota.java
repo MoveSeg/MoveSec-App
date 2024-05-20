@@ -45,9 +45,6 @@ public class Rota extends AbstractEntity<RotaId> {
         return new RotaForm(form -> {
             this.numeroRota = requireNonNull(form.numeroRota(), "Numero não pode ser nulo");
             this.veiculo = requireNonNull(form.veiculo(), "Veiculo não pode ser nulo");
-            if (form.endereco().isEmpty()) {
-                throw new IllegalArgumentException("Não pode ser nulo");
-            }
             this.enderecos = requireNonNull(form.endereco(), "Endereco não pode ser nulo");
         });
 

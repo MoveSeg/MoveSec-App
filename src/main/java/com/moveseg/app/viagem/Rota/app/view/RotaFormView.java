@@ -23,7 +23,7 @@ public class RotaFormView {
                 .id(rota.id())
                 .logradouro(rota.endereco().logradouro())
                 .numero(rota.endereco().numero())
-                .numeroRota(rota.numero().toString())
+                .numeroRota(rota.numeroRota())
                 .veiculo(rota.veiculo())
                 .build();
     }
