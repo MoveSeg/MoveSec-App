@@ -19,7 +19,7 @@ public class AusenciaFormView {
     private AlunoId aluno;
     private String data;
     private String motivo;
-    private ViagemId Viagem;
+    private ViagemId viagem;
 
     public static AusenciaFormView of(Ausencia ausencia) {
         return AusenciaFormView.builder()
@@ -27,7 +27,7 @@ public class AusenciaFormView {
                 .motivo(ausencia.motivo())
                 .data(ausencia.data().toString())
                 .aluno(ausencia.aluno())
-                .Viagem(ausencia.viagem())
+                .viagem(ausencia.viagem())
                 .build();
     }
 }
