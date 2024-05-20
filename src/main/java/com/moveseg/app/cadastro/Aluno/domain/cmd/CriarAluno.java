@@ -2,10 +2,11 @@ package com.moveseg.app.cadastro.Aluno.domain.cmd;
 
 import java.time.LocalDate;
 
+
 import com.moveseg.app.cadastro.Aluno.domain.Carteirinha;
-import com.moveseg.app.cadastro.instituto.domain.Email;
-import com.moveseg.app.cadastro.instituto.domain.Endereco;
-import com.moveseg.app.cadastro.instituto.domain.Telefone;
+import com.moveseg.app.cadastro.Instituto.domain.Email;
+import com.moveseg.app.cadastro.Instituto.domain.Endereco;
+import com.moveseg.app.cadastro.Instituto.domain.Telefone;
 import com.moveseg.app.cadastro.responsavel.domain.ResponsavelId;
 import com.moveseg.app.cadastro.veiculo.sk.domain.Cpf;
 import com.moveseg.app.cadastro.veiculo.sk.domain.Genero;

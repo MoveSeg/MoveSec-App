@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.instituto.ui;
+package com.moveseg.app.cadastro.Instituto.ui;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.moveseg.app.cadastro.instituto.app.InstitutoService;
-import com.moveseg.app.cadastro.instituto.domain.Instituto;
-import com.moveseg.app.cadastro.instituto.domain.InstitutoId;
-import com.moveseg.app.cadastro.instituto.domain.cmd.AlterarInstituto;
-import com.moveseg.app.cadastro.instituto.domain.cmd.CriarInstituto;
+import com.moveseg.app.cadastro.Instituto.app.InstitutoService;
+import com.moveseg.app.cadastro.Instituto.domain.Instituto;
+import com.moveseg.app.cadastro.Instituto.domain.InstitutoId;
+import com.moveseg.app.cadastro.Instituto.domain.cmd.AlterarInstituto;
+import com.moveseg.app.cadastro.Instituto.domain.cmd.CriarInstituto;
 
 import lombok.AllArgsConstructor;
 

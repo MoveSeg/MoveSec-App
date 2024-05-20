@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-import com.moveseg.app.cadastro.instituto.domain.Endereco;
+import com.moveseg.app.cadastro.Instituto.domain.Endereco;
 import com.moveseg.app.cadastro.veiculo.domain.VeiculoId;
 
 import lombok.Getter;

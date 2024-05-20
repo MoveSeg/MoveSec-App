@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moveseg.app.viagem.ausencia.app.AusenciaService;
+import com.moveseg.app.viagem.ausencia.app.view.AusenciaFormView;
 import com.moveseg.app.viagem.ausencia.app.view.AusenciaListView;
 import com.moveseg.app.viagem.ausencia.domain.Ausencia;
 import com.moveseg.app.viagem.ausencia.domain.AusenciaId;
@@ -29,7 +30,7 @@ import lombok.NonNull;
 @RequestMapping(path = "/api/ausencia", produces = APPLICATION_JSON_VALUE)
 public class AusenciaController {
 
-    AusenciaService service;
+    private final AusenciaService service;
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<Ausencia> salvar(@RequestBody RegistrarAusencia cmd) throws Exception {
@@ -46,10 +47,8 @@ public class AusenciaController {
     }
 
     @GetMapping("/{id}")
-    public AusenciaListView buscarPorId(@PathVariable @NonNull AusenciaId id) {
+    public AusenciaFormView buscarPorId(@PathVariable @NonNull AusenciaId id) {
         return service.buscarPorId(id);
     }
 
-    
 }
-

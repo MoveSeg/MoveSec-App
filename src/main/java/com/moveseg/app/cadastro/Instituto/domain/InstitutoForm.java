@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.instituto.domain;
+package com.moveseg.app.cadastro.Instituto.domain;
 
 import java.util.ArrayList;
 import java.util.List;

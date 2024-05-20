@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.instituto.domain;
+package com.moveseg.app.cadastro.Instituto.domain;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

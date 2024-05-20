@@ -1,9 +1,10 @@
-package com.moveseg.app.cadastro.instituto.domain.cmd;
+package com.moveseg.app.cadastro.Instituto.domain.cmd;
 
-import com.moveseg.app.cadastro.instituto.domain.Email;
-import com.moveseg.app.cadastro.instituto.domain.Endereco;
-import com.moveseg.app.cadastro.instituto.domain.InstitutoId;
-import com.moveseg.app.cadastro.instituto.domain.Telefone;
+
+import com.moveseg.app.cadastro.Instituto.domain.Email;
+import com.moveseg.app.cadastro.Instituto.domain.Endereco;
+import com.moveseg.app.cadastro.Instituto.domain.InstitutoId;
+import com.moveseg.app.cadastro.Instituto.domain.Telefone;
 import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
 
 import lombok.Builder;

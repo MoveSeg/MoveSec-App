@@ -7,9 +7,4 @@ public class ViagemId extends DomainObjectId {
     public ViagemId(String uuid){
         super(uuid);
     }
-
-    public String getValue(){
-        return toUUID();
-    }
-
 }

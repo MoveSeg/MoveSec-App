@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.Lock;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.moveseg.app.viagem.ausencia.app.view.AusenciaFormView;
 import com.moveseg.app.viagem.ausencia.app.view.AusenciaListView;
 import com.moveseg.app.viagem.ausencia.domain.Ausencia;
 import com.moveseg.app.viagem.ausencia.domain.AusenciaId;
@@ -29,6 +30,7 @@ public class AusenciaService {
 
     private AusenciaRepository repository;
 
+    @NonNull
     @Lock(PESSIMISTIC_READ)
     public AusenciaId handle(@NonNull @Valid RegistrarAusencia cmd) throws Exception {
         Ausencia ausencia = Ausencia.from(cmd.viagem(), cmd.motivo(), cmd.aluno());
@@ -44,13 +46,12 @@ public class AusenciaService {
     }
 
     @Transactional(readOnly = true)
-    public AusenciaListView buscarPorId(@NonNull AusenciaId id) {
-        Ausencia ausencia =  repository.findById(requireNonNull(id))
+    public AusenciaFormView buscarPorId(@NonNull AusenciaId id) {
+        return AusenciaFormView.of(repository.findById(requireNonNull(id))
                 .orElseThrow(
                         () -> new EntityNotFoundException(
                                 format("Not found any Business with code %s.",
-                                        id.toUUID())));
+                                        id.toUUID()))));
 
-                                        return AusenciaListView.of(ausencia);
     }
 }

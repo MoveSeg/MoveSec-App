@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import com.moveseg.app.cadastro.instituto.domain.Endereco;
+import com.moveseg.app.cadastro.Instituto.domain.Endereco;
 
 public class EnderecoTest {
 

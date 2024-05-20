@@ -17,6 +17,7 @@ import lombok.NoArgsConstructor;
 public class AusenciaFormView {
     private AusenciaId id;
     private AlunoId aluno;
+    private String data;
     private String motivo;
     private ViagemId Viagem;
 
@@ -24,6 +25,7 @@ public class AusenciaFormView {
         return AusenciaFormView.builder()
                 .id(ausencia.id())
                 .motivo(ausencia.motivo())
+                .data(ausencia.data().toString())
                 .aluno(ausencia.aluno())
                 .Viagem(ausencia.viagem())
                 .build();

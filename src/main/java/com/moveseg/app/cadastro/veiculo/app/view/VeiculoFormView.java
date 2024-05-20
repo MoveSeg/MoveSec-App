@@ -1,0 +1,43 @@
+package com.moveseg.app.cadastro.veiculo.app.view;
+
+import com.moveseg.app.cadastro.veiculo.domain.Veiculo;
+import com.moveseg.app.cadastro.veiculo.domain.VeiculoId;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+
+public class VeiculoFormView {
+    private VeiculoId id;
+    private String placa;
+    private Integer numeroDaFrota;
+    private String chassi;
+    private String renavam;
+    private Integer anoModelo;
+    private String marca;
+    private String modelo;
+    private String corPredominante;
+    private Integer capacidadeDePassageiros;
+
+    public static VeiculoFormView of(Veiculo veiculo) {
+        return VeiculoFormView.builder()
+                .id(veiculo.id())
+                .placa(veiculo.placa().toString())
+                .numeroDaFrota(veiculo.numeroDaFrota())
+                .chassi(veiculo.chassi().toString())
+                .renavam(veiculo.renavam().toString())
+                .anoModelo(veiculo.anoModelo())
+                .marca(veiculo.marca().toString())
+                .modelo(veiculo.modelo().toString())
+                .corPredominante(veiculo.corPredominante().toString())
+                .capacidadeDePassageiros(veiculo.capacidadeDePassageiros())
+                .build();
+    }
+
+}
