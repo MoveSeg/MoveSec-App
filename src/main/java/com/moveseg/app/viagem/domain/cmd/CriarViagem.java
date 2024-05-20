@@ -12,8 +12,8 @@ import lombok.Data;
 @Data
 @Builder
 public class CriarViagem {
-    private AlunoId alunos;
     private RotaId rota;
     private MotoristaId motorista;
+    private AlunoId alunos;
     private LocalDate data;
 }

@@ -42,6 +42,7 @@ public class ViagemService {
                 Viagem viagem = Viagem.builder()
                                 .motorista(cmd.motorista())
                                 .rota(cmd.rota())
+                                .aluno(alunos)
                                 .data(cmd.data())
                                 .build();
 
@@ -57,9 +58,9 @@ public class ViagemService {
                                                                 format("Not found any Business with code %s.",
                                                                                 cmd.id().toUUID())));
                 viagem.atualizar()
-                                .alunos(cmd.alunos())
                                 .motorista(cmd.motorista())
                                 .rota(cmd.rota())
+                                .alunos(cmd.alunos())
                                 .data(cmd.data())
                                 .aplicar();
                 return repository.save(viagem);
