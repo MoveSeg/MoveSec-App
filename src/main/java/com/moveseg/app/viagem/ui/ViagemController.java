@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.moveseg.app.viagem.app.ViagemService;
 import com.moveseg.app.viagem.app.view.ViagemFormView;
 import com.moveseg.app.viagem.app.view.ViagemListView;
-import com.moveseg.app.viagem.cmd.AlterarViagem;
-import com.moveseg.app.viagem.cmd.CriarViagem;
 import com.moveseg.app.viagem.domain.Viagem;
 import com.moveseg.app.viagem.domain.ViagemId;
 import com.moveseg.app.viagem.domain.cmd.AlterarViagem;

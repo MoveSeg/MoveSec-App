@@ -1,10 +1,9 @@
 package com.moveseg.app.viagem.app.view;
 
-import com.moveseg.app.viagem.domain.ViagemId;
-import com.moveseg.app.viagem.domain.MotoristaId;
+import com.moveseg.app.cadastro.Motorista.domain.MotoristaId;
 import com.moveseg.app.viagem.domain.RotaId;
-
 import com.moveseg.app.viagem.domain.Viagem;
+import com.moveseg.app.viagem.domain.ViagemId;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

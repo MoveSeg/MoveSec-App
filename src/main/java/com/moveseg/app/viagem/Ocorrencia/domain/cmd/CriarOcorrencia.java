@@ -1,7 +1,6 @@
 package com.moveseg.app.viagem.Ocorrencia.domain.cmd;
 
 import com.moveseg.app.cadastro.Aluno.domain.AlunoId;
-import com.moveseg.app.viagem.domain.Viagem;
 import com.moveseg.app.viagem.domain.ViagemId;
 
 import lombok.Builder;
