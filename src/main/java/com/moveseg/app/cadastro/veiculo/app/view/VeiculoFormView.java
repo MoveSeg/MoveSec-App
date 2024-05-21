@@ -28,14 +28,14 @@ public class VeiculoFormView {
     public static VeiculoFormView of(Veiculo veiculo) {
         return VeiculoFormView.builder()
                 .id(veiculo.id())
-                .placa(veiculo.placa().value())
+                .placa(veiculo.placa().toString())
                 .numeroDaFrota(veiculo.numeroDaFrota())
-                .chassi(veiculo.chassi().value())
-                .renavam(veiculo.renavam().value())
+                .chassi(veiculo.chassi().toString())
+                .renavam(veiculo.renavam().toString())
                 .anoModelo(veiculo.anoModelo())
-                .marca(veiculo.marca())
-                .modelo(veiculo.modelo())
-                .corPredominante(veiculo.corPredominante())
+                .marca(veiculo.marca().toString())
+                .modelo(veiculo.modelo().toString())
+                .corPredominante(veiculo.corPredominante().toString())
                 .capacidadeDePassageiros(veiculo.capacidadeDePassageiros())
                 .build();
     }

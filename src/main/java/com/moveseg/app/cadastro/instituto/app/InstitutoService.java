@@ -1,9 +1,9 @@
 package com.moveseg.app.cadastro.Instituto.app;
 
 import static jakarta.persistence.LockModeType.PESSIMISTIC_READ;
-import static java.lang.String.format;
 import static java.util.Objects.requireNonNull;
 import static org.springframework.transaction.annotation.Propagation.REQUIRES_NEW;
+import static java.lang.String.format;
 
 import java.util.List;
 

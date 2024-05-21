@@ -1,4 +1,4 @@
-package com.moveseg.app.viagem.ausencias.domain;
+package com.moveseg.app.viagem.ausencia.domain;
 
 import com.moveseg.parent.infra.domain.DomainObjectId;
 
