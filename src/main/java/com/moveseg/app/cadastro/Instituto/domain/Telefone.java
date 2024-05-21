@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode
 @NoArgsConstructor
 public final class Telefone implements ValueObject {
+
     private String numero;
 
     public Telefone(String numero) {
