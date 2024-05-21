@@ -4,7 +4,6 @@ import com.moveseg.parent.infra.domain.ValueObject;
 
 import jakarta.persistence.Embeddable;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,9 +12,13 @@ import lombok.NoArgsConstructor;
 @Embeddable
 @EqualsAndHashCode
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+
 public final class Chassi implements ValueObject {
     private String value;
+
+    public Chassi(String value) {
+        this.value = value;
+    }
 
     public static Chassi of(String chassi) {
 

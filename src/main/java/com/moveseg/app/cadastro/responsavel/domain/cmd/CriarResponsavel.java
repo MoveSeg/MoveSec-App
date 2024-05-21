@@ -9,14 +9,15 @@ import com.moveseg.app.cadastro.sk.domain.Cpf;
 import com.moveseg.app.cadastro.sk.domain.Genero;
 
 import lombok.Builder;
-
+import lombok.Data;
+@Data
 @Builder
 public class CriarResponsavel {
-    public String nome;
-    public LocalDate nascimento;
-    public Email email;
-    public Telefone telefone;
-    public Endereco endereco;
-    public Genero genero;
-    public Cpf cpf;
+    private String nome;
+    private LocalDate nascimento;
+    private Email email;
+    private Telefone telefone;
+    private Endereco endereco;
+    private Genero genero;
+    private Cpf cpf;
 }

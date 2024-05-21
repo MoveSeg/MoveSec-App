@@ -1,8 +1,6 @@
 package com.moveseg.app.cadastro.Instituto.domain;
 
 import jakarta.persistence.Embeddable;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +12,6 @@ import lombok.NoArgsConstructor;
 public final class Endereco {
     private String logradouro;
     private Integer numero;
-
 
     public Endereco(String logradouro, Integer numero) {
         this.logradouro = logradouro;
