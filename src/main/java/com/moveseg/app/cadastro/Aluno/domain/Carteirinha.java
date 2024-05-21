@@ -3,8 +3,7 @@ package com.moveseg.app.cadastro.Aluno.domain;
 import com.moveseg.parent.infra.domain.ValueObject;
 
 import jakarta.persistence.Embeddable;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,10 +12,13 @@ import lombok.NoArgsConstructor;
 @Embeddable
 @EqualsAndHashCode
 @NoArgsConstructor
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Carteirinha implements ValueObject {
     private Integer numero;
 
+    public Carteirinha(Integer numero) {
+        this.numero = numero;
+    }
+    
     public static Carteirinha of(Integer numero) throws Exception {
         if (numero == null || numero == 0) {
             throw new Exception("O numero da sua carteirinha não pode ser nulo e nem 0");

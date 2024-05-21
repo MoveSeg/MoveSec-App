@@ -25,5 +25,5 @@ public class CriarAluno {
     private Endereco endereco;
     private Genero genero;
     private Cpf cpf;
-    private LocalDate nascimento;
+    private LocalDate dataDeNascimento;
 }

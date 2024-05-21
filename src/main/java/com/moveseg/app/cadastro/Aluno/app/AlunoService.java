@@ -32,11 +32,12 @@ import lombok.NonNull;
 public class AlunoService {
         private AlunoRepository repository;
         private ResponsavelRepository responsavelRepository;
+
         @NonNull
         @Lock(PESSIMISTIC_READ)
         public AlunoId handle(@NonNull @Valid CriarAluno cmd) {
                 Responsavel responsavel = responsavelRepository.findById(cmd.responsavel()).get();
-                
+
                 Aluno aluno = Aluno.builder()
                                 .nome(cmd.nome())
                                 .endereco(cmd.endereco())
@@ -46,7 +47,7 @@ public class AlunoService {
                                 .carteirinha(cmd.carteirinha())
                                 .genero(cmd.genero())
                                 .cpf(cmd.cpf())
-                                .dataDeNascimento(cmd.nascimento())
+                                .dataDeNascimento(cmd.dataDeNascimento())
                                 .build();
 
                 repository.save(aluno);
@@ -69,6 +70,7 @@ public class AlunoService {
                                 .endereco(cmd.endereco())
                                 .genero(cmd.genero())
                                 .cpf(cmd.cpf())
+                                .dataDeNascimento(cmd.dataDeNascimento())
                                 .aplicar();
                 return repository.save(aluno);
         }
@@ -81,7 +83,7 @@ public class AlunoService {
 
         @Transactional(readOnly = true)
         public AlunoFormView buscarPorId(@NonNull AlunoId id) {
-                return  AlunoFormView.of(repository.findById(requireNonNull(id))
+                return AlunoFormView.of(repository.findById(requireNonNull(id))
                                 .orElseThrow(
                                                 () -> new EntityNotFoundException(
                                                                 format("Not found any Business with code %s.",
