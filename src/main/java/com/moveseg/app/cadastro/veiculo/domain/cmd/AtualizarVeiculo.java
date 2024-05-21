@@ -3,16 +3,21 @@ package com.moveseg.app.cadastro.veiculo.domain.cmd;
 import com.moveseg.app.cadastro.veiculo.domain.Chassi;
 import com.moveseg.app.cadastro.veiculo.domain.Placa;
 import com.moveseg.app.cadastro.veiculo.domain.Renavam;
+import com.moveseg.app.cadastro.veiculo.domain.VeiculoId;
 
+import lombok.Builder;
+import lombok.Data;
+@Data
+@Builder
 public class AtualizarVeiculo {
-
-    public Placa placa;
-    public Integer numeroDaFrota;
-    public Chassi chassi;
-    public Renavam renavam;
-    public Integer anoModelo;
-    public String marca;
-    public String modelo;
-    public String corPredominante;
-    public Integer capacidadeDePassageiros;
+    private VeiculoId id;
+    private Placa placa;
+    private Integer numeroDaFrota;
+    private Chassi chassi;
+    private Renavam renavam;
+    private Integer anoModelo;
+    private String marca;
+    private String modelo;
+    private String corPredominante;
+    private Integer capacidadeDePassageiros;
 }
