@@ -17,15 +17,15 @@ public class RotaListView {
     private RotaId id;
     private String logradouro;
     private Integer numero;
-    private Integer numeroRota;
+    private String numeroRota;
     private VeiculoId veiculo;
 
     public static RotaListView of(Rota rota) {
         return RotaListView.builder()
                 .id(rota.id())
-                .logradouro(rota.enderecos().logradouro())
-                .numero(rota.enderecos().numero())
-                .numeroRota(rota.numeroRota())
+                .logradouro(rota.enderecos().get(0).logradouro())
+                .numero(rota.enderecos().get(0).numero())
+                .numeroRota(rota.numeroRota().value())
                 .veiculo(rota.veiculo())
                 .build();
     }

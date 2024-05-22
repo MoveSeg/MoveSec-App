@@ -7,7 +7,6 @@ import static java.util.Objects.requireNonNull;
 import static org.springframework.transaction.annotation.Propagation.REQUIRES_NEW;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Lock;
 import org.springframework.stereotype.Service;
@@ -35,7 +34,7 @@ public class RotaService {
     @Lock(PESSIMISTIC_READ)
     public RotaId handle(@NonNull @Valid CriarRota cmd) {
 
-        Rota rota = Rota.of(cmd.numero(), cmd.veiculo(), cmd.enderecos());
+        Rota rota = Rota.of(cmd.numeroRota(), cmd.veiculo(), cmd.enderecos());
         
         repository.save(rota);
         return rota.id();
@@ -48,7 +47,7 @@ public class RotaService {
                                 format("Not found any Business with code %s.",
                                         cmd.id().toUUID())));
         rota.atualizar()
-                .numero(cmd.numero())
+                .numeroRota(cmd.numeroRota())
                 .aplicar();
         return repository.save(rota);
     }

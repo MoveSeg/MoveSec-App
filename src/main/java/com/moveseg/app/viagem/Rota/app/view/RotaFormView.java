@@ -21,9 +21,9 @@ public class RotaFormView {
     public static RotaFormView of(Rota rota) {
         return RotaFormView.builder()
                 .id(rota.id())
-                .logradouro(rota.endereco().logradouro())
-                .numero(rota.endereco().numero())
-                .numeroRota(rota.numeroRota())
+                .logradouro(rota.enderecos().get(0).logradouro())
+                .numero(rota.enderecos().get(0).numero())
+                .numeroRota(rota.numeroRota().value())
                 .veiculo(rota.veiculo())
                 .build();
     }

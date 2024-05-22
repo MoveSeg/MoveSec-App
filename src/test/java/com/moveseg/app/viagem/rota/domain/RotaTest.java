@@ -12,18 +12,17 @@ import org.junit.jupiter.api.Test;
 
 import com.moveseg.app.cadastro.Instituto.domain.Endereco;
 import com.moveseg.app.cadastro.veiculo.domain.VeiculoId;
-import com.moveseg.app.viagem.Rota.domain.EnderecoId;
 import com.moveseg.app.viagem.Rota.domain.Numero;
 import com.moveseg.app.viagem.Rota.domain.Rota;
 import com.moveseg.parent.infra.domain.DomainObjectId;
 
 public class RotaTest {
-    private Numero numero;
+    private Numero numeroRota;
     private Endereco endereco;
     private VeiculoId veiculo;
     private List<Endereco> enderecos;
 
-    private Numero novoNumero;
+    private Numero novoNumeroRota;
     private Endereco novoEndereco;
     private List<Endereco> novosEnderecos;
     private VeiculoId novoVeiculo;
@@ -31,23 +30,22 @@ public class RotaTest {
     @BeforeEach
     void initializeof() throws Exception {
         veiculo = DomainObjectId.randomId(VeiculoId.class);
-        numero = Numero.of("317R");
+        numeroRota = Numero.of("317R");
 
         enderecos = new ArrayList<Endereco>();
         enderecos.add(endereco);
 
-        novoNumero = Numero.of("388R");
         novosEnderecos = new ArrayList<Endereco>();
         novosEnderecos.add(novoEndereco);
     }
 
     @Test
     void dadoUmaRotaCompletaDeveCriar() throws Exception {
-        Rota rota = Rota.of(numero, veiculo, enderecos);
+        Rota rota = Rota.of(numeroRota, veiculo, enderecos);
         assertNotNull(rota);
         assertNotNull(rota.id());
         assertNotNull(rota.veiculo());
-        assertEquals(numero, rota.numero());
+        assertEquals(numeroRota, rota.numeroRota());
         assertEquals(enderecos, rota.enderecos());
     }
 
@@ -61,14 +59,14 @@ public class RotaTest {
     @Test
     void dadoUmaRotaSemEnderecoNaoDeveCriar() {
         assertThrows(Exception.class, () -> {
-            Rota.of(numero, veiculo, null);
+            Rota.of(numeroRota, veiculo, null);
         });
     }
 
     @Test
     void dadoUmaRotaSemVeiculoNaoDeveCriar() {
         assertThrows(Exception.class, () -> {
-            Rota.of(numero, null, enderecos);
+            Rota.of(numeroRota, null, enderecos);
         });
     }
 
@@ -82,15 +80,16 @@ public class RotaTest {
     @Test
     void novasInformaçõesCompletasDeveAtulizarEManterNaoNulo() throws Exception {
         novoVeiculo = DomainObjectId.randomId(VeiculoId.class);
-        Rota rota = Rota.of(numero, veiculo, enderecos);
+        novoNumeroRota = Numero.of("17fh4");
+        Rota rota = Rota.of(numeroRota, veiculo, enderecos);
         rota.atualizar()
-                .numero(this.novoNumero)
+                .numeroRota(novoNumeroRota)
                 .endereco(this.novoEndereco)
                 .veiculo(this.novoVeiculo)
                 .aplicar();
 
         assertNotNull(rota);
-        assertEquals(novoNumero, rota.numero());
+        assertEquals(novoNumeroRota, rota.numeroRota());
         assertEquals(novosEnderecos, rota.enderecos());
         assertEquals(novoVeiculo, rota.veiculo());
     }
@@ -99,7 +98,7 @@ public class RotaTest {
     void dadoNumeroNuloNaoDeveAtualizar() {
         assertThrows(Exception.class, () -> {
             novoVeiculo = DomainObjectId.randomId(VeiculoId.class);
-            Rota rota = Rota.of(numero, veiculo, enderecos);
+            Rota rota = Rota.of(numeroRota, veiculo, enderecos);
             rota.atualizar()
                     .endereco(this.novoEndereco)
                     .veiculo(this.novoVeiculo)
@@ -112,9 +111,9 @@ public class RotaTest {
     void dadoEnderecoNuloDeveCriarVazio() {
         assertThrows(Exception.class, () -> {
             novoVeiculo = DomainObjectId.randomId(VeiculoId.class);
-            Rota rota = Rota.of(numero, veiculo, enderecos);
+            Rota rota = Rota.of(numeroRota, veiculo, enderecos);
             rota.atualizar()
-                    .numero(this.novoNumero)
+                    .numeroRota(this.novoNumeroRota)
                     .veiculo(this.novoVeiculo)
                     .aplicar();
         });
@@ -123,9 +122,9 @@ public class RotaTest {
     @Test
     void dadoVeiculoNuloDeveCriarVazio() {
         assertThrows(Exception.class, () -> {
-            Rota rota = Rota.of(numero, veiculo, enderecos);
+            Rota rota = Rota.of(numeroRota, veiculo, enderecos);
             rota.atualizar()
-                    .numero(this.novoNumero)
+                    .numeroRota(this.novoNumeroRota)
                     .endereco(this.novoEndereco)
                     .aplicar();
         });

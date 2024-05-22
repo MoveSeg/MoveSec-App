@@ -17,10 +17,10 @@ public class RotaForm {
     private final Consumer<RotaForm> action;
 
     private List<Endereco> endereco = new ArrayList<Endereco>();;
-    private Integer numeroRota;
+    private Numero numeroRota;
     private VeiculoId veiculo;
 
-    public RotaForm numeroRota(Integer numeroRota) {
+    public RotaForm numeroRota(Numero numeroRota) {
         this.numeroRota = (numeroRota);
         return this;
     }
