@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,9 +28,10 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping(path = "/api/Motorista ", produces =APPLICATION_JSON_VALUE)
+@CrossOrigin(origins = "*", maxAge = 3600)
+@RequestMapping(path = "/api/Motorista", produces =APPLICATION_JSON_VALUE)
 public class MotoristaController {
-    private final MotoristaService service;
+    private  MotoristaService service;
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> salvar(@RequestBody CriarMotorista cmd) throws Exception {
