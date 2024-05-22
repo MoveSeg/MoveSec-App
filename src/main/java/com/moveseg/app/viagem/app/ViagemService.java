@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.moveseg.app.cadastro.Aluno.domain.Aluno;
 import com.moveseg.app.cadastro.Aluno.repository.AlunoRepository;
-import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
 import com.moveseg.app.viagem.app.view.ViagemFormView;
 import com.moveseg.app.viagem.app.view.ViagemListView;
 import com.moveseg.app.viagem.domain.Viagem;
@@ -36,9 +35,9 @@ public class ViagemService {
 
         @NonNull
         @Lock(PESSIMISTIC_READ)
-        public ViagemId handle(@NonNull @Valid CriarViagem cmd) {
-
+        public ViagemId handle(@NonNull @Valid CriarViagem cmd)  {
                 Aluno alunos = alunoRepository.findById(cmd.alunos()).get();
+
                 Viagem viagem = Viagem.builder()
                                 .motorista(cmd.motorista())
                                 .rota(cmd.rota())

@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,6 +30,7 @@ import lombok.NonNull;
 
 @AllArgsConstructor
 @RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping(path = "/api/viagem", produces = APPLICATION_JSON_VALUE)
 public class ViagemController {
     ViagemService service;

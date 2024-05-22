@@ -15,7 +15,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ViagemForm {
     private final Consumer<ViagemForm> action;
-    private List<Aluno> alunos = new ArrayList();
+
+    private List<Aluno> alunos = new ArrayList<Aluno>();
     private RotaId rota;
     private MotoristaId motorista;
     private LocalDate data;

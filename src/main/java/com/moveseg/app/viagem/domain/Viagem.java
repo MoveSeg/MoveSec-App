@@ -25,7 +25,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 public class Viagem  extends AbstractEntity<ViagemId>{
-    @ManyToMany(cascade = CascadeType.DETACH)
+
+    @ManyToMany(cascade = CascadeType.PERSIST)
     private List<Aluno> alunos;
     private RotaId rota;
     private MotoristaId motorista;
@@ -52,6 +53,7 @@ private Viagem(ViagemBuilder builder) {
     public static class ViagemBuilder {
         private ViagemId id;
         private List<Aluno> alunos = new ArrayList<Aluno>();
+
         public ViagemBuilder aluno(Aluno aluno) {
             alunos.add(aluno);
             return this;
@@ -59,6 +61,7 @@ private Viagem(ViagemBuilder builder) {
 
         public Viagem build() {
             id = randomId(ViagemId.class);
+            
             return new Viagem(this);
         }
 

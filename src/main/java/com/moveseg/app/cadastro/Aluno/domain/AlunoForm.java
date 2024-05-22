@@ -22,7 +22,7 @@ public class AlunoForm {
     private final Consumer<AlunoForm> action;
 
     private String nome;
-    private List<Responsavel> responsavel = new ArrayList<Responsavel>();;
+    private List<Responsavel> responsavel = new ArrayList<Responsavel>();
     private Carteirinha carteirinha;
     private Telefone telefone;
     private Email email;

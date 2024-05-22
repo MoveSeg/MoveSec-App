@@ -60,7 +60,7 @@ public class RotaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(salvar);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable @NonNull RotaId id) {
         service.deletar(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
