@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.Lock;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.moveseg.app.viagem.Rota.app.view.RotaListView;
 import com.moveseg.app.viagem.Rota.domain.Rota;
 import com.moveseg.app.viagem.Rota.domain.RotaId;
 import com.moveseg.app.viagem.Rota.domain.cmd.AtualizarRota;
