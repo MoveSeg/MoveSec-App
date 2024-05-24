@@ -6,43 +6,39 @@ import static lombok.AccessLevel.PRIVATE;
 
 import java.time.LocalDate;
 
-import com.moveseg.app.cadastro.Aluno.domain.Carteirinha;
 import com.moveseg.app.cadastro.Instituto.domain.Email;
 import com.moveseg.app.cadastro.Instituto.domain.Endereco;
 import com.moveseg.app.cadastro.Instituto.domain.Telefone;
-import com.moveseg.app.cadastro.sk.domain.Cpf;
-import com.moveseg.app.cadastro.sk.domain.Genero;
+import com.moveseg.app.cadastro.veiculo.sk.domain.Cpf;
+import com.moveseg.app.cadastro.veiculo.sk.domain.Genero;
 import com.moveseg.parent.infra.domain.AbstractEntity;
 
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @Builder
-@NoArgsConstructor(access = PRIVATE, force = true)
+@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 
 @Entity
 public final class Responsavel extends AbstractEntity<ResponsavelId> {
-
-    @Embedded
-    @AttributeOverride(column = @Column(name = "email"), name = "value")
-    private Email email;
-
-    @Embedded
-    @AttributeOverride(column = @Column(name = "endereco"), name = "numero")
-    private Endereco endereco;
 
     @Embedded
     @AttributeOverride(column = @Column(name = "telefone"), name = "numero")
     private Telefone telefone;
 
     @Embedded
-    @AttributeOverride(column = @Column(name = "genero"), name = "value")
+    private Email email;
+
+    @Embedded
+    private Endereco endereco;
+    
     private Genero genero;
 
     @Embedded
@@ -50,7 +46,6 @@ public final class Responsavel extends AbstractEntity<ResponsavelId> {
     private Cpf cpf;
 
     private String nome;
-
 
     private LocalDate nascimento;
 

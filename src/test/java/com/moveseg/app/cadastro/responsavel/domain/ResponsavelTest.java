@@ -13,13 +13,12 @@ import com.moveseg.app.cadastro.Instituto.domain.Email;
 import com.moveseg.app.cadastro.Instituto.domain.Endereco;
 import com.moveseg.app.cadastro.Instituto.domain.Telefone;
 import com.moveseg.app.cadastro.responsavel.domain.Responsavel.ResponsavelBuilder;
-import com.moveseg.app.cadastro.sk.domain.Cpf;
-import com.moveseg.app.cadastro.sk.domain.Genero;
+import com.moveseg.app.cadastro.veiculo.sk.domain.Cpf;
+import com.moveseg.app.cadastro.veiculo.sk.domain.Genero;
 
 class ResponsavelTest {
 
     public String novoNome;
-    public Integer novoDocumento;
     public LocalDate novoNascimento;
     public Email novoEmail;
     public Telefone novoTelefone;
@@ -33,7 +32,6 @@ class ResponsavelTest {
     private Genero genero;
     private Cpf cpf;
     private String nome = "Luna";
-    private Integer documento = 1222342440;
     private LocalDate nascimento = LocalDate.of(2006, 02, 04);
     private ResponsavelBuilder builder;
 
@@ -120,7 +118,6 @@ class ResponsavelTest {
         assertThrows(Exception.class, () -> builder.build());
     }
 
-
     @Test
     void dadoNovosDadosDoNomeDeveAtualizarOResponsavelEManterNaoNulo() throws Exception {
         Email novoEmail = Email.of("Luna@aaaa.com");
@@ -130,7 +127,6 @@ class ResponsavelTest {
         Endereco novoEndereco = Endereco.of("Rua AAAA ", 44);
         String novoNome = "Novo nome";
         LocalDate novoNascimento = LocalDate.of(2008, 04, 06);
-        Integer novoDocumento = 676767676;
 
         Responsavel responsavel = this.builder.build();
         responsavel.update()
@@ -139,7 +135,6 @@ class ResponsavelTest {
                 .genero(novoGenero)
                 .nascimento(novoNascimento)
                 .email(novoEmail)
-                .documento(novoDocumento)
                 .telefone(novoTelefone)
                 .endereco(novoEndereco).apply();
 
@@ -151,6 +146,7 @@ class ResponsavelTest {
         assertEquals(novoEmail, responsavel.email());
         assertEquals(novoTelefone, responsavel.telefone());
         assertEquals(novoEndereco, responsavel.endereco());
+
     }
     @Test
     void dadoUmNomeNuloNaoDeveAtualizar() {
@@ -164,7 +160,6 @@ class ResponsavelTest {
                     .email(novoEmail)
                     .telefone(novoTelefone)
                     .endereco(novoEndereco)
-                    .documento(novoDocumento)
                     .apply();
 
         });
@@ -182,7 +177,6 @@ class ResponsavelTest {
                     .email(novoEmail)
                     .telefone(novoTelefone)
                     .endereco(novoEndereco)
-                    .documento(novoDocumento)
                     .apply();
 
         });
@@ -200,7 +194,6 @@ class ResponsavelTest {
                     .email(novoEmail)
                     .telefone(novoTelefone)
                     .endereco(novoEndereco)
-                    .documento(novoDocumento)
                     .apply();
 
         });
@@ -218,7 +211,6 @@ class ResponsavelTest {
                     .email(novoEmail)
                     .telefone(novoTelefone)
                     .endereco(novoEndereco)
-                    .documento(novoDocumento)
                     .apply();
 
         });
@@ -236,7 +228,6 @@ class ResponsavelTest {
                     .nascimento(novoNascimento)
                     .telefone(novoTelefone)
                     .endereco(novoEndereco)
-                    .documento(novoDocumento)
                     .apply();
 
         });
@@ -254,7 +245,6 @@ class ResponsavelTest {
                     .nascimento(novoNascimento)
                     .email(novoEmail)
                     .endereco(novoEndereco)
-                    .documento(novoDocumento)
                     .apply();
 
         });
@@ -272,29 +262,12 @@ class ResponsavelTest {
                     .nascimento(novoNascimento)
                     .email(novoEmail)
                     .telefone(novoTelefone)
-                    .documento(novoDocumento)
                     .apply();
 
         });
     }
 
-    @Test
-    void dadoUmDocumentoNuloNaoDeveAtualizar() {
-        Responsavel responsavel = this.builder.build();
-        assertThrows(Exception.class, () -> {
-            responsavel.update()
-
-                    .nome(novoNome)
-                    .cpf(novoCpf)
-                    .genero(novoGenero)
-                    .nascimento(novoNascimento)
-                    .email(novoEmail)
-                    .telefone(novoTelefone)
-                    .endereco(novoEndereco)
-                    .apply();
-
-        });
-    }
+    
     
 
 } 

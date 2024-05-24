@@ -47,7 +47,7 @@ public class AlunoService {
                                 .carteirinha(cmd.carteirinha())
                                 .genero(cmd.genero())
                                 .cpf(cmd.cpf())
-                                .dataDeNascimento(cmd.nascimento())
+                                .dataDeNascimento(cmd.dataDeNascimento())
                                 .build();
 
                 repository.save(aluno);
@@ -70,12 +70,12 @@ public class AlunoService {
                                 .endereco(cmd.endereco())
                                 .genero(cmd.genero())
                                 .cpf(cmd.cpf())
+                                .dataDeNascimento(cmd.dataDeNascimento())
                                 .aplicar();
                 return repository.save(aluno);
         }
 
         @NonNull
-
         @Transactional(readOnly = true)
         public List<AlunoListView> listarTodos() {
                 return repository.findAll().stream().map(AlunoListView::of).toList();

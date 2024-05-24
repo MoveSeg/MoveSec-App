@@ -16,14 +16,13 @@ import com.moveseg.app.cadastro.Instituto.domain.Email;
 import com.moveseg.app.cadastro.Instituto.domain.Endereco;
 import com.moveseg.app.cadastro.Instituto.domain.Telefone;
 import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
-import com.moveseg.app.cadastro.sk.domain.Cpf;
-import com.moveseg.app.cadastro.sk.domain.Genero;
+import com.moveseg.app.cadastro.veiculo.sk.domain.Cpf;
+import com.moveseg.app.cadastro.veiculo.sk.domain.Genero;
 
 public class AlunoTest {
     private String nome = "Nome";
     private Responsavel responsavel;
     private Carteirinha carteirinha;
-    private Integer documento;
     private Telefone telefone;
     private Email email;
     private Endereco endereco;
@@ -52,7 +51,6 @@ public class AlunoTest {
         dataDeNascimento = LocalDate.of(1990, 3, 15);
         responsaveis = new ArrayList<Responsavel>();
         responsaveis.add(responsavel);
-        documento = 111111111;
 
         Responsavel responsavel = Responsavel.builder()
                 .nome(this.nome)

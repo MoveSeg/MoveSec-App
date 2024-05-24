@@ -9,6 +9,8 @@ import com.moveseg.app.cadastro.Instituto.domain.Endereco;
 import com.moveseg.app.cadastro.veiculo.domain.VeiculoId;
 import com.moveseg.parent.infra.domain.AbstractEntity;
 
+import jakarta.persistence.AttributeOverride;
+
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
