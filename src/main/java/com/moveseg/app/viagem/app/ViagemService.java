@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.moveseg.app.cadastro.Aluno.domain.Aluno;
+import com.moveseg.app.cadastro.Aluno.domain.AlunoId;
 import com.moveseg.app.cadastro.Aluno.repository.AlunoRepository;
 import com.moveseg.app.viagem.app.view.ViagemFormView;
 import com.moveseg.app.viagem.app.view.ViagemListView;
@@ -36,7 +37,7 @@ public class ViagemService {
         @NonNull
         @Lock(PESSIMISTIC_READ)
         public ViagemId handle(@NonNull @Valid CriarViagem cmd)  {
-                Aluno alunos = alunoRepository.findById(cmd.alunos()).get();
+                Aluno alunos = alunoRepository.findById((AlunoId) cmd.alunos()).get();
 
                 Viagem viagem = Viagem.builder()
                                 .motorista(cmd.motorista())
@@ -51,6 +52,7 @@ public class ViagemService {
         }
 
         public Viagem handle(@NonNull @Valid AlterarViagem cmd) {
+                Aluno alunos = alunoRepository.findById((AlunoId) cmd.alunos()).get();
                 Viagem viagem = repository.findById(requireNonNull(cmd.id()))
                                 .orElseThrow(
                                                 () -> new EntityNotFoundException(
@@ -59,14 +61,13 @@ public class ViagemService {
                 viagem.atualizar()
                                 .motorista(cmd.motorista())
                                 .rota(cmd.rota())
-                                .alunos(cmd.alunos())
+                                .alunos(alunos)
                                 .data(cmd.data())
                                 .aplicar();
                 return repository.save(viagem);
         }
 
         @NonNull
-
         @Transactional(readOnly = true)
         public List<ViagemListView> listarTodos() {
                 return repository.findAll().stream().map(ViagemListView::of).toList();

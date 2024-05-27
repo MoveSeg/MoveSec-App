@@ -43,10 +43,13 @@ private Viagem(ViagemBuilder builder) {
 
      public ViagemForm atualizar() {
         return new ViagemForm(form -> {
-            this.alunos = requireNonNull(form.alunos(), "O aluno não deve ser nulo");
             this.rota = requireNonNull(form.rota(), "O Id da rota não deve ser nula");
             this.motorista = requireNonNull(form.motorista(), "O Id do motorista não deve ser nulo");
             this.data = requireNonNull(form.data(), "A data não deve ser inválida e nem nula");
+            if (form.alunos().isEmpty()) {
+                throw new IllegalArgumentException("Não pode ser nulo");
+            }
+            this.alunos = requireNonNull(form.alunos(), "O aluno não deve ser nulo");
         });
     }
 
