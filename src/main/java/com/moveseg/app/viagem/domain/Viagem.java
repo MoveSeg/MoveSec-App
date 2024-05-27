@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
-public class Viagem  extends AbstractEntity<ViagemId>{
+public class Viagem extends AbstractEntity<ViagemId> {
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     private List<Aluno> alunos;
@@ -32,7 +32,7 @@ public class Viagem  extends AbstractEntity<ViagemId>{
     private MotoristaId motorista;
     private LocalDate data;
 
-private Viagem(ViagemBuilder builder) {
+    private Viagem(ViagemBuilder builder) {
         super(builder.id);
         this.alunos = requireNonNull(builder.alunos, "O aluno não deve ser nulo");
         this.rota = requireNonNull(builder.rota, "O Id da rota não deve ser nula");
@@ -40,8 +40,7 @@ private Viagem(ViagemBuilder builder) {
         this.data = requireNonNull(builder.data, "A data não deve ser inválida e nem nula");
     }
 
-
-     public ViagemForm atualizar() {
+    public ViagemForm atualizar() {
         return new ViagemForm(form -> {
             this.rota = requireNonNull(form.rota(), "O Id da rota não deve ser nula");
             this.motorista = requireNonNull(form.motorista(), "O Id do motorista não deve ser nulo");
@@ -57,18 +56,17 @@ private Viagem(ViagemBuilder builder) {
         private ViagemId id;
         private List<Aluno> alunos = new ArrayList<Aluno>();
 
-        public ViagemBuilder aluno(Aluno aluno) {
-            alunos.add(aluno);
+        public ViagemBuilder alunos(List<Aluno> alunos) {
+            alunos.addAll(alunos);
             return this;
         }
 
         public Viagem build() {
             id = randomId(ViagemId.class);
-            
+
             return new Viagem(this);
         }
 
-    
     }
 
 }
