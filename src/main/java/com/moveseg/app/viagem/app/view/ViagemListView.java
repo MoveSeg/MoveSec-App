@@ -18,7 +18,7 @@ public class ViagemListView {
     private ViagemId id;
     private RotaId rota;
     private MotoristaId motorista;
-    private String aluno;
+    private String alunos;
     private String data;
 
     public static ViagemListView of(Viagem viagem) {
@@ -26,7 +26,7 @@ public class ViagemListView {
                 .id(viagem.id())
                 .rota(viagem.rota())
                 .motorista(viagem.motorista())
-                .aluno(viagem.alunos().get(0).nome())
+                .alunos(viagem.alunos().get(0).nome())
                 .data(viagem.data().toString())
                 .build();
     }

@@ -34,6 +34,9 @@ public class Viagem extends AbstractEntity<ViagemId> {
 
     private Viagem(ViagemBuilder builder) {
         super(builder.id);
+        if (builder.alunos.isEmpty()) {
+            throw new IllegalArgumentException("Não pode ser nulo");
+        }
         this.alunos = requireNonNull(builder.alunos, "O aluno não deve ser nulo");
         this.rota = requireNonNull(builder.rota, "O Id da rota não deve ser nula");
         this.motorista = requireNonNull(builder.motorista, "O Id do motorista não deve ser nulo");
@@ -57,7 +60,7 @@ public class Viagem extends AbstractEntity<ViagemId> {
         private List<Aluno> alunos = new ArrayList<Aluno>();
 
         public ViagemBuilder alunos(List<Aluno> alunos) {
-            alunos.addAll(alunos);
+            this.alunos.addAll(alunos);
             return this;
         }
 

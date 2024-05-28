@@ -37,7 +37,7 @@ public class ViagemService {
         @NonNull
         @Lock(PESSIMISTIC_READ)
         public ViagemId handle(@NonNull @Valid CriarViagem cmd)  {
-                List<Aluno> alunos = alunoRepository.findAllById(cmd.alunos());
+                List<Aluno> alunos = alunoRepository.findAllById(cmd.alunos().stream().map(AlunoId::new).toList());
                 Viagem viagem = Viagem.builder()
                                 .motorista(cmd.motorista())
                                 .rota(cmd.rota())
@@ -45,8 +45,7 @@ public class ViagemService {
                                 .data(cmd.data())
                                 .build();
 
-                repository.save(viagem);
-
+                repository.save(viagem); 
                 return viagem.id();
         }
 

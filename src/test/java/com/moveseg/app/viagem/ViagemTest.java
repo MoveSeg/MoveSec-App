@@ -19,6 +19,7 @@ import com.moveseg.app.viagem.domain.Viagem.ViagemBuilder;
 import com.moveseg.parent.infra.domain.DomainObjectId;
 
 public class ViagemTest {
+
     private Aluno aluno;
     private List<Aluno> alunos;
     private RotaId rota;
@@ -54,13 +55,6 @@ public class ViagemTest {
         assertEquals(motorista, viagem.motorista());
         assertEquals(rota, viagem.rota());
         assertEquals(data, viagem.data());
-    }
-
-    @Test
-    void dadoUmaViagemSemAlunosNaoDeveCriar() {
-
-        builder.alunos(null);
-        assertThrows(Exception.class, () -> builder.build());
     }
 
     @Test

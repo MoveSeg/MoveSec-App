@@ -8,8 +8,4 @@ public class AlunoId extends DomainObjectId{
         super(uuid);
     }
 
-    public AlunoId(){
-        super("");
-    }
-
 }
