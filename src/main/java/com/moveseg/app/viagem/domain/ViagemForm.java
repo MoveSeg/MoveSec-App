@@ -7,6 +7,7 @@ import java.util.function.Consumer;
 
 import com.moveseg.app.cadastro.Aluno.domain.Aluno;
 import com.moveseg.app.cadastro.Motorista.domain.MotoristaId;
+import com.moveseg.app.viagem.Rota.domain.RotaId;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

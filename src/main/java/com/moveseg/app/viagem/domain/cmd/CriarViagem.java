@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.moveseg.app.cadastro.Motorista.domain.MotoristaId;
-import com.moveseg.app.viagem.domain.RotaId;
+import com.moveseg.app.viagem.Rota.domain.RotaId;
 
 import lombok.Builder;
 import lombok.Data;
