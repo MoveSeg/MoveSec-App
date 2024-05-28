@@ -12,6 +12,8 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.moveseg.app.cadastro.responsavel.app.view.ResponsavelFormView;
+import com.moveseg.app.cadastro.responsavel.app.view.ResponsavelListView;
 import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
 import com.moveseg.app.cadastro.responsavel.domain.ResponsavelId;
 import com.moveseg.app.cadastro.responsavel.domain.cmd.AtualizarResponsavel;
@@ -20,58 +22,65 @@ import com.moveseg.app.cadastro.responsavel.repository.ResponsavelRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 
 @Service
 @Transactional(propagation = REQUIRES_NEW)
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class ResponsavelService {
 
-    private final ResponsavelRepository repository;
+    private ResponsavelRepository repository;
 
     @NonNull
     @Lock(PESSIMISTIC_READ)
     public ResponsavelId handle(@NonNull @Valid CriarResponsavel cmd) throws Exception {
         Responsavel responsavel = Responsavel.builder()
-                .nome(cmd.nome)
-                .nascimento(cmd.nascimento)
-                .email(cmd.email)
-                .telefone(cmd.telefone)
-                .endereco(cmd.endereco)
-                .genero (cmd.genero)
-                .cpf(cmd.cpf)
+                .nome(cmd.nome())
+                .nascimento(cmd.nascimento())
+                .email(cmd.email())
+                .telefone(cmd.telefone())
+                .endereco(cmd.endereco())
+                .genero(cmd.genero())
+                .cpf(cmd.cpf())
                 .build();
 
         repository.save(responsavel);
         return responsavel.id();
     }
 
-    public Responsavel atualizarResponsavel(@NonNull ResponsavelId id, AtualizarResponsavel cmd) throws Exception {
-        Responsavel responsavel = repository.findById(id).orElseThrow(() -> new Exception("Não encontrado"));
+    public Responsavel atualizarResponsavel(@NonNull @Valid AtualizarResponsavel cmd) throws Exception {
+        Responsavel responsavel = repository.findById(requireNonNull(cmd.id()))
+                .orElseThrow(
+                        () -> new EntityNotFoundException(
+                                format("Not found any Business with code %s.",
+                                        cmd.id().toUUID())));
 
         responsavel.update()
-                .nome(cmd.nome)
-                .nascimento(cmd.nascimento)
-                .email(cmd.email)
-                .telefone(cmd.telefone)
-                .endereco(cmd.endereco)
+                .nome(cmd.nome())
+                .nascimento(cmd.nascimento())
+                .email(cmd.email())
+                .telefone(cmd.telefone())
+                .endereco(cmd.endereco())
+                .genero(cmd.genero())
+                .cpf(cmd.cpf())
                 .apply();
         return repository.save(responsavel);
     }
 
     @NonNull
+
     @Transactional(readOnly = true)
-    public List<Responsavel> listarTodos() {
-        return repository.findAll();
+    public List<ResponsavelListView> listarTodos() {
+        return repository.findAll().stream().map(ResponsavelListView::of).toList();
     }
 
-    @SuppressWarnings("null")
-    @NonNull
     @Transactional(readOnly = true)
-    public Responsavel buscarPorId(@NonNull ResponsavelId id) {
-        return repository.findById(requireNonNull(id))
+    public ResponsavelFormView buscarPorId(@NonNull ResponsavelId id) {
+        return ResponsavelFormView.of(repository.findById(requireNonNull(id))
                 .orElseThrow(
-                        () -> new EntityNotFoundException(format("Not found any Business with code %s.", id.toUUID())));
+                        () -> new EntityNotFoundException(
+                                format("Not found any Business with code %s.",
+                                        id.toUUID()))));
     }
 
     public void deletar(@NonNull ResponsavelId id) {
