@@ -1,13 +1,15 @@
 package com.moveseg.app.cadastro.Instituto.infra;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
 import com.moveseg.app.cadastro.Instituto.domain.Telefone;
+import com.moveseg.app.cadastro.Instituto.infra.TelefoneValidator;
 
 import jakarta.validation.ConstraintValidatorContext;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class TelefoneTest {
     @Mock
