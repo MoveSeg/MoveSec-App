@@ -10,10 +10,9 @@ import com.moveseg.app.cadastro.veiculo.domain.VeiculoId;
 import com.moveseg.parent.infra.domain.AbstractEntity;
 
 import jakarta.persistence.AttributeOverride;
+
 import jakarta.persistence.CollectionTable;
-import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import lombok.AccessLevel;
@@ -29,35 +28,28 @@ public class Rota extends AbstractEntity<RotaId> {
     @CollectionTable(name = "enderecos", joinColumns = @JoinColumn(name = "rota_id"))
     private List<Endereco> enderecos;
 
-    @Embedded
-    @AttributeOverride(column = @Column(name = "numero"), name = "value")
-    private Numero numero;
+    private Numero numeroRota;
 
     private VeiculoId veiculo;
 
-    private Rota(RotaId id, Numero numero, VeiculoId veiculo, List<Endereco> enderecos) {
+    private Rota(RotaId id, Numero numeroRota, VeiculoId veiculo, List<Endereco> enderecos) {
         super(id);
-        this.numero = requireNonNull(numero, "O numero não deve ser nulo");
+        this.numeroRota = requireNonNull(numeroRota, "O numero da rota não deve ser nulo");
         this.veiculo = requireNonNull(veiculo, "O veiculo não deve ser nulo");
         this.enderecos = requireNonNull(enderecos, "Endereco não pode ser nulo");
     }
 
     public RotaForm atualizar() {
         return new RotaForm(form -> {
-            this.numero = requireNonNull(form.numero(), "Numero não pode ser nulo");
+            this.numeroRota = requireNonNull(form.numeroRota(), "Numero não pode ser nulo");
             this.veiculo = requireNonNull(form.veiculo(), "Veiculo não pode ser nulo");
-            if (form.endereco().isEmpty()) {
-                throw new IllegalArgumentException("Não pode ser nulo");
-            }
             this.enderecos = requireNonNull(form.endereco(), "Endereco não pode ser nulo");
         });
-
     }
 
-    public static Rota of(Numero numero, VeiculoId veiculo, List<Endereco> enderecos) {
+    public static Rota of(Numero numeroRota, VeiculoId veiculo, List<Endereco> enderecos) {
+        
         RotaId id = randomId(RotaId.class);
-
-        return new Rota(id, numero, veiculo, enderecos);
-
+        return new Rota(id, numeroRota, veiculo, enderecos);
     }
 }

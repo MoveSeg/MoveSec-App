@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moveseg.app.viagem.Rota.app.RotaService;
+import com.moveseg.app.viagem.Rota.app.view.RotaListView;
 import com.moveseg.app.viagem.Rota.domain.Rota;
 import com.moveseg.app.viagem.Rota.domain.RotaId;
 import com.moveseg.app.viagem.Rota.domain.cmd.AtualizarRota;
@@ -28,6 +30,7 @@ import lombok.NonNull;
 @AllArgsConstructor
 @RestController
 @RequestMapping(path = "/api/rota", produces = APPLICATION_JSON_VALUE)
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class RotaController {
 
     private final RotaService service;
@@ -42,12 +45,12 @@ public class RotaController {
     }
 
     @GetMapping
-    public List<Rota> listarTodos() {
+    public @NonNull List<RotaListView> listarTodos() {
         return service.listarTodos();
     }
 
     @GetMapping("/{id}")
-    public Rota buscarPorId(@PathVariable @NonNull RotaId id) {
+    public RotaListView buscarPorId(@PathVariable @NonNull RotaId id) {
         return service.buscarPorId(id);
     }
 
@@ -60,7 +63,7 @@ public class RotaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(salvar);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable @NonNull RotaId id) {
         service.deletar(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
