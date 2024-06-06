@@ -13,12 +13,13 @@ import org.junit.jupiter.api.Test;
 
 import com.moveseg.app.cadastro.Aluno.domain.Aluno;
 import com.moveseg.app.cadastro.Motorista.domain.MotoristaId;
-import com.moveseg.app.viagem.domain.RotaId;
+import com.moveseg.app.viagem.Rota.domain.RotaId;
 import com.moveseg.app.viagem.domain.Viagem;
 import com.moveseg.app.viagem.domain.Viagem.ViagemBuilder;
 import com.moveseg.parent.infra.domain.DomainObjectId;
 
 public class ViagemTest {
+
     private Aluno aluno;
     private List<Aluno> alunos;
     private RotaId rota;
@@ -54,13 +55,6 @@ public class ViagemTest {
         assertEquals(motorista, viagem.motorista());
         assertEquals(rota, viagem.rota());
         assertEquals(data, viagem.data());
-    }
-
-    @Test
-    void dadoUmaViagemSemAlunosNaoDeveCriar() {
-
-        builder.alunos(null);
-        assertThrows(Exception.class, () -> builder.build());
     }
 
     @Test

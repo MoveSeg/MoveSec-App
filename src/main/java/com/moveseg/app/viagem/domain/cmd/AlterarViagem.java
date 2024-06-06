@@ -1,10 +1,11 @@
 package com.moveseg.app.viagem.domain.cmd;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import com.moveseg.app.cadastro.Aluno.domain.Aluno;
 import com.moveseg.app.cadastro.Motorista.domain.MotoristaId;
-import com.moveseg.app.viagem.domain.RotaId;
+import com.moveseg.app.viagem.Rota.domain.RotaId;
 import com.moveseg.app.viagem.domain.ViagemId;
 
 import lombok.Builder;
@@ -14,7 +15,7 @@ import lombok.Data;
 @Builder
 public class AlterarViagem {
     private ViagemId id;
-    private Aluno alunos;
+    private List<Aluno> alunos;
     private RotaId rota;
     private MotoristaId motorista;
     private LocalDate data;
