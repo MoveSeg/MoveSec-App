@@ -39,9 +39,11 @@ public class ViagemService {
         public ViagemId handle(@NonNull @Valid CriarViagem cmd)  {
                 List<Aluno> alunos = alunoRepository.findAllById(cmd.alunos().stream().map(AlunoId::new).toList());
                 Viagem viagem = Viagem.builder()
+                                .alunos(alunos)
                                 .motorista(cmd.motorista())
                                 .rota(cmd.rota())
                                 .alunos(alunos)
+                                .veiculo(cmd.veiculo())
                                 .data(cmd.data())
                                 .build();
 
@@ -57,9 +59,10 @@ public class ViagemService {
                                                                 format("Not found any Business with code %s.",
                                                                                 cmd.id().toUUID())));
                 viagem.atualizar()
+                                .alunos(alunos)
                                 .motorista(cmd.motorista())
                                 .rota(cmd.rota())
-                                .alunos(alunos)
+                                .veiculo(cmd.veiculo())
                                 .data(cmd.data())
                                 .aplicar();
                 return repository.save(viagem);

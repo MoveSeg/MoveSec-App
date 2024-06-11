@@ -16,7 +16,6 @@ public class RotaFormView {
     private String logradouro;
     private Integer numero;
     private String numeroRota;
-    private VeiculoId veiculo;
 
     public static RotaFormView of(Rota rota) {
         return RotaFormView.builder()
@@ -24,7 +23,6 @@ public class RotaFormView {
                 .logradouro(rota.enderecos().get(0).logradouro())
                 .numero(rota.enderecos().get(0).numero())
                 .numeroRota(rota.numeroRota().value())
-                .veiculo(rota.veiculo())
                 .build();
     }
 }

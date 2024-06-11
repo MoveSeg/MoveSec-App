@@ -27,7 +27,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping(path = "/api/Motorista ", produces =APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/api/Motorista", produces =APPLICATION_JSON_VALUE)
 public class MotoristaController {
     private final MotoristaService service;
 

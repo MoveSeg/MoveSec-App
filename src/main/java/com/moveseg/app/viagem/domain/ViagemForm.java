@@ -7,6 +7,8 @@ import java.util.function.Consumer;
 
 import com.moveseg.app.cadastro.Aluno.domain.Aluno;
 import com.moveseg.app.cadastro.Motorista.domain.MotoristaId;
+import com.moveseg.app.cadastro.veiculo.domain.VeiculoForm;
+import com.moveseg.app.cadastro.veiculo.domain.VeiculoId;
 import com.moveseg.app.viagem.Rota.domain.RotaId;
 
 import lombok.Getter;
@@ -20,6 +22,7 @@ public class ViagemForm {
     private List<Aluno> alunos = new ArrayList<Aluno>();
     private RotaId rota;
     private MotoristaId motorista;
+    private VeiculoId veiculo;
     private LocalDate data;
 
     public ViagemForm alunos(Aluno alunos) {
@@ -34,6 +37,11 @@ public class ViagemForm {
 
     public ViagemForm motorista(MotoristaId motorista) {
         this.motorista = motorista;
+        return this;
+    }
+
+    public ViagemForm veiculo(VeiculoId veiculo){
+        this.veiculo = veiculo;
         return this;
     }
 
