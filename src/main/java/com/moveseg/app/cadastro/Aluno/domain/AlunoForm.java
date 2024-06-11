@@ -35,8 +35,8 @@ public class AlunoForm {
         this.nome = nome;
         return this;
     }
-    public AlunoForm responsavel(Responsavel responsavel) {
-        this.responsavel.add(responsavel);
+    public AlunoForm responsavel(List<Responsavel> responsavel) {
+        this.responsavel.addAll(responsavel);
         return this;
     }
 
