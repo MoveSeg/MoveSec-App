@@ -2,7 +2,6 @@ package com.moveseg.app.cadastro.responsavel.domain;
 
 import static com.moveseg.parent.infra.domain.DomainObjectId.randomId;
 import static java.util.Objects.requireNonNull;
-import static lombok.AccessLevel.PRIVATE;
 
 import java.time.LocalDate;
 
@@ -38,7 +37,7 @@ public final class Responsavel extends AbstractEntity<ResponsavelId> {
 
     @Embedded
     private Endereco endereco;
-    
+
     private Genero genero;
 
     @Embedded
