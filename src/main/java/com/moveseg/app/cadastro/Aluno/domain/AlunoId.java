@@ -7,5 +7,5 @@ public class AlunoId extends DomainObjectId{
     public AlunoId(String uuid){
         super(uuid);
     }
-    
+
 }

@@ -7,6 +7,7 @@ import java.util.function.Consumer;
 
 import com.moveseg.app.cadastro.Aluno.domain.Aluno;
 import com.moveseg.app.cadastro.Motorista.domain.MotoristaId;
+import com.moveseg.app.viagem.Rota.domain.RotaId;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ViagemForm {
     private final Consumer<ViagemForm> action;
-    private List<Aluno> alunos = new ArrayList();
+
+    private List<Aluno> alunos = new ArrayList<Aluno>();
     private RotaId rota;
     private MotoristaId motorista;
     private LocalDate data;

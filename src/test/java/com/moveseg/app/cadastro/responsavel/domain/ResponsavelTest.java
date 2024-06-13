@@ -146,7 +146,7 @@ class ResponsavelTest {
         assertEquals(novoEmail, responsavel.email());
         assertEquals(novoTelefone, responsavel.telefone());
         assertEquals(novoEndereco, responsavel.endereco());
-        
+
     }
     @Test
     void dadoUmNomeNuloNaoDeveAtualizar() {

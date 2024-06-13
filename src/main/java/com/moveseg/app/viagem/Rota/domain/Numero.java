@@ -3,8 +3,7 @@ package com.moveseg.app.viagem.Rota.domain;
 import com.moveseg.parent.infra.domain.ValueObject;
 
 import jakarta.persistence.Embeddable;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,14 +12,17 @@ import lombok.NoArgsConstructor;
 @Embeddable
 @EqualsAndHashCode
 @NoArgsConstructor
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Numero implements ValueObject {
     private String value;
 
-    public static Numero of(String numero) throws Exception {
-        if (numero == null || numero.isEmpty()) {
+    public Numero(String value) {
+        this.value = value;
+    }
+
+    public static Numero of(String numeroRota) throws Exception {
+        if (numeroRota == null || numeroRota.isEmpty()) {
             throw new Exception("Numero não pode ser nulo e nem 0");
         }
-        return new Numero(numero);
+        return new Numero(numeroRota);
     }
 }
