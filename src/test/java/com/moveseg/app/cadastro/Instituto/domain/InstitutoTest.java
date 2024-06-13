@@ -54,17 +54,17 @@ public class InstitutoTest {
         assertEquals(this.responsaveis, instituto.responsaveis());
         assertEquals(this.telefone, instituto.telefone());
         assertEquals(this.email, instituto.email());
-    } 
-     
+    }
+
     @Test
     void dadoUmInstitutoSemResponsavelNaoDeveCriarVazio() {
         assertThrows(Exception.class, () -> {
-                this.builder = Instituto.builder()
-                .responsaveis(null)
-                .nome(nome)
-                .email(email)
-                .telefone(telefone)
-                .endereco(endereco);
+            Instituto.builder()
+                    .responsaveis(null)
+                    .nome(nome)
+                    .email(email)
+                    .telefone(telefone)
+                    .endereco(endereco).build();
         });
     }
 
