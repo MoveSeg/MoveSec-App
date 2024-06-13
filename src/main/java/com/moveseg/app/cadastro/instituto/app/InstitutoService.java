@@ -47,7 +47,6 @@ public class InstitutoService {
                                 .telefone(cmd.telefone())
                                 .email(cmd.email())
                                 .build();
-
                 repository.save(instituto);
 
                 return instituto.id();

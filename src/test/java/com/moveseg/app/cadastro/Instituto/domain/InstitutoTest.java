@@ -28,12 +28,12 @@ public class InstitutoTest {
     private Responsavel novoResponsavel;
     private Telefone novoTelefone;
     private Email novoEmail;
-    private List<Responsavel> novosResponsaveis;
+    private List<Responsavel> novosResponsaveis = new ArrayList<Responsavel>();
 
     @BeforeEach
     void initializeBuilder() throws Exception {
         responsaveis = new ArrayList<Responsavel>();
-
+        responsaveis.add(responsavel);
         endereco = Endereco.of("logradouro", 555);
         telefone = Telefone.of("1123456 - 7890");
         email = Email.of("Exemplo@gmail.com");
@@ -47,7 +47,6 @@ public class InstitutoTest {
 
     @Test
     void dadoInstitutoCompletoDeveCriar() throws Exception {
-        this.responsaveis.add(responsavel);
         Instituto instituto = this.builder.build();
         assertNotNull(instituto);
         assertEquals(this.nome, instituto.nome());
@@ -60,7 +59,12 @@ public class InstitutoTest {
     @Test
     void dadoUmInstitutoSemResponsavelNaoDeveCriarVazio() {
         assertThrows(Exception.class, () -> {
-            this.builder.build();
+                this.builder = Instituto.builder()
+                .responsaveis(null)
+                .nome(nome)
+                .email(email)
+                .telefone(telefone)
+                .endereco(endereco);
         });
     }
 
@@ -98,7 +102,6 @@ public class InstitutoTest {
 
     @Test
     void novasInformaçõesCompletasDeveAtulizarEManterNaoNulo() throws Exception {
-        novosResponsaveis = new ArrayList<Responsavel>();
         novosResponsaveis.add(novoResponsavel);
         novoNome = "Novo nome";
         novoEndereco = Endereco.of("Novo endereco", 9999);
@@ -123,7 +126,6 @@ public class InstitutoTest {
 
     @Test
     void dadoNomeNuloNaoDeveAtualizar() throws Exception {
-
         Instituto instituto = this.builder.build();
         assertThrows(Exception.class, () -> {
             instituto.atualizar()
