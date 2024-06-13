@@ -3,6 +3,7 @@ package com.moveseg.app.cadastro.Instituto.domain;
 import static com.moveseg.parent.infra.domain.DomainObjectId.randomId;
 import static java.util.Objects.requireNonNull;
 
+import java.lang.instrument.IllegalClassFormatException;
 import java.util.ArrayList;
 import java.util.List;
 

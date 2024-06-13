@@ -33,7 +33,7 @@ public class InstitutoTest {
     @BeforeEach
     void initializeBuilder() throws Exception {
         responsaveis = new ArrayList<Responsavel>();
-        responsaveis.add(responsavel);
+
         endereco = Endereco.of("logradouro", 555);
         telefone = Telefone.of("1123456 - 7890");
         email = Email.of("Exemplo@gmail.com");
@@ -47,6 +47,7 @@ public class InstitutoTest {
 
     @Test
     void dadoInstitutoCompletoDeveCriar() throws Exception {
+        this.responsaveis.add(responsavel);
         Instituto instituto = this.builder.build();
         assertNotNull(instituto);
         assertEquals(this.nome, instituto.nome());
@@ -54,6 +55,13 @@ public class InstitutoTest {
         assertEquals(this.responsaveis, instituto.responsaveis());
         assertEquals(this.telefone, instituto.telefone());
         assertEquals(this.email, instituto.email());
+    } 
+     
+    @Test
+    void dadoUmInstitutoSemResponsavelNaoDeveCriarVazio() {
+        assertThrows(Exception.class, () -> {
+            this.builder.build();
+        });
     }
 
     @Test
