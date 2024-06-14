@@ -16,4 +16,11 @@ public final class Descricao {
     public Descricao(String descricao) {
         this.descricao = descricao;
     }
+
+    public static Descricao of(String descricao) throws Exception {
+        if (descricao == null || descricao.isEmpty()) {
+            throw new Exception("Descrição não pode ser nula e nem vazia");
+        }
+        return new Descricao(descricao);
+    }
 }

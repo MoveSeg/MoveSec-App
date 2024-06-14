@@ -15,4 +15,11 @@ public final class Observacao {
     public Observacao(String observacao){
         this.observacao = observacao;
     }
+
+    public static Observacao of(String observacao) throws Exception {
+        if (observacao == null || observacao.isEmpty()) {
+            throw new Exception("Observação não pode ser nula e nem vazia");
+        }
+        return new Observacao(observacao);
+    }
 }
