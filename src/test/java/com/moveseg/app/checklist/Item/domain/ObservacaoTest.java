@@ -1,4 +1,4 @@
-package com.moveseg.app.checklist.Item;
+package com.moveseg.app.checklist.Item.domain;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

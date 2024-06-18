@@ -12,7 +12,6 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.moveseg.app.cadastro.Instituto.domain.InstitutoId;
 import com.moveseg.app.checklist.Item.app.view.ItemFormView;
 import com.moveseg.app.checklist.Item.app.view.ItemListView;
 import com.moveseg.app.checklist.Item.domain.Item;
