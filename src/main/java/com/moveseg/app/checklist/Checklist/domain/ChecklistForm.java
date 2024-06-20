@@ -1,5 +1,6 @@
 package com.moveseg.app.checklist.Checklist.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -15,7 +16,7 @@ public class ChecklistForm {
       private final Consumer<ChecklistForm> action;
 
        private Nome nome;
-       private List<Item> itens;
+       private List<Item> itens = new ArrayList<Item>();
 
 
       public ChecklistForm nome(Nome nome){
@@ -23,8 +24,8 @@ public class ChecklistForm {
         return this;
     }
 
-    public ChecklistForm itens(List<Item> itens){
-        this.itens.addAll(itens);
+    public ChecklistForm itens(Item item){
+        this.itens.add(item);
         return this;
     }
 

@@ -41,7 +41,7 @@ public class ChecklistService {
     }
 
     public Checklist handle(@NonNull @Valid AlterarChecklist cmd) {
-        List<Item> itens = itemRepository.findAllById(cmd.itens());
+        Item itens = itemRepository.findById((ItemId) cmd.itens()).get();
         Checklist checklist = repository.findById(requireNonNull(cmd.id()))
                 .orElseThrow(
                         () -> new EntityNotFoundException(

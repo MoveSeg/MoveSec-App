@@ -9,6 +9,7 @@ import com.moveseg.app.checklist.Item.domain.Item;
 import com.moveseg.parent.infra.domain.AbstractAggregateRoot;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 public class Checklist extends AbstractAggregateRoot<ChecklistId>{
     private Nome nome;
+
+    @ManyToMany
     private List<Item> itens;
 
     private Checklist(ChecklistId id, Nome nome, List<Item> itens) {
@@ -29,7 +32,10 @@ public class Checklist extends AbstractAggregateRoot<ChecklistId>{
     public ChecklistForm atualizar() {
         return new ChecklistForm(form -> {
             this.nome = requireNonNull(form.nome(), "O nome do Checklist não pode ser nula");
-            this.itens = requireNonNull(form.itens(), "Os itens do Checklist não pode ser nula");
+            if (form.itens().isEmpty()) {
+                throw new IllegalArgumentException("Não pode passar uma lista vazia");
+            }
+            this.itens = requireNonNull(form.itens(), "Os itens do Checklist não pode ser nulo");
         });
     }
 

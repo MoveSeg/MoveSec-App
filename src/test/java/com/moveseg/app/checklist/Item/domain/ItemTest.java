@@ -6,11 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import com.moveseg.app.cadastro.Instituto.domain.Instituto;
-import com.moveseg.app.checklist.Item.domain.Descricao;
-import com.moveseg.app.checklist.Item.domain.Item;
-import com.moveseg.app.checklist.Item.domain.Observacao;
-
 public final class ItemTest {
     private Descricao descricao;
     private Boolean resposta;
