@@ -67,7 +67,7 @@ public final class GrupoChecklistTest {
         GrupoChecklist grupoChecklist = GrupoChecklist.from(nome, novosChecklists);
         grupoChecklist.atualizar()
         .nome(novoNome)
-        .checklist(novoChecklist).aplicar();
+        .checklist(novosChecklists).aplicar();
         assertNotNull(grupoChecklist.id());
         assertEquals(novoNome, grupoChecklist.nome());
         assertEquals(novosChecklists, grupoChecklist.checklists());
@@ -84,7 +84,7 @@ public final class GrupoChecklistTest {
         GrupoChecklist grupoChecklist = GrupoChecklist.from(nome, checklists);
         assertThrows(Exception.class, () -> {
             grupoChecklist.atualizar()
-            .checklist(novoChecklist).aplicar();
+            .checklist(novosChecklists).aplicar();
         });
     }
 

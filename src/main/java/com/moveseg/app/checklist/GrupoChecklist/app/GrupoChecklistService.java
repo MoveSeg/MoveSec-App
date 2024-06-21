@@ -47,7 +47,7 @@ public class GrupoChecklistService {
     }
 
     public GrupoChecklist handle(@NonNull @Valid AlterarGrupoChecklist cmd) {
-        Checklist checklists = checklistRepository.findById((ChecklistId) cmd.checklists()).get();
+        List<Checklist> checklists = checklistRepository.findAllById(cmd.checklists());
         GrupoChecklist grupoChecklist = repository.findById(requireNonNull(cmd.id()))
                 .orElseThrow(
                         () -> new EntityNotFoundException(

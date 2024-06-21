@@ -65,7 +65,7 @@ public final class ChecklistTest {
         Checklist checklist = Checklist.from(nome, itens);
         checklist.atualizar()
         .nome(novoNome)
-        .itens(novoItem).aplicar();
+        .itens(novosItens).aplicar();
         assertNotNull(checklist.id());
         assertEquals(novoNome, checklist.nome());
         assertEquals(novosItens, checklist.itens());
@@ -82,7 +82,7 @@ public final class ChecklistTest {
         Checklist checklist = Checklist.from(nome, itens);
         assertThrows(Exception.class, () -> {
             checklist.atualizar()
-            .itens(novoItem).aplicar();
+            .itens(novosItens).aplicar();
         });
     }
 

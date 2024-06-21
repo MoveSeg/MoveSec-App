@@ -24,8 +24,8 @@ public class GrupoChecklistForm {
         return this;
     }
 
-    public GrupoChecklistForm checklist(Checklist checklist){
-        this.checklists.add(checklist);
+    public GrupoChecklistForm checklist(List<Checklist> checklist){
+        this.checklists.addAll(checklist);
         return this;
     }
 

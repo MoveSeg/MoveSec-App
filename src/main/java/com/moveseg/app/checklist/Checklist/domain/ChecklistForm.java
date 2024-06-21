@@ -24,8 +24,8 @@ public class ChecklistForm {
         return this;
     }
 
-    public ChecklistForm itens(Item item){
-        this.itens.add(item);
+    public ChecklistForm itens(List<Item> item){
+        this.itens.addAll(item);
         return this;
     }
 
