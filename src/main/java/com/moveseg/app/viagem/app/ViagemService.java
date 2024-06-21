@@ -33,7 +33,7 @@ import lombok.AllArgsConstructor;
 public class ViagemService {
         private ViagemRepository repository;
         private AlunoRepository alunoRepository;
-
+  
         @NonNull
         @Lock(PESSIMISTIC_READ)
         public ViagemId handle(@NonNull @Valid CriarViagem cmd)  {

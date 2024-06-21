@@ -31,8 +31,8 @@ public class InstitutoForm {
         return this;
     }
 
-    public InstitutoForm responsavel(Responsavel responsavel) {
-        this.responsaveis.add(responsavel);
+    public InstitutoForm responsaveis(Responsavel responsaveis) {
+        this.responsaveis.add(responsaveis);
         return this;
     }
 
