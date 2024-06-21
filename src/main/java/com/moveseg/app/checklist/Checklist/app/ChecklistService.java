@@ -3,11 +3,13 @@ package com.moveseg.app.checklist.Checklist.app;
 import static jakarta.persistence.LockModeType.PESSIMISTIC_READ;
 import static java.lang.String.format;
 import static java.util.Objects.requireNonNull;
+import static org.springframework.transaction.annotation.Propagation.REQUIRES_NEW;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Lock;
 import org.springframework.lang.NonNull;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.moveseg.app.checklist.Checklist.app.view.ChecklistFormView;
@@ -23,7 +25,11 @@ import com.moveseg.app.checklist.Item.repository.ItemRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 
+@Service
+@Transactional(propagation = REQUIRES_NEW)
+@AllArgsConstructor
 public class ChecklistService {
     private ChecklistRepository repository;
     private ItemRepository itemRepository;

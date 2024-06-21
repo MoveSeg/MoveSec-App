@@ -39,7 +39,7 @@ public final class ChecklistTest {
     }
 
     @Test
-    void dadoUmChecklistSemObservacaoNaoDeveCriar() throws Exception {
+    void dadoUmChecklistSemItensNaoDeveCriar() throws Exception {
         nome = Nome.of("Checar onibus");
         assertThrows(Exception.class, () -> {
             Checklist.from(nome, null);
