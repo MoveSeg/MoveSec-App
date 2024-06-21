@@ -8,19 +8,19 @@ import org.junit.jupiter.api.Test;
 
 public class EmailTest {
     @Test
-    void dadoUmEnderecoValidoDeveCriar() throws Exception {
+    void dadoUmEmailValidoDeveCriar() throws Exception {
         Email email = Email.of("ExemploEmail@gmail.com");
         assertNotNull(email);
         assertEquals("ExemploEmail@gmail.com", email.email());
     }
 
     @Test
-    void dadoUmEnderecoInvalidoNaoDeveCriar() {
+    void dadoUmEmailInvalidoNaoDeveCriar() {
         assertThrows(Exception.class, () -> Email.of(null));
     }
 
     @Test
-    void dadoUmEnderecoVazioNaoDeveCriar() {
+    void dadoUmEmailVazioNaoDeveCriar() {
         assertThrows(Exception.class, () -> Email.of(""));
     }
 
