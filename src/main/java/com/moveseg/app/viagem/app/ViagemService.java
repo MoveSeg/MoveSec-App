@@ -33,7 +33,7 @@ import lombok.AllArgsConstructor;
 public class ViagemService {
         private ViagemRepository repository;
         private AlunoRepository alunoRepository;
-
+  
         @NonNull
         @Lock(PESSIMISTIC_READ)
         public ViagemId handle(@NonNull @Valid CriarViagem cmd)  {
@@ -57,6 +57,7 @@ public class ViagemService {
                                                                 format("Not found any Business with code %s.",
                                                                                 cmd.id().toUUID())));
                 viagem.atualizar()
+
                                 .motorista(cmd.motorista())
                                 .rota(cmd.rota())
                                 .alunos(alunos)
