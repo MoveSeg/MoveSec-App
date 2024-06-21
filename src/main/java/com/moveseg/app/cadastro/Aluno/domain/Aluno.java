@@ -89,8 +89,8 @@ public class Aluno extends AbstractEntity<AlunoId> {
         private AlunoId id;
         private List<Responsavel> responsaveis = new ArrayList<Responsavel>();
 
-        public AlunoBuilder responsavel(Responsavel responsavel) {
-            responsaveis.add(responsavel);
+        public AlunoBuilder responsavel(List<Responsavel> responsaveis) {
+            this.responsaveis.addAll(responsaveis);
             return this;
         }
 
