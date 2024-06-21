@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
 import com.moveseg.app.cadastro.Instituto.domain.Telefone;
-import com.moveseg.app.cadastro.Instituto.infra.TelefoneValidator;
 
 import jakarta.validation.ConstraintValidatorContext;
 

@@ -28,9 +28,9 @@ import com.moveseg.app.cadastro.Instituto.domain.cmd.CriarInstituto;
 
 import lombok.AllArgsConstructor;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
 @AllArgsConstructor
 @RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping(path = "/api/instituto", produces = APPLICATION_JSON_VALUE)
 public class InstitutoController {
 

@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,8 +12,6 @@ import org.junit.jupiter.api.Test;
 
 import com.moveseg.app.cadastro.Instituto.domain.Instituto.InstitutoBuilder;
 import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
-import com.moveseg.app.cadastro.veiculo.sk.domain.Cpf;
-import com.moveseg.app.cadastro.veiculo.sk.domain.Genero;
 
 public class InstitutoTest {
 
@@ -31,61 +28,27 @@ public class InstitutoTest {
     private Responsavel novoResponsavel;
     private Telefone novoTelefone;
     private Email novoEmail;
-
-    private List<Responsavel> novosResponsaveis;
+    private List<Responsavel> novosResponsaveis = new ArrayList<Responsavel>();
 
     @BeforeEach
     void initializeBuilder() throws Exception {
+        responsaveis = new ArrayList<Responsavel>();
+        responsaveis.add(responsavel);
         endereco = Endereco.of("logradouro", 555);
         telefone = Telefone.of("1123456 - 7890");
         email = Email.of("Exemplo@gmail.com");
-        Responsavel responsavel = Responsavel.builder()
-                .nome(nome)
-                .nascimento(LocalDate.of(2006, 02,
-                        04))
-                .email(email)
-                .telefone(telefone)
-                .endereco(endereco)
-                .genero(Genero.FEMININO)
-                .cpf(Cpf.of("23456789002"))
-                .build();
-
-        telefone = Telefone.of("1123456 - 7890");
-        email = Email.of("Exemplo@gmail.com");
-
-        novoNome = "Novo nome";
-        novoEndereco = Endereco.of("Novo endereco", 9999);
-        novoResponsavel = Responsavel.builder()
-                .nome("Jorge")
-                .nascimento(LocalDate.of(2006, 02,
-                        04))
-                .email(email)
-                .telefone(telefone)
-                .endereco(endereco)
-                .genero(Genero.MASCULINO)
-                .cpf(Cpf.of("23456789042"))
-                .build();
-        novoTelefone = Telefone.of(("415555555"));
-        novoEmail = Email.of("Exemplo2@gmail.com");
-
-        responsaveis = new ArrayList<Responsavel>();
-        responsaveis.add(responsavel);
-
-        novosResponsaveis = new ArrayList<Responsavel>();
-        novosResponsaveis.add(novoResponsavel);
-
         this.builder = Instituto.builder()
-                .nome(this.nome)
-                .endereco(this.endereco)
-                .telefone(this.telefone)
-                .email(this.email);
+                .responsaveis(responsaveis)
+                .nome(nome)
+                .email(email)
+                .telefone(telefone)
+                .endereco(endereco);
     }
 
     @Test
     void dadoInstitutoCompletoDeveCriar() throws Exception {
-        Instituto instituto = this.builder.responsavel(responsaveis.get(0)).build();
+        Instituto instituto = this.builder.build();
         assertNotNull(instituto);
-        assertNotNull(instituto.id());
         assertEquals(this.nome, instituto.nome());
         assertEquals(this.endereco, instituto.endereco());
         assertEquals(this.responsaveis, instituto.responsaveis());
@@ -95,8 +58,14 @@ public class InstitutoTest {
 
     @Test
     void dadoUmInstitutoSemResponsavelNaoDeveCriarVazio() {
-        Instituto instituto = this.builder.build();
-        assertEquals(new ArrayList<Responsavel>(), instituto.responsaveis());
+        assertThrows(Exception.class, () -> {
+            Instituto.builder()
+                    .responsaveis(null)
+                    .nome(nome)
+                    .email(email)
+                    .telefone(telefone)
+                    .endereco(endereco).build();
+        });
     }
 
     @Test
@@ -133,12 +102,16 @@ public class InstitutoTest {
 
     @Test
     void novasInformaçõesCompletasDeveAtulizarEManterNaoNulo() throws Exception {
-
+        novosResponsaveis.add(novoResponsavel);
+        novoNome = "Novo nome";
+        novoEndereco = Endereco.of("Novo endereco", 9999);
+        novoTelefone = Telefone.of(("415555555"));
+        novoEmail = Email.of("Exemplo2@gmail.com");
         Instituto instituto = this.builder.build();
         instituto.atualizar()
                 .nome(novoNome)
                 .endereco(novoEndereco)
-                .responsavel(novoResponsavel)
+                .responsaveis(novoResponsavel)
                 .telefone(novoTelefone)
                 .email(novoEmail).aplicar();
 
@@ -153,12 +126,11 @@ public class InstitutoTest {
 
     @Test
     void dadoNomeNuloNaoDeveAtualizar() throws Exception {
-
         Instituto instituto = this.builder.build();
         assertThrows(Exception.class, () -> {
             instituto.atualizar()
                     .endereco(novoEndereco)
-                    .responsavel(novoResponsavel)
+                    .responsaveis(novoResponsavel)
                     .telefone(novoTelefone)
                     .email(novoEmail).aplicar();
         });
@@ -170,7 +142,7 @@ public class InstitutoTest {
         assertThrows(Exception.class, () -> {
             instituto.atualizar()
                     .nome(novoNome)
-                    .responsavel(novoResponsavel)
+                    .responsaveis(novoResponsavel)
                     .telefone(novoTelefone)
                     .email(novoEmail).aplicar();
         });
@@ -179,18 +151,14 @@ public class InstitutoTest {
     @Test
     void dadoResponsavelNuloDeveCriarVazio() {
         Instituto instituto = this.builder.build();
-        instituto.atualizar()
-                .nome(novoNome)
-                .endereco(novoEndereco)
-                .telefone(novoTelefone)
-                .email(novoEmail).aplicar();
+        assertThrows(Exception.class, () -> {
+            instituto.atualizar()
+                    .nome(novoNome)
+                    .endereco(novoEndereco)
+                    .telefone(novoTelefone)
+                    .email(novoEmail).aplicar();
+        });
 
-        assertNotNull(instituto.id());
-        assertEquals(novoNome, instituto.nome());
-        assertEquals(novoEndereco, instituto.endereco());
-        assertEquals(new ArrayList<Responsavel>(), instituto.responsaveis());
-        assertEquals(novoTelefone, instituto.telefone());
-        assertEquals(novoEmail, instituto.email());
     }
 
     @Test
@@ -200,7 +168,7 @@ public class InstitutoTest {
             instituto.atualizar()
                     .nome(novoNome)
                     .endereco(novoEndereco)
-                    .responsavel(novoResponsavel)
+                    .responsaveis(novoResponsavel)
                     .email(novoEmail).aplicar();
         });
     }
@@ -212,7 +180,7 @@ public class InstitutoTest {
             instituto.atualizar()
                     .nome(novoNome)
                     .endereco(novoEndereco)
-                    .responsavel(novoResponsavel)
+                    .responsaveis(novoResponsavel)
                     .telefone(novoTelefone)
                     .aplicar();
         });

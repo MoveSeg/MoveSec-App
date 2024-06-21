@@ -34,7 +34,7 @@ public class RotaService {
     @Lock(PESSIMISTIC_READ)
     public RotaId handle(@NonNull @Valid CriarRota cmd) {
 
-        Rota rota = Rota.of(cmd.numeroRota(), cmd.veiculo(), cmd.enderecos());
+        Rota rota = Rota.of(cmd.numeroRota(), cmd.enderecos());
         
         repository.save(rota);
         return rota.id();

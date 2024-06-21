@@ -19,6 +19,7 @@ import com.moveseg.app.cadastro.Aluno.domain.cmd.AlterarAluno;
 import com.moveseg.app.cadastro.Aluno.domain.cmd.CriarAluno;
 import com.moveseg.app.cadastro.Aluno.repository.AlunoRepository;
 import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
+import com.moveseg.app.cadastro.responsavel.domain.ResponsavelId;
 import com.moveseg.app.cadastro.responsavel.repository.ResponsavelRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -36,12 +37,11 @@ public class AlunoService {
         @NonNull
         @Lock(PESSIMISTIC_READ)
         public AlunoId handle(@NonNull @Valid CriarAluno cmd) {
-                Responsavel responsavel = responsavelRepository.findById(cmd.responsavel()).get();
-
+                List<Responsavel> responsaveis = responsavelRepository.findAllById(cmd.responsaveis().stream().map(ResponsavelId::new).toList());
                 Aluno aluno = Aluno.builder()
                                 .nome(cmd.nome())
                                 .endereco(cmd.endereco())
-                                .responsavel(responsavel)
+                                .responsavel(responsaveis)
                                 .telefone(cmd.telefone())
                                 .email(cmd.email())
                                 .carteirinha(cmd.carteirinha())
@@ -56,6 +56,7 @@ public class AlunoService {
         }
 
         public Aluno handle(@NonNull @Valid AlterarAluno cmd) {
+                List<Responsavel> responsaveis = responsavelRepository.findAllById(cmd.responsaveis());
                 Aluno aluno = repository.findById(requireNonNull(cmd.id()))
                                 .orElseThrow(
                                                 () -> new EntityNotFoundException(
@@ -63,7 +64,7 @@ public class AlunoService {
                                                                                 cmd.id().toUUID())));
                 aluno.atualizar()
                                 .nome(cmd.nome())
-                                .responsavel(cmd.responsavel())
+                                .responsavel(responsaveis)
                                 .carteirinha(cmd.carteirinha())
                                 .telefone(cmd.telefone())
                                 .email(cmd.email())

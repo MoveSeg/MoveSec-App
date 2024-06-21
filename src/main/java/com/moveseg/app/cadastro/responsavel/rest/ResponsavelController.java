@@ -26,7 +26,6 @@ import com.moveseg.app.cadastro.responsavel.domain.ResponsavelId;
 import com.moveseg.app.cadastro.responsavel.domain.cmd.AtualizarResponsavel;
 import com.moveseg.app.cadastro.responsavel.domain.cmd.CriarResponsavel;
 
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor

@@ -26,7 +26,6 @@ public class RotaListView {
                 .logradouro(rota.enderecos().get(0).logradouro())
                 .numero(rota.enderecos().get(0).numero())
                 .numeroRota(rota.numeroRota().value())
-                .veiculo(rota.veiculo())
                 .build();
     }
 }
