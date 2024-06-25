@@ -10,10 +10,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.moveseg.app.checklist.Checklist.domain.ChecklistId;
+import com.moveseg.app.checklist.Checklist.domain.Resposta;
+import com.moveseg.app.checklist.Checklist.domain.Resposta.RespostaBuilder;
 import com.moveseg.app.checklist.GrupoChecklist.domain.GrupoChecklistId;
 import com.moveseg.app.checklist.Item.domain.ItemId;
-import com.moveseg.app.checklist.resposta.domain.Resposta;
-import com.moveseg.app.checklist.resposta.domain.Resposta.RespostaBuilder;
 import com.moveseg.parent.infra.domain.DomainObjectId;
 
 public final class RespostaTest {

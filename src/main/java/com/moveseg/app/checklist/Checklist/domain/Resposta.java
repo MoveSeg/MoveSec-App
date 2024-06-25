@@ -1,11 +1,10 @@
-package com.moveseg.app.checklist.resposta.domain;
+package com.moveseg.app.checklist.Checklist.domain;
 
 import static com.moveseg.parent.infra.domain.DomainObjectId.randomId;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 
-import com.moveseg.app.checklist.Checklist.domain.ChecklistId;
 import com.moveseg.app.checklist.GrupoChecklist.domain.GrupoChecklistId;
 import com.moveseg.app.checklist.Item.domain.ItemId;
 import com.moveseg.parent.infra.domain.AbstractEntity;

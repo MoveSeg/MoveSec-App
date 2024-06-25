@@ -1,4 +1,4 @@
-package com.moveseg.app.checklist.resposta.domain.cmd;
+package com.moveseg.app.checklist.Checklist.domain.cmd;
 
 import java.time.LocalDate;
 
