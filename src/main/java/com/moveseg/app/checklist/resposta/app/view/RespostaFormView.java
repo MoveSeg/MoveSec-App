@@ -1,12 +1,12 @@
-package com.moveseg.app.checklist.respostaChecklist.app.view;
+package com.moveseg.app.checklist.resposta.app.view;
 
 import java.time.LocalDate;
 
 import com.moveseg.app.checklist.Checklist.domain.ChecklistId;
 import com.moveseg.app.checklist.GrupoChecklist.domain.GrupoChecklistId;
 import com.moveseg.app.checklist.Item.domain.ItemId;
-import com.moveseg.app.checklist.respostaChecklist.domain.RespostaChecklist;
-import com.moveseg.app.checklist.respostaChecklist.domain.RespostaChecklistId;
+import com.moveseg.app.checklist.resposta.domain.Resposta;
+import com.moveseg.app.checklist.resposta.domain.RespostaId;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,8 +17,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RespostaChecklistFormView{
-    private RespostaChecklistId id;
+public class RespostaFormView{
+    private RespostaId id;
     private GrupoChecklistId grupoChecklist;
     private ChecklistId checklist;
     private ItemId item;
@@ -26,8 +26,8 @@ public class RespostaChecklistFormView{
     private Boolean resposta;
     private LocalDate data;
 
-    public static RespostaChecklistFormView of(RespostaChecklist respostaChecklist) {
-        return RespostaChecklistFormView.builder()
+    public static RespostaFormView of(Resposta respostaChecklist) {
+        return RespostaFormView.builder()
                 .id(respostaChecklist.id())
                 .grupoChecklist(respostaChecklist.grupoChecklist())
                 .checklist(respostaChecklist.checklist())

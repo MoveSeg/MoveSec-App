@@ -1,4 +1,4 @@
-package com.moveseg.app.checklist.respostaChecklist.domain.cmd;
+package com.moveseg.app.checklist.resposta.domain.cmd;
 
 import java.time.LocalDate;
 
@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class CriarRespostaChecklist {
+public class Responder {
     public GrupoChecklistId grupoChecklist;
     public ChecklistId checklist;
     public ItemId item;

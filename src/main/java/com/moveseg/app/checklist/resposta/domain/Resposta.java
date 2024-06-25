@@ -1,4 +1,4 @@
-package com.moveseg.app.checklist.respostaChecklist.domain;
+package com.moveseg.app.checklist.resposta.domain;
 
 import static com.moveseg.parent.infra.domain.DomainObjectId.randomId;
 import static java.util.Objects.requireNonNull;
@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Builder
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
-public class RespostaChecklist extends AbstractEntity<RespostaChecklistId> {
+public class Resposta extends AbstractEntity<RespostaId> {
     private GrupoChecklistId grupoChecklist;
     private ChecklistId checklist;
     private ItemId item;
@@ -28,7 +28,7 @@ public class RespostaChecklist extends AbstractEntity<RespostaChecklistId> {
     private Boolean resposta;
     private LocalDate data;
 
-     private RespostaChecklist(RespostaChecklistBuilder builder) {
+     private Resposta(RespostaBuilder builder) {
         super(builder.id);
         this.grupoChecklist = requireNonNull(builder.grupoChecklist, "O id do grupo checklist não deve ser nulo");
         this.checklist = requireNonNull(builder.checklist, "O id do checklist não deve ser nulo");
@@ -38,13 +38,13 @@ public class RespostaChecklist extends AbstractEntity<RespostaChecklistId> {
         this.data = requireNonNull(builder.data, "A data não pode ser nula");
     }
 
-    public static class RespostaChecklistBuilder {
-        private RespostaChecklistId id;
+    public static class RespostaBuilder {
+        private RespostaId id;
 
-        public RespostaChecklist build() {
-            id = randomId(RespostaChecklistId.class);
+        public Resposta build() {
+            id = randomId(RespostaId.class);
 
-            return new RespostaChecklist(this);
+            return new Resposta(this);
         }
     }
 }

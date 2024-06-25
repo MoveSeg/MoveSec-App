@@ -1,4 +1,4 @@
-package com.moveseg.app.checklist.respostaChecklist.ui;
+package com.moveseg.app.checklist.resposta.ui;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.moveseg.app.checklist.respostaChecklist.app.RespostaChecklistService;
-import com.moveseg.app.checklist.respostaChecklist.app.view.RespostaChecklistFormView;
-import com.moveseg.app.checklist.respostaChecklist.app.view.RespostaChecklistListView;
-import com.moveseg.app.checklist.respostaChecklist.domain.RespostaChecklist;
-import com.moveseg.app.checklist.respostaChecklist.domain.RespostaChecklistId;
-import com.moveseg.app.checklist.respostaChecklist.domain.cmd.CriarRespostaChecklist;
+import com.moveseg.app.checklist.resposta.app.RespostaService;
+import com.moveseg.app.checklist.resposta.app.view.RespostaFormView;
+import com.moveseg.app.checklist.resposta.app.view.RespostaListView;
+import com.moveseg.app.checklist.resposta.domain.Resposta;
+import com.moveseg.app.checklist.resposta.domain.RespostaId;
+import com.moveseg.app.checklist.resposta.domain.cmd.Responder;
 import com.moveseg.app.infra.auth.security.services.UserDetailsImpl;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -30,15 +30,15 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @RestController
 @RequestMapping(path = "/api/respostaChecklist", produces = APPLICATION_JSON_VALUE)
-public class RespostaChecklistController {
+public class RespostaController {
     
-    RespostaChecklistService service;
+    RespostaService service;
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<RespostaChecklist> salvar(@RequestBody CriarRespostaChecklist cmd, Authentication authentication) {
+    public ResponseEntity<Resposta> salvar(@RequestBody Responder cmd, Authentication authentication) {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         cmd.idUsuario(userDetails.getId());
-        RespostaChecklistId id = service.handle(cmd);
+        RespostaId id = service.handle(cmd);
 
         return ResponseEntity.created(fromCurrentRequest() 
                 .path("/").path(id.toUUID()).build().toUri())
@@ -46,12 +46,12 @@ public class RespostaChecklistController {
     }
 
     @GetMapping
-    public List<RespostaChecklistListView> listarTodos() {
+    public List<RespostaListView> listarTodos() {
         return service.listarTodos();
     }
 
     @GetMapping("/{id}")
-    public RespostaChecklistFormView buscarPorId(@PathVariable @NonNull RespostaChecklistId id) {
+    public RespostaFormView buscarPorId(@PathVariable @NonNull RespostaId id) {
         return service.buscarPorId(id);
     }
 }

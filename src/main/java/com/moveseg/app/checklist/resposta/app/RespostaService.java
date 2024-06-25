@@ -1,4 +1,4 @@
-package com.moveseg.app.checklist.respostaChecklist.app;
+package com.moveseg.app.checklist.resposta.app;
 
 import static jakarta.persistence.LockModeType.PESSIMISTIC_READ;
 import static java.lang.String.format;
@@ -11,12 +11,12 @@ import org.springframework.data.jpa.repository.Lock;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.moveseg.app.checklist.respostaChecklist.app.view.RespostaChecklistFormView;
-import com.moveseg.app.checklist.respostaChecklist.app.view.RespostaChecklistListView;
-import com.moveseg.app.checklist.respostaChecklist.domain.RespostaChecklist;
-import com.moveseg.app.checklist.respostaChecklist.domain.RespostaChecklistId;
-import com.moveseg.app.checklist.respostaChecklist.domain.cmd.CriarRespostaChecklist;
-import com.moveseg.app.checklist.respostaChecklist.repository.RespostaChecklistRepository;
+import com.moveseg.app.checklist.resposta.app.view.RespostaFormView;
+import com.moveseg.app.checklist.resposta.app.view.RespostaListView;
+import com.moveseg.app.checklist.resposta.domain.Resposta;
+import com.moveseg.app.checklist.resposta.domain.RespostaId;
+import com.moveseg.app.checklist.resposta.domain.cmd.Responder;
+import com.moveseg.app.checklist.resposta.repository.RespostaRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
@@ -26,14 +26,14 @@ import lombok.NonNull;
 @Service
 @Transactional(propagation = REQUIRES_NEW)
 @AllArgsConstructor
-public class RespostaChecklistService {
-    private RespostaChecklistRepository repository;
+public class RespostaService {
+    private RespostaRepository repository;
 
     @NonNull
     @Lock(PESSIMISTIC_READ)
-    public RespostaChecklistId handle(@NonNull @Valid CriarRespostaChecklist cmd) {
+    public RespostaId handle(@NonNull @Valid Responder cmd) {
 
-                RespostaChecklist respostaChecklist = RespostaChecklist.builder()
+                Resposta respostaChecklist = Resposta.builder()
                                 .grupoChecklist(cmd.grupoChecklist())
                                 .checklist(cmd.checklist())
                                 .item(cmd.item())
@@ -49,18 +49,18 @@ public class RespostaChecklistService {
     
     @NonNull
     @Transactional(readOnly = true)
-    public List<RespostaChecklistListView> listarTodos() {
-        return repository.findAll().stream().map(RespostaChecklistListView::of).toList();
+    public List<RespostaListView> listarTodos() {
+        return repository.findAll().stream().map(RespostaListView::of).toList();
     }
 
     @Transactional(readOnly = true)
-    public RespostaChecklistFormView buscarPorId(@NonNull RespostaChecklistId id) {
-        RespostaChecklist respostaChecklist = repository.findById(requireNonNull(id))
+    public RespostaFormView buscarPorId(@NonNull RespostaId id) {
+        Resposta respostaChecklist = repository.findById(requireNonNull(id))
                 .orElseThrow(
                         () -> new EntityNotFoundException(
                                 format("Not found any Business with code %s.",
                                         id.toUUID())));
-        return RespostaChecklistFormView.of(respostaChecklist);
+        return RespostaFormView.of(respostaChecklist);
 
     }
 }

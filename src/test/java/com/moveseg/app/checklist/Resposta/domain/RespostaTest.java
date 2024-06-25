@@ -1,4 +1,4 @@
-package com.moveseg.app.checklist.RespostaChecklist.domain;
+package com.moveseg.app.checklist.Resposta.domain;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -12,12 +12,12 @@ import org.junit.jupiter.api.Test;
 import com.moveseg.app.checklist.Checklist.domain.ChecklistId;
 import com.moveseg.app.checklist.GrupoChecklist.domain.GrupoChecklistId;
 import com.moveseg.app.checklist.Item.domain.ItemId;
-import com.moveseg.app.checklist.respostaChecklist.domain.RespostaChecklist;
-import com.moveseg.app.checklist.respostaChecklist.domain.RespostaChecklist.RespostaChecklistBuilder;
+import com.moveseg.app.checklist.resposta.domain.Resposta;
+import com.moveseg.app.checklist.resposta.domain.Resposta.RespostaBuilder;
 import com.moveseg.parent.infra.domain.DomainObjectId;
 
-public final class RespostaChecklistTest {
-    private RespostaChecklistBuilder builder;
+public final class RespostaTest {
+    private RespostaBuilder builder;
     private GrupoChecklistId grupoChecklist;
     private ChecklistId checklist;
     private ItemId item;
@@ -33,7 +33,7 @@ public final class RespostaChecklistTest {
         resposta = true;
         idUsuario = 0L;
         data = LocalDate.now();
-        this.builder = RespostaChecklist.builder()
+        this.builder = Resposta.builder()
         .grupoChecklist(grupoChecklist)
         .checklist(checklist)
         .item(item)
@@ -44,7 +44,7 @@ public final class RespostaChecklistTest {
 
     @Test
     void dadoUmaRespostaCompletaDeveCriar() throws Exception {
-        RespostaChecklist respostaChecklist = this.builder.build();
+        Resposta respostaChecklist = this.builder.build();
         assertNotNull(respostaChecklist);
         assertNotNull(respostaChecklist.id());
         assertNotNull(respostaChecklist.grupoChecklist());
