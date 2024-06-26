@@ -16,9 +16,13 @@ import com.moveseg.app.checklist.Checklist.app.view.ChecklistFormView;
 import com.moveseg.app.checklist.Checklist.app.view.ChecklistListView;
 import com.moveseg.app.checklist.Checklist.domain.Checklist;
 import com.moveseg.app.checklist.Checklist.domain.ChecklistId;
+import com.moveseg.app.checklist.Checklist.domain.Resposta;
+import com.moveseg.app.checklist.Checklist.domain.RespostaId;
 import com.moveseg.app.checklist.Checklist.domain.cmd.AlterarChecklist;
 import com.moveseg.app.checklist.Checklist.domain.cmd.CriarChecklist;
+import com.moveseg.app.checklist.Checklist.domain.cmd.Responder;
 import com.moveseg.app.checklist.Checklist.repository.ChecklistRepository;
+import com.moveseg.app.checklist.Checklist.repository.RespostaRepository;
 import com.moveseg.app.checklist.Item.domain.Item;
 import com.moveseg.app.checklist.Item.domain.ItemId;
 import com.moveseg.app.checklist.Item.repository.ItemRepository;
@@ -33,6 +37,7 @@ import lombok.AllArgsConstructor;
 public class ChecklistService {
     private ChecklistRepository repository;
     private ItemRepository itemRepository;
+    private RespostaRepository respostaRepository;
 
     @NonNull
     @Lock(PESSIMISTIC_READ)
@@ -44,6 +49,16 @@ public class ChecklistService {
         repository.save(checklist);
 
         return checklist.id();
+    }
+
+    @NonNull
+    @Lock(PESSIMISTIC_READ)
+    public RespostaId handle(@NonNull @Valid Responder cmd) {
+
+        Resposta resposta = Checklist.responder(cmd);
+        respostaRepository.save(resposta);
+
+        return resposta.id();
     }
 
     public Checklist handle(@NonNull @Valid AlterarChecklist cmd) {

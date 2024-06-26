@@ -5,19 +5,23 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import com.moveseg.app.checklist.Checklist.domain.Resposta.RespostaBuilder;
+import com.moveseg.app.checklist.Checklist.domain.cmd.Responder;
 import com.moveseg.app.checklist.Item.domain.Item;
 import com.moveseg.parent.infra.domain.AbstractAggregateRoot;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
+import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
-public class Checklist extends AbstractAggregateRoot<ChecklistId>{
+public class Checklist extends AbstractAggregateRoot<ChecklistId> {
     private Nome nome;
 
     @ManyToMany
@@ -39,11 +43,23 @@ public class Checklist extends AbstractAggregateRoot<ChecklistId>{
         });
     }
 
-    public static Checklist from(Nome nome, List<Item> itens){
+    public static Checklist from(Nome nome, List<Item> itens) {
         ChecklistId id = randomId(ChecklistId.class);
-        
+
         Checklist checklist = new Checklist(id, nome, itens);
 
         return checklist;
+    }
+
+    public static Resposta responder(@NonNull @Valid Responder cmd) {
+        Resposta resposta = Resposta.builder()
+                .grupoChecklist(cmd.grupoChecklist())
+                .checklist(cmd.checklist())
+                .item(cmd.item())
+                .IdUsuario(cmd.idUsuario())
+                .resposta(cmd.resposta())
+                .data(cmd.data())
+                .build();
+        return resposta;
     }
 }
