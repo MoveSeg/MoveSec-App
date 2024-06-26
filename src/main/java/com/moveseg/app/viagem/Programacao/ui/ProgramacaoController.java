@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moveseg.app.viagem.Programacao.app.ProgramacaoService;
+import com.moveseg.app.viagem.Programacao.app.view.ProgramacaoFormView;
+import com.moveseg.app.viagem.Programacao.app.view.ProgramacaoListView;
 import com.moveseg.app.viagem.Programacao.domain.Programacao;
 import com.moveseg.app.viagem.Programacao.domain.ProgramacaoId;
 import com.moveseg.app.viagem.Programacao.domain.cmd.CriarProgramacao;
@@ -25,7 +27,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping(path = "/api/agenda", produces = APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/api/progracao", produces = APPLICATION_JSON_VALUE)
 public class ProgramacaoController {
 
     ProgramacaoService service;
@@ -40,12 +42,12 @@ public class ProgramacaoController {
     }
 
     @GetMapping
-    public List<Programacao> listarTodos() {
+    public List<ProgramacaoListView> listarTodos() {
         return service.listarTodos();
     }
 
     @GetMapping("/{id}")
-    public Programacao buscarPorId(@PathVariable @NonNull ProgramacaoId id) {
+    public ProgramacaoFormView buscarPorId(@PathVariable @NonNull ProgramacaoId id) {
         return service.buscarPorId(id);
     }
 
