@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.Agenda.domain;
+package com.moveseg.app.viagem.Programacao.domain;
 
 import static com.moveseg.parent.infra.domain.DomainObjectId.randomId;
 import static java.util.Objects.requireNonNull;
@@ -16,23 +16,23 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
-public class Agenda extends AbstractAggregateRoot<AgendaId> {
+public class Programacao extends AbstractAggregateRoot<ProgramacaoId> {
     private LocalDate data;
     private ViagemId viagem;
 
-    private Agenda(AgendaId id, ViagemId viagem, LocalDate data) {
+    private Programacao(ProgramacaoId id, ViagemId viagem, LocalDate data) {
         super(id);
         this.data = requireNonNull(data, "A data da viagem não pode ser nula");
         this.viagem = requireNonNull(viagem, "O Id da viagem não pode ser nula");
     }
 
     @SuppressWarnings("null")
-    public static Agenda from(ViagemId viagem, LocalDate data) {
-        AgendaId id = randomId(AgendaId.class);
+    public static Programacao from(ViagemId viagem, LocalDate data) {
+        ProgramacaoId id = randomId(ProgramacaoId.class);
 
-        Agenda agenda = new Agenda(id, viagem, data);
+        Programacao programacao = new Programacao(id, viagem, data);
 
-        return agenda;
+        return programacao;
     }
 
 }

@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.Agenda.app;
+package com.moveseg.app.viagem.Programacao.app;
 
 import static jakarta.persistence.LockModeType.PESSIMISTIC_READ;
 import static java.lang.String.format;
@@ -12,10 +12,10 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.moveseg.app.cadastro.Agenda.domain.Agenda;
-import com.moveseg.app.cadastro.Agenda.domain.AgendaId;
-import com.moveseg.app.cadastro.Agenda.domain.cmd.CriarAgenda;
-import com.moveseg.app.cadastro.Agenda.repository.AgendaRepository;
+import com.moveseg.app.viagem.Programacao.domain.Programacao;
+import com.moveseg.app.viagem.Programacao.domain.ProgramacaoId;
+import com.moveseg.app.viagem.Programacao.domain.cmd.CriarProgramacao;
+import com.moveseg.app.viagem.Programacao.repository.ProgramacaoRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
@@ -24,36 +24,36 @@ import lombok.AllArgsConstructor;
 @Service
 @Transactional(propagation = REQUIRES_NEW)
 @AllArgsConstructor
-public class AgendaService {
+public class ProgramacaoService {
 
-    private AgendaRepository repository;
+    private ProgramacaoRepository repository;
 
     @NonNull
     @Lock(PESSIMISTIC_READ)
-    public AgendaId handle(@NonNull @Valid CriarAgenda cmd) {
+    public ProgramacaoId handle(@NonNull @Valid CriarProgramacao cmd) {
 
-        Agenda agenda = Agenda.from(cmd.viagem(), cmd.data());
+        Programacao programacao = Programacao.from(cmd.viagem(), cmd.data());
 
-        repository.save(agenda);
+        repository.save(programacao);
 
-        return agenda.id();
+        return programacao.id();
     }
 
     @NonNull
     @Transactional(readOnly = true)
-    public List<Agenda> listarTodos() {
+    public List<Programacao> listarTodos() {
         return repository.findAll();
     }
 
     @Transactional(readOnly = true)
-    public Agenda buscarPorId(@NonNull AgendaId id) {
+    public Programacao buscarPorId(@NonNull ProgramacaoId id) {
         return repository.findById(requireNonNull(id))
                 .orElseThrow(
                         () -> new EntityNotFoundException(
                                 format("Not found any Business with code %s.", id.toUUID())));
     }
 
-    public void deletar(@NonNull AgendaId id) {
+    public void deletar(@NonNull ProgramacaoId id) {
         repository.deleteById(id);
     }
 }

@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.Agenda.domain.cmd;
+package com.moveseg.app.viagem.Programacao.domain.cmd;
 
 import java.time.LocalDate;
 
@@ -9,7 +9,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class CriarAgenda {
+public class CriarProgramacao {
     public LocalDate data;
     public ViagemId viagem;
 }

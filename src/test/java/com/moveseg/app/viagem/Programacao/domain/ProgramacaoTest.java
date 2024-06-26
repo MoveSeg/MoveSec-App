@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.Agenda.domain;
+package com.moveseg.app.viagem.Programacao.domain;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import com.moveseg.app.viagem.domain.ViagemId;
 import com.moveseg.parent.infra.domain.DomainObjectId;
 
-public class AgendaTest {
+public class ProgramacaoTest {
 
     private ViagemId viagem;
     private LocalDate data;
@@ -19,9 +19,9 @@ public class AgendaTest {
     void agendaCompletoDeveSalvar() {
         viagem = DomainObjectId.randomId(ViagemId.class);
         data = LocalDate.of(2000, 1, 20);
-        Agenda agenda = Agenda.from(viagem, data);
-        assertNotNull(agenda);
-        assertNotNull(agenda.id());
+        Programacao programacao = Programacao.from(viagem, data);
+        assertNotNull(programacao);
+        assertNotNull(programacao.id());
         assertNotNull(data);
         assertNotNull(viagem);
     }
@@ -30,7 +30,7 @@ public class AgendaTest {
     void dadoUmaAgendaSemDataNaoDeveCriar() {
         ViagemId viagem = DomainObjectId.randomId(ViagemId.class);
         assertThrows(Exception.class, () -> {
-            Agenda.from(viagem, null);
+            Programacao.from(viagem, null);
         });
     }
 
@@ -38,14 +38,14 @@ public class AgendaTest {
     void dadoUmaAgendaSemViagemNaoDeveCriar() {
         data = LocalDate.of(2014, 07, 10);
         assertThrows(Exception.class, () -> {
-            Agenda.from(null, data);
+            Programacao.from(null, data);
         });
     }
 
     @Test
     void dadoUmaAgendaIncorretoNaoDeveCriar() {
         assertThrows(Exception.class, () -> {
-            Agenda.from(null, null);
+            Programacao.from(null, null);
         });
     }
 }
