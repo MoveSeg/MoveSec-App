@@ -2,15 +2,14 @@ package com.moveseg.app.cadastro.responsavel.domain;
 
 import static com.moveseg.parent.infra.domain.DomainObjectId.randomId;
 import static java.util.Objects.requireNonNull;
-import static lombok.AccessLevel.PRIVATE;
 
 import java.time.LocalDate;
 
 import com.moveseg.app.cadastro.Instituto.domain.Email;
 import com.moveseg.app.cadastro.Instituto.domain.Endereco;
 import com.moveseg.app.cadastro.Instituto.domain.Telefone;
-import com.moveseg.app.cadastro.sk.domain.Cpf;
-import com.moveseg.app.cadastro.sk.domain.Genero;
+import com.moveseg.app.cadastro.veiculo.sk.domain.Cpf;
+import com.moveseg.app.cadastro.veiculo.sk.domain.Genero;
 import com.moveseg.parent.infra.domain.AbstractEntity;
 
 import jakarta.persistence.AttributeOverride;
@@ -38,7 +37,7 @@ public final class Responsavel extends AbstractEntity<ResponsavelId> {
 
     @Embedded
     private Endereco endereco;
-    
+
     private Genero genero;
 
     @Embedded

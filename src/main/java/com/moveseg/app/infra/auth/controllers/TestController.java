@@ -4,12 +4,14 @@ import java.security.Principal;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.moveseg.app.infra.auth.models.User;
+import com.moveseg.app.infra.auth.security.services.UserDetailsImpl;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -47,8 +49,9 @@ public class TestController {
     @GetMapping("/autorities")
     @ResponseBody
     public String currentUserAutorities(Authentication authentication) {
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         System.out.println("User has authorities: " + userDetails.getAuthorities());
+        System.out.println("User has authorities: " + authentication.getDetails());
 
         return authentication.getName();
     }

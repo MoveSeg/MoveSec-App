@@ -13,6 +13,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.moveseg.app.cadastro.Aluno.domain.Aluno;
+import com.moveseg.app.cadastro.Aluno.domain.AlunoId;
+import com.moveseg.app.cadastro.Aluno.repository.AlunoRepository;
+import com.moveseg.app.viagem.app.view.ViagemFormView;
+import com.moveseg.app.viagem.app.view.ViagemListView;
 import com.moveseg.app.viagem.domain.Viagem;
 import com.moveseg.app.viagem.domain.ViagemId;
 import com.moveseg.app.viagem.domain.cmd.AlterarViagem;
@@ -27,56 +31,60 @@ import lombok.AllArgsConstructor;
 @Transactional(propagation = REQUIRES_NEW)
 @AllArgsConstructor
 public class ViagemService {
-    private ViagemRepository repository;
+        private ViagemRepository repository;
+        private AlunoRepository alunoRepository;
+  
+        @NonNull
+        @Lock(PESSIMISTIC_READ)
+        public ViagemId handle(@NonNull @Valid CriarViagem cmd)  {
+                List<Aluno> alunos = alunoRepository.findAllById(cmd.alunos().stream().map(AlunoId::new).toList());
+                Viagem viagem = Viagem.builder()
+                                .alunos(alunos)
+                                .motorista(cmd.motorista())
+                                .rota(cmd.rota())
+                                .alunos(alunos)
+                                .veiculo(cmd.veiculo())
+                                .data(cmd.data())
+                                .build();
 
-    @NonNull
-    @Lock(PESSIMISTIC_READ)
-    public ViagemId handle(@NonNull @Valid CriarViagem cmd) {
+                repository.save(viagem); 
+                return viagem.id();
+        }
 
-        Viagem viagem = Viagem.builder()
-                .alunos((List<Aluno>) cmd.alunos())
-                .motorista(cmd.motorista())
-                .rota(cmd.rota())
-                .data(cmd.data())
-                .build();
+        public Viagem handle(@NonNull @Valid AlterarViagem cmd) {
+                Aluno alunos = alunoRepository.findById((AlunoId) cmd.alunos()).get();
+                Viagem viagem = repository.findById(requireNonNull(cmd.id()))
+                                .orElseThrow(
+                                                () -> new EntityNotFoundException(
+                                                                format("Not found any Business with code %s.",
+                                                                                cmd.id().toUUID())));
+                viagem.atualizar()
+                                .alunos(alunos)
+                                .motorista(cmd.motorista())
+                                .rota(cmd.rota())
+                                .veiculo(cmd.veiculo())
+                                .data(cmd.data())
+                                .aplicar();
+                return repository.save(viagem);
+        }
 
-        repository.save(viagem);
+        @NonNull
+        @Transactional(readOnly = true)
+        public List<ViagemListView> listarTodos() {
+                return repository.findAll().stream().map(ViagemListView::of).toList();
+        }
 
-        return viagem.id();
-    }
+        @Transactional(readOnly = true)
+        public ViagemFormView buscarPorId(@NonNull ViagemId id) {
+                return ViagemFormView.of(repository.findById(requireNonNull(id))
+                                .orElseThrow(
+                                                () -> new EntityNotFoundException(
+                                                                format("Not found any Business with code %s.",
+                                                                                id.toUUID()))));
+        }
 
-    public Viagem handle(@NonNull @Valid AlterarViagem cmd) {
-        Viagem viagem = repository.findById(requireNonNull(cmd.id()))
-                .orElseThrow(
-                        () -> new EntityNotFoundException(
-                                format("Not found any Business with code %s.",
-                                        cmd.id().toUUID())));
-        viagem.atualizar()
-                .alunos(cmd.alunos())
-                .motorista(cmd.motorista())
-                .rota(cmd.rota())
-                .data(cmd.data())
-                .aplicar();
-        return repository.save(viagem);
-    }
-
-    @NonNull
-
-    @Transactional(readOnly = true)
-    public List<Viagem> listarTodos() {
-        return repository.findAll();
-    }
-
-    @Transactional(readOnly = true)
-    public Viagem buscarPorId(@NonNull ViagemId id) {
-        return repository.findById(requireNonNull(id))
-                .orElseThrow(
-                        () -> new EntityNotFoundException(
-                                format("Not found any Business with code %s.",
-                                        id.toUUID())));
-    }
-    public void deletar(@NonNull ViagemId id) {
-        repository.deleteById(id);
-    }
+        public void deletar(@NonNull ViagemId id) {
+                repository.deleteById(id);
+        }
 
 }

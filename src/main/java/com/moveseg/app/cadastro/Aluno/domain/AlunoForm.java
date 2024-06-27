@@ -9,8 +9,8 @@ import com.moveseg.app.cadastro.Instituto.domain.Email;
 import com.moveseg.app.cadastro.Instituto.domain.Endereco;
 import com.moveseg.app.cadastro.Instituto.domain.Telefone;
 import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
-import com.moveseg.app.cadastro.sk.domain.Cpf;
-import com.moveseg.app.cadastro.sk.domain.Genero;
+import com.moveseg.app.cadastro.veiculo.sk.domain.Cpf;
+import com.moveseg.app.cadastro.veiculo.sk.domain.Genero;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +22,7 @@ public class AlunoForm {
     private final Consumer<AlunoForm> action;
 
     private String nome;
-    private List<Responsavel> responsavel = new ArrayList<Responsavel>();;
+    private List<Responsavel> responsavel = new ArrayList<Responsavel>();
     private Carteirinha carteirinha;
     private Telefone telefone;
     private Email email;
@@ -35,8 +35,8 @@ public class AlunoForm {
         this.nome = nome;
         return this;
     }
-    public AlunoForm responsavel(Responsavel responsavel) {
-        this.responsavel.add(responsavel);
+    public AlunoForm responsavel(List<Responsavel> responsavel) {
+        this.responsavel.addAll(responsavel);
         return this;
     }
 

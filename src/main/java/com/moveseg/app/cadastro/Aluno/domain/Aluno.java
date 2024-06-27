@@ -11,8 +11,8 @@ import com.moveseg.app.cadastro.Instituto.domain.Email;
 import com.moveseg.app.cadastro.Instituto.domain.Endereco;
 import com.moveseg.app.cadastro.Instituto.domain.Telefone;
 import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
-import com.moveseg.app.cadastro.sk.domain.Cpf;
-import com.moveseg.app.cadastro.sk.domain.Genero;
+import com.moveseg.app.cadastro.veiculo.sk.domain.Cpf;
+import com.moveseg.app.cadastro.veiculo.sk.domain.Genero;
 import com.moveseg.parent.infra.domain.AbstractEntity;
 
 import jakarta.persistence.AttributeOverride;
@@ -49,7 +49,7 @@ public class Aluno extends AbstractEntity<AlunoId> {
 
     @Embedded
     private Endereco endereco;
-    
+
     private Genero genero;
 
     @Embedded
@@ -89,8 +89,8 @@ public class Aluno extends AbstractEntity<AlunoId> {
         private AlunoId id;
         private List<Responsavel> responsaveis = new ArrayList<Responsavel>();
 
-        public AlunoBuilder responsavel(Responsavel responsavel) {
-            responsaveis.add(responsavel);
+        public AlunoBuilder responsavel(List<Responsavel> responsaveis) {
+            this.responsaveis.addAll(responsaveis);
             return this;
         }
 
@@ -100,7 +100,5 @@ public class Aluno extends AbstractEntity<AlunoId> {
             return new Aluno(this);
         }
     }
-
-
 
 }
