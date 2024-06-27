@@ -14,7 +14,7 @@ public class ChassiTest {
     void dadoUmChassiValidoDeveCriar() {
         Chassi chassi = Chassi.of("fgfg");
         assertNotNull(chassi);
-        assertEquals("fgfg", chassi.value());
+        assertEquals("fgfg", chassi.chassi());
     }
 
     @Test
