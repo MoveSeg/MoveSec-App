@@ -10,6 +10,7 @@ import com.moveseg.app.viagem.domain.Viagem;
 import com.moveseg.parent.infra.domain.AbstractAggregateRoot;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 public class Programacao extends AbstractAggregateRoot<ProgramacaoId> {
     private LocalDate data;
+
+    @OneToOne
     private Viagem viagem;
 
     private Programacao(ProgramacaoId id, Viagem viagem, LocalDate data) {

@@ -20,7 +20,6 @@ import com.moveseg.app.viagem.Programacao.domain.Programacao;
 import com.moveseg.app.viagem.Programacao.domain.ProgramacaoId;
 import com.moveseg.app.viagem.Programacao.domain.cmd.CriarProgramacao;
 import com.moveseg.app.viagem.Programacao.repository.ProgramacaoRepository;
-import com.moveseg.app.viagem.app.view.ViagemListView;
 import com.moveseg.app.viagem.domain.Viagem;
 import com.moveseg.app.viagem.repository.ViagemRepository;
 
