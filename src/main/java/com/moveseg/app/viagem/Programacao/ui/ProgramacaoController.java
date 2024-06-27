@@ -1,4 +1,4 @@
-package com.moveseg.app.cadastro.Agenda.ui;
+package com.moveseg.app.viagem.Programacao.ui;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,23 +17,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.moveseg.app.cadastro.Agenda.app.AgendaService;
-import com.moveseg.app.cadastro.Agenda.domain.Agenda;
-import com.moveseg.app.cadastro.Agenda.domain.AgendaId;
-import com.moveseg.app.cadastro.Agenda.domain.cmd.CriarAgenda;
+import com.moveseg.app.viagem.Programacao.app.ProgramacaoService;
+import com.moveseg.app.viagem.Programacao.app.view.ProgramacaoFormView;
+import com.moveseg.app.viagem.Programacao.app.view.ProgramacaoListView;
+import com.moveseg.app.viagem.Programacao.domain.Programacao;
+import com.moveseg.app.viagem.Programacao.domain.ProgramacaoId;
+import com.moveseg.app.viagem.Programacao.domain.cmd.CriarProgramacao;
 
 import lombok.AllArgsConstructor;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @AllArgsConstructor
 @RestController
-@RequestMapping(path = "/api/agenda", produces = APPLICATION_JSON_VALUE)
-public class AgendaController {
+@RequestMapping(path = "/api/progracao", produces = APPLICATION_JSON_VALUE)
+public class ProgramacaoController {
 
-    AgendaService service;
+    ProgramacaoService service;
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<Agenda> salvar(@RequestBody CriarAgenda cmd) {
-        AgendaId id = service.handle(cmd);
+    public ResponseEntity<Programacao> salvar(@RequestBody CriarProgramacao cmd) {
+        ProgramacaoId id = service.handle(cmd);
 
         return ResponseEntity.created(fromCurrentRequest()
                 .path("/").path(id.toUUID()).build().toUri())
@@ -40,17 +44,17 @@ public class AgendaController {
     }
 
     @GetMapping
-    public List<Agenda> listarTodos() {
+    public List<ProgramacaoListView> listarTodos() {
         return service.listarTodos();
     }
 
     @GetMapping("/{id}")
-    public Agenda buscarPorId(@PathVariable @NonNull AgendaId id) {
+    public ProgramacaoFormView buscarPorId(@PathVariable @NonNull ProgramacaoId id) {
         return service.buscarPorId(id);
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> deletar(@PathVariable @NonNull AgendaId id) {
+    public ResponseEntity<Void> deletar(@PathVariable @NonNull ProgramacaoId id) {
         service.deletar(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
