@@ -13,10 +13,10 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Renavam implements ValueObject {
-    private String renavam;
+    private String value;
 
     public Renavam(String renavam) {
-        this.renavam = renavam;
+        this.value = renavam;
     }
 
     public static Renavam of(String renavam) {

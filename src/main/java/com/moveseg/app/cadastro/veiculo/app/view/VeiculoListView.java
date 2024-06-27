@@ -28,10 +28,10 @@ public class VeiculoListView {
     public static VeiculoListView of(Veiculo veiculo) {
         return VeiculoListView.builder()
                 .id(veiculo.id())
-                .placa(veiculo.placa().placa())
+                .placa(veiculo.placa().value())
                 .numeroDaFrota(veiculo.numeroDaFrota())
-                .chassi(veiculo.chassi().chassi())
-                .renavam(veiculo.renavam().renavam())
+                .chassi(veiculo.chassi().value())
+                .renavam(veiculo.renavam().value())
                 .anoModelo(veiculo.anoModelo())
                 .marca(veiculo.marca())
                 .modelo(veiculo.modelo())

@@ -11,7 +11,7 @@ public class CarteirinhaTest {
     void dadoUmaCarteirinhaValidaDeveCriar() throws Exception{
         Carteirinha carteirinha = Carteirinha.of((1111111111));
         assertNotNull(carteirinha);
-        assertEquals((1111111111), carteirinha.carteirinha());
+        assertEquals((1111111111), carteirinha.value());
     }
 
     @Test 

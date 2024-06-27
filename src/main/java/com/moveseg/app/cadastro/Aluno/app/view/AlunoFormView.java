@@ -30,14 +30,14 @@ public class AlunoFormView {
                 .id(aluno.id())
                 .nome(aluno.nome())
                 .responsavel(aluno.responsaveis().get(0).nome())
-                .carteirinha(aluno.carteirinha().carteirinha())
+                .carteirinha(aluno.carteirinha().value())
                 .telefone(aluno.telefone().telefone())
                 .email(aluno.email().email())
                 .logradouro(aluno.endereco().logradouro())
                 .numero(aluno.endereco().numero())
                 .dataDeNascimento(aluno.dataDeNascimento().toString())
                 .genero(aluno.genero().toString())
-                .cpf(aluno.cpf().cpf())
+                .cpf(aluno.cpf().value())
                 .build();
     }
 }

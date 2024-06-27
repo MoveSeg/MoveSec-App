@@ -14,7 +14,7 @@ class PlacaTest {
     void dadoUmaPlacaValidaDeveCriar() {
         Placa placa = Placa.of("asd");
         assertNotNull(placa);
-        assertEquals("asd", placa.placa());
+        assertEquals("asd", placa.value());
     }
 
     @Test

@@ -13,10 +13,10 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Placa implements ValueObject {
-    private String placa;
+    private String value;
 
     public Placa(String placa) {
-        this.placa = placa;
+        this.value = placa;
     }
 
     public static Placa of(String placa) {

@@ -34,7 +34,7 @@ public class ResponsavelListView {
                 .logradouro(responsavel.endereco().logradouro())
                 .numero(responsavel.endereco().numero())
                 .genero(responsavel.genero().toString())
-                .cpf(responsavel.cpf().cpf())
+                .cpf(responsavel.cpf().value())
                 .build();
     }
 

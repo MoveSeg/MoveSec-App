@@ -13,7 +13,7 @@ public class RenavamTest {
     void dadoUmRenavamValidoDeveCriar() {
         Renavam renavam = Renavam.of("afaf");
         assertNotNull(renavam);
-        assertEquals("afaf", renavam.renavam());
+        assertEquals("afaf", renavam.value());
     }
 
     @Test
