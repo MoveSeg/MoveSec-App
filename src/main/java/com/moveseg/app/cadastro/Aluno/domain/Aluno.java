@@ -37,11 +37,11 @@ public class Aluno extends AbstractEntity<AlunoId> {
     private List<Responsavel> responsaveis;
 
     @Embedded
-    @AttributeOverride(column = @Column(name = "carteirinha"), name = "numero")
+    @AttributeOverride(column = @Column(name = "carteirinha"), name = "carteirinha")
     private Carteirinha carteirinha;
 
     @Embedded
-    @AttributeOverride(column = @Column(name = "telefone"), name = "numero")
+    @AttributeOverride(column = @Column(name = "telefone"), name = "telefone")
     private Telefone telefone;
 
     @Embedded
@@ -53,7 +53,7 @@ public class Aluno extends AbstractEntity<AlunoId> {
     private Genero genero;
 
     @Embedded
-    @AttributeOverride(column = @Column(name = "cpf"), name = "numero")
+    @AttributeOverride(column = @Column(name = "cpf"), name = "cpf")
     private Cpf cpf;
 
     private LocalDate dataDeNascimento;
