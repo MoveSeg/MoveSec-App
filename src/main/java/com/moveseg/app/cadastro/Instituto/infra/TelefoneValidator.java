@@ -11,7 +11,7 @@ public class TelefoneValidator implements ConstraintValidator<Phone, Telefone> {
     }
 
     public boolean isValid(Telefone telefone, ConstraintValidatorContext context) {
-        String telefoneString = telefone.telefone().toString();
+        String telefoneString = telefone.numero().toString();
         if (telefone != null) {
             return telefoneString.matches("\\d{8,15}");
         }

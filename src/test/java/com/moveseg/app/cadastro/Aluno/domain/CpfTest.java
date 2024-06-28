@@ -14,7 +14,7 @@ public class CpfTest {
     void dadoUmCpfValidoDeveCriar() throws Exception{
         Cpf cpf = Cpf.of(("1111111111"));
         assertNotNull(cpf);
-        assertEquals(("1111111111"), cpf.value());
+        assertEquals(("1111111111"), cpf.numero());
     }
 
     @Test 
