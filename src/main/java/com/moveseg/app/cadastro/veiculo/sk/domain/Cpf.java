@@ -12,17 +12,17 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode
 @NoArgsConstructor
 public class Cpf implements ValueObject {
-    private String value;
+    private String numero;
 
-    public Cpf(String cpf) {
-        this.value = cpf;
+    public Cpf(String numero) {
+        this.numero = numero;
     }
 
-    public static Cpf of(String cpf) throws Exception {
-        if (cpf == null || cpf.isEmpty()) {
+    public static Cpf of(String numero) throws Exception {
+        if (numero == null || numero.isEmpty()) {
             throw new Exception("O seu CPF não pode ser nulo e nem 0");
         }
-        return new Cpf(cpf);
+        return new Cpf(numero);
     }
 
 }
