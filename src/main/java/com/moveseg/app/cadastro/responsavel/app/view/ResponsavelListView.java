@@ -30,11 +30,11 @@ public class ResponsavelListView {
                 .nome(responsavel.nome())
                 .nascimento(responsavel.nascimento().toString())
                 .email(responsavel.email().email())
-                .telefone(responsavel.telefone().numero())
+                .telefone(responsavel.telefone().telefone())
                 .logradouro(responsavel.endereco().logradouro())
                 .numero(responsavel.endereco().numero())
                 .genero(responsavel.genero().toString())
-                .cpf(responsavel.cpf().numero())
+                .cpf(responsavel.cpf().value())
                 .build();
     }
 
