@@ -30,14 +30,14 @@ public class AlunoListView {
                 .id(aluno.id())
                 .nome(aluno.nome())
                 .responsavel(aluno.responsaveis().get(0).nome())
-                .carteirinha(aluno.carteirinha().numero())
+                .carteirinha(aluno.carteirinha().carteirinha())
                 .telefone(aluno.telefone().telefone())
                 .email(aluno.email().email())
                 .logradouro(aluno.endereco().logradouro())
                 .numero(aluno.endereco().numero())
                 .dataDeNascimento(aluno.dataDeNascimento().toString())
                 .genero(aluno.genero().toString())
-                .cpf(aluno.cpf().numero())
+                .cpf(aluno.cpf().cpf())
                 .build();
     }
 
