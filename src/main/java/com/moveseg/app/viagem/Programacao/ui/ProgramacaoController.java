@@ -29,7 +29,7 @@ import lombok.AllArgsConstructor;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @AllArgsConstructor
 @RestController
-@RequestMapping(path = "/api/progracao", produces = APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/api/programacao", produces = APPLICATION_JSON_VALUE)
 public class ProgramacaoController {
 
     ProgramacaoService service;
@@ -53,7 +53,7 @@ public class ProgramacaoController {
         return service.buscarPorId(id);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable @NonNull ProgramacaoId id) {
         service.deletar(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
