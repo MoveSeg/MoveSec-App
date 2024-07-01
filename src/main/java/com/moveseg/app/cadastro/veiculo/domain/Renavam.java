@@ -13,17 +13,17 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Renavam implements ValueObject {
-    private String value;
+    private String renavam;
 
-    public Renavam(String value) {
-        this.value = value;
+    public Renavam(String renavam) {
+        this.renavam = renavam;
     }
 
-    public static Renavam of(String renavam) {
-        if (renavam == null || renavam.isEmpty()) {
+    public static Renavam of(String value) {
+        if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Não deve ser nulo");
         }
-        return new Renavam(renavam);
+        return new Renavam(value);
     }
 
 }
