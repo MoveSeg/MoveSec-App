@@ -13,10 +13,10 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode
 @NoArgsConstructor
 public class Carteirinha implements ValueObject {
-    private Integer numero;
+    private Integer carteirinha;
 
-    public Carteirinha(Integer numero) {
-        this.numero = numero;
+    public Carteirinha(Integer carteirinha) {
+        this.carteirinha = carteirinha;
     }
 
     public static Carteirinha of(Integer numero) throws Exception {

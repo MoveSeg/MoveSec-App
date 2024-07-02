@@ -13,17 +13,17 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Placa implements ValueObject {
-    private String value;
+    private String placa;
 
     public Placa(String placa) {
-        this.value = placa;
+        this.placa = placa;
     }
 
-    public static Placa of(String placa) {
-        if (placa == null || placa.isEmpty()) {
+    public static Placa of(String value) {
+        if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Não deve ser nulo");
         }
 
-        return new Placa(placa);
+        return new Placa(value);
     }
 }

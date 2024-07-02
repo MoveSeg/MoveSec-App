@@ -14,10 +14,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 
 public final class Chassi implements ValueObject {
-    private String value;
+    private String chassi;
 
     public Chassi(String chassi) {
-        this.value = chassi;
+        this.chassi = chassi;
     }
 
     public static Chassi of(String chassi) {

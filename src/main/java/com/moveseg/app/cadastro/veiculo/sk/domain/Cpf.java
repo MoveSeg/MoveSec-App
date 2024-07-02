@@ -12,10 +12,10 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode
 @NoArgsConstructor
 public class Cpf implements ValueObject {
-    private String numero;
+    private String cpf;
 
-    public Cpf(String numero) {
-        this.numero = numero;
+    public Cpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public static Cpf of(String numero) throws Exception {
