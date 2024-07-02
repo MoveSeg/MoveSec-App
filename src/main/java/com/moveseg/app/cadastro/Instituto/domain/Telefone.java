@@ -12,10 +12,10 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode
 @NoArgsConstructor
 public final class Telefone implements ValueObject {
-    private String numero;
+    private String telefone;
 
-    public Telefone(String numero) {
-        this.numero = numero;
+    public Telefone(String telefone) {
+        this.telefone = telefone;
     }
 
     public static Telefone of(String numero) throws Exception {
