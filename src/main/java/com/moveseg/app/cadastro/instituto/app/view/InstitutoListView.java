@@ -26,7 +26,7 @@ public class InstitutoListView {
                 .id(Instituto.id())
                 .nome(Instituto.nome())
                 .responsavel(Instituto.responsaveis().get(0).nome())
-                .telefone(Instituto.telefone().telefone())
+                .telefone(Instituto.telefone().numero())
                 .email(Instituto.email().email())
                 .logradouro(Instituto.endereco().logradouro())
                 .numero(Instituto.endereco().numero())

@@ -31,7 +31,7 @@ public class AlunoFormView {
                 .nome(aluno.nome())
                 .responsavel(aluno.responsaveis().get(0).nome())
                 .carteirinha(aluno.carteirinha().numero())
-                .telefone(aluno.telefone().telefone())
+                .telefone(aluno.telefone().numero())
                 .email(aluno.email().email())
                 .logradouro(aluno.endereco().logradouro())
                 .numero(aluno.endereco().numero())

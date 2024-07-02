@@ -16,8 +16,8 @@ import lombok.NoArgsConstructor;
 public final class Chassi implements ValueObject {
     private String value;
 
-    public Chassi(String value) {
-        this.value = value;
+    public Chassi(String chassi) {
+        this.value = chassi;
     }
 
     public static Chassi of(String chassi) {

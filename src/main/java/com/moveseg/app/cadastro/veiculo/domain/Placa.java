@@ -15,8 +15,8 @@ import lombok.NoArgsConstructor;
 public final class Placa implements ValueObject {
     private String value;
 
-    public Placa(String value) {
-        this.value = value;
+    public Placa(String placa) {
+        this.value = placa;
     }
 
     public static Placa of(String placa) {

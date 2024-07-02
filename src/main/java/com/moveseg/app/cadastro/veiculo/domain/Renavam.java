@@ -15,8 +15,8 @@ import lombok.NoArgsConstructor;
 public final class Renavam implements ValueObject {
     private String value;
 
-    public Renavam(String value) {
-        this.value = value;
+    public Renavam(String renavam) {
+        this.value = renavam;
     }
 
     public static Renavam of(String renavam) {
