@@ -12,17 +12,16 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode
 @NoArgsConstructor
 public final class Telefone implements ValueObject {
+    private String numero;
 
-    private String telefone;
-
-    public Telefone(String telefone) {
-        this.telefone = telefone;
+    public Telefone(String numero) {
+        this.numero = numero;
     }
 
-    public static Telefone of(String telefone) throws Exception {
-        if (telefone == null || telefone.isEmpty()) {
+    public static Telefone of(String numero) throws Exception {
+        if (numero == null || numero.isEmpty()) {
             throw new Exception("Numero não pode ser nulo e nem 0");
         }
-        return new Telefone(telefone);
+        return new Telefone(numero);
     }
 }

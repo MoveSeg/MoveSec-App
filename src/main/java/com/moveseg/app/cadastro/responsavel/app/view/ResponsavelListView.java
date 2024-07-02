@@ -30,7 +30,7 @@ public class ResponsavelListView {
                 .nome(responsavel.nome())
                 .nascimento(responsavel.nascimento().toString())
                 .email(responsavel.email().email())
-                .telefone(responsavel.telefone().telefone())
+                .telefone(responsavel.telefone().numero())
                 .logradouro(responsavel.endereco().logradouro())
                 .numero(responsavel.endereco().numero())
                 .genero(responsavel.genero().toString())

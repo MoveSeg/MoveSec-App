@@ -1,9 +1,9 @@
 package com.moveseg.app.cadastro.Instituto.app;
 
 import static jakarta.persistence.LockModeType.PESSIMISTIC_READ;
+import static java.lang.String.format;
 import static java.util.Objects.requireNonNull;
 import static org.springframework.transaction.annotation.Propagation.REQUIRES_NEW;
-import static java.lang.String.format;
 
 import java.util.List;
 
@@ -20,6 +20,7 @@ import com.moveseg.app.cadastro.Instituto.domain.cmd.AlterarInstituto;
 import com.moveseg.app.cadastro.Instituto.domain.cmd.CriarInstituto;
 import com.moveseg.app.cadastro.Instituto.repository.InstitutoRepository;
 import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
+import com.moveseg.app.cadastro.responsavel.domain.ResponsavelId;
 import com.moveseg.app.cadastro.responsavel.repository.ResponsavelRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -31,59 +32,61 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class InstitutoService {
 
-    private InstitutoRepository repository;
-    private ResponsavelRepository responsavelRepository;
+        private InstitutoRepository repository;
+        private ResponsavelRepository responsavelRepository;
 
-    @NonNull
-    @Lock(PESSIMISTIC_READ)
-    public InstitutoId handle(@NonNull @Valid CriarInstituto cmd) {
-        Responsavel responsavel = responsavelRepository.findById(cmd.responsavel()).get();
-        Instituto instituto = Instituto.builder()
-                .nome(cmd.nome())
-                .endereco(cmd.endereco())
-                .responsavel(responsavel)
-                .telefone(cmd.telefone())
-                .email(cmd.email())
-                .build();
+        @NonNull
+        @Lock(PESSIMISTIC_READ)
+        public InstitutoId handle(@NonNull @Valid CriarInstituto cmd) {
+                List<Responsavel> responsaveis = responsavelRepository
+                                .findAllById(cmd.responsaveis().stream().map(ResponsavelId::new).toList());
+                Instituto instituto = Instituto.builder()
+                                .nome(cmd.nome())
+                                .endereco(cmd.endereco())
+                                .responsaveis(responsaveis)
+                                .telefone(cmd.telefone())
+                                .email(cmd.email())
+                                .build();
+                repository.save(instituto);
 
-        repository.save(instituto);
-
-        return instituto.id();
-    }
-
-    public Instituto handle(@NonNull @Valid AlterarInstituto cmd) {
-        Instituto instituto = repository.findById(requireNonNull(cmd.id()))
-                .orElseThrow(
-                        () -> new EntityNotFoundException(
-                                format("Not found any Business with code %s.", cmd.id().toUUID())));
-        instituto.atualizar()
-                .nome(cmd.nome())
-                .endereco(cmd.endereco())
-                .responsavel(cmd.responsavel())
-                .telefone(cmd.telefone())
-                .email(cmd.email())
-                .aplicar();
-
-        return repository.save(instituto);
-    }
-
-    @NonNull
-    @Transactional(readOnly = true)
-    public List<InstitutoListView> listarTodos() {
-        return repository.findAll().stream().map(InstitutoListView::of).toList();
+                return instituto.id();
         }
-    @Transactional(readOnly= true)
-    public InstitutoFormView buscarPorId(@NonNull InstitutoId id) {
-        Instituto instituto = repository.findById(requireNonNull(id))
-         .orElseThrow(
-            () -> new EntityNotFoundException(
-                    format("Not found any Business with code %s.",
-                            id.toUUID())));
-        return InstitutoFormView.of(instituto);
-               
-    }
 
-    public void deletar(@NonNull InstitutoId id) {
-        repository.deleteById(id);
-    }
+        public Instituto handle(@NonNull @Valid AlterarInstituto cmd) {
+                Responsavel responsaveis = responsavelRepository.findById((ResponsavelId) cmd.responsaveis()).get();
+                Instituto instituto = repository.findById(requireNonNull(cmd.id()))
+                                .orElseThrow(
+                                                () -> new EntityNotFoundException(
+                                                                format("Not found any Business with code %s.",
+                                                                                cmd.id().toUUID())));
+                instituto.atualizar()
+                                .nome(cmd.nome())
+                                .endereco(cmd.endereco())
+                                .responsaveis(responsaveis)
+                                .telefone(cmd.telefone())
+                                .email(cmd.email())
+                                .aplicar();
+
+                return repository.save(instituto);
+        }
+
+        @NonNull
+        @Transactional(readOnly = true)
+        public List<InstitutoListView> listarTodos() {
+                return repository.findAll().stream().map(InstitutoListView::of).toList();
+        }
+
+        @Transactional(readOnly = true)
+        public InstitutoFormView buscarPorId(@NonNull InstitutoId id) {
+                return InstitutoFormView.of(repository.findById(requireNonNull(id))
+                                .orElseThrow(
+                                                () -> new EntityNotFoundException(
+                                                                format("Not found any Business with code %s.",
+                                                                                id.toUUID()))));
+
+        }
+
+        public void deletar(@NonNull InstitutoId id) {
+                repository.deleteById(id);
+        }
 }

@@ -7,12 +7,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
 import com.moveseg.app.cadastro.Aluno.domain.AlunoId;
-import com.moveseg.app.viagem.ausencia.domain.Ausencia;
 import com.moveseg.app.viagem.domain.ViagemId;
 import com.moveseg.parent.infra.domain.DomainObjectId;
 
 public final class AusenciaTest {
-    
+
     @Test
     void ausenciaCompletoDeveSalvar() {
         ViagemId viagem = DomainObjectId.randomId(ViagemId.class);
@@ -41,6 +40,7 @@ public final class AusenciaTest {
             Ausencia.from(null, "Motivo", aluno);
         });
     }
+
     @Test
     void dadoUmaAusenciaSemAlunoNaoDeveCriar() {
         ViagemId viagem = DomainObjectId.randomId(ViagemId.class);

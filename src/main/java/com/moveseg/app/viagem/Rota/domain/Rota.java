@@ -30,26 +30,24 @@ public class Rota extends AbstractEntity<RotaId> {
 
     private Numero numeroRota;
 
-    private VeiculoId veiculo;
+    
 
-    private Rota(RotaId id, Numero numeroRota, VeiculoId veiculo, List<Endereco> enderecos) {
+    private Rota(RotaId id, Numero numeroRota, List<Endereco> enderecos) {
         super(id);
         this.numeroRota = requireNonNull(numeroRota, "O numero da rota não deve ser nulo");
-        this.veiculo = requireNonNull(veiculo, "O veiculo não deve ser nulo");
         this.enderecos = requireNonNull(enderecos, "Endereco não pode ser nulo");
     }
 
     public RotaForm atualizar() {
         return new RotaForm(form -> {
             this.numeroRota = requireNonNull(form.numeroRota(), "Numero não pode ser nulo");
-            this.veiculo = requireNonNull(form.veiculo(), "Veiculo não pode ser nulo");
             this.enderecos = requireNonNull(form.endereco(), "Endereco não pode ser nulo");
         });
     }
 
-    public static Rota of(Numero numeroRota, VeiculoId veiculo, List<Endereco> enderecos) {
+    public static Rota of(Numero numeroRota, List<Endereco> enderecos) {
         
         RotaId id = randomId(RotaId.class);
-        return new Rota(id, numeroRota, veiculo, enderecos);
+        return new Rota(id, numeroRota, enderecos);
     }
 }

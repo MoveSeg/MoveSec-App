@@ -3,6 +3,7 @@ package com.moveseg.app.cadastro.Instituto.domain;
 import static com.moveseg.parent.infra.domain.DomainObjectId.randomId;
 import static java.util.Objects.requireNonNull;
 
+import java.lang.instrument.IllegalClassFormatException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Builder
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
-public final class Instituto extends AbstractEntity<InstitutoId> {
+public class Instituto extends AbstractEntity<InstitutoId> {
     private String nome;
 
     @Embedded
@@ -39,13 +40,15 @@ public final class Instituto extends AbstractEntity<InstitutoId> {
 
     @Embedded
     private Email email;
-    
+
     private Instituto(InstitutoBuilder builder) {
         super(builder.id);
-
+        if (builder.responsaveis.isEmpty()) {
+            throw new IllegalArgumentException("Não pode passar uma lista vazia");
+        }
+        this.responsaveis = requireNonNull(builder.responsaveis, "Responsavel não pode ser nulo");
         this.nome = requireNonNull(builder.nome, "Nome não pode ser nulo");
         this.endereco = requireNonNull(builder.endereco, "Endereço não pode ser nulo");
-        this.responsaveis = requireNonNull(builder.responsaveis, "Responsavel não pode ser nulo");
         this.telefone = requireNonNull(builder.telefone, "Telefone não pode ser nulo");
         this.email = requireNonNull(builder.email, "Email não pode ser nulo");
     }
@@ -54,9 +57,12 @@ public final class Instituto extends AbstractEntity<InstitutoId> {
         return new InstitutoForm(form -> {
             this.nome = requireNonNull(form.nome(), "Nome não pode ser nulo");
             this.endereco = requireNonNull(form.endereco(), "Endereço não pode ser nulo");
-            this.responsaveis = requireNonNull(form.responsaveis(), "Responsavel não pode ser nulo");
             this.telefone = requireNonNull(form.telefone(), "Telefone não pode ser nulo");
             this.email = requireNonNull(form.email(), "Email não pode ser nulo");
+            if (form.responsaveis().isEmpty()) {
+                throw new IllegalArgumentException("Não pode passar uma lista vazia");
+            }
+            this.responsaveis = requireNonNull(form.responsaveis(), "Responsavel não pode ser nulo");
         });
     }
 
@@ -64,8 +70,8 @@ public final class Instituto extends AbstractEntity<InstitutoId> {
         private InstitutoId id;
         private List<Responsavel> responsaveis = new ArrayList<Responsavel>();
 
-        public InstitutoBuilder responsavel(Responsavel responsavel) {
-            responsaveis.add(responsavel);
+        public InstitutoBuilder responsaveis(List<Responsavel> responsaveis) {
+            this.responsaveis.addAll(responsaveis);
             return this;
         }
 

@@ -18,8 +18,8 @@ public class Cpf implements ValueObject {
         this.cpf = cpf;
     }
 
-    public static Cpf of(String numero) throws Exception{
-        if(numero == null || numero.isEmpty()) {
+    public static Cpf of(String numero) throws Exception {
+        if (numero == null || numero.isEmpty()) {
             throw new Exception("O seu CPF não pode ser nulo e nem 0");
         }
         return new Cpf(numero);

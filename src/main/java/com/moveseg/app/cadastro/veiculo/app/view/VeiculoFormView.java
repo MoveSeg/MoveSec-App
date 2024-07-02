@@ -33,9 +33,9 @@ public class VeiculoFormView {
                 .chassi(veiculo.chassi().chassi())
                 .renavam(veiculo.renavam().renavam())
                 .anoModelo(veiculo.anoModelo())
-                .marca(veiculo.marca().toString())
-                .modelo(veiculo.modelo().toString())
-                .corPredominante(veiculo.corPredominante().toString())
+                .marca(veiculo.marca())
+                .modelo(veiculo.modelo())
+                .corPredominante(veiculo.corPredominante())
                 .capacidadeDePassageiros(veiculo.capacidadeDePassageiros())
                 .build();
     }
