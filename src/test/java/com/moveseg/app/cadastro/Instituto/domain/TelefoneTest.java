@@ -13,7 +13,7 @@ public class TelefoneTest {
     void dadoUmNumeroValidoDeveCriar() throws Exception{
         Telefone telefone = Telefone.of(("415555555"));
         assertNotNull(telefone);
-        assertEquals(("415555555"), telefone.numero());
+        assertEquals(("415555555"), telefone.telefone());
     }
 
     @Test 

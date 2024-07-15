@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moveseg.app.cadastro.Monitor.app.MonitorService;
+import com.moveseg.app.cadastro.Monitor.app.view.MonitorFormView;
+import com.moveseg.app.cadastro.Monitor.app.view.MonitorListView;
 import com.moveseg.app.cadastro.Monitor.domain.Monitor;
 import com.moveseg.app.cadastro.Monitor.domain.MonitorId;
 import com.moveseg.app.cadastro.Monitor.domain.cmd.AtualizarMonitor;
@@ -43,12 +45,12 @@ public class MonitorController {
     }
 
     @GetMapping
-    public List<Monitor> listarTodos() {
+    public List<MonitorListView> listarTodos() {
         return service.listarTodos();
     }
 
     @GetMapping("/{id}")
-    public Monitor buscarPorId(@PathVariable @NonNull MonitorId id) {
+    public MonitorFormView buscarPorId(@PathVariable @NonNull MonitorId id) {
         return service.buscarPorId(id);
     }
 
