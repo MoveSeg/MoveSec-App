@@ -25,7 +25,6 @@ import lombok.NoArgsConstructor;
 @Getter
 @Builder
 @NoArgsConstructor(access = PRIVATE, force = true)
-
 public class Monitor extends AbstractEntity<MonitorId> {
     private String nome;
 
@@ -41,8 +40,6 @@ public class Monitor extends AbstractEntity<MonitorId> {
     @AttributeOverride(column = @Column(name = "endereco"), name = "numero")
     private Endereco endereco;
 
-    @Embedded
-    @AttributeOverride(column = @Column(name = "genero"), name = "value")
     private Genero genero;
 
     @Embedded

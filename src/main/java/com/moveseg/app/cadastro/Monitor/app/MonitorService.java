@@ -29,7 +29,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MonitorService {
 
-    private MonitorRepository repository;
+    private final MonitorRepository repository;
 
     @NonNull
     @Lock(PESSIMISTIC_READ)
