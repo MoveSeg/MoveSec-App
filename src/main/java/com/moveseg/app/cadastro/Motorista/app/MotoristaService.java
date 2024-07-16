@@ -12,8 +12,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.moveseg.app.cadastro.Monitor.app.view.MonitorFormView;
-import com.moveseg.app.cadastro.Monitor.app.view.MonitorListView;
+
 import com.moveseg.app.cadastro.Motorista.app.view.MotoristaFormView;
 import com.moveseg.app.cadastro.Motorista.app.view.MotoristaListView;
 import com.moveseg.app.cadastro.Motorista.domain.Motorista;
