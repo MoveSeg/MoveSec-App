@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class MonitorListView {
     private MonitorId id;
     private String nome;
-    private String nascimento;
+    private String dataDeNascimento;
     private String email;
     private String telefone;
     private String logradouro;
@@ -28,7 +28,7 @@ public class MonitorListView {
         return MonitorListView.builder()
                 .id(monitor.id())
                 .nome(monitor.nome())
-                .nascimento(monitor.dataDeNascimento().toString())
+                .dataDeNascimento(monitor.dataDeNascimento().toString())
                 .email(monitor.email().email())
                 .telefone(monitor.telefone().telefone())
                 .logradouro(monitor.endereco().logradouro())
