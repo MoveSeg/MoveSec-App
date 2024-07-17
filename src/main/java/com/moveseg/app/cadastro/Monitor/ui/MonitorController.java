@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moveseg.app.cadastro.Monitor.app.MonitorService;
+import com.moveseg.app.cadastro.Monitor.app.view.MonitorFormView;
+import com.moveseg.app.cadastro.Monitor.app.view.MonitorListView;
 import com.moveseg.app.cadastro.Monitor.domain.Monitor;
 import com.moveseg.app.cadastro.Monitor.domain.MonitorId;
 import com.moveseg.app.cadastro.Monitor.domain.cmd.AtualizarMonitor;
@@ -28,6 +31,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping(path = "/api/monitor", produces = APPLICATION_JSON_VALUE)
 public class MonitorController {
 
@@ -43,12 +47,12 @@ public class MonitorController {
     }
 
     @GetMapping
-    public List<Monitor> listarTodos() {
+    public List<MonitorListView> listarTodos() {
         return service.listarTodos();
     }
 
     @GetMapping("/{id}")
-    public Monitor buscarPorId(@PathVariable @NonNull MonitorId id) {
+    public MonitorFormView buscarPorId(@PathVariable @NonNull MonitorId id) {
         return service.buscarPorId(id);
     }
 

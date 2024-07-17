@@ -12,6 +12,8 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.moveseg.app.cadastro.Monitor.app.view.MonitorFormView;
+import com.moveseg.app.cadastro.Monitor.app.view.MonitorListView;
 import com.moveseg.app.cadastro.Monitor.domain.Monitor;
 import com.moveseg.app.cadastro.Monitor.domain.MonitorId;
 import com.moveseg.app.cadastro.Monitor.domain.cmd.AtualizarMonitor;
@@ -27,7 +29,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MonitorService {
 
-    private MonitorRepository repository;
+    private final MonitorRepository repository;
 
     @NonNull
     @Lock(PESSIMISTIC_READ)
@@ -61,17 +63,19 @@ public class MonitorService {
 
     @NonNull
     @Transactional(readOnly = true)
-    public List<Monitor> listarTodos() {
-        return repository.findAll();
+    public List<MonitorListView> listarTodos() {
+        return repository.findAll().stream().map(MonitorListView::of).toList();
     }
 
     @SuppressWarnings("null")
     @NonNull
     @Transactional(readOnly = true)
-    public Monitor buscarPorId(@NonNull MonitorId id) {
-        return repository.findById(requireNonNull(id))
+    public MonitorFormView buscarPorId(@NonNull MonitorId id) {
+          return MonitorFormView.of(repository.findById(requireNonNull(id))
                 .orElseThrow(
-                        () -> new EntityNotFoundException(format("Not found any Business with code %s.", id.toUUID())));
+                        () -> new EntityNotFoundException(
+                                format("Not found any Business with code %s.",
+                                        id.toUUID()))));
     }
 
     public void deletar(@NonNull MonitorId id) {

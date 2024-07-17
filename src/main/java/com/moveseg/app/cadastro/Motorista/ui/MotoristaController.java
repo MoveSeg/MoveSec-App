@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moveseg.app.cadastro.Motorista.app.MotoristaService;
+import com.moveseg.app.cadastro.Motorista.app.view.MotoristaFormView;
+import com.moveseg.app.cadastro.Motorista.app.view.MotoristaListView;
 import com.moveseg.app.cadastro.Motorista.domain.Motorista;
 import com.moveseg.app.cadastro.Motorista.domain.MotoristaId;
 import com.moveseg.app.cadastro.Motorista.domain.cmd.AlterarMotorista;
@@ -27,6 +30,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping(path = "/api/Motorista", produces =APPLICATION_JSON_VALUE)
 public class MotoristaController {
     private final MotoristaService service;
@@ -42,12 +46,12 @@ public class MotoristaController {
     }
 
     @GetMapping
-    public List<Motorista> listarTodos() {
+    public List<MotoristaListView> listarTodos() {
         return service.listarTodos();
     }
 
     @GetMapping("/{id}")
-    public Motorista buscarPorId(@PathVariable @NonNull MotoristaId id) {
+    public MotoristaFormView buscarPorId(@PathVariable @NonNull MotoristaId id) {
         return service.buscarPorId(id);
     }
    

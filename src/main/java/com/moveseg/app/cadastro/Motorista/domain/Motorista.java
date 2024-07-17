@@ -39,8 +39,6 @@ public class Motorista extends AbstractEntity<MotoristaId> {
     @AttributeOverride(column = @Column(name = "telefone"), name = "numero")
     private Telefone telefone;
 
-    @Embedded
-    @AttributeOverride(column = @Column(name = "genero"), name = "value")
     private Genero genero;
 
     @Embedded
