@@ -22,41 +22,46 @@ import com.moveseg.app.cadastro.Monitor.repository.MonitorRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 
 @Service
 @Transactional(propagation = REQUIRES_NEW)
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class MonitorService {
 
-    private final MonitorRepository repository;
+    private MonitorRepository repository;
 
     @NonNull
     @Lock(PESSIMISTIC_READ)
     public MonitorId handle(@NonNull @Valid CriarMonitor cmd) throws Exception {
         Monitor monitor = Monitor.builder()
-                .nome(cmd.nome)
-                .dataDeNascimento(cmd.dataDeNascimento)
-                .email(cmd.email)
-                .telefone(cmd.telefone)
-                .endereco(cmd.endereco)
-                .genero(cmd.genero)
-                .cpf(cmd.cpf)
+                .nome(cmd.nome())
+                .dataDeNascimento(cmd.dataDeNascimento())
+                .email(cmd.email())
+                .telefone(cmd.telefone())
+                .endereco(cmd.endereco())
+                .genero(cmd.genero())
+                .cpf(cmd.cpf())
                 .build();
 
         repository.save(monitor);
         return monitor.id();
     }
 
-    public Monitor atualizarMonitor(@NonNull MonitorId id, AtualizarMonitor cmd) throws Exception {
-        Monitor monitor = repository.findById(id).orElseThrow(() -> new Exception("Não encontrado"));
-
+    public Monitor atualizarMonitor(@NonNull @Valid AtualizarMonitor cmd) throws Exception {
+        Monitor monitor = repository.findById(requireNonNull(cmd.id()))
+                .orElseThrow(
+                        () -> new EntityNotFoundException(
+                                format("Not found any Business with code %s.",
+                                        cmd.id().toUUID())));
         monitor.update()
-                .nome(cmd.nome)
-                .dataDeNascimento(cmd.dataDeNascimento)
-                .email(cmd.email)
-                .telefone(cmd.telefone)
-                .endereco(cmd.endereco)
+                .nome(cmd.nome())
+                .dataDeNascimento(cmd.dataDeNascimento())
+                .email(cmd.email())
+                .telefone(cmd.telefone())
+                .endereco(cmd.endereco())
+                .genero(cmd.genero())
+                .cpf(cmd.cpf())
                 .apply();
         return repository.save(monitor);
     }
@@ -67,11 +72,9 @@ public class MonitorService {
         return repository.findAll().stream().map(MonitorListView::of).toList();
     }
 
-    @SuppressWarnings("null")
-    @NonNull
     @Transactional(readOnly = true)
     public MonitorFormView buscarPorId(@NonNull MonitorId id) {
-          return MonitorFormView.of(repository.findById(requireNonNull(id))
+        return MonitorFormView.of(repository.findById(requireNonNull(id))
                 .orElseThrow(
                         () -> new EntityNotFoundException(
                                 format("Not found any Business with code %s.",

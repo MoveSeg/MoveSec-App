@@ -14,11 +14,11 @@ import lombok.Data;
 @Data
 @Builder
 public class CriarMonitor {
-    public String nome;
-    public LocalDate dataDeNascimento;
-    public Telefone telefone;
-    public Email email;
-    public Endereco endereco;
-    public Genero genero;
-    public Cpf cpf;
+    private String nome;
+    private LocalDate dataDeNascimento;
+    private Telefone telefone;
+    private Email email;
+    private Endereco endereco;
+    private Genero genero;
+    private Cpf cpf;
 }

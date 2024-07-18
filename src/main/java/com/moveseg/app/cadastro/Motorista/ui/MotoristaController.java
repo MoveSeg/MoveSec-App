@@ -27,6 +27,7 @@ import com.moveseg.app.cadastro.Motorista.domain.cmd.AlterarMotorista;
 import com.moveseg.app.cadastro.Motorista.domain.cmd.CriarMotorista;
 
 import lombok.AllArgsConstructor;
+import lombok.Value;
 
 @AllArgsConstructor
 @RestController
@@ -54,7 +55,6 @@ public class MotoristaController {
     public MotoristaFormView buscarPorId(@PathVariable @NonNull MotoristaId id) {
         return service.buscarPorId(id);
     }
-   
     @PutMapping("/{id}")
     public ResponseEntity<Motorista> alterar(@PathVariable @NonNull MotoristaId id, @RequestBody AlterarMotorista cmd){
                 cmd.id(id);
