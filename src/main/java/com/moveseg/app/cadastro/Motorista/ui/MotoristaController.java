@@ -33,11 +33,7 @@ import lombok.AllArgsConstructor;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping(path = "/api/motorista", produces = APPLICATION_JSON_VALUE)
 public class MotoristaController {
-<<<<<<< Updated upstream
     private final MotoristaService service;
-=======
-    MotoristaService service;
->>>>>>> Stashed changes
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<Motorista> salvar(@RequestBody CriarMotorista cmd) throws Exception {
