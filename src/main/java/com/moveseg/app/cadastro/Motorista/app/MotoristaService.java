@@ -12,6 +12,9 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
+import com.moveseg.app.cadastro.Motorista.app.view.MotoristaFormView;
+import com.moveseg.app.cadastro.Motorista.app.view.MotoristaListView;
 import com.moveseg.app.cadastro.Motorista.domain.Motorista;
 import com.moveseg.app.cadastro.Motorista.domain.MotoristaId;
 import com.moveseg.app.cadastro.Motorista.domain.cmd.AlterarMotorista;
@@ -65,17 +68,19 @@ public class MotoristaService {
 
     @NonNull
     @Transactional(readOnly = true)
-    public List<Motorista> listarTodos() {
-        return repository.findAll();
+    public List<MotoristaListView> listarTodos() {
+        return repository.findAll().stream().map(MotoristaListView::of).toList();
     }
 
     @SuppressWarnings("null")
     @NonNull
     @Transactional(readOnly = true)
-    public Motorista buscarPorId(@NonNull MotoristaId id) {
-        return repository.findById(requireNonNull(id))
+    public MotoristaFormView buscarPorId(@NonNull MotoristaId id) {
+        return MotoristaFormView.of(repository.findById(requireNonNull(id))
                 .orElseThrow(
-                        () -> new EntityNotFoundException(format("Not found any Business with code %s.", id.toUUID())));
+                        () -> new EntityNotFoundException(
+                                format("Not found any Business with code %s.",
+                                        id.toUUID()))));
     }
 
     public void deletar(@NonNull MotoristaId id) {

@@ -4,7 +4,6 @@ import com.moveseg.parent.infra.domain.ValueObject;
 
 import jakarta.persistence.Embeddable;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,15 +12,18 @@ import lombok.NoArgsConstructor;
 @Embeddable
 @EqualsAndHashCode
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Renavam implements ValueObject {
-    private String value;
+    private String renavam;
 
-    public static Renavam of(String renavam) {
-        if (renavam == null || renavam.isEmpty()) {
+    public Renavam(String renavam) {
+        this.renavam = renavam;
+    }
+
+    public static Renavam of(String value) {
+        if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Não deve ser nulo");
         }
-        return new Renavam(renavam);
+        return new Renavam(value);
     }
 
 }

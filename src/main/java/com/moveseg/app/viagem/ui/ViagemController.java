@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,19 +17,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.moveseg.app.cadastro.Aluno.domain.Aluno;
-import com.moveseg.app.cadastro.Aluno.domain.AlunoId;
 import com.moveseg.app.viagem.app.ViagemService;
-import com.moveseg.app.viagem.cmd.AlterarViagem;
-import com.moveseg.app.viagem.cmd.CriarViagem;
+import com.moveseg.app.viagem.app.view.ViagemFormView;
+import com.moveseg.app.viagem.app.view.ViagemListView;
 import com.moveseg.app.viagem.domain.Viagem;
 import com.moveseg.app.viagem.domain.ViagemId;
+import com.moveseg.app.viagem.domain.cmd.AlterarViagem;
+import com.moveseg.app.viagem.domain.cmd.CriarViagem;
 
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 
 @AllArgsConstructor
 @RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping(path = "/api/viagem", produces = APPLICATION_JSON_VALUE)
 public class ViagemController {
     ViagemService service;
@@ -43,12 +45,12 @@ public class ViagemController {
     }
 
     @GetMapping
-    public List<Viagem> listarTodos() {
+    public List<ViagemListView> listarTodos() {
         return service.listarTodos();
     }
 
     @GetMapping("/{id}")
-    public Viagem buscarPorId(@PathVariable @NonNull ViagemId id) {
+    public ViagemFormView buscarPorId(@PathVariable @NonNull ViagemId id) {
         return service.buscarPorId(id);
     }
 
@@ -61,7 +63,7 @@ public class ViagemController {
         return ResponseEntity.status(HttpStatus.CREATED).body(salvar);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable @NonNull ViagemId id) {
         service.deletar(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

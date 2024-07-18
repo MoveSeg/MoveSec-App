@@ -1,13 +1,16 @@
 package com.moveseg.app.cadastro.Aluno.domain.cmd;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import com.moveseg.app.cadastro.Aluno.domain.AlunoId;
 import com.moveseg.app.cadastro.Aluno.domain.Carteirinha;
 import com.moveseg.app.cadastro.Instituto.domain.Email;
 import com.moveseg.app.cadastro.Instituto.domain.Endereco;
 import com.moveseg.app.cadastro.Instituto.domain.Telefone;
-import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
-import com.moveseg.app.cadastro.sk.domain.Cpf;
-import com.moveseg.app.cadastro.sk.domain.Genero;
+import com.moveseg.app.cadastro.responsavel.domain.ResponsavelId;
+import com.moveseg.app.cadastro.veiculo.sk.domain.Cpf;
+import com.moveseg.app.cadastro.veiculo.sk.domain.Genero;
 
 import lombok.Builder;
 import lombok.Data;
@@ -17,11 +20,12 @@ import lombok.Data;
 public class AlterarAluno {
     private AlunoId id;
     private String nome;
-    private Responsavel responsavel;
+    private List<ResponsavelId> responsaveis;
     private Carteirinha carteirinha;
     private Telefone telefone;
     private Email email;
     private Endereco endereco;
     private Genero genero;
     private Cpf cpf;
+    private LocalDate dataDeNascimento;
 }

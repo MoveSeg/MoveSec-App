@@ -9,8 +9,8 @@ import java.time.LocalDate;
 import com.moveseg.app.cadastro.Instituto.domain.Email;
 import com.moveseg.app.cadastro.Instituto.domain.Endereco;
 import com.moveseg.app.cadastro.Instituto.domain.Telefone;
-import com.moveseg.app.cadastro.sk.domain.Cpf;
-import com.moveseg.app.cadastro.sk.domain.Genero;
+import com.moveseg.app.cadastro.veiculo.sk.domain.Cpf;
+import com.moveseg.app.cadastro.veiculo.sk.domain.Genero;
 import com.moveseg.parent.infra.domain.AbstractEntity;
 
 import jakarta.persistence.AttributeOverride;
@@ -25,7 +25,6 @@ import lombok.NoArgsConstructor;
 @Getter
 @Builder
 @NoArgsConstructor(access = PRIVATE, force = true)
-
 public class Monitor extends AbstractEntity<MonitorId> {
     private String nome;
 
@@ -41,8 +40,6 @@ public class Monitor extends AbstractEntity<MonitorId> {
     @AttributeOverride(column = @Column(name = "endereco"), name = "numero")
     private Endereco endereco;
 
-    @Embedded
-    @AttributeOverride(column = @Column(name = "genero"), name = "value")
     private Genero genero;
 
     @Embedded

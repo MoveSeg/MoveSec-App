@@ -8,8 +8,8 @@ import java.time.LocalDate;
 import com.moveseg.app.cadastro.Instituto.domain.Email;
 import com.moveseg.app.cadastro.Instituto.domain.Endereco;
 import com.moveseg.app.cadastro.Instituto.domain.Telefone;
-import com.moveseg.app.cadastro.sk.domain.Cpf;
-import com.moveseg.app.cadastro.sk.domain.Genero;
+import com.moveseg.app.cadastro.veiculo.sk.domain.Cpf;
+import com.moveseg.app.cadastro.veiculo.sk.domain.Genero;
 import com.moveseg.parent.infra.domain.AbstractEntity;
 
 import jakarta.persistence.AttributeOverride;
@@ -39,8 +39,6 @@ public class Motorista extends AbstractEntity<MotoristaId> {
     @AttributeOverride(column = @Column(name = "telefone"), name = "numero")
     private Telefone telefone;
 
-    @Embedded
-    @AttributeOverride(column = @Column(name = "genero"), name = "value")
     private Genero genero;
 
     @Embedded

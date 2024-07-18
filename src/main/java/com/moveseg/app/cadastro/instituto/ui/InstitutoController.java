@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moveseg.app.cadastro.Instituto.app.InstitutoService;
+import com.moveseg.app.cadastro.Instituto.app.view.InstitutoFormView;
+import com.moveseg.app.cadastro.Instituto.app.view.InstitutoListView;
 import com.moveseg.app.cadastro.Instituto.domain.Instituto;
 import com.moveseg.app.cadastro.Instituto.domain.InstitutoId;
 import com.moveseg.app.cadastro.Instituto.domain.cmd.AlterarInstituto;
@@ -27,6 +30,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping(path = "/api/instituto", produces = APPLICATION_JSON_VALUE)
 public class InstitutoController {
 
@@ -42,12 +46,12 @@ public class InstitutoController {
     }
 
     @GetMapping
-    public List<Instituto> listarTodos() {
+    public List<InstitutoListView> listarTodos() {
         return service.listarTodos();
     }
 
     @GetMapping("/{id}")
-    public Instituto buscarPorId(@PathVariable @NonNull InstitutoId id) {
+    public InstitutoFormView buscarPorId(@PathVariable @NonNull InstitutoId id) {
         return service.buscarPorId(id);
     }
 
@@ -60,7 +64,7 @@ public class InstitutoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(salvar);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable @NonNull InstitutoId id) {
         service.deletar(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

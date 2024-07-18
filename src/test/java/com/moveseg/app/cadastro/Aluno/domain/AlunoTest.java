@@ -16,8 +16,8 @@ import com.moveseg.app.cadastro.Instituto.domain.Email;
 import com.moveseg.app.cadastro.Instituto.domain.Endereco;
 import com.moveseg.app.cadastro.Instituto.domain.Telefone;
 import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
-import com.moveseg.app.cadastro.sk.domain.Cpf;
-import com.moveseg.app.cadastro.sk.domain.Genero;
+import com.moveseg.app.cadastro.veiculo.sk.domain.Cpf;
+import com.moveseg.app.cadastro.veiculo.sk.domain.Genero;
 
 public class AlunoTest {
     private String nome = "Nome";
@@ -183,7 +183,7 @@ public class AlunoTest {
         Aluno aluno = this.builder.build();
         aluno.atualizar()
                 .nome(novoNome)
-                .responsavel(novoResponsavel)
+                .responsavel(novosResponsaveis)
                 .carteirinha(novaCarteirinha)
                 .telefone(novoTelefone)
                 .email(novoEmail)
@@ -208,7 +208,7 @@ public class AlunoTest {
         Aluno aluno = this.builder.build();
         assertThrows(Exception.class, () -> {
             aluno.atualizar()
-                    .responsavel(novoResponsavel)
+                    .responsavel(novosResponsaveis)
                     .carteirinha(novaCarteirinha)
                     .telefone(novoTelefone)
                     .email(novoEmail)
@@ -253,7 +253,7 @@ public class AlunoTest {
         assertThrows(Exception.class, () -> {
             aluno.atualizar()
                     .nome(novoNome)
-                    .responsavel(novoResponsavel)
+                    .responsavel(novosResponsaveis)
                     .telefone(novoTelefone)
                     .email(novoEmail)
                     .endereco(novoEndereco)
@@ -271,7 +271,7 @@ public class AlunoTest {
         assertThrows(Exception.class, () -> {
             aluno.atualizar()
                     .nome(novoNome)
-                    .responsavel(novoResponsavel)
+                    .responsavel(novosResponsaveis)
                     .email(novoEmail)
                     .endereco(novoEndereco)
                     .genero(Genero.MASCULINO)
@@ -288,7 +288,7 @@ public class AlunoTest {
         assertThrows(Exception.class, () -> {
             aluno.atualizar()
                     .nome(novoNome)
-                    .responsavel(novoResponsavel)
+                    .responsavel(novosResponsaveis)
                     .carteirinha(novaCarteirinha)
                     .telefone(novoTelefone)
                     .endereco(novoEndereco)
@@ -306,7 +306,7 @@ public class AlunoTest {
         assertThrows(Exception.class, () -> {
             aluno.atualizar()
                     .nome(novoNome)
-                    .responsavel(novoResponsavel)
+                    .responsavel(novosResponsaveis)
                     .carteirinha(novaCarteirinha)
                     .telefone(novoTelefone)
                     .email(novoEmail)
@@ -324,7 +324,7 @@ public class AlunoTest {
         assertThrows(Exception.class, () -> {
             aluno.atualizar()
                     .nome(novoNome)
-                    .responsavel(novoResponsavel)
+                    .responsavel(novosResponsaveis)
                     .carteirinha(novaCarteirinha)
                     .telefone(novoTelefone)
                     .email(novoEmail)
@@ -342,7 +342,7 @@ public class AlunoTest {
         assertThrows(Exception.class, () -> {
             aluno.atualizar()
                     .nome(novoNome)
-                    .responsavel(novoResponsavel)
+                    .responsavel(novosResponsaveis)
                     .carteirinha(novaCarteirinha)
                     .telefone(novoTelefone)
                     .email(novoEmail)
@@ -360,7 +360,7 @@ public class AlunoTest {
         assertThrows(Exception.class, () -> {
             aluno.atualizar()
                     .nome(novoNome)
-                    .responsavel(novoResponsavel)
+                    .responsavel(novosResponsaveis)
                     .carteirinha(novaCarteirinha)
                     .telefone(novoTelefone)
                     .email(novoEmail)

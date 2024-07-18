@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moveseg.app.cadastro.Motorista.app.MotoristaService;
+import com.moveseg.app.cadastro.Motorista.app.view.MotoristaFormView;
+import com.moveseg.app.cadastro.Motorista.app.view.MotoristaListView;
 import com.moveseg.app.cadastro.Motorista.domain.Motorista;
 import com.moveseg.app.cadastro.Motorista.domain.MotoristaId;
 import com.moveseg.app.cadastro.Motorista.domain.cmd.AlterarMotorista;
@@ -44,12 +46,12 @@ public class MotoristaController {
     }
 
     @GetMapping
-    public List<Motorista> listarTodos() {
+    public List<MotoristaListView> listarTodos() {
         return service.listarTodos();
     }
 
     @GetMapping("/{id}")
-    public Motorista buscarPorId(@PathVariable @NonNull MotoristaId id) {
+    public MotoristaFormView buscarPorId(@PathVariable @NonNull MotoristaId id) {
         return service.buscarPorId(id);
     }
    

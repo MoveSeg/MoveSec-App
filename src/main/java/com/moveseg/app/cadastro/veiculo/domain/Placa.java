@@ -4,7 +4,6 @@ import com.moveseg.parent.infra.domain.ValueObject;
 
 import jakarta.persistence.Embeddable;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,15 +12,18 @@ import lombok.NoArgsConstructor;
 @Embeddable
 @EqualsAndHashCode
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Placa implements ValueObject {
-    private String value;
+    private String placa;
 
-    public static Placa of(String placa) {
-        if (placa == null || placa.isEmpty()) {
+    public Placa(String placa) {
+        this.placa = placa;
+    }
+
+    public static Placa of(String value) {
+        if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Não deve ser nulo");
         }
 
-        return new Placa(placa);
+        return new Placa(value);
     }
 }

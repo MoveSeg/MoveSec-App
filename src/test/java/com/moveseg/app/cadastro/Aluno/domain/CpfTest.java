@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import com.moveseg.app.cadastro.sk.domain.Cpf;
+import com.moveseg.app.cadastro.veiculo.sk.domain.Cpf;
 
 public class CpfTest {
     
@@ -14,7 +14,7 @@ public class CpfTest {
     void dadoUmCpfValidoDeveCriar() throws Exception{
         Cpf cpf = Cpf.of(("1111111111"));
         assertNotNull(cpf);
-        assertEquals(("1111111111"), cpf.numero());
+        assertEquals(("1111111111"), cpf.cpf());
     }
 
     @Test 
