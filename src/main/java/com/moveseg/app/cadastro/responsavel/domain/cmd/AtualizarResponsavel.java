@@ -17,7 +17,6 @@ import lombok.Data;
 public class AtualizarResponsavel {
     private ResponsavelId id;
     private String nome;
-    private Integer documento;
     private LocalDate nascimento;
     private Email email;
     private Telefone telefone;
