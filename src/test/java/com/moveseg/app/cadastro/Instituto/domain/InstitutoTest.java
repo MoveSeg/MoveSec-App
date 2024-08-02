@@ -111,7 +111,7 @@ public class InstitutoTest {
         instituto.atualizar()
                 .nome(novoNome)
                 .endereco(novoEndereco)
-                .responsaveis(novoResponsavel)
+                .responsaveis(novosResponsaveis)
                 .telefone(novoTelefone)
                 .email(novoEmail).aplicar();
 
@@ -130,7 +130,7 @@ public class InstitutoTest {
         assertThrows(Exception.class, () -> {
             instituto.atualizar()
                     .endereco(novoEndereco)
-                    .responsaveis(novoResponsavel)
+                    .responsaveis(novosResponsaveis)
                     .telefone(novoTelefone)
                     .email(novoEmail).aplicar();
         });
@@ -142,7 +142,7 @@ public class InstitutoTest {
         assertThrows(Exception.class, () -> {
             instituto.atualizar()
                     .nome(novoNome)
-                    .responsaveis(novoResponsavel)
+                    .responsaveis(novosResponsaveis)
                     .telefone(novoTelefone)
                     .email(novoEmail).aplicar();
         });
@@ -168,7 +168,7 @@ public class InstitutoTest {
             instituto.atualizar()
                     .nome(novoNome)
                     .endereco(novoEndereco)
-                    .responsaveis(novoResponsavel)
+                    .responsaveis(novosResponsaveis)
                     .email(novoEmail).aplicar();
         });
     }
@@ -180,7 +180,7 @@ public class InstitutoTest {
             instituto.atualizar()
                     .nome(novoNome)
                     .endereco(novoEndereco)
-                    .responsaveis(novoResponsavel)
+                    .responsaveis(novosResponsaveis)
                     .telefone(novoTelefone)
                     .aplicar();
         });
