@@ -53,7 +53,7 @@ public class InstitutoService {
         }
 
         public Instituto handle(@NonNull @Valid AlterarInstituto cmd) {
-                Responsavel responsaveis = responsavelRepository.findById((ResponsavelId) cmd.responsaveis()).get();
+                List<Responsavel> responsaveis = responsavelRepository.findAllById(cmd.responsaveis());
                 Instituto instituto = repository.findById(requireNonNull(cmd.id()))
                                 .orElseThrow(
                                                 () -> new EntityNotFoundException(

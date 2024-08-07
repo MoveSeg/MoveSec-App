@@ -66,10 +66,12 @@ public class RotaTest {
     @Test
     void novasInformaçõesCompletasDeveAtulizarEManterNaoNulo() throws Exception {
         novoNumeroRota = Numero.of("17fh4");
+        novosEnderecos = new ArrayList<Endereco>();
+        novosEnderecos.add(novoEndereco);
         Rota rota = Rota.of(numeroRota, enderecos);
         rota.atualizar()
                 .numeroRota(novoNumeroRota)
-                .endereco(this.novoEndereco)
+                .endereco(novosEnderecos)
                 .aplicar();
 
         assertNotNull(rota);
@@ -82,7 +84,7 @@ public class RotaTest {
         assertThrows(Exception.class, () -> {
             Rota rota = Rota.of(numeroRota, enderecos);
             rota.atualizar()
-                    .endereco(this.novoEndereco)
+                    .endereco(this.novosEnderecos)
                     .aplicar();
 
         });
