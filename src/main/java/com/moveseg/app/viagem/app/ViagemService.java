@@ -52,7 +52,7 @@ public class ViagemService {
         }
 
         public Viagem handle(@NonNull @Valid AlterarViagem cmd) {
-                Aluno alunos = alunoRepository.findById((AlunoId) cmd.alunos()).get();
+                List<Aluno> alunos = alunoRepository.findAllById(cmd.alunos().stream().map(AlunoId::new).toList());
                 Viagem viagem = repository.findById(requireNonNull(cmd.id()))
                                 .orElseThrow(
                                                 () -> new EntityNotFoundException(

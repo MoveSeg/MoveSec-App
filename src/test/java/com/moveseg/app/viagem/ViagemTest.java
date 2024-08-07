@@ -104,7 +104,7 @@ public class ViagemTest {
         novaData = LocalDate.of(2017, 04, 20);
         Viagem viagem = this.builder.build();
         viagem.atualizar()
-                .alunos(novoAluno)
+                .alunos(novosAlunos)
                 .motorista(novoMotorista)
                 .rota(novaRota)
                 .veiculo(novoVeiculo)
@@ -137,7 +137,7 @@ public class ViagemTest {
         Viagem viagem = this.builder.build();
         assertThrows(Exception.class, () -> {
             viagem.atualizar()
-                    .alunos(novoAluno)
+                    .alunos(novosAlunos)
                     .rota(novaRota)
                     .veiculo(novoVeiculo)
                     .data(novaData)
@@ -151,7 +151,7 @@ public class ViagemTest {
         Viagem viagem = this.builder.build();
         assertThrows(Exception.class, () -> {
             viagem.atualizar()
-                    .alunos(novoAluno)
+                    .alunos(novosAlunos)
                     .rota(novaRota)
                     .motorista(novoMotorista)
                     .veiculo(novoVeiculo)
@@ -163,7 +163,7 @@ public class ViagemTest {
         Viagem viagem = this.builder.build();
         assertThrows(Exception.class, () -> {
             viagem.atualizar()
-                    .alunos(novoAluno)
+                    .alunos(novosAlunos)
                     .rota(novaRota)
                     .veiculo(novoVeiculo)
                     .motorista(novoMotorista)

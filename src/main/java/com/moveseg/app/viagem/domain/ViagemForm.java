@@ -25,8 +25,8 @@ public class ViagemForm {
     private VeiculoId veiculo;
     private LocalDate data;
 
-    public ViagemForm alunos(Aluno alunos) {
-        this.alunos.add(alunos);
+    public ViagemForm alunos(List<Aluno> alunos) {
+        this.alunos.addAll(alunos);
         return this;
     }
 
