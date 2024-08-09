@@ -11,20 +11,17 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import com.moveseg.app.cadastro.Aluno.domain.Aluno;
-import com.moveseg.app.cadastro.Motorista.domain.MotoristaId;
-import com.moveseg.app.cadastro.veiculo.domain.VeiculoId;
-import com.moveseg.app.cadastro.veiculo.sk.domain.Genero;
-import com.moveseg.app.viagem.Rota.domain.RotaId;
+import com.moveseg.app.cadastro.Motorista.domain.Motorista;
+import com.moveseg.app.cadastro.veiculo.domain.Veiculo;
+import com.moveseg.app.viagem.Rota.domain.Rota;
 import com.moveseg.app.viagem.domain.Viagem;
-import com.moveseg.app.viagem.domain.Viagem.ViagemBuilder;
-import com.moveseg.parent.infra.domain.DomainObjectId;
 
 public class ProgramacaoTest {
     private Aluno aluno;
     private List<Aluno> alunos = new ArrayList<Aluno>();
-    private RotaId rota = DomainObjectId.randomId(RotaId.class);
-    private MotoristaId motorista = DomainObjectId.randomId(MotoristaId.class);
-    private VeiculoId veiculo = DomainObjectId.randomId(VeiculoId.class);
+    private Rota rota;
+    private Motorista motorista;
+    private Veiculo veiculo;
     private LocalDate dataViagem = LocalDate.of(2000, 04, 30);
     private LocalDate data;
     private Viagem viagem;
