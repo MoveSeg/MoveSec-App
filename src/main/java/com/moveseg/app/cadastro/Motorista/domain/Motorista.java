@@ -28,21 +28,17 @@ import lombok.NoArgsConstructor;
 public final class Motorista extends AbstractEntity<MotoristaId> {
 
     @Embedded
-    @AttributeOverride(column = @Column(name = "email"), name = "value")
     private Email email;
 
     @Embedded
-    @AttributeOverride(column = @Column(name = "endereco"), name = "numero")
     private Endereco endereco;
 
     @Embedded
-    @AttributeOverride(column = @Column(name = "telefone"), name = "numero")
     private Telefone telefone;
 
     private Genero genero;
 
     @Embedded
-    @AttributeOverride(column = @Column(name = "cpf"), name = "numero")
     private Cpf cpf;
 
     private String nome;
