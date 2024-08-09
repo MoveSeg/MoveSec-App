@@ -16,6 +16,7 @@ import com.moveseg.parent.infra.domain.AbstractEntity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -29,8 +30,14 @@ public class Viagem extends AbstractEntity<ViagemId> {
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     private List<Aluno> alunos;
+
+    @ManyToOne
     private Rota rota;
+
+    @ManyToOne
     private Motorista motorista;
+
+    @ManyToOne
     private Veiculo veiculo;
     private LocalDate data;
 
