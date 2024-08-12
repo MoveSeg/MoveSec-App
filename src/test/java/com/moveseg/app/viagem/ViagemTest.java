@@ -12,8 +12,18 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.moveseg.app.cadastro.Aluno.domain.Aluno;
+import com.moveseg.app.cadastro.Instituto.domain.Email;
+import com.moveseg.app.cadastro.Instituto.domain.Endereco;
+import com.moveseg.app.cadastro.Instituto.domain.Telefone;
 import com.moveseg.app.cadastro.Motorista.domain.Motorista;
+import com.moveseg.app.cadastro.veiculo.domain.Chassi;
+import com.moveseg.app.cadastro.veiculo.domain.Placa;
+import com.moveseg.app.cadastro.veiculo.domain.Renavam;
 import com.moveseg.app.cadastro.veiculo.domain.Veiculo;
+import com.moveseg.app.cadastro.veiculo.domain.Veiculo.VeiculoBuilder;
+import com.moveseg.app.cadastro.veiculo.sk.domain.Cpf;
+import com.moveseg.app.cadastro.veiculo.sk.domain.Genero;
+import com.moveseg.app.viagem.Rota.domain.Numero;
 import com.moveseg.app.viagem.Rota.domain.Rota;
 import com.moveseg.app.viagem.domain.Viagem;
 import com.moveseg.app.viagem.domain.Viagem.ViagemBuilder;
@@ -26,6 +36,21 @@ public class ViagemTest {
     private Motorista motorista;
     private Veiculo veiculo;
     private LocalDate data;
+    private String nome = "Nome";
+    private Telefone telefone;
+    private Email email;
+    private Endereco endereco;
+    private Cpf cpf;
+    private Numero numeroRota;
+    private List<Endereco> enderecos;
+    private Placa placa;
+    private Chassi chassi;
+    private Renavam renavam;
+    private Integer anoModelo;
+    private String marca;
+    private String modelo;
+    private String corPredominante;
+    private Integer capacidadeDePassageiros;
     private ViagemBuilder builder;
 
     private Aluno novoAluno;
@@ -34,12 +59,74 @@ public class ViagemTest {
     private Motorista novoMotorista;
     private Veiculo novoVeiculo;
     private LocalDate novaData;
+    private Endereco novoEndereco;
+    private Integer frota;
+    private List<Endereco> novosEnderecos;
 
     @BeforeEach
     void initializeBuilder() throws Exception {
         alunos = new ArrayList<Aluno>();
         alunos.add(aluno);
         data = LocalDate.of(2000, 04, 30);
+        telefone = Telefone.of("415555555");
+        email = Email.of("Exemplo@email.com");
+        endereco = Endereco.of("Logradouro", 555);
+        cpf = Cpf.of("55555");
+
+        numeroRota = Numero.of("317R");
+        enderecos = new ArrayList<Endereco>();
+        enderecos.add(endereco);
+
+        novosEnderecos = new ArrayList<Endereco>();
+        novosEnderecos.add(novoEndereco);
+
+        placa = Placa.of("ASDASD");
+        chassi = Chassi.of("ASDASD");
+        renavam = Renavam.of("asdasd");
+        frota = 128;
+        anoModelo = 2012;
+        marca = "Marca";
+        modelo = "Modelo";
+        corPredominante = "Azul";
+        capacidadeDePassageiros = 8;
+
+        motorista = Motorista.builder()
+                .nome(this.nome)
+                .telefone(this.telefone)
+                .email(this.email)
+                .endereco(this.endereco)
+                .genero(Genero.FEMININO)
+                .cpf(this.cpf)
+                .nascimento(this.data)
+                .build();
+
+        novoMotorista = Motorista.builder()
+        .nome(this.nome)
+        .telefone(this.telefone)
+        .email(this.email)
+        .endereco(this.endereco)
+        .genero(Genero.FEMININO)
+        .cpf(this.cpf)
+        .nascimento(this.data)
+        .build();
+
+
+        rota = Rota.of(numeroRota, enderecos);
+        novaRota = Rota.of(numeroRota, enderecos);
+
+        VeiculoBuilder veiculoBuilder = Veiculo.builder()
+        .placa(placa)
+        .numeroDaFrota(frota)
+        .chassi(chassi)
+        .renavam(renavam)
+        .anoModelo(anoModelo)
+        .marca(marca)
+        .modelo(modelo)
+        .corPredominante(corPredominante)
+        .capacidadeDePassageiros(capacidadeDePassageiros);
+        veiculo = veiculoBuilder.build();
+        novoVeiculo = veiculoBuilder.build();
+
         this.builder = Viagem.builder()
                 .alunos(alunos)
                 .motorista(motorista)
@@ -152,6 +239,7 @@ public class ViagemTest {
                     .aplicar();
         });
     }
+
     @Test
     void dadoUmVeiculoNuloNaoDeveAtualizar() {
         Viagem viagem = this.builder.build();
