@@ -55,7 +55,7 @@ public class Instituto extends AbstractEntity<InstitutoId> {
             this.nome = requireNonNull(form.nome(), "Nome não pode ser nulo");
             this.endereco = requireNonNull(form.endereco(), "Endereço não pode ser nulo");
             this.responsaveis = requireNonNull(form.responsaveis(), "Responsavel não pode ser nulo");
-            this.telefone = requireNonNull(form.telefone(), "Telefone não pode ser nulo");
+             this.telefone = requireNonNull(form.telefone(), "Telefone não pode ser nulo");
             this.email = requireNonNull(form.email(), "Email não pode ser nulo");
         });
     }
