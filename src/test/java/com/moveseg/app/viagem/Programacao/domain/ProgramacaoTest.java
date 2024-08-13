@@ -11,17 +11,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import com.moveseg.app.cadastro.Aluno.domain.Aluno;
-<<<<<<< Updated upstream
-import com.moveseg.app.cadastro.Motorista.domain.Motorista;
-import com.moveseg.app.cadastro.veiculo.domain.Veiculo;
-import com.moveseg.app.viagem.Rota.domain.Rota;
-=======
-<<<<<<< Updated upstream
-import com.moveseg.app.cadastro.Motorista.domain.MotoristaId;
-import com.moveseg.app.cadastro.veiculo.domain.VeiculoId;
-import com.moveseg.app.cadastro.veiculo.sk.domain.Genero;
-import com.moveseg.app.viagem.Rota.domain.RotaId;
-=======
 import com.moveseg.app.cadastro.Instituto.domain.Email;
 import com.moveseg.app.cadastro.Instituto.domain.Endereco;
 import com.moveseg.app.cadastro.Instituto.domain.Telefone;
@@ -35,8 +24,6 @@ import com.moveseg.app.cadastro.veiculo.sk.domain.Cpf;
 import com.moveseg.app.cadastro.veiculo.sk.domain.Genero;
 import com.moveseg.app.viagem.Rota.domain.Numero;
 import com.moveseg.app.viagem.Rota.domain.Rota;
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 import com.moveseg.app.viagem.domain.Viagem;
 
 public class ProgramacaoTest {
