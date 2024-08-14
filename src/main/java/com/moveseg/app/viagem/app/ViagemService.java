@@ -15,6 +15,15 @@ import org.springframework.transaction.annotation.Transactional;
 import com.moveseg.app.cadastro.Aluno.domain.Aluno;
 import com.moveseg.app.cadastro.Aluno.domain.AlunoId;
 import com.moveseg.app.cadastro.Aluno.repository.AlunoRepository;
+import com.moveseg.app.cadastro.Motorista.domain.Motorista;
+import com.moveseg.app.cadastro.Motorista.domain.MotoristaId;
+import com.moveseg.app.cadastro.Motorista.repository.MotoristaRepository;
+import com.moveseg.app.cadastro.veiculo.domain.Veiculo;
+import com.moveseg.app.cadastro.veiculo.domain.VeiculoId;
+import com.moveseg.app.cadastro.veiculo.repository.VeiculoRepository;
+import com.moveseg.app.viagem.Rota.domain.Rota;
+import com.moveseg.app.viagem.Rota.domain.RotaId;
+import com.moveseg.app.viagem.Rota.repository.RotaRepository;
 import com.moveseg.app.viagem.app.view.ViagemFormView;
 import com.moveseg.app.viagem.app.view.ViagemListView;
 import com.moveseg.app.viagem.domain.Viagem;
@@ -32,18 +41,25 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class ViagemService {
         private ViagemRepository repository;
+        private RotaRepository rotaRepository;
+        private VeiculoRepository veiculoRepository;
+        private MotoristaRepository motoristaRepository;
         private AlunoRepository alunoRepository;
   
         @NonNull
         @Lock(PESSIMISTIC_READ)
         public ViagemId handle(@NonNull @Valid CriarViagem cmd)  {
                 List<Aluno> alunos = alunoRepository.findAllById(cmd.alunos().stream().map(AlunoId::new).toList());
+                Rota rota = rotaRepository.findById((RotaId) cmd.rota()).get();
+                Motorista motorista = motoristaRepository.findById((MotoristaId) cmd.motorista()).get();
+                Veiculo veiculo = veiculoRepository.findById((VeiculoId) cmd.veiculo()).get();
+
                 Viagem viagem = Viagem.builder()
                                 .alunos(alunos)
-                                .motorista(cmd.motorista())
-                                .rota(cmd.rota())
+                                .motorista(motorista)
+                                .rota(rota)
                                 .alunos(alunos)
-                                .veiculo(cmd.veiculo())
+                                .veiculo(veiculo)
                                 .data(cmd.data())
                                 .build();
 
@@ -52,7 +68,11 @@ public class ViagemService {
         }
 
         public Viagem handle(@NonNull @Valid AlterarViagem cmd) {
-                Aluno alunos = alunoRepository.findById((AlunoId) cmd.alunos()).get();
+                List<Aluno> alunos = alunoRepository.findAllById(cmd.alunos().stream().map(AlunoId::new).toList());
+                Rota rota = rotaRepository.findById((RotaId) cmd.rota()).get();
+                Motorista motorista = motoristaRepository.findById((MotoristaId) cmd.motorista()).get();
+                Veiculo veiculo = veiculoRepository.findById((VeiculoId) cmd.veiculo()).get();
+
                 Viagem viagem = repository.findById(requireNonNull(cmd.id()))
                                 .orElseThrow(
                                                 () -> new EntityNotFoundException(
@@ -60,9 +80,9 @@ public class ViagemService {
                                                                                 cmd.id().toUUID())));
                 viagem.atualizar()
                                 .alunos(alunos)
-                                .motorista(cmd.motorista())
-                                .rota(cmd.rota())
-                                .veiculo(cmd.veiculo())
+                                .motorista(motorista)
+                                .rota(rota)
+                                .veiculo(veiculo)
                                 .data(cmd.data())
                                 .aplicar();
                 return repository.save(viagem);

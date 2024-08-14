@@ -11,34 +11,104 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import com.moveseg.app.cadastro.Aluno.domain.Aluno;
-import com.moveseg.app.cadastro.Motorista.domain.MotoristaId;
-import com.moveseg.app.cadastro.veiculo.domain.VeiculoId;
+import com.moveseg.app.cadastro.Instituto.domain.Email;
+import com.moveseg.app.cadastro.Instituto.domain.Endereco;
+import com.moveseg.app.cadastro.Instituto.domain.Telefone;
+import com.moveseg.app.cadastro.Motorista.domain.Motorista;
+import com.moveseg.app.cadastro.veiculo.domain.Chassi;
+import com.moveseg.app.cadastro.veiculo.domain.Placa;
+import com.moveseg.app.cadastro.veiculo.domain.Renavam;
+import com.moveseg.app.cadastro.veiculo.domain.Veiculo;
+import com.moveseg.app.cadastro.veiculo.domain.Veiculo.VeiculoBuilder;
+import com.moveseg.app.cadastro.veiculo.sk.domain.Cpf;
 import com.moveseg.app.cadastro.veiculo.sk.domain.Genero;
-import com.moveseg.app.viagem.Rota.domain.RotaId;
+import com.moveseg.app.viagem.Rota.domain.Numero;
+import com.moveseg.app.viagem.Rota.domain.Rota;
 import com.moveseg.app.viagem.domain.Viagem;
-import com.moveseg.app.viagem.domain.Viagem.ViagemBuilder;
-import com.moveseg.parent.infra.domain.DomainObjectId;
 
 public class ProgramacaoTest {
     private Aluno aluno;
     private List<Aluno> alunos = new ArrayList<Aluno>();
-    private RotaId rota = DomainObjectId.randomId(RotaId.class);
-    private MotoristaId motorista = DomainObjectId.randomId(MotoristaId.class);
-    private VeiculoId veiculo = DomainObjectId.randomId(VeiculoId.class);
+    private Rota rota;
+    private Motorista motorista;
+    private Veiculo veiculo;
     private LocalDate dataViagem = LocalDate.of(2000, 04, 30);
     private LocalDate data;
     private Viagem viagem;
+    private Endereco endereco;
+    private Numero numeroRota;
+    private List<Endereco> enderecos = new ArrayList<Endereco>();
+
+    private String nome = "Nome";
+    private Telefone telefone;
+    private Email email;
+    private Cpf cpf;
+
+    private Placa placa;
+    private Chassi chassi;
+    private Renavam renavam;
+    private Integer anoModelo;
+    private String marca;
+    private String modelo;
+    private Integer frota;
+    private String corPredominante;
+    private Integer capacidadeDePassageiros;
 
     @Test
-    void agendaCompletoDeveSalvar() {
+    void programacaoCompletoDeveSalvar() throws Exception {
+    enderecos.add(endereco);
+    numeroRota = Numero.of("317R");
+    rota = Rota.of(numeroRota, enderecos);
     this.alunos.add(aluno);
-    viagem = Viagem.builder()
-    .alunos(alunos)
-    .motorista(motorista)
-    .rota(rota)
-    .veiculo(veiculo)
-    .data(dataViagem)
-    .build();
+    data = LocalDate.of(2000, 04, 30);
+        telefone = Telefone.of("415555555");
+        email = Email.of("Exemplo@email.com");
+        endereco = Endereco.of("Logradouro", 555);
+        cpf = Cpf.of("55555");
+
+        numeroRota = Numero.of("317R");
+        enderecos = new ArrayList<Endereco>();
+        enderecos.add(endereco);
+
+        placa = Placa.of("ASDASD");
+        chassi = Chassi.of("ASDASD");
+        renavam = Renavam.of("asdasd");
+        frota = 128;
+        anoModelo = 2012;
+        marca = "Marca";
+        modelo = "Modelo";
+        corPredominante = "Azul";
+        capacidadeDePassageiros = 8;
+
+        motorista = Motorista.builder()
+                .nome(this.nome)
+                .telefone(this.telefone)
+                .email(this.email)
+                .endereco(this.endereco)
+                .genero(Genero.FEMININO)
+                .cpf(this.cpf)
+                .nascimento(this.data)
+                .build();
+
+
+        VeiculoBuilder veiculoBuilder = Veiculo.builder()
+        .placa(placa)
+        .numeroDaFrota(frota)
+        .chassi(chassi)
+        .renavam(renavam)
+        .anoModelo(anoModelo)
+        .marca(marca)
+        .modelo(modelo)
+        .corPredominante(corPredominante)
+        .capacidadeDePassageiros(capacidadeDePassageiros);
+        veiculo = veiculoBuilder.build();
+        viagem = Viagem.builder()
+        .alunos(alunos)
+        .motorista(motorista)
+        .rota(rota)
+        .veiculo(veiculo)
+        .data(dataViagem)
+        .build();
         data = LocalDate.of(2000, 1, 20);
         Programacao programacao = Programacao.from(viagem, data);
         assertNotNull(programacao);
@@ -48,7 +118,61 @@ public class ProgramacaoTest {
     }
 
     @Test
-    void dadoUmaAgendaSemDataNaoDeveCriar() {
+    void dadoUmaProgramacaoSemDataNaoDeveCriar() throws Exception {
+        enderecos.add(endereco);
+    numeroRota = Numero.of("317R");
+    rota = Rota.of(numeroRota, enderecos);
+    this.alunos.add(aluno);
+    data = LocalDate.of(2000, 04, 30);
+        telefone = Telefone.of("415555555");
+        email = Email.of("Exemplo@email.com");
+        endereco = Endereco.of("Logradouro", 555);
+        cpf = Cpf.of("55555");
+
+        numeroRota = Numero.of("317R");
+        enderecos = new ArrayList<Endereco>();
+        enderecos.add(endereco);
+
+        placa = Placa.of("ASDASD");
+        chassi = Chassi.of("ASDASD");
+        renavam = Renavam.of("asdasd");
+        frota = 128;
+        anoModelo = 2012;
+        marca = "Marca";
+        modelo = "Modelo";
+        corPredominante = "Azul";
+        capacidadeDePassageiros = 8;
+
+        motorista = Motorista.builder()
+                .nome(this.nome)
+                .telefone(this.telefone)
+                .email(this.email)
+                .endereco(this.endereco)
+                .genero(Genero.FEMININO)
+                .cpf(this.cpf)
+                .nascimento(this.data)
+                .build();
+
+
+        VeiculoBuilder veiculoBuilder = Veiculo.builder()
+        .placa(placa)
+        .numeroDaFrota(frota)
+        .chassi(chassi)
+        .renavam(renavam)
+        .anoModelo(anoModelo)
+        .marca(marca)
+        .modelo(modelo)
+        .corPredominante(corPredominante)
+        .capacidadeDePassageiros(capacidadeDePassageiros);
+        veiculo = veiculoBuilder.build();
+        viagem = Viagem.builder()
+        .alunos(alunos)
+        .motorista(motorista)
+        .rota(rota)
+        .veiculo(veiculo)
+        .data(dataViagem)
+        .build();
+        
         this.alunos.add(aluno);
         viagem = Viagem.builder()
         .alunos(alunos)
@@ -63,7 +187,7 @@ public class ProgramacaoTest {
     }
 
     @Test
-    void dadoUmaAgendaSemViagemNaoDeveCriar() {
+    void dadoUmaProgramacaoSemViagemNaoDeveCriar() {
         data = LocalDate.of(2014, 07, 10);
         assertThrows(Exception.class, () -> {
             Programacao.from(null, data);
@@ -71,7 +195,7 @@ public class ProgramacaoTest {
     }
 
     @Test
-    void dadoUmaAgendaIncorretoNaoDeveCriar() {
+    void dadoUmaProgramacaoIncorretoNaoDeveCriar() {
         assertThrows(Exception.class, () -> {
             Programacao.from(null, null);
         });

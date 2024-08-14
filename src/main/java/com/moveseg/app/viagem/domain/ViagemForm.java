@@ -6,10 +6,9 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import com.moveseg.app.cadastro.Aluno.domain.Aluno;
-import com.moveseg.app.cadastro.Motorista.domain.MotoristaId;
-import com.moveseg.app.cadastro.veiculo.domain.VeiculoForm;
-import com.moveseg.app.cadastro.veiculo.domain.VeiculoId;
-import com.moveseg.app.viagem.Rota.domain.RotaId;
+import com.moveseg.app.cadastro.Motorista.domain.Motorista;
+import com.moveseg.app.cadastro.veiculo.domain.Veiculo;
+import com.moveseg.app.viagem.Rota.domain.Rota;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -20,27 +19,27 @@ public class ViagemForm {
     private final Consumer<ViagemForm> action;
 
     private List<Aluno> alunos = new ArrayList<Aluno>();
-    private RotaId rota;
-    private MotoristaId motorista;
-    private VeiculoId veiculo;
+    private Rota rota;
+    private Motorista motorista;
+    private Veiculo veiculo;
     private LocalDate data;
 
-    public ViagemForm alunos(Aluno alunos) {
-        this.alunos.add(alunos);
+    public ViagemForm alunos(List<Aluno> alunos) {
+        this.alunos.addAll(alunos);
         return this;
     }
 
-    public ViagemForm rota(RotaId rota) {
+    public ViagemForm rota(Rota rota) {
         this.rota = rota;
         return this;
     }
 
-    public ViagemForm motorista(MotoristaId motorista) {
+    public ViagemForm motorista(Motorista motorista) {
         this.motorista = motorista;
         return this;
     }
 
-    public ViagemForm veiculo(VeiculoId veiculo){
+    public ViagemForm veiculo(Veiculo veiculo){
         this.veiculo = veiculo;
         return this;
     }

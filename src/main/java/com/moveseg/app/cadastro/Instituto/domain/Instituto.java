@@ -43,11 +43,8 @@ public class Instituto extends AbstractEntity<InstitutoId> {
 
     private Instituto(InstitutoBuilder builder) {
         super(builder.id);
-        if (builder.responsaveis.isEmpty()) {
-            throw new IllegalArgumentException("Não pode passar uma lista vazia");
-        }
-        this.responsaveis = requireNonNull(builder.responsaveis, "Responsavel não pode ser nulo");
         this.nome = requireNonNull(builder.nome, "Nome não pode ser nulo");
+        this.responsaveis = requireNonNull(builder.responsaveis, "Responsavel não pode ser nulo");
         this.endereco = requireNonNull(builder.endereco, "Endereço não pode ser nulo");
         this.telefone = requireNonNull(builder.telefone, "Telefone não pode ser nulo");
         this.email = requireNonNull(builder.email, "Email não pode ser nulo");
@@ -57,12 +54,9 @@ public class Instituto extends AbstractEntity<InstitutoId> {
         return new InstitutoForm(form -> {
             this.nome = requireNonNull(form.nome(), "Nome não pode ser nulo");
             this.endereco = requireNonNull(form.endereco(), "Endereço não pode ser nulo");
-            this.telefone = requireNonNull(form.telefone(), "Telefone não pode ser nulo");
-            this.email = requireNonNull(form.email(), "Email não pode ser nulo");
-            if (form.responsaveis().isEmpty()) {
-                throw new IllegalArgumentException("Não pode passar uma lista vazia");
-            }
             this.responsaveis = requireNonNull(form.responsaveis(), "Responsavel não pode ser nulo");
+             this.telefone = requireNonNull(form.telefone(), "Telefone não pode ser nulo");
+            this.email = requireNonNull(form.email(), "Email não pode ser nulo");
         });
     }
 

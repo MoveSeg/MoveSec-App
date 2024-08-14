@@ -25,8 +25,8 @@ public class RotaForm {
         return this;
     }
 
-    public RotaForm endereco(Endereco endereco) {
-        this.endereco.add(endereco);
+    public RotaForm endereco(List<Endereco> endereco) {
+        this.endereco.addAll(endereco);
         return this;
     }
 

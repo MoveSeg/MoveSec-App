@@ -1,7 +1,12 @@
 package com.moveseg.app.cadastro.Instituto.app.view;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.moveseg.app.cadastro.Instituto.domain.Instituto;
 import com.moveseg.app.cadastro.Instituto.domain.InstitutoId;
+import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,19 +22,19 @@ public class InstitutoListView {
     private String nome;
     private String logradouro;
     private Integer numero;
-    private String responsavel;
+    private List<String> responsaveis;
     private String telefone;
     private String email;
 
-    public static InstitutoListView of(Instituto Instituto) {
+    public static InstitutoListView of(Instituto instituto) {
         return InstitutoListView.builder()
-                .id(Instituto.id())
-                .nome(Instituto.nome())
-                .responsavel(Instituto.responsaveis().get(0).nome())
-                .telefone(Instituto.telefone().telefone())
-                .email(Instituto.email().email())
-                .logradouro(Instituto.endereco().logradouro())
-                .numero(Instituto.endereco().numero())
+                .id(instituto.id())
+                .nome(instituto.nome())
+                .responsaveis(instituto.responsaveis().stream().map(Responsavel::nome).collect(Collectors.toList()))
+                .telefone(instituto.telefone().telefone())
+                .email(instituto.email().email())
+                .logradouro(instituto.endereco().logradouro())
+                .numero(instituto.endereco().numero())
                 .build();
     }
 

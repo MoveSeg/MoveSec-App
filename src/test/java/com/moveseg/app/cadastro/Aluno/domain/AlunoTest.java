@@ -179,7 +179,6 @@ public class AlunoTest {
 
     @Test
     void novasInformaçõesCompletasDeveAtulizarEManterNaoNulo() throws Exception {
-
         Aluno aluno = this.builder.build();
         aluno.atualizar()
                 .nome(novoNome)
