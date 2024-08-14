@@ -61,11 +61,11 @@ public class OcorrenciaTest {
 
     @Test
     void dadoUmaOcorrenciaCompletaDeveCriar() throws Exception {
-    enderecos.add(endereco);
-    numeroRota = Numero.of("317R");
-    rota = Rota.of(numeroRota, enderecos);
-    this.alunos.add(aluno);
-    data = LocalDate.of(2000, 04, 30);
+        enderecos.add(endereco);
+        numeroRota = Numero.of("317R");
+        rota = Rota.of(numeroRota, enderecos);
+        this.alunos.add(aluno);
+        data = LocalDate.of(2000, 04, 30);
         telefone = Telefone.of("415555555");
         email = Email.of("Exemplo@email.com");
         endereco = Endereco.of("Logradouro", 555);
@@ -95,25 +95,24 @@ public class OcorrenciaTest {
                 .nascimento(this.data)
                 .build();
 
-
         VeiculoBuilder veiculoBuilder = Veiculo.builder()
-        .placa(placa)
-        .numeroDaFrota(frota)
-        .chassi(chassi)
-        .renavam(renavam)
-        .anoModelo(anoModelo)
-        .marca(marca)
-        .modelo(modelo)
-        .corPredominante(corPredominante)
-        .capacidadeDePassageiros(capacidadeDePassageiros);
+                .placa(placa)
+                .numeroDaFrota(frota)
+                .chassi(chassi)
+                .renavam(renavam)
+                .anoModelo(anoModelo)
+                .marca(marca)
+                .modelo(modelo)
+                .corPredominante(corPredominante)
+                .capacidadeDePassageiros(capacidadeDePassageiros);
         veiculo = veiculoBuilder.build();
         viagem = Viagem.builder()
-        .alunos(alunos)
-        .motorista(motorista)
-        .rota(rota)
-        .veiculo(veiculo)
-        .data(dataViagem)
-        .build();
+                .alunos(alunos)
+                .motorista(motorista)
+                .rota(rota)
+                .veiculo(veiculo)
+                .data(dataViagem)
+                .build();
         data = LocalDate.of(2000, 1, 20);
         AlunoId aluno = DomainObjectId.randomId(AlunoId.class);
         Ocorrencia ocorrencia = Ocorrencia.of(motivo, viagem, aluno);
@@ -144,7 +143,7 @@ public class OcorrenciaTest {
     @Test
     void dadoUmaOcorrenciaSemAlunoNaoDeveCriar() {
         assertThrows(Exception.class, () -> {
-            Ocorrencia.of("Dormi demais", viagem, null );
+            Ocorrencia.of("Dormi demais", viagem, null);
         });
     }
 
