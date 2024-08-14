@@ -11,11 +11,13 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import com.moveseg.app.cadastro.Aluno.domain.Aluno;
-import com.moveseg.app.cadastro.Aluno.domain.AlunoId;
+import com.moveseg.app.cadastro.Aluno.domain.Aluno.AlunoBuilder;
+import com.moveseg.app.cadastro.Aluno.domain.Carteirinha;
 import com.moveseg.app.cadastro.Instituto.domain.Email;
 import com.moveseg.app.cadastro.Instituto.domain.Endereco;
 import com.moveseg.app.cadastro.Instituto.domain.Telefone;
 import com.moveseg.app.cadastro.Motorista.domain.Motorista;
+import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
 import com.moveseg.app.cadastro.veiculo.domain.Chassi;
 import com.moveseg.app.cadastro.veiculo.domain.Placa;
 import com.moveseg.app.cadastro.veiculo.domain.Renavam;
@@ -27,13 +29,14 @@ import com.moveseg.app.viagem.Ocorrencia.domain.Ocorrencia;
 import com.moveseg.app.viagem.Rota.domain.Numero;
 import com.moveseg.app.viagem.Rota.domain.Rota;
 import com.moveseg.app.viagem.domain.Viagem;
-import com.moveseg.parent.infra.domain.DomainObjectId;
 
 public class OcorrenciaTest {
 
-    private String motivo = "Dormiu demais";
     private Aluno aluno;
+    private AlunoBuilder alunoBuilder;
+    private Carteirinha carteirinha;
     private List<Aluno> alunos = new ArrayList<Aluno>();
+    private List<Responsavel> responsaveis;
     private Rota rota;
     private Motorista motorista;
     private Veiculo veiculo;
@@ -64,12 +67,12 @@ public class OcorrenciaTest {
         enderecos.add(endereco);
         numeroRota = Numero.of("317R");
         rota = Rota.of(numeroRota, enderecos);
-        this.alunos.add(aluno);
         data = LocalDate.of(2000, 04, 30);
         telefone = Telefone.of("415555555");
         email = Email.of("Exemplo@email.com");
         endereco = Endereco.of("Logradouro", 555);
         cpf = Cpf.of("55555");
+        carteirinha = Carteirinha.of(22222);
 
         numeroRota = Numero.of("317R");
         enderecos = new ArrayList<Endereco>();
@@ -106,6 +109,31 @@ public class OcorrenciaTest {
                 .corPredominante(corPredominante)
                 .capacidadeDePassageiros(capacidadeDePassageiros);
         veiculo = veiculoBuilder.build();
+        Responsavel responsavel = Responsavel.builder()
+                .nome(this.nome)
+                .telefone(this.telefone)
+                .email(this.email)
+                .endereco(this.endereco)
+                .genero(Genero.FEMININO)
+                .cpf(this.cpf)
+                .nascimento(this.data)
+                .build();
+        responsaveis = new ArrayList<Responsavel>();
+        responsaveis.add(responsavel);
+
+        alunoBuilder = Aluno.builder()
+                .carteirinha(this.carteirinha)
+                .responsaveis(responsaveis)
+                .endereco(this.endereco)
+                .genero(Genero.FEMININO)
+                .telefone(this.telefone)
+                .cpf(this.cpf)
+                .nome(this.nome)
+                .email(this.email)
+                .dataDeNascimento(this.data);
+        aluno = alunoBuilder.build();
+        this.alunos.add(aluno);
+
         viagem = Viagem.builder()
                 .alunos(alunos)
                 .motorista(motorista)
@@ -114,27 +142,24 @@ public class OcorrenciaTest {
                 .data(dataViagem)
                 .build();
         data = LocalDate.of(2000, 1, 20);
-        AlunoId aluno = DomainObjectId.randomId(AlunoId.class);
-        Ocorrencia ocorrencia = Ocorrencia.of(motivo, viagem, aluno);
+        Ocorrencia ocorrencia = Ocorrencia.of("Doente", viagem, aluno);
 
         assertNotNull(ocorrencia);
         assertNotNull(ocorrencia.id());
         assertNotNull(ocorrencia.viagem());
         assertNotNull(ocorrencia.aluno());
-        assertEquals(motivo, ocorrencia.motivo());
+        assertEquals("Doente", ocorrencia.motivo());
     }
 
     @Test
     void dadoUmaOcorrenciaSemViagemNaoDeveCriar() {
         assertThrows(Exception.class, () -> {
-            AlunoId aluno = DomainObjectId.randomId(AlunoId.class);
             Ocorrencia.of("Dormi demais", null, aluno);
         });
     }
 
     @Test
     void dadoUmaOcorrenciaSemMotivoNaoDeveCriar() {
-        AlunoId aluno = DomainObjectId.randomId(AlunoId.class);
         assertThrows(Exception.class, () -> {
             Ocorrencia.of(null, viagem, aluno);
         });

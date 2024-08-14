@@ -11,6 +11,7 @@ import com.moveseg.app.viagem.domain.Viagem;
 import com.moveseg.parent.infra.domain.AbstractAggregateRoot;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,9 +22,12 @@ import lombok.NoArgsConstructor;
 public class Ocorrencia extends AbstractAggregateRoot<OcorrenciaId> {
     private String motivo;
     private LocalDate data;
+    
+    @ManyToOne
     private Viagem viagem;
+    
+    @ManyToOne
     private Aluno aluno;
-
 
     private Ocorrencia(OcorrenciaId id, String motivo, Viagem viagem, Aluno aluno) {
         super(id);

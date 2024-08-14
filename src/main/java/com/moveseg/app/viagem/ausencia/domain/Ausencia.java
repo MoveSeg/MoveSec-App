@@ -23,6 +23,8 @@ public final class Ausencia extends AbstractAggregateRoot<AusenciaId> {
 
     private String motivo;
     private LocalDate data;
+
+    @ManyToOne
     private Aluno aluno;
 
     @ManyToOne
@@ -31,8 +33,8 @@ public final class Ausencia extends AbstractAggregateRoot<AusenciaId> {
         super(id);
         this.motivo = requireNonNull(motivo, "O Motivo não deve ser nulo");
         this.data = LocalDate.now();
-        this.viagem = requireNonNull(viagem, "O Id da viagem não pode ser nula");
-        this.aluno = requireNonNull(aluno, "O Id da viagem não pode ser nula");
+        this.viagem = requireNonNull(viagem, "A viagem não pode ser nula");
+        this.aluno = requireNonNull(aluno, "O Aluno não pode ser nula");
     }
 
     public static Ausencia from(Viagem viagem, String motivo, Aluno aluno) {
