@@ -22,7 +22,7 @@ public class ProgramacaoListView {
     public static ProgramacaoListView of(Programacao programacao) {
         return ProgramacaoListView.builder()
                 .id(programacao.id())
-                .viagem(programacao.viagem().id().toUUID())
+                .viagem(programacao.viagem().data().toString())
                 .data(programacao.data())
                 .build();
     }
