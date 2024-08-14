@@ -18,6 +18,8 @@ import com.moveseg.app.viagem.Ocorrencia.domain.Ocorrencia;
 import com.moveseg.app.viagem.Ocorrencia.domain.OcorrenciaId;
 import com.moveseg.app.viagem.Ocorrencia.domain.cmd.CriarOcorrencia;
 import com.moveseg.app.viagem.Ocorrencia.repository.OcorrenciaRepository;
+import com.moveseg.app.viagem.domain.Viagem;
+import com.moveseg.app.viagem.repository.ViagemRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
@@ -29,11 +31,13 @@ import lombok.AllArgsConstructor;
 public class OcorrenciaService {
 
     private OcorrenciaRepository repository;
+    private ViagemRepository viagemRepository;
 
     @NonNull
     @Lock(PESSIMISTIC_READ)
     public OcorrenciaId handle(@NonNull @Valid CriarOcorrencia cmd) throws Exception {
-        Ocorrencia ocorrencia = Ocorrencia.of(cmd.motivo(), cmd.viagem(), cmd.aluno());
+        Viagem viagem = viagemRepository.findById(cmd.viagem()).get();
+        Ocorrencia ocorrencia = Ocorrencia.of(cmd.motivo(), viagem, cmd.aluno());
 
         repository.save(ocorrencia);
         return ocorrencia.id();

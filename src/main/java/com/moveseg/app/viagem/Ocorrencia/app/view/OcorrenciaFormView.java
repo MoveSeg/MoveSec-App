@@ -4,7 +4,6 @@ package com.moveseg.app.viagem.Ocorrencia.app.view;
 import com.moveseg.app.cadastro.Aluno.domain.AlunoId;
 import com.moveseg.app.viagem.Ocorrencia.domain.Ocorrencia;
 import com.moveseg.app.viagem.Ocorrencia.domain.OcorrenciaId;
-import com.moveseg.app.viagem.domain.ViagemId;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,7 +19,7 @@ public class OcorrenciaFormView {
     private String motivo;
     private String data;
     private AlunoId aluno;
-    private ViagemId viagem;
+    private String viagem;
 
     public static OcorrenciaFormView of(Ocorrencia ocorrencia) {
         return OcorrenciaFormView.builder()
@@ -28,7 +27,7 @@ public class OcorrenciaFormView {
         .motivo(ocorrencia.motivo())
         .data(ocorrencia.data().toString())
         .aluno(ocorrencia.aluno())
-        .viagem(ocorrencia.viagem())
+        .viagem(ocorrencia.viagem().data().toString())
         .build();
     }
 
