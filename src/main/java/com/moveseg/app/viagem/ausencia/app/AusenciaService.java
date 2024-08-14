@@ -17,6 +17,8 @@ import com.moveseg.app.viagem.ausencia.domain.Ausencia;
 import com.moveseg.app.viagem.ausencia.domain.AusenciaId;
 import com.moveseg.app.viagem.ausencia.domain.cmd.RegistrarAusencia;
 import com.moveseg.app.viagem.ausencia.repository.AusenciaRepository;
+import com.moveseg.app.viagem.domain.Viagem;
+import com.moveseg.app.viagem.repository.ViagemRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
@@ -29,11 +31,13 @@ import lombok.NonNull;
 public class AusenciaService {
 
     private AusenciaRepository repository;
+    private ViagemRepository viagemRepository;
 
     @NonNull
     @Lock(PESSIMISTIC_READ)
     public AusenciaId handle(@NonNull @Valid RegistrarAusencia cmd) throws Exception {
-        Ausencia ausencia = Ausencia.from(cmd.viagem(), cmd.motivo(), cmd.aluno());
+        Viagem viagem = viagemRepository.findById(cmd.viagem()).get();
+        Ausencia ausencia = Ausencia.from(viagem, cmd.motivo(), cmd.aluno());
 
         repository.save(ausencia);
         return ausencia.id();

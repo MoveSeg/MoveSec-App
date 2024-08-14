@@ -3,7 +3,6 @@ package com.moveseg.app.viagem.ausencia.app.view;
 import com.moveseg.app.cadastro.Aluno.domain.AlunoId;
 import com.moveseg.app.viagem.ausencia.domain.Ausencia;
 import com.moveseg.app.viagem.ausencia.domain.AusenciaId;
-import com.moveseg.app.viagem.domain.ViagemId;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,7 +18,7 @@ public class AusenciaListView {
     private AlunoId aluno;
     private String motivo;
     private String data;
-    private ViagemId viagem;
+    private String viagem;
 
     public static AusenciaListView of(Ausencia ausencia) {
         return AusenciaListView.builder()
@@ -27,7 +26,7 @@ public class AusenciaListView {
                 .motivo(ausencia.motivo())
                 .data(ausencia.data().toString())
                 .aluno(ausencia.aluno())
-                .viagem(ausencia.viagem())
+                .viagem(ausencia.viagem().data().toString())
                 .build();
     }
 }
