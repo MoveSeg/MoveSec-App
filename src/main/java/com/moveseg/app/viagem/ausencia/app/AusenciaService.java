@@ -11,6 +11,8 @@ import org.springframework.data.jpa.repository.Lock;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.moveseg.app.cadastro.Aluno.domain.Aluno;
+import com.moveseg.app.cadastro.Aluno.repository.AlunoRepository;
 import com.moveseg.app.viagem.ausencia.app.view.AusenciaFormView;
 import com.moveseg.app.viagem.ausencia.app.view.AusenciaListView;
 import com.moveseg.app.viagem.ausencia.domain.Ausencia;
@@ -32,12 +34,14 @@ public class AusenciaService {
 
     private AusenciaRepository repository;
     private ViagemRepository viagemRepository;
+    private AlunoRepository alunoRepository;
 
     @NonNull
     @Lock(PESSIMISTIC_READ)
     public AusenciaId handle(@NonNull @Valid RegistrarAusencia cmd) throws Exception {
         Viagem viagem = viagemRepository.findById(cmd.viagem()).get();
-        Ausencia ausencia = Ausencia.from(viagem, cmd.motivo(), cmd.aluno());
+        Aluno aluno = alunoRepository.findById(cmd.aluno()).get();
+        Ausencia ausencia = Ausencia.from(viagem, cmd.motivo(), aluno);
 
         repository.save(ausencia);
         return ausencia.id();

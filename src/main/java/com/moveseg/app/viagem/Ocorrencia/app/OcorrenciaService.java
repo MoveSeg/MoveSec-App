@@ -12,6 +12,8 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.moveseg.app.cadastro.Aluno.domain.Aluno;
+import com.moveseg.app.cadastro.Aluno.repository.AlunoRepository;
 import com.moveseg.app.viagem.Ocorrencia.app.view.OcorrenciaFormView;
 import com.moveseg.app.viagem.Ocorrencia.app.view.OcorrenciaListView;
 import com.moveseg.app.viagem.Ocorrencia.domain.Ocorrencia;
@@ -32,12 +34,14 @@ public class OcorrenciaService {
 
     private OcorrenciaRepository repository;
     private ViagemRepository viagemRepository;
+    private AlunoRepository alunoRepository;
 
     @NonNull
     @Lock(PESSIMISTIC_READ)
     public OcorrenciaId handle(@NonNull @Valid CriarOcorrencia cmd) throws Exception {
         Viagem viagem = viagemRepository.findById(cmd.viagem()).get();
-        Ocorrencia ocorrencia = Ocorrencia.of(cmd.motivo(), viagem, cmd.aluno());
+        Aluno aluno = alunoRepository.findById(cmd.aluno()).get();
+        Ocorrencia ocorrencia = Ocorrencia.of(cmd.motivo(), viagem, aluno);
 
         repository.save(ocorrencia);
         return ocorrencia.id();

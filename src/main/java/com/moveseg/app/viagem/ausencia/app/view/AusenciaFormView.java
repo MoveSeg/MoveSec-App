@@ -1,6 +1,5 @@
 package com.moveseg.app.viagem.ausencia.app.view;
 
-import com.moveseg.app.cadastro.Aluno.domain.AlunoId;
 import com.moveseg.app.viagem.ausencia.domain.Ausencia;
 import com.moveseg.app.viagem.ausencia.domain.AusenciaId;
 
@@ -15,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AusenciaFormView {
     private AusenciaId id;
-    private AlunoId aluno;
+    private String aluno;
     private String data;
     private String motivo;
     private String viagem;
@@ -25,7 +24,7 @@ public class AusenciaFormView {
                 .id(ausencia.id())
                 .motivo(ausencia.motivo())
                 .data(ausencia.data().toString())
-                .aluno(ausencia.aluno())
+                .aluno(ausencia.aluno().nome())
                 .viagem(ausencia.viagem().data().toString())
                 .build();
     }
