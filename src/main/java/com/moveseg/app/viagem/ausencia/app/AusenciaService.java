@@ -11,12 +11,16 @@ import org.springframework.data.jpa.repository.Lock;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.moveseg.app.cadastro.Aluno.domain.Aluno;
+import com.moveseg.app.cadastro.Aluno.repository.AlunoRepository;
 import com.moveseg.app.viagem.ausencia.app.view.AusenciaFormView;
 import com.moveseg.app.viagem.ausencia.app.view.AusenciaListView;
 import com.moveseg.app.viagem.ausencia.domain.Ausencia;
 import com.moveseg.app.viagem.ausencia.domain.AusenciaId;
 import com.moveseg.app.viagem.ausencia.domain.cmd.RegistrarAusencia;
 import com.moveseg.app.viagem.ausencia.repository.AusenciaRepository;
+import com.moveseg.app.viagem.domain.Viagem;
+import com.moveseg.app.viagem.repository.ViagemRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
@@ -29,11 +33,15 @@ import lombok.NonNull;
 public class AusenciaService {
 
     private AusenciaRepository repository;
+    private ViagemRepository viagemRepository;
+    private AlunoRepository alunoRepository;
 
     @NonNull
     @Lock(PESSIMISTIC_READ)
     public AusenciaId handle(@NonNull @Valid RegistrarAusencia cmd) throws Exception {
-        Ausencia ausencia = Ausencia.from(cmd.viagem(), cmd.motivo(), cmd.aluno());
+        Viagem viagem = viagemRepository.findById(cmd.viagem()).get();
+        Aluno aluno = alunoRepository.findById(cmd.aluno()).get();
+        Ausencia ausencia = Ausencia.from(viagem, cmd.motivo(), aluno);
 
         repository.save(ausencia);
         return ausencia.id();

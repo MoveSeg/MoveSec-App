@@ -12,12 +12,16 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.moveseg.app.cadastro.Aluno.domain.Aluno;
+import com.moveseg.app.cadastro.Aluno.repository.AlunoRepository;
 import com.moveseg.app.viagem.Ocorrencia.app.view.OcorrenciaFormView;
 import com.moveseg.app.viagem.Ocorrencia.app.view.OcorrenciaListView;
 import com.moveseg.app.viagem.Ocorrencia.domain.Ocorrencia;
 import com.moveseg.app.viagem.Ocorrencia.domain.OcorrenciaId;
 import com.moveseg.app.viagem.Ocorrencia.domain.cmd.CriarOcorrencia;
 import com.moveseg.app.viagem.Ocorrencia.repository.OcorrenciaRepository;
+import com.moveseg.app.viagem.domain.Viagem;
+import com.moveseg.app.viagem.repository.ViagemRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
@@ -29,11 +33,15 @@ import lombok.AllArgsConstructor;
 public class OcorrenciaService {
 
     private OcorrenciaRepository repository;
+    private ViagemRepository viagemRepository;
+    private AlunoRepository alunoRepository;
 
     @NonNull
     @Lock(PESSIMISTIC_READ)
     public OcorrenciaId handle(@NonNull @Valid CriarOcorrencia cmd) throws Exception {
-        Ocorrencia ocorrencia = Ocorrencia.of(cmd.motivo(), cmd.viagem(), cmd.aluno());
+        Viagem viagem = viagemRepository.findById(cmd.viagem()).get();
+        Aluno aluno = alunoRepository.findById(cmd.aluno()).get();
+        Ocorrencia ocorrencia = Ocorrencia.of(cmd.motivo(), viagem, aluno);
 
         repository.save(ocorrencia);
         return ocorrencia.id();

@@ -12,6 +12,4 @@ public class CriarOcorrencia {
     private String motivo;
     private ViagemId viagem;
     private AlunoId aluno;
-
-
 }
