@@ -1,7 +1,11 @@
 package com.moveseg.app.checklist.Checklist.app.view;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.moveseg.app.checklist.Checklist.domain.Checklist;
 import com.moveseg.app.checklist.Checklist.domain.ChecklistId;
+import com.moveseg.app.checklist.Item.app.view.ItemListView;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,13 +19,15 @@ import lombok.NoArgsConstructor;
 public class ChecklistFormView {
     private ChecklistId id;
     private String nome;
-    private String itens;
+    private List<ItemListView> itens;
     
     public static ChecklistFormView of(Checklist checklist) {
         return ChecklistFormView.builder()
                 .id(checklist.id())
                 .nome(checklist.nome().nome())
-                .itens(checklist.itens().get(0).descricao().descricao())
+                .itens(checklist.itens().stream()
+                        .map(ItemListView::of)
+                        .collect(Collectors.toList()))
                 .build();
     }
 }

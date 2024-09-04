@@ -5,8 +5,10 @@ import java.util.stream.Collectors;
 
 import com.moveseg.app.checklist.Checklist.domain.Checklist;
 import com.moveseg.app.checklist.Checklist.domain.ChecklistId;
+import com.moveseg.app.checklist.Item.app.view.ItemListView;
 import com.moveseg.app.checklist.Item.domain.Descricao;
 import com.moveseg.app.checklist.Item.domain.Item;
+import com.moveseg.app.checklist.Item.domain.Observacao;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,13 +22,15 @@ import lombok.NoArgsConstructor;
 public class ChecklistListView {
     private ChecklistId id;
     private String nome;
-    private List<Descricao> itens;
-    
+    private List<ItemListView> itens;
+
     public static ChecklistListView of(Checklist checklist) {
         return ChecklistListView.builder()
                 .id(checklist.id())
                 .nome(checklist.nome().nome())
-                .itens(checklist.itens().stream().map(Item::descricao).collect(Collectors.toList()))
+                .itens(checklist.itens().stream()
+                        .map(ItemListView::of)
+                        .collect(Collectors.toList()))
                 .build();
     }
 }
