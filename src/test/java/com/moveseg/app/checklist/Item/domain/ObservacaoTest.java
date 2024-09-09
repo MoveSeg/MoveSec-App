@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import com.moveseg.app.checklist.Item.domain.Observacao;
-
 public class ObservacaoTest {
     @Test
     void dadoUmaObservacaoValidaDeveCriar() throws Exception {

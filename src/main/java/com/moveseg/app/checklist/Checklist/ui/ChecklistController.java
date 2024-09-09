@@ -8,7 +8,6 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,12 +23,8 @@ import com.moveseg.app.checklist.Checklist.app.view.ChecklistFormView;
 import com.moveseg.app.checklist.Checklist.app.view.ChecklistListView;
 import com.moveseg.app.checklist.Checklist.domain.Checklist;
 import com.moveseg.app.checklist.Checklist.domain.ChecklistId;
-import com.moveseg.app.checklist.Checklist.domain.Resposta;
-import com.moveseg.app.checklist.Checklist.domain.RespostaId;
 import com.moveseg.app.checklist.Checklist.domain.cmd.AlterarChecklist;
 import com.moveseg.app.checklist.Checklist.domain.cmd.CriarChecklist;
-import com.moveseg.app.checklist.Checklist.domain.cmd.Responder;
-import com.moveseg.app.infra.auth.security.services.UserDetailsImpl;
 
 import lombok.AllArgsConstructor;
 
@@ -44,18 +39,6 @@ public class ChecklistController {
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<Checklist> salvar(@RequestBody CriarChecklist cmd) {
         ChecklistId id = service.handle(cmd);
-
-        return ResponseEntity.created(fromCurrentRequest() 
-                .path("/").path(id.toUUID()).build().toUri())
-                .build();
-    }
-
-    
-    @PostMapping(consumes = APPLICATION_JSON_VALUE, value = "/resposta")
-    public ResponseEntity<Resposta> salvar(@RequestBody Responder cmd, Authentication authentication) {
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        cmd.idUsuario(userDetails.getId());
-        RespostaId id = service.handle(cmd);
 
         return ResponseEntity.created(fromCurrentRequest() 
                 .path("/").path(id.toUUID()).build().toUri())

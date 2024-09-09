@@ -1,4 +1,4 @@
-package com.moveseg.app.checklist.Checklist.domain;
+package com.moveseg.app.checklist.Resposta.domain;
 
 import com.moveseg.parent.infra.domain.DomainObjectId;
 

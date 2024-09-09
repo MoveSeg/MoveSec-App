@@ -6,9 +6,6 @@ import java.util.stream.Collectors;
 import com.moveseg.app.checklist.Checklist.domain.Checklist;
 import com.moveseg.app.checklist.Checklist.domain.ChecklistId;
 import com.moveseg.app.checklist.Item.app.view.ItemListView;
-import com.moveseg.app.checklist.Item.domain.Descricao;
-import com.moveseg.app.checklist.Item.domain.Item;
-import com.moveseg.app.checklist.Item.domain.Observacao;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

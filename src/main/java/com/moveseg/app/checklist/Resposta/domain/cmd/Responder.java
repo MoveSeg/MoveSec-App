@@ -1,6 +1,4 @@
-package com.moveseg.app.checklist.Checklist.domain.cmd;
-
-import java.time.LocalDate;
+package com.moveseg.app.checklist.Resposta.domain.cmd;
 
 import com.moveseg.app.checklist.Checklist.domain.ChecklistId;
 import com.moveseg.app.checklist.GrupoChecklist.domain.GrupoChecklistId;
@@ -17,5 +15,4 @@ public class Responder {
     public ItemId item;
     public Long idUsuario;
     public Boolean resposta;
-    public LocalDate data;
 }
