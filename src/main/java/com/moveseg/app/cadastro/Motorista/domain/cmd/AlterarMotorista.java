@@ -15,13 +15,12 @@ import lombok.Data;
 @Data
 @Builder
 public class AlterarMotorista {
-    public MotoristaId id;
-    public String nome;
-    public Integer documento;
-    public LocalDate nascimento;
-    public Email email;
-    public Telefone telefone;
-    public Endereco endereco;
-    public Genero genero;
-    public Cpf cpf;
+    private MotoristaId id;
+    private String nome;
+    private LocalDate nascimento;
+    private Email email;
+    private Telefone telefone;
+    private Endereco endereco;
+    private Genero genero;
+    private Cpf cpf;
 }

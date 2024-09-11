@@ -14,11 +14,11 @@ import lombok.Data;
 @Data
 @Builder
 public class CriarMotorista {
-    public Email email;
-    public Endereco endereco;
-    public Telefone telefone;
-    public Genero genero;
-    public Cpf cpf;
-    public String nome;
-    public LocalDate nascimento;
+    private Email email;
+    private Endereco endereco;
+    private Telefone telefone;
+    private Genero genero;
+    private Cpf cpf;
+    private String nome;
+    private LocalDate nascimento;
 }

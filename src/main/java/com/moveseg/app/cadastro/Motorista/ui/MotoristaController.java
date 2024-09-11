@@ -32,14 +32,14 @@ import lombok.Value;
 @AllArgsConstructor
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RequestMapping(path = "/api/Motorista", produces =APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/api/motorista", produces = APPLICATION_JSON_VALUE)
 public class MotoristaController {
     private final MotoristaService service;
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> salvar(@RequestBody CriarMotorista cmd) throws Exception {
-    
-        MotoristaId  id = service.handle(cmd);
+    public ResponseEntity<Motorista> salvar(@RequestBody CriarMotorista cmd) throws Exception {
+
+        MotoristaId id = service.handle(cmd);
 
         return ResponseEntity.created(fromCurrentRequest()
                 .path("/").path(id.toUUID()).build().toUri())
@@ -55,12 +55,14 @@ public class MotoristaController {
     public MotoristaFormView buscarPorId(@PathVariable @NonNull MotoristaId id) {
         return service.buscarPorId(id);
     }
-    @PutMapping("/{id}")
-    public ResponseEntity<Motorista> alterar(@PathVariable @NonNull MotoristaId id, @RequestBody AlterarMotorista cmd){
-                cmd.id(id);
 
-                Motorista salvar = service.handle(cmd);
-                return ResponseEntity.status(HttpStatus.CREATED).body(salvar);
+    @PutMapping("/{id}")
+    public ResponseEntity<Motorista> alterar(@PathVariable @NonNull MotoristaId id,
+     @RequestBody AlterarMotorista cmd) throws Exception {
+        cmd.id(id);
+
+        Motorista salvar = service.alterarMotorista(cmd);
+        return ResponseEntity.status(HttpStatus.CREATED).body(salvar);
     }
 
     @DeleteMapping("/{id}")
