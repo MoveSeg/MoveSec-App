@@ -12,7 +12,6 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import com.moveseg.app.cadastro.Motorista.app.view.MotoristaFormView;
 import com.moveseg.app.cadastro.Motorista.app.view.MotoristaListView;
 import com.moveseg.app.cadastro.Motorista.domain.Motorista;
@@ -23,67 +22,65 @@ import com.moveseg.app.cadastro.Motorista.repository.MotoristaRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 
 @Service
 @Transactional(propagation = REQUIRES_NEW)
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class MotoristaService {
-    private final MotoristaRepository repository;
+        private MotoristaRepository repository;
 
-    @NonNull
-    @Lock(PESSIMISTIC_READ)
-    public MotoristaId handle(@NonNull @Valid CriarMotorista cmd) throws Exception {
-        Motorista motorista = Motorista.builder()
-                .nome(cmd.nome)
-                .nascimento(cmd.nascimento)
-                .email(cmd.email)
-                .telefone(cmd.telefone)
-                .endereco(cmd.endereco)
-                .genero(cmd.genero)
-                .cpf(cmd.cpf)
-                .build();
+        @NonNull
+        @Lock(PESSIMISTIC_READ)
+        public MotoristaId handle(@NonNull @Valid CriarMotorista cmd) throws Exception {
+                Motorista motorista = Motorista.builder()
+                                .nome(cmd.nome())
+                                .nascimento(cmd.nascimento())
+                                .email(cmd.email())
+                                .telefone(cmd.telefone())
+                                .endereco(cmd.endereco())
+                                .genero(cmd.genero())
+                                .cpf(cmd.cpf())
+                                .build();
 
-        repository.save(motorista);
-        return motorista.id();
-    }
+                repository.save(motorista);
+                return motorista.id();
+        }
 
-    public Motorista handle(@NonNull @Valid AlterarMotorista cmd) {
-        Motorista motorista = repository.findById(requireNonNull(cmd.id()))
-                .orElseThrow(
-                        () -> new EntityNotFoundException(
-                                format("Not found any Business with code %s.",
-                                        cmd.id().toUUID())));
-        motorista.atualizar()
-        .nome(cmd.nome)
-        .nascimento(cmd.nascimento)
-        .email(cmd.email)
-        .telefone(cmd.telefone)
-        .endereco(cmd.endereco)
-        .genero(cmd.genero)
-        .cpf(cmd.cpf)
-        .aplicar();
-        return repository.save( motorista);
-    }
+        public Motorista alterarMotorista(@NonNull @Valid AlterarMotorista cmd) throws Exception {
+                Motorista motorista = repository.findById(requireNonNull(cmd.id()))
+                                .orElseThrow(
+                                                () -> new EntityNotFoundException(
+                                                                format("Not found any Business with code %s.",
+                                                                                cmd.id().toUUID())));
+                motorista.atualizar()
+                                .nome(cmd.nome())
+                                .nascimento(cmd.nascimento())
+                                .email(cmd.email())
+                                .telefone(cmd.telefone())
+                                .endereco(cmd.endereco())
+                                .genero(cmd.genero())
+                                .cpf(cmd.cpf())
+                                .aplicar();
+                return repository.save(motorista);
+        }
 
-    @NonNull
-    @Transactional(readOnly = true)
-    public List<MotoristaListView> listarTodos() {
-        return repository.findAll().stream().map(MotoristaListView::of).toList();
-    }
+        @NonNull
+        @Transactional(readOnly = true)
+        public List<MotoristaListView> listarTodos() {
+                return repository.findAll().stream().map(MotoristaListView::of).toList();
+        }
 
-    @SuppressWarnings("null")
-    @NonNull
-    @Transactional(readOnly = true)
-    public MotoristaFormView buscarPorId(@NonNull MotoristaId id) {
-        return MotoristaFormView.of(repository.findById(requireNonNull(id))
-                .orElseThrow(
-                        () -> new EntityNotFoundException(
-                                format("Not found any Business with code %s.",
-                                        id.toUUID()))));
-    }
+        @Transactional(readOnly = true)
+        public MotoristaFormView buscarPorId(@NonNull MotoristaId id) {
+                return MotoristaFormView.of(repository.findById(requireNonNull(id))
+                                .orElseThrow(
+                                                () -> new EntityNotFoundException(
+                                                                format("Not found any Business with code %s.",
+                                                                                id.toUUID()))));
+        }
 
-    public void deletar(@NonNull MotoristaId id) {
-        repository.deleteById(id);
-    }
+        public void deletar(@NonNull MotoristaId id) {
+                repository.deleteById(id);
+        }
 }
