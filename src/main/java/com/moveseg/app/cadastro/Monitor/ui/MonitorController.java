@@ -26,7 +26,6 @@ import com.moveseg.app.cadastro.Monitor.domain.MonitorId;
 import com.moveseg.app.cadastro.Monitor.domain.cmd.AtualizarMonitor;
 import com.moveseg.app.cadastro.Monitor.domain.cmd.CriarMonitor;
 
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -35,11 +34,11 @@ import lombok.AllArgsConstructor;
 @RequestMapping(path = "/api/monitor", produces = APPLICATION_JSON_VALUE)
 public class MonitorController {
 
-    private final MonitorService service;
+    MonitorService service;
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> salvar(@RequestBody CriarMonitor monitor) throws Exception {
-        MonitorId id = service.handle(monitor);
+    public ResponseEntity<Monitor> salvar(@RequestBody CriarMonitor cmd) throws Exception {
+        MonitorId id = service.handle(cmd);
 
         return ResponseEntity.created(fromCurrentRequest()
                 .path("/").path(id.toUUID()).build().toUri())
@@ -56,12 +55,12 @@ public class MonitorController {
         return service.buscarPorId(id);
     }
 
-    @Valid
-    @PutMapping
+    @PutMapping("/{id}")
     public ResponseEntity<Monitor> atualizar(@PathVariable @NonNull MonitorId id,
-            @RequestBody AtualizarMonitor monitor) throws Exception {
-        Monitor monitorSalvo = service.atualizarMonitor(id, monitor);
-        return ResponseEntity.status(HttpStatus.OK).body(monitorSalvo);
+            @RequestBody AtualizarMonitor cmd) throws Exception {
+        cmd.id(id);
+        Monitor salvar = service.atualizarMonitor(cmd);
+        return ResponseEntity.status(HttpStatus.CREATED).body(salvar);
     }
 
     @DeleteMapping("/{id}")
