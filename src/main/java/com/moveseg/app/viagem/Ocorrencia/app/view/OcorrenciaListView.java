@@ -1,9 +1,7 @@
 package com.moveseg.app.viagem.Ocorrencia.app.view;
 
-import com.moveseg.app.cadastro.Aluno.domain.AlunoId;
 import com.moveseg.app.viagem.Ocorrencia.domain.Ocorrencia;
 import com.moveseg.app.viagem.Ocorrencia.domain.OcorrenciaId;
-import com.moveseg.app.viagem.domain.ViagemId;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,16 +16,16 @@ public class OcorrenciaListView {
     private OcorrenciaId id;
     private String motivo;
     private String data;
-    private AlunoId aluno;
-    private ViagemId viagem;
+    private String aluno;
+    private String viagem;
 
     public static OcorrenciaListView of(Ocorrencia ocorrencia) {
         return OcorrenciaListView.builder()
         .id(ocorrencia.id())
         .motivo(ocorrencia.motivo())
         .data(ocorrencia.data().toString())
-        .aluno(ocorrencia.aluno())
-        .viagem(ocorrencia.viagem())
+        .aluno(ocorrencia.aluno().nome())
+        .viagem(ocorrencia.viagem().data().toString())
         .build();
     }
 
