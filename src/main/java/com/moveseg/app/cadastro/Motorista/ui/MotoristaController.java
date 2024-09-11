@@ -27,6 +27,7 @@ import com.moveseg.app.cadastro.Motorista.domain.cmd.AlterarMotorista;
 import com.moveseg.app.cadastro.Motorista.domain.cmd.CriarMotorista;
 
 import lombok.AllArgsConstructor;
+import lombok.Value;
 
 @AllArgsConstructor
 @RestController
