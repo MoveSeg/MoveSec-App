@@ -1,5 +1,10 @@
 package com.moveseg.app.checklist.GrupoChecklist.app.list;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import com.moveseg.app.checklist.Checklist.domain.Checklist;
+import com.moveseg.app.checklist.Checklist.domain.Nome;
 import com.moveseg.app.checklist.GrupoChecklist.domain.GrupoChecklist;
 import com.moveseg.app.checklist.GrupoChecklist.domain.GrupoChecklistId;
 
@@ -15,13 +20,13 @@ import lombok.NoArgsConstructor;
 public class GrupoChecklistListView {
     private GrupoChecklistId id;
     private String nome;
-    private String checklist;
+    private List<Nome> checklists;
     
     public static GrupoChecklistListView of(GrupoChecklist grupoChecklist) {
         return GrupoChecklistListView.builder()
                 .id(grupoChecklist.id())
                 .nome(grupoChecklist.nome().nome())
-                .checklist(grupoChecklist.checklists().get(0).nome().nome())
+                .checklists(grupoChecklist.checklists().stream().map(Checklist::nome).collect(Collectors.toList()))
                 .build();
     }
 }

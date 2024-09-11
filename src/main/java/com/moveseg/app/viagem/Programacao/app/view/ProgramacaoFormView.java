@@ -2,8 +2,6 @@ package com.moveseg.app.viagem.Programacao.app.view;
 
 import java.time.LocalDate;
 
-import com.moveseg.app.checklist.Checklist.app.view.ChecklistListView;
-import com.moveseg.app.checklist.Checklist.domain.Checklist;
 import com.moveseg.app.viagem.Programacao.domain.Programacao;
 import com.moveseg.app.viagem.Programacao.domain.ProgramacaoId;
 

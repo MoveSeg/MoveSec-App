@@ -1,6 +1,12 @@
 package com.moveseg.app.viagem.app.view;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import com.moveseg.app.cadastro.Aluno.domain.Aluno;
+import com.moveseg.app.cadastro.Instituto.domain.Instituto;
 import com.moveseg.app.cadastro.Motorista.domain.MotoristaId;
+import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
 import com.moveseg.app.cadastro.veiculo.domain.VeiculoId;
 import com.moveseg.app.viagem.Rota.domain.RotaId;
 import com.moveseg.app.viagem.domain.Viagem;
@@ -19,7 +25,7 @@ public class ViagemListView {
     private ViagemId id;
     private RotaId rota;
     private MotoristaId motorista;
-    private String alunos;
+    private List<String> alunos;
     private VeiculoId veiculo;
     private String data;
 
@@ -28,7 +34,7 @@ public class ViagemListView {
                 .id(viagem.id())
                 .rota(viagem.rota())
                 .motorista(viagem.motorista())
-                .alunos(viagem.alunos().get(0).nome())
+                .alunos(viagem.alunos().stream().map(Aluno::nome).collect(Collectors.toList()))
                 .veiculo(viagem.veiculo())
                 .data(viagem.data().toString())
                 .build();

@@ -48,6 +48,7 @@ public class RotaService {
                                         cmd.id().toUUID())));
         rota.atualizar()
                 .numeroRota(cmd.numeroRota())
+                .endereco(cmd.enderecos())
                 .aplicar();
         return repository.save(rota);
     }
