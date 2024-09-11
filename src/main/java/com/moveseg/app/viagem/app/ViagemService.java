@@ -58,7 +58,6 @@ public class ViagemService {
                                 .alunos(alunos)
                                 .motorista(motorista)
                                 .rota(rota)
-                                .alunos(alunos)
                                 .veiculo(veiculo)
                                 .data(cmd.data())
                                 .build();
