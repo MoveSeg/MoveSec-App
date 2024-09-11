@@ -4,11 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.moveseg.app.cadastro.Aluno.domain.Aluno;
-import com.moveseg.app.cadastro.Instituto.domain.Instituto;
-import com.moveseg.app.cadastro.Motorista.domain.MotoristaId;
-import com.moveseg.app.cadastro.responsavel.domain.Responsavel;
-import com.moveseg.app.cadastro.veiculo.domain.VeiculoId;
-import com.moveseg.app.viagem.Rota.domain.RotaId;
+import com.moveseg.app.cadastro.veiculo.domain.Placa;
+import com.moveseg.app.viagem.Rota.domain.Numero;
 import com.moveseg.app.viagem.domain.Viagem;
 import com.moveseg.app.viagem.domain.ViagemId;
 
@@ -23,19 +20,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ViagemListView {
     private ViagemId id;
-    private RotaId rota;
-    private MotoristaId motorista;
+    private Numero rota;
+    private String motorista;
     private List<String> alunos;
-    private VeiculoId veiculo;
+    private Placa veiculo;
     private String data;
 
     public static ViagemListView of(Viagem viagem) {
         return ViagemListView.builder()
                 .id(viagem.id())
-                .rota(viagem.rota())
-                .motorista(viagem.motorista())
+                .rota(viagem.rota().numeroRota())
+                .motorista(viagem.motorista().nome())
                 .alunos(viagem.alunos().stream().map(Aluno::nome).collect(Collectors.toList()))
-                .veiculo(viagem.veiculo())
+                .veiculo(viagem.veiculo().placa())
                 .data(viagem.data().toString())
                 .build();
     }

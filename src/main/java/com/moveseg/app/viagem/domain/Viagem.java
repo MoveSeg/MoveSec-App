@@ -8,14 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.moveseg.app.cadastro.Aluno.domain.Aluno;
-import com.moveseg.app.cadastro.Motorista.domain.MotoristaId;
-import com.moveseg.app.cadastro.veiculo.domain.VeiculoId;
-import com.moveseg.app.viagem.Rota.domain.RotaId;
+import com.moveseg.app.cadastro.Motorista.domain.Motorista;
+import com.moveseg.app.cadastro.veiculo.domain.Veiculo;
+import com.moveseg.app.viagem.Rota.domain.Rota;
 import com.moveseg.parent.infra.domain.AbstractEntity;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -29,9 +30,15 @@ public class Viagem extends AbstractEntity<ViagemId> {
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     private List<Aluno> alunos;
-    private RotaId rota;
-    private MotoristaId motorista;
-    private VeiculoId veiculo;
+
+    @ManyToOne
+    private Rota rota;
+
+    @ManyToOne
+    private Motorista motorista;
+
+    @ManyToOne
+    private Veiculo veiculo;
     private LocalDate data;
 
     private Viagem(ViagemBuilder builder) {
@@ -40,9 +47,9 @@ public class Viagem extends AbstractEntity<ViagemId> {
             throw new IllegalArgumentException("Não pode ser nulo");
         }
         this.alunos = requireNonNull(builder.alunos, "O aluno não deve ser nulo");
-        this.rota = requireNonNull(builder.rota, "O Id da rota não deve ser nula");
-        this.motorista = requireNonNull(builder.motorista, "O Id do motorista não deve ser nulo");
-        this.veiculo = requireNonNull(builder.veiculo, "A data não deve ser inválida e nem nula");
+        this.rota = requireNonNull(builder.rota, "A rota não deve ser nula");
+        this.motorista = requireNonNull(builder.motorista, "O motorista não deve ser nulo");
+        this.veiculo = requireNonNull(builder.veiculo, "O veiculo não deve ser nulo");
         this.data = requireNonNull(builder.data, "A data não deve ser inválida e nem nula");
     }
 
@@ -52,9 +59,9 @@ public class Viagem extends AbstractEntity<ViagemId> {
                 throw new IllegalArgumentException("Não pode ser nulo");
             }
             this.alunos = requireNonNull(form.alunos(), "O aluno não deve ser nulo");
-            this.rota = requireNonNull(form.rota(), "O Id da rota não deve ser nula");
-            this.motorista = requireNonNull(form.motorista(), "O Id do motorista não deve ser nulo");
-            this.veiculo = requireNonNull(form.veiculo(), "O Id do veiculo não deve ser nulo");
+            this.rota = requireNonNull(form.rota(), "A rota não deve ser nula");
+            this.motorista = requireNonNull(form.motorista(), "O motorista não deve ser nulo");
+            this.veiculo = requireNonNull(form.veiculo(), "O veiculo não deve ser nulo");
             this.data = requireNonNull(form.data(), "A data não deve ser inválida e nem nula");
         });
     }

@@ -22,7 +22,7 @@ public class ProgramacaoFormView {
     public static ProgramacaoFormView of(Programacao programacao) {
         return ProgramacaoFormView.builder()
                 .id(programacao.id())
-                .viagem(programacao.viagem().id().toUUID())
+                .viagem(programacao.viagem().data().toString())
                 .data(programacao.data())
                 .build();
     }
