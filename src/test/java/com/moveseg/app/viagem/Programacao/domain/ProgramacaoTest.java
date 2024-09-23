@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,8 +33,8 @@ public class ProgramacaoTest {
     private Rota rota;
     private Motorista motorista;
     private Veiculo veiculo;
-    private LocalDate dataViagem = LocalDate.of(2000, 04, 30);
     private LocalDate data;
+    private LocalDateTime dataProgramacao;
     private Viagem viagem;
     private Endereco endereco;
     private Numero numeroRota;
@@ -107,10 +108,10 @@ public class ProgramacaoTest {
         .motorista(motorista)
         .rota(rota)
         .veiculo(veiculo)
-        .data(dataViagem)
+        .data(data)
         .build();
-        data = LocalDate.of(2000, 1, 20);
-        Programacao programacao = Programacao.from(viagem, data);
+        dataProgramacao = LocalDateTime.of(2024, 03, 15, 14, 30);
+        Programacao programacao = Programacao.from(viagem, dataProgramacao);
         assertNotNull(programacao);
         assertNotNull(programacao.id());
         assertNotNull(data);
@@ -170,7 +171,7 @@ public class ProgramacaoTest {
         .motorista(motorista)
         .rota(rota)
         .veiculo(veiculo)
-        .data(dataViagem)
+        .data(data)
         .build();
         
         this.alunos.add(aluno);
@@ -179,7 +180,7 @@ public class ProgramacaoTest {
         .motorista(motorista)
         .rota(rota)
         .veiculo(veiculo)
-        .data(dataViagem)
+        .data(data)
         .build();
         assertThrows(Exception.class, () -> {
             Programacao.from(viagem, null);
@@ -188,9 +189,9 @@ public class ProgramacaoTest {
 
     @Test
     void dadoUmaProgramacaoSemViagemNaoDeveCriar() {
-        data = LocalDate.of(2014, 07, 10);
+        dataProgramacao = LocalDateTime.of(2014, 07, 10, 10, 15);
         assertThrows(Exception.class, () -> {
-            Programacao.from(null, data);
+            Programacao.from(null, dataProgramacao);
         });
     }
 

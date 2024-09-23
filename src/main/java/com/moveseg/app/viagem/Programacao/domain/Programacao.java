@@ -3,10 +3,9 @@ package com.moveseg.app.viagem.Programacao.domain;
 import static com.moveseg.parent.infra.domain.DomainObjectId.randomId;
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import com.moveseg.app.viagem.domain.Viagem;
-
 import com.moveseg.parent.infra.domain.AbstractAggregateRoot;
 
 import jakarta.persistence.Entity;
@@ -19,19 +18,19 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 public class Programacao extends AbstractAggregateRoot<ProgramacaoId> {
-    private LocalDate data;
+    private LocalDateTime data;
 
     @OneToOne
     private Viagem viagem;
 
-    private Programacao(ProgramacaoId id, Viagem viagem, LocalDate data) {
+    private Programacao(ProgramacaoId id, Viagem viagem, LocalDateTime data) {
         super(id);
         this.data = requireNonNull(data, "A data da viagem não pode ser nula");
         this.viagem = requireNonNull(viagem, "A viagem não pode ser nula");
     }
 
     @SuppressWarnings("null")
-    public static Programacao from(Viagem viagem, LocalDate data) {
+    public static Programacao from(Viagem viagem, LocalDateTime data) {
         ProgramacaoId id = randomId(ProgramacaoId.class);
 
         Programacao programacao = new Programacao(id, viagem, data);

@@ -3,6 +3,7 @@ package com.moveseg.app.viagem.Programacao.ui;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moveseg.app.viagem.Programacao.app.ProgramacaoService;
@@ -46,6 +48,11 @@ public class ProgramacaoController {
     @GetMapping
     public List<ProgramacaoListView> listarTodos() {
         return service.listarTodos();
+    }
+
+    @GetMapping("/pessoas/{id}")
+    public List<ProgramacaoListView> listarPorIdDePessoas(@PathVariable @NonNull String id, @RequestParam("dataInicio") @NonNull LocalDate dataInicio, @RequestParam("dataFim") @NonNull LocalDate dataFim) {
+        return service.buscarPorIdDePessoas(id, dataInicio, dataFim);
     }
 
     @GetMapping("/{id}")
