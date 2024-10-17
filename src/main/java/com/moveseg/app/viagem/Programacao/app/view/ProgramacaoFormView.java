@@ -1,6 +1,6 @@
 package com.moveseg.app.viagem.Programacao.app.view;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import com.moveseg.app.viagem.Programacao.domain.Programacao;
 import com.moveseg.app.viagem.Programacao.domain.ProgramacaoId;
@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class ProgramacaoFormView {
     public ProgramacaoId id;
     public String viagem;
-    public LocalDate data;
+    public LocalDateTime data;
 
     public static ProgramacaoFormView of(Programacao programacao) {
         return ProgramacaoFormView.builder()

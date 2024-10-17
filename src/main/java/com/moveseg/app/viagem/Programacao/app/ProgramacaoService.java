@@ -14,6 +14,8 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.moveseg.app.cadastro.Aluno.domain.AlunoId;
+import com.moveseg.app.cadastro.Motorista.domain.MotoristaId;
 import com.moveseg.app.viagem.Programacao.app.view.ProgramacaoFormView;
 import com.moveseg.app.viagem.Programacao.app.view.ProgramacaoListView;
 import com.moveseg.app.viagem.Programacao.domain.Programacao;
@@ -58,7 +60,7 @@ public class ProgramacaoService {
     public List<Programacao> agenda() {
         return repository.findAll()
                 .stream()
-                .filter(programacao -> programacao.data().isBefore(LocalDate.now()))
+                .filter(programacao -> programacao.data().isBefore(LocalDate.now().atStartOfDay()))
                 .collect(Collectors.toList());
     }
 
@@ -69,6 +71,31 @@ public class ProgramacaoService {
                         () -> new EntityNotFoundException(
                                 format("Not found any Business with code %s.", id.toUUID())));
         return ProgramacaoFormView.of(programacao);
+    }
+    
+    @Transactional(readOnly = true)
+    public List<ProgramacaoListView> buscarPorIdDePessoas(@NonNull String id, @NonNull LocalDate dataInicio, @NonNull LocalDate dataFim) {
+        List<ProgramacaoListView> programacoes = repository.findAll().stream()
+                .filter(programacao -> {
+                    LocalDate dataProgramacao = programacao.data().toLocalDate();
+                    return dataProgramacao.isEqual(dataInicio) || 
+                           (dataProgramacao.isAfter(dataInicio) && dataProgramacao.isBefore(dataFim)) ||
+                           dataProgramacao.isEqual(dataFim);
+                })
+                .filter(programacao -> {
+                    Viagem viagem = programacao.viagem();
+                    return viagem.alunos().stream().anyMatch(aluno -> aluno.id().equals(new AlunoId(id))) ||
+                           viagem.motorista().id().equals(new MotoristaId(id));
+                })
+                .map(ProgramacaoListView::of)
+                .collect(Collectors.toList());
+
+        if (programacoes.isEmpty()) {
+            throw new EntityNotFoundException(
+                    String.format("Não foram encontradas Programações para o ID %s no período especificado.", id));
+        }
+
+        return programacoes;
     }
 
     public void deletar(@NonNull ProgramacaoId id) {
